@@ -26,3 +26,11 @@ No prior board or claims existed when this task was claimed. The Arena-assigned 
 
 2026-11-20 UTC: PR #2 from session 1f8b2810 merged into main before this branch completed observation. Imported main into this branch. Resolved the add/add board conflict by preserving both complete logs; no site file was changed by this session.
 The follow-up branch rebase attempted to replay the previously merged board history; aborted that replay to preserve both histories and rebased against integrated main instead.
+| Follow-up task | Status | Owner | Scope |
+|---|---|---|---|
+| Redirect evidence handoff | done | b5266bc5 | research/redirects.csv only |
+
+Concurrent integration discovered: PR #2 already merged at 87946a0. Resolved concurrent board creation by preserving the integration board and narrowing this session's claim; no competing site changes. Request for site owner: incorporate observed listing evidence into Flagged for Review, separately from intent. No authorization to validate attribution was available.
+- Three distinct short links fetched; normalized official destinations and titles recorded per submission. PR #2 merged. Follow-up: https://github.com/kanlerxz87-cyber/DIYHOME1/pull/4. Rebase conflict on competing initial claims resolved by retaining the integrated board and evidence scope.
+
+Follow-up PR #4 merge created overlapping board appends. Both records retained. The rebase retry against main also tried to replay old claims and was aborted; use fast-forward-only on the pull of this branch to preserve merged history.
