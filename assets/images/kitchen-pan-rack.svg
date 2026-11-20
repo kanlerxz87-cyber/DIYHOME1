@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 280" role="img" aria-label="8-tier adjustable under-cabinet pots and pans rack illustration">
+  <rect width="480" height="280" fill="#f7f4ee"/>
+  <!-- Cabinet frame -->
+  <rect x="52" y="28" width="376" height="202" rx="6" fill="#efe9de" stroke="#2c3531" stroke-width="2.5"/>
+  <!-- Vertical center pole & base -->
+  <line x1="240" y1="48" x2="240" y2="210" stroke="#1e2421" stroke-width="7" stroke-linecap="round"/>
+  <line x1="115" y1="210" x2="365" y2="210" stroke="#1e2421" stroke-width="7" stroke-linecap="round"/>
+  <!-- Left & right M-tiers -->
+  <path d="M240 76 L132 76" stroke="#1e2421" stroke-width="4" stroke-linecap="round"/>
+  <path d="M240 116 L132 116" stroke="#1e2421" stroke-width="4" stroke-linecap="round"/>
+  <path d="M240 156 L132 156" stroke="#1e2421" stroke-width="4" stroke-linecap="round"/>
+  <path d="M240 196 L132 196" stroke="#1e2421" stroke-width="4" stroke-linecap="round"/>
+  <path d="M240 76 L348 76" stroke="#1e2421" stroke-width="4" stroke-linecap="round"/>
+  <path d="M240 116 L348 116" stroke="#1e2421" stroke-width="4" stroke-linecap="round"/>
+  <path d="M240 156 L348 156" stroke="#1e2421" stroke-width="4" stroke-linecap="round"/>
+  <path d="M240 196 L348 196" stroke="#1e2421" stroke-width="4" stroke-linecap="round"/>
+  <!-- Pans -->
+  <ellipse cx="182" cy="69" rx="44" ry="7" fill="#b45c3c" stroke="#2c3531" stroke-width="2"/>
+  <ellipse cx="182" cy="109" rx="48" ry="7" fill="#4f6d5c" stroke="#2c3531" stroke-width="2"/>
+  <ellipse cx="298" cy="109" rx="48" ry="7" fill="#b45c3c" stroke="#2c3531" stroke-width="2"/>
+  <ellipse cx="298" cy="149" rx="50" ry="7" fill="#3a4c44" stroke="#2c3531" stroke-width="2"/>
+  <text x="52" y="258" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#4f5d56">8-Tier Adjustable Iron Rack · 3 DIY Modes (B08DY9HRWD)</text>
+</svg>

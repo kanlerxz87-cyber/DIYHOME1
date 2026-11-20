@@ -1,0 +1,159 @@
+{
+  "metadata": {
+    "verification_date_utc": "2026-11-20",
+    "selected_tracking_id": "shopnow047c-20",
+    "policy_note": "intended_asin and observed_redirect_target are intentionally stored in separate fields and never merged. Any value not confirmed from an official source is left blank and flagged as unverified."
+  },
+  "submitted_links_register": [
+    {
+      "line_number": 1,
+      "submitted_url": "https://link.amazon/B0hmGG4m2",
+      "duplicate_of_line": null,
+      "intended_asin": "",
+      "intended_asin_status": "unverified",
+      "confirmation_date": "",
+      "confirmation_source": "",
+      "observed_redirect_target": "https://www.amazon.com/dp/B08FKW9JRM?lv=shuf&btn_type=ss&crid=2Y94AV6ZXMMJI&sprefix=diy+home+upgrades%2Caps%2C196&gaOptInStatus=true&language=en_US&sr=8-2&btn_ref=srctok-66dc2f239029f4f9&channelId=500&plpRedirect=mhFallback",
+      "observed_redirect_asin": "B08FKW9JRM",
+      "observed_redirect_date": "2026-11-20",
+      "official_listing_url": "https://www.amazon.com/dp/B08FKW9JRM",
+      "observed_tag_in_url": "",
+      "short_link_compliance_status": "unresolved",
+      "official_source_url": "https://www.amazon.com/dp/B08FKW9JRM",
+      "flags": ["IR-01", "IR-03", "IR-04", "IR-05"]
+    },
+    {
+      "line_number": 2,
+      "submitted_url": "https://link.amazon/B03QDuGdo",
+      "duplicate_of_line": null,
+      "intended_asin": "",
+      "intended_asin_status": "unverified",
+      "confirmation_date": "",
+      "confirmation_source": "",
+      "observed_redirect_target": "https://www.amazon.com/dp/B0BSKQW2T2?lv=shuf&btn_type=ss&crid=2Y94AV6ZXMMJI&sprefix=diy%2Bhome%2Bupgrades%2Caps%2C196&gaOptInStatus=true&language=en_US&sr=8-3&btn_ref=srctok-5bcda8f354d0c349&channelId=500&plpRedirect=mhFallback&th=1",
+      "observed_redirect_asin": "B0BSKQW2T2",
+      "observed_redirect_date": "2026-11-20",
+      "official_listing_url": "https://www.amazon.com/dp/B0BSKQW2T2",
+      "observed_tag_in_url": "",
+      "short_link_compliance_status": "unresolved",
+      "official_source_url": "https://www.amazon.com/dp/B0BSKQW2T2",
+      "flags": ["IR-01", "IR-02", "IR-04", "IR-05", "IR-06"]
+    },
+    {
+      "line_number": 3,
+      "submitted_url": "https://link.amazon/B03QDuGdo",
+      "duplicate_of_line": 2,
+      "intended_asin": "",
+      "intended_asin_status": "unverified",
+      "confirmation_date": "",
+      "confirmation_source": "",
+      "observed_redirect_target": "https://www.amazon.com/dp/B0BSKQW2T2?lv=shuf&btn_type=ss&crid=2Y94AV6ZXMMJI&sprefix=diy%2Bhome%2Bupgrades%2Caps%2C196&gaOptInStatus=true&language=en_US&sr=8-3&btn_ref=srctok-5bcda8f354d0c349&channelId=500&plpRedirect=mhFallback&th=1",
+      "observed_redirect_asin": "B0BSKQW2T2",
+      "observed_redirect_date": "2026-11-20",
+      "official_listing_url": "https://www.amazon.com/dp/B0BSKQW2T2",
+      "observed_tag_in_url": "",
+      "short_link_compliance_status": "unresolved",
+      "official_source_url": "https://www.amazon.com/dp/B0BSKQW2T2",
+      "flags": ["IR-01", "IR-02", "IR-04", "IR-05", "IR-06"]
+    },
+    {
+      "line_number": 4,
+      "submitted_url": "https://link.amazon/B0hpD2JGQ",
+      "duplicate_of_line": null,
+      "intended_asin": "",
+      "intended_asin_status": "unverified",
+      "confirmation_date": "",
+      "confirmation_source": "",
+      "observed_redirect_target": "https://www.amazon.com/dp/B08DY9HRWD?lv=shuf&btn_type=ss&crid=2Y94AV6ZXMMJI&sprefix=diy%2Bhome%2Bupgrades%2Caps%2C196&gaOptInStatus=true&language=en_US&sr=8-13&btn_ref=srctok-0111a85b69ad30c4&channelId=500&plpRedirect=mhFallback&th=1",
+      "observed_redirect_asin": "B08DY9HRWD",
+      "observed_redirect_date": "2026-11-20",
+      "official_listing_url": "https://www.amazon.com/dp/B08DY9HRWD",
+      "observed_tag_in_url": "",
+      "short_link_compliance_status": "unresolved",
+      "official_source_url": "https://www.amazon.com/dp/B08DY9HRWD",
+      "flags": ["IR-01", "IR-04", "IR-05", "IR-06", "IR-07"]
+    }
+  ],
+  "irregularities": [
+    {
+      "id": "IR-01",
+      "severity": "needs review",
+      "title": "Intended ASINs not explicitly confirmed by submitter",
+      "affected_items": ["Line 1", "Line 2", "Line 3", "Line 4"],
+      "description": "Submitted URLs use 9-character link.amazon short codes (B0hmGG4m2, B03QDuGdo, B0hpD2JGQ), whereas official Amazon ASINs are 10-character identifiers. Intended ASIN is left blank and never merged with observed_redirect_target.",
+      "official_source_label": "Amazon Associates ASIN Definition",
+      "official_source_url": "https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC",
+      "recommended_action": "Confirm intended 10-character ASIN for each submitted link before scaling."
+    },
+    {
+      "id": "IR-02",
+      "severity": "needs review",
+      "title": "Duplicate product URL in submitted input",
+      "affected_items": ["Line 2", "Line 3"],
+      "description": "https://link.amazon/B03QDuGdo appears twice consecutively in the submitted product list. Consolidated into 1 canonical catalog entry (B0BSKQW2T2) while retaining both lines in the audit register.",
+      "official_source_label": "Official Amazon Listing B0BSKQW2T2",
+      "official_source_url": "https://www.amazon.com/dp/B0BSKQW2T2",
+      "recommended_action": "Confirm whether Line 3 was an accidental paste or a placeholder for another product."
+    },
+    {
+      "id": "IR-03",
+      "severity": "needs review",
+      "title": "Intermittent HTTP 500 error observed on link.amazon/B0hmGG4m2",
+      "affected_items": ["Line 1"],
+      "description": "Initial fetch of https://link.amazon/B0hmGG4m2 on 2026-11-20 returned HTTP 500; a subsequent fetch resolved to https://www.amazon.com/dp/B08FKW9JRM.",
+      "official_source_label": "Official Amazon Listing B08FKW9JRM",
+      "official_source_url": "https://www.amazon.com/dp/B08FKW9JRM",
+      "recommended_action": "Replace ambiguous short link with a validated Special Link after Associates Central testing."
+    },
+    {
+      "id": "IR-04",
+      "severity": "needs review",
+      "title": "Unresolved tracking and compliance status on supplied link.amazon URLs",
+      "affected_items": ["Line 1", "Line 2", "Line 3", "Line 4"],
+      "description": "Observed redirects did not display a visible tag= parameter (such as tag=shopnow047c-20), carrying btn_type=ss and btn_ref=srctok-... instead. Per project rules, supplied short links are NOT claimed to be invalid; their exact compliance status is unresolved until tested in the enrolled Associates workflow and verified in Associates reports.",
+      "official_source_label": "Amazon Associates Mobile GetLink & Policies",
+      "official_source_url": "https://affiliate-program.amazon.com/help/node/topic/GH37MDS5PLQ9Z366",
+      "recommended_action": "Test one Special Link per product in Associates Central / SiteStripe and confirm destination and tracking report before scaling."
+    },
+    {
+      "id": "IR-05",
+      "severity": "needs review",
+      "title": "Creators API required before displaying live prices or customer star ratings",
+      "affected_items": ["All product pages"],
+      "description": "Amazon Associates Participation Requirements §2(b) and §6(t) prohibit static display of live prices, availability, and customer star ratings/reviews unless served via Amazon links or Creators API / PA-API (with PA-API 5 now deprecated in favor of Creators API).",
+      "official_source_label": "Amazon Associates Program Policies & Creators API Notice",
+      "official_source_url": "https://affiliate-program.amazon.com/help/operating/policies",
+      "recommended_action": "Integrate Creators API with <=24h cache TTL and required price/availability timestamp disclaimers; keep buyer CTAs directing users to Amazon for current pricing."
+    },
+    {
+      "id": "IR-06",
+      "severity": "needs review",
+      "title": "Unconfirmed fee-tier mapping within Home & Kitchen breadcrumb",
+      "affected_items": ["B0BSKQW2T2", "B08DY9HRWD"],
+      "description": "Both kitchen storage items sit under Home & Kitchen > Kitchen & Dining > Storage & Organization. Amazon's Standard Commission Income Statement lists Kitchen at 4.50% and Home / Home Improvement at 3.00%. Effective assigned fee tier is left blank until verified in first-party Associates earnings reports.",
+      "official_source_label": "Amazon Associates Standard Commission Income Statement",
+      "official_source_url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ",
+      "recommended_action": "Confirm actual credited category rate on first qualifying order report."
+    },
+    {
+      "id": "IR-07",
+      "severity": "needs review",
+      "title": "ORDORA B08DY9HRWD listing discrepancies and Prime-exclusive pricing",
+      "affected_items": ["B08DY9HRWD"],
+      "description": "Listing shows Prime-exclusive price ($17.74 vs $23.99 regular), states 'Up to 11\"' in the title vs 'up to 12 inches' in product bullets, and displays a newer heavy-duty model notice (B0BYYTQMTR).",
+      "official_source_label": "Official Amazon Listing B08DY9HRWD",
+      "official_source_url": "https://www.amazon.com/dp/B08DY9HRWD",
+      "recommended_action": "Note Prime-only pricing caveat and cookware diameter variance in buyer guide; verify whether B08DY9HRWD or B0BYYTQMTR is preferred."
+    },
+    {
+      "id": "IR-08",
+      "severity": "needs review",
+      "title": "Self-hosted analytics endpoint and Google Search Console verification pending deployment",
+      "affected_items": ["Sitewide telemetry & SEO"],
+      "description": "GitHub Pages hosts static files only. The 5-event privacy-preserving client tracker records local diagnostics until a self-hosted endpoint URL (analytics-server/server.mjs) is deployed and configured. Search Console ownership verification requires domain owner action.",
+      "official_source_label": "Google Search Central — Qualify Outbound Links",
+      "official_source_url": "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links",
+      "recommended_action": "Deploy analytics-server/server.mjs, set endpoint URL in assets/js/analytics.js config, and submit sitemap.xml in Google Search Console."
+    }
+  ]
+}

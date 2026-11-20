@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Executive Summary | Field & Fixture</title>
+  <meta name="description" content="Executive summary of the DIYHOME1 Amazon affiliate audit, verified products, compliance posture, and platform build.">
+  <link rel="canonical" href="https://kanlerxz87-cyber.github.io/DIYHOME1/dashboard/executive-summary.html">
+  <link rel="alternate" type="application/rss+xml" title="Field & Fixture RSS Feed" href="../feed.xml">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  
+</head>
+<body data-page-type="dashboard">
+  <div class="disclosure-strip" id="top-disclosure" role="region" aria-label="Affiliate Disclosure">
+    <div class="container">
+      <span><strong>Disclosure:</strong> As an Amazon Associate I earn from qualifying purchases (Tracking ID: <code>shopnow047c-20</code>). Outbound product links are marked <code>rel="sponsored"</code>.</span>
+      <a href="../review/flagged.html">Verification &amp; Flagged Review Queue</a>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html">
+        <span class="brand-title">Field & Fixture</span>
+        <span class="brand-tag">DIY Home Upgrades · Practical Buyer Guides & Verified Product Notes</span>
+      </a>
+      <nav class="primary-nav" aria-label="Primary Navigation">
+          <a href="../index.html">Home</a>
+          <a href="../categories/kitchen-storage.html">Kitchen &amp; Storage</a>
+          <a href="../categories/walls-surfaces.html">Walls &amp; Surfaces</a>
+          <a href="../guides/index.html">Buying Guides</a>
+          <a href="../review/flagged.html">Flagged for Review</a>
+          <a href="../dashboard/index.html" aria-current="page">Platform &amp; Ledger</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <span class="eyebrow">Executive Summary · 2026-11-20 UTC</span>
+      <h1>Executive Summary: DIY Home Upgrades Affiliate Platform</h1>
+      <p class="lead">Complete line-by-line verification of submitted product links, live publication build, compliance gate enforcement, and analytics instrumentation for Tracking ID <code>shopnow047c-20</code>.</p>
+    </section>
+
+    <section class="section">
+      <h2>1. Key Findings from Line-by-Line Verification</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Area</th>
+              <th>Verified Finding</th>
+              <th>Compliance / Action Required</th>
+              <th>Official Reference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Submitted Link Resolution</strong></td>
+              <td>4 submitted lines resolve to 3 unique official Amazon listings: <code>B08FKW9JRM</code> (Art3d Smoothing Kit), <code>B0BSKQW2T2</code> (niffgaff Paper Towel Holder, submitted twice), and <code>B08DY9HRWD</code> (ORDORA 8-Tier Pot Rack).</td>
+              <td>Intended ASINs kept blank/unverified and strictly separated from observed redirect targets. Line 3 flagged as duplicate.</td>
+              <td><a href="https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC" target="_blank" rel="noopener noreferrer">Amazon ASIN Definition</a></td>
+            </tr>
+            <tr>
+              <td><strong>Short Link Status (<code>link.amazon</code>)</strong></td>
+              <td><code>link.amazon/B0hmGG4m2</code> returned HTTP 500 on first fetch before redirecting on retry. None of the 3 redirect targets carried a visible <code>tag=</code> query parameter.</td>
+              <td>Do not claim supplied short links are invalid; exact compliance status is unresolved. Test one Special Link (<code>ref=nosim?tag=shopnow047c-20</code>) per product in Associates Central before scaling.</td>
+              <td><a href="https://affiliate-program.amazon.com/help/node/topic/GH37MDS5PLQ9Z366" target="_blank" rel="noopener noreferrer">Mobile GetLink Help</a></td>
+            </tr>
+            <tr>
+              <td><strong>API Migration (PA-API 5 &rarr; Creators API)</strong></td>
+              <td>Amazon officially deprecated PA-API 5 (returns HTTP 403) in favor of the <strong>Creators API</strong>. Static caching of prices/reviews without API is restricted.</td>
+              <td>Platform blueprint targets Creators API with &le;24h cache TTL, timestamped pricing, and required disclaimers.</td>
+              <td><a href="https://affiliate-program.amazon.com/creatorsapi/docs/en-us/paapiv5-deprecation" target="_blank" rel="noopener noreferrer">PA-API 5 Deprecation Notice</a></td>
+            </tr>
+            <tr>
+              <td><strong>Disclosure &amp; Link Qualification</strong></td>
+              <td>Operating Agreement §5 requires the exact Associates statement; Google requires <code>rel="sponsored"</code> on affiliate links; FTC requires clear, conspicuous placement.</td>
+              <td>Automated HTML auditor verifies above-the-fold disclosure, footer disclosure, and <code>rel="sponsored"</code> on 100% of pages.</td>
+              <td><a href="https://affiliate-program.amazon.com/help/operating/agreement" target="_blank" rel="noopener noreferrer">Operating Agreement</a> · <a href="https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links" target="_blank" rel="noopener noreferrer">Google Search Central</a></td>
+            </tr>
+            <tr>
+              <td><strong>Commission Rate Mapping</strong></td>
+              <td>Home Improvement / Tools (<code>B08FKW9JRM</code>) maps to <code>3.00%</code> on the U.S. rate card. Kitchen vs. Home (<code>B0BSKQW2T2</code>, <code>B08DY9HRWD</code>) spans <code>4.50%</code> (Kitchen) vs <code>3.00%</code> (Home).</td>
+              <td>Assigned rate left blank/unconfirmed for Kitchen &amp; Dining storage items until verified in first-party Associates reports.</td>
+              <td><a href="https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ" target="_blank" rel="noopener noreferrer">Standard Commission Rates</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>2. What Was Built in This Repository</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Shop-First Publication &amp; Dashboard Site</h3>
+          <ul class="spec-list">
+            <li>Publication front page (<code>index.html</code>) leading with products and buyer value rather than audit jargon.</li>
+            <li>Category pages (<code>categories/kitchen-storage.html</code>, <code>categories/walls-surfaces.html</code>) and 3 question-shaped buying guides + editorial cadence table.</li>
+            <li>Dedicated Dashboard Hub, Executive Summary, Verification Register, Campaign Ledger, Platform Architecture, and Flagged for Review page.</li>
+            <li>SEO &amp; Discoverability: canonical URLs, <code>sitemap.xml</code>, <code>feed.xml</code> (RSS), <code>robots.txt</code>.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Automated Platform &amp; Measurement Stack</h3>
+          <ul class="spec-list">
+            <li><code>platform/affiliate_platform.py</code>: validates product-intent separation, builds Special Links, enforces ledger schema, and audits every HTML page.</li>
+            <li><code>platform/creators_api_client.py</code>: Creators API policy wrapper enforcing 24h cache TTL and timestamped disclaimers.</li>
+            <li><code>assets/js/analytics.js</code> &amp; <code>analytics-server/server.mjs</code>: privacy-preserving 5-event tracking without cookies or PII.</li>
+            <li><code>tests/test_platform.py</code>: automated verification test suite.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Field & Fixture · Shop &amp; Guides</h4>
+          <ul>
+            <li><a href="../index.html">Home (Front Page)</a></li>
+            <li><a href="../categories/kitchen-storage.html">Kitchen &amp; Storage Upgrades</a></li>
+            <li><a href="../categories/walls-surfaces.html">Walls, Surfaces &amp; DIY Tools</a></li>
+            <li><a href="../guides/index.html">Question-Shaped Buying Guides</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Dashboard &amp; Audit Surfaces</h4>
+          <ul>
+            <li><a href="../dashboard/index.html">Dashboard Overview</a></li>
+            <li><a href="../dashboard/executive-summary.html">Executive Summary</a></li>
+            <li><a href="../dashboard/verification-register.html">Verification &amp; Intent Register</a></li>
+            <li><a href="../dashboard/campaign-ledger.html">Campaign Ledger &amp; Telemetry</a></li>
+            <li><a href="../dashboard/platform-architecture.html">Automation &amp; Compliance Gate</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Review &amp; Discoverability</h4>
+          <ul>
+            <li><a href="../review/flagged.html">Flagged for Review</a></li>
+            <li><a href="../feed.xml">RSS Feed (feed.xml)</a></li>
+            <li><a href="../sitemap.xml">XML Sitemap (sitemap.xml)</a></li>
+            <li><a href="../robots.txt">robots.txt</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-disclosure">
+        <p><strong>Affiliate &amp; FTC Disclosure:</strong> As an Amazon Associate I earn from qualifying purchases. Selected Tracking ID: <code>shopnow047c-20</code>. Every outbound Amazon product link on this site carries <code>rel="sponsored noopener noreferrer"</code>. Product prices and availability on Amazon can change at any time; check the destination Amazon listing for current price, availability, and customer reviews.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/analytics.js" defer></script>
+</body>
+</html>
