@@ -11,11 +11,11 @@ class Links(HTMLParser):
         if attrs.get('data-event')=='affiliate_click':
             assert 'sponsored' in attrs['rel'].split()
         if not u.scheme and not u.netloc:
-            p=Path(u.path or current.name); p=p/'index.html' if p.is_dir() else p
+            p=current.parent / (u.path or current.name); p=p/'index.html' if p.is_dir() else p
             assert p.is_file(), (current,url)
             if u.fragment: assert f'id="{u.fragment}"' in p.read_text(), (current,url)
 
-pages=list(Path('.').glob('*.html'))
+pages=list(Path('.').rglob('*.html'))
 for current in pages:
     html=current.read_text(); assert html.count('As an Amazon Associate I earn from qualifying purchases.')==2
     Links().feed(html)
