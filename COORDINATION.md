@@ -269,3 +269,26 @@ No pre-existing claims or site files were present. Work stays on the Arena-assig
 - Sources used (official, linked from the site): Amazon Associates Operating Agreement & program help; Amazon ASIN guidance, tag checks, reports; FTC Endorsement Guides; Google Search Console API reference; sitemaps.org; RSS 2.0 specification.
 - Irregularities (do not block merge; published on review.html / research.html): Amazon short links not resolvable from this sandbox (outbound network limited to GitHub/npm/PyPI); intended ASIN and official listing unconfirmed and never inferred; tracking ID shopnow047c-20 supplied but attribution unverified; no signed-in Amazon report evidence; Search Console property not configured (requires Google account access); production analytics collector not deployed (analytics/server.py present; client endpoint not yet configured).
 - All T-001..T-010 build/compliance tasks reflected in the integrated site; T-011 (Pages deploy) done; T-012 (PR + merge) done.
+
+---
+
+## Integration & additive platform handoff — session `arena-d24c607b` (`arena/d24c607b-diyhome1`)
+
+- **2026-11-20 UTC:** While `arena/d24c607b-diyhome1` was preparing PR #12, `origin/main` advanced through PRs #8–#11. Resolved the merge conflict by preserving 100% of `main`'s canonical live publication (`index.html`, `products/`, `guides/`, `summary/`, `flagged/`, `ledger/`, `measurement/`, `sources/`, `disclosures/`, `search/`, `data/*.json`, `scripts/build.mjs`, `scripts/validate.mjs`, and `archive/practical-home/`) intact without discarding any earlier session's work.
+- **Preserved session edition:** The complete "Field & Fixture" static edition built during this session (`13` HTML pages, `sitemap.xml`, `feed.xml`, original SVGs, and `data/verification-ledger.json`) is preserved cleanly under `archive/field-and-fixture/` with `noindex,follow` and an `archived-edition-banner` linking to the live publication (`DIY Home Upgrades`).
+- **Additive platform & compliance tooling included:**
+  - `platform/affiliate_platform.py` — Python registry, campaign-ledger, Special Link builder, and HTML/RSS/sitemap compliance auditor.
+  - `platform/creators_api_client.py` — Creators API policy wrapper (replacing deprecated PA-API 5, enforcing `<= 24h` cache TTL, UTC price stamps, and attribution notices).
+  - `platform/build_site.py` — Deterministic static generator for the archived `archive/field-and-fixture/` edition.
+  - `analytics-server/server.mjs` — Self-hosted zero-cookie/zero-PII Node.js endpoint accepting the 5 defined telemetry events (`page_view`, `guide_read`, `product_impression`, `outbound_affiliate_click`, `reader_capture_submit`).
+  - `tests/test_platform.py` & `.github/workflows/ci.yml` — Automated Python unit tests (6/6 passing).
+- **Additional official public sources verified in this session (2026-11-20 UTC):**
+  - Amazon Associates Simple Text Link & ASIN Definition (public, no sign-in required): `https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC` ("ASIN is the 10-digit code that Amazon uses to denote specific products. It is short for 'Amazon.com Standard Item Number.'").
+  - Amazon Associates Standard Commission Income Statement (public rate schedule): `https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ` (`Kitchen`: 4.50%; `Home`, `Home Improvement`, `Tools`: 3.00%; exact category payout tier for `Home & Kitchen › Kitchen & Dining` items remains unconfirmed until verified in first-party Associates reports).
+  - Amazon Creators API — PA-API 5 Deprecation Notice: `https://affiliate-program.amazon.com/creatorsapi/docs/en-us/paapiv5-deprecation`.
+  - Amazon Associates Mobile GetLink Help: `https://affiliate-program.amazon.com/help/node/topic/GH37MDS5PLQ9Z366` and SiteStripe Help: `https://affiliate-program.amazon.com/help/node/topic/GJMMT7G4C8K4Y3AY`.
+  - Google Search Central — Qualify your outbound links (`rel="sponsored"`): `https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links`.
+  - FTC Endorsement Guides — What People Are Asking: `https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking`.
+  - Additional link observation: initial fetch of `https://link.amazon/B0hmGG4m2` returned a transient `HTTP 500` before resolving to `https://www.amazon.com/dp/B08FKW9JRM` on immediate retry; `intended_asin` remains unverified/blank and `link.amazon` compliance status remains unresolved pending Associates Central verification.
+- **Verification before merge:** `node scripts/build.mjs && node scripts/validate.mjs` (16/16 checks, 21 published pages + 44 archived pages, 0 errors, 0 warnings) and `python3 -m unittest discover -s tests -v` (6/6 tests passing).
+

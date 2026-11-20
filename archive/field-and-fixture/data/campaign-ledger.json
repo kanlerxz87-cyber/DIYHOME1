@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "tracking_id": "shopnow047c-20",
+  "policy": "Start with an empty but well-defined campaign ledger; add timestamp, source, channel, eligible sessions, clicks, and reported orders only when obtained from authorized first-party reports. Keep a dated provenance trail. No conversion score or revenue forecast is presented here.",
+  "required_fields": [
+    "timestamp",
+    "source",
+    "channel",
+    "eligible_sessions",
+    "clicks",
+    "reported_orders",
+    "provenance_note"
+  ],
+  "records": [],
+  "provenance_trail": [
+    {
+      "date": "2026-11-20",
+      "actor": "arena-d24c607b",
+      "action": "Initialized empty campaign ledger schema prior to publishing and traffic measurement. Zero first-party Associates reports ingested yet."
+    }
+  ]
+}

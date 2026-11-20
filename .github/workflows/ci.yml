@@ -1,0 +1,24 @@
+name: Site Compliance & Platform Tests
+
+on:
+  push:
+    branches: [main, "arena/**"]
+  pull_request:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate Registry & Campaign Ledger
+        run: |
+          python3 platform/affiliate_platform.py validate-registry
+          python3 platform/affiliate_platform.py validate-ledger
+      - name: Audit Generated HTML, Sitemap & RSS Feed
+        run: python3 platform/affiliate_platform.py audit-site
+      - name: Run Platform Unit Tests
+        run: python3 -m unittest discover -s tests -v
