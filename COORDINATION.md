@@ -19,3 +19,4 @@ No prior board or claims existed when this task was claimed. The Arena-assigned 
 
 Concurrent integration discovered: PR #2 already merged at 87946a0. Resolved concurrent board creation by preserving the integration board and narrowing this session's claim; no competing site changes. Request for site owner: incorporate observed listing evidence into Flagged for Review, separately from intent. No authorization to validate attribution was available.
 - Three distinct short links fetched; normalized official destinations and titles recorded per submission. PR #2 merged. Follow-up: https://github.com/kanlerxz87-cyber/DIYHOME1/pull/4. Rebase conflict on competing initial claims resolved by retaining the integrated board and evidence scope.
+- PR #4 merged as 2b532dc. Its Pages run was superseded; the subsequent deployment including the evidence succeeded: https://github.com/kanlerxz87-cyber/DIYHOME1/actions/runs/44684568950.
