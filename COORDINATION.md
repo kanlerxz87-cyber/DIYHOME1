@@ -15,6 +15,7 @@ No prior board or claims existed when this task was claimed. The Arena-assigned 
 
 | Follow-up task | Status | Owner | Scope |
 |---|---|---|---|
-| Redirect evidence handoff | in progress | b5266bc5 | research/redirects.csv only |
+| Redirect evidence handoff | done | b5266bc5 | research/redirects.csv only |
 
 Concurrent integration discovered: PR #2 already merged at 87946a0. Resolved concurrent board creation by preserving the integration board and narrowing this session's claim; no competing site changes. Request for site owner: incorporate observed listing evidence into Flagged for Review, separately from intent. No authorization to validate attribution was available.
+- Three distinct short links fetched; normalized official destinations and titles recorded per submission. PR #2 merged. Follow-up: https://github.com/kanlerxz87-cyber/DIYHOME1/pull/4. Rebase conflict on competing initial claims resolved by retaining the integrated board and evidence scope.
