@@ -1,0 +1,18 @@
+{
+  "note": "Campaign ledger — Priority 4 (evidence-based iteration).",
+  "status": "Empty but well-defined. No entries yet.",
+  "rule": "Add timestamp, source, channel, eligible sessions, clicks and reported orders ONLY when obtained from authorized first-party reports. Keep a dated provenance trail. No conversion score or revenue forecast is presented here.",
+  "columns": [
+    "timestamp",
+    "source",
+    "channel",
+    "eligible_sessions",
+    "clicks",
+    "reported_orders",
+    "provenance",
+    "reviewed_on"
+  ],
+  "entries": [],
+  "last_updated": null,
+  "sources": []
+}
