@@ -12,3 +12,10 @@ No prior board or claims existed when this task was claimed. The Arena-assigned 
 - Project uses the assigned Arena branch; no other board or session claims were present at the start.
 - Local validation: 10 HTML pages checked for broken local href/src targets; none found. Sitemap and RSS parsed as XML. Google’s [sitemap guidance](https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview) was checked. External product destinations could not be validated; no claim of full external link verification is made.
 - Integration pull request: https://github.com/kanlerxz87-cyber/DIYHOME1/pull/2. Merge and Pages deployment are pending.
+
+| Follow-up task | Status | Owner | Scope |
+|---|---|---|---|
+| Redirect evidence handoff | done | b5266bc5 | research/redirects.csv only |
+
+Concurrent integration discovered: PR #2 already merged at 87946a0. Resolved concurrent board creation by preserving the integration board and narrowing this session's claim; no competing site changes. Request for site owner: incorporate observed listing evidence into Flagged for Review, separately from intent. No authorization to validate attribution was available.
+- Three distinct short links fetched; normalized official destinations and titles recorded per submission. PR #2 merged. Follow-up: https://github.com/kanlerxz87-cyber/DIYHOME1/pull/4. Rebase conflict on competing initial claims resolved by retaining the integrated board and evidence scope.
