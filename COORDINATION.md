@@ -85,3 +85,10 @@ No pre-existing claims or site files were present. Work stays on the Arena-assig
 - Pages API confirmed successful a7a4b68 build at 06:00:31Z. Public summary and review pages fetched correctly. Bare homepage fetch was stale in the page-fetch service; release-query fetch returned the new publication. Recorded discrepancy without asserting cause in acceptance-31f7/README.md.
 - PR #7 narrowed to coordination + independent acceptance only. Competing storefront was reverted, not merged over another session's publication.
 - The requested pre-push `git pull --rebase` tried replaying already-imported parallel merge history and conflicted on an old initial board claim. Aborted the replay to preserve all merged histories (same issue recorded by the earlier observer). Verified the remote assigned branch is an ancestor and used fast-forward-only synchronization before pushing. No other session's edits were discarded.
+
+## Final release result — arena-31f7cfd4
+- [PR #7](https://github.com/kanlerxz87-cyber/DIYHOME1/pull/7) merged successfully at 2026-11-20T06:02:27Z, merge commit `3c7a19dd2c4f55d6d6cce219ba7250a192339d32`. Pre-merge GitHub validate check passed (5s).
+- [Post-merge Pages run 44684998875](https://github.com/kanlerxz87-cyber/DIYHOME1/actions/runs/44684998875) completed successfully: build, status report and deployment all passed. `gh run watch --exit-status` returned 0.
+- Live publication: https://kanlerxz87-cyber.github.io/DIYHOME1/ . Executive summary: about.html. Public limitations: review.html. No competing storefront was merged; the final integrated edition is preserved.
+- Nonblocking platform annotation: GitHub's generated Pages workflow warns that upload-artifact@v4 targets deprecated Node 20 and was forced to Node 24. Deployment succeeded; no repository workflow modification is warranted from this annotation alone.
+- This post-merge release log is retained on the session branch; all acceptance files and preceding coordination notes are already merged by PR #7. All session tasks closed; external authorization/hosting limits remain needs review, not represented as completed automation.
