@@ -11,18 +11,20 @@ A static, multi-page affiliate publication built from `data/*.json`, published b
 
 | Surface | What it is |
 |---|---|
-| `/` | Front page: three products first, then guides, then how the page is checked |
+| `/` | Front page: three products first, then guides, how the page is checked, and zero-PII RSS reader capture (`SG-30`) |
 | `/products/` | Filterable product register, one row per product, each row linking to its official listing |
 | `/products/wallpaper-tools/`, `/products/kitchen-storage/` | Category pages |
-| `/products/<slug>/` ×3 | Product pages with a full verification record |
-| `/guides/` + 4 guide pages | Question-shaped buying guides, one per week of the issue |
+| `/products/comparisons/` | Side-by-side physical specification comparison matrix across all three products |
+| `/products/<slug>/` ×3 | Product pages with a full verification record + 17-row line-by-line official specification table |
+| `/guides/` + 4 guide pages | Question-shaped DIY buying guides + the 4 working-title countertop-appliance editorial hypotheses |
 | `/about/` | Method, definition of "verified", automation boundaries |
+| `/automation/` | 7-stage automation & compliance gate CLI (`validate.mjs`, `platform_engine.py`, `creators_api_client.py`) |
 | `/disclosures/` | Affiliate disclosure, link policy, privacy, withheld data |
-| `/sources/` | Register of 18 sources with the text each supports |
-| `/flagged/` | 14 flagged items with severity, what would close each one, and sources |
+| `/sources/` | Register of 25 official sources + `SG-27..SG-30` parallel passes + 52-row product spec verification ledger |
+| `/flagged/` | 14 flagged items with severity, what would close each one, and official sources on every row |
 | `/measurement/` | Five defined events, privacy rules, honest status, local event viewer |
-| `/ledger/` | Product-intent record + campaign ledger (schema published, zero rows) |
-| `/summary/` | This summary, on the site |
+| `/ledger/` | 4-row Product-intent confirmation record (strictly separate from observed redirects) + empty campaign ledger |
+| `/summary/` | This summary, on the site (all dashboard surfaces grouped under `Site desk` in top nav & repeated in footer) |
 | `sitemap.xml`, `feed.xml`, `robots.txt`, `.nojekyll` | Findability plumbing |
 
 No prices, no star ratings, no review counts, no product images, no commission percentages, no conversion scores, no revenue forecasts. Every one of those omissions is explained on `/disclosures/` and justified by a source.

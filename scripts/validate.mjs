@@ -93,9 +93,19 @@ for (const file of htmlFiles) {
   /* disclosure must be on every page, in the strip and in the footer */
   if (!/class="disclosure" data-disclosure/.test(html)) err(`${name}: disclosure strip missing`);
   if (!/As an Amazon Associate we earn from qualifying purchases/.test(html)) err(`${name}: disclosure wording missing`);
+  if (!/class="desk-dropdown"/.test(html)) err(`${name}: single Site desk navigation group missing`);
   const footerIdx = html.indexOf("site-footer");
   if (footerIdx === -1) err(`${name}: footer missing`);
   else if (!/Affiliate disclosure:/.test(html.slice(footerIdx))) err(`${name}: footer disclosure missing`);
+
+  /* every table row in tbody must carry an official https:// source link */
+  for (const tb of html.matchAll(/<tbody[\s>][\s\S]*?<\/tbody>/gi)) {
+    for (const tr of tb[0].matchAll(/<tr[\s>][\s\S]*?<\/tr>/gi)) {
+      if (!/<a\b[^>]*href="https:\/\/[^"]+"/i.test(tr[0])) {
+        err(`${name}: table row missing official https:// source link`);
+      }
+    }
+  }
 
   /* links */
   const hrefs = [...html.matchAll(/<a\b[^>]*href="([^"]*)"[^>]*>/g)].map((m) => ({ href: m[1], tag: m[0] }));

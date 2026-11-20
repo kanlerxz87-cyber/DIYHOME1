@@ -23,14 +23,14 @@
         "ASINs may be stored indefinitely for use with the Program (IP License, 2(h))"
       ],
       "quotes": [
-        "you must include your Associates ID or “tag” (appearing as XXXXX-##, or such other format as we may designate) as a parameter in the URL of each link you place on your Site to an Amazon Site",
+        "you must include your Associates ID or \u201ctag\u201d (appearing as XXXXX-##, or such other format as we may designate) as a parameter in the URL of each link you place on your Site to an Amazon Site",
         "your Site may only show prices and availability if: (a) we serve the link in which that price and availability data are displayed, or (b) you obtain Product pricing and availability data via Creators API or PA API",
         "You will not display or otherwise use any of our customer reviews or star ratings, in part or in whole, on your Site unless you have obtained a link to that customer review or star rating through Creators API or PA API",
         "You will not cloak, hide, spoof, or otherwise obscure the URL of your Site containing Special Links (including by use of Redirecting Links)",
         "You will not use a link shortening service, button, hyperlink or other ad placement in a manner that makes it unclear that you are linking to an Amazon Site.",
         "Unless otherwise agreed by Amazon, your Site must not have price tracking and/or price alerting functionality.",
         "No Agent may access, use, or interact with Program Content unless, at all times, it identifies itself",
-        "Agents must ... disclose the name of the Agent by including the following in the request's user agent string: “Agent/[agent name]”",
+        "Agents must ... disclose the name of the Agent by including the following in the request's user agent string: \u201cAgent/[agent name]\u201d",
         "you may store individual Amazon Standard Identification Numbers (ASINs) for an indefinite period until the termination of this License"
       ]
     },
@@ -49,7 +49,7 @@
         "Amazon customers are not the Associate's customers"
       ],
       "quotes": [
-        "The links must properly use the special “tagged” link formats we provide and comply with this Agreement (“Special Links”).",
+        "The links must properly use the special \u201ctagged\u201d link formats we provide and comply with this Agreement (\u201cSpecial Links\u201d).",
         "you agree to this Agreement, including the Program Policies (defined in Section 12), which are incorporated by reference"
       ]
     },
@@ -72,13 +72,13 @@
       "quotes": [
         "Make sure people will see and understand the disclosure. Place it so it's hard to miss.",
         "Disclosures are likely to be missed if they appear only on an ABOUT ME or profile page, at the end of posts or videos, or anywhere that requires a person to click MORE.",
-        "So are terms like “advertisement,” “ad,” and “sponsored.”",
+        "So are terms like \u201cadvertisement,\u201d \u201cad,\u201d and \u201csponsored.\u201d",
         "You can't talk about your experience with a product you haven't tried."
       ]
     },
     {
       "id": "S04",
-      "title": "Amazon listing B08FKW9JRM — Art3d Smoothing Tool Kit for Peel and Stick Wallpaper",
+      "title": "Amazon listing B08FKW9JRM \u2014 Art3d Smoothing Tool Kit for Peel and Stick Wallpaper",
       "publisher": "Amazon.com, Inc.",
       "url": "https://www.amazon.com/dp/B08FKW9JRM",
       "page_date": "Live listing; retrieved 2026-11-20 (content is dynamic)",
@@ -95,7 +95,7 @@
     },
     {
       "id": "S05",
-      "title": "Amazon listing B0BSKQW2T2 — Paper Towel Holder Under Cabinet, Self-Adhesive or Drilling, Matte Black",
+      "title": "Amazon listing B0BSKQW2T2 \u2014 Paper Towel Holder Under Cabinet, Self-Adhesive or Drilling, Matte Black",
       "publisher": "Amazon.com, Inc.",
       "url": "https://www.amazon.com/dp/B0BSKQW2T2",
       "page_date": "Live listing; retrieved 2026-11-20 (content is dynamic)",
@@ -112,7 +112,7 @@
     },
     {
       "id": "S06",
-      "title": "Amazon listing B08DY9HRWD — ORDORA Pots and Pans Organizer Under Cabinet 16.6\", 8-Tier Adjustable Rack",
+      "title": "Amazon listing B08DY9HRWD \u2014 ORDORA Pots and Pans Organizer Under Cabinet 16.6\", 8-Tier Adjustable Rack",
       "publisher": "Amazon.com, Inc.",
       "url": "https://www.amazon.com/dp/B08DY9HRWD",
       "page_date": "Live listing; retrieved 2026-11-20 (content is dynamic)",
@@ -245,7 +245,7 @@
         "Supports the conclusion that the link.amazon path tokens are not ASINs"
       ],
       "quotes": [
-        "Result of fetch on 2026-11-20: error — 'Failed to fetch page'"
+        "Result of fetch on 2026-11-20: error \u2014 'Failed to fetch page'"
       ]
     },
     {
@@ -349,6 +349,105 @@
       "quotes": [
         "A robots.txt file lives at the root of your site.",
         "it is not a mechanism for keeping a web page out of Google. To keep a web page out of Google, block indexing with noindex or password-protect the page."
+      ]
+    },
+    {
+      "id": "S20",
+      "title": "Art3d Official Storefront on Amazon",
+      "publisher": "Amazon.com, Inc. (Art3d Store)",
+      "url": "https://www.amazon.com/stores/Art3d/page/4A1CDF78-64DC-486F-A9B8-85098BEA0D44",
+      "page_date": "Live storefront; retrieved 2026-11-20",
+      "retrieved": "2026-11-20",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Confirms Art3d official brand storefront linked from ASIN B08FKW9JRM"
+      ],
+      "quotes": [
+        "Visit the Art3d Store"
+      ]
+    },
+    {
+      "id": "S21",
+      "title": "niffgaff Official Storefront on Amazon",
+      "publisher": "Amazon.com, Inc. (niffgaff Store)",
+      "url": "https://www.amazon.com/stores/niffgaff/page/531DB5A2-A3D9-4D02-8477-9A9F32ABB8D8",
+      "page_date": "Live storefront; retrieved 2026-11-20",
+      "retrieved": "2026-11-20",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Confirms brand 'niffgaff' on ASIN B0BSKQW2T2 Product Information table and official brand store link (even though omitted from listing H1 title)"
+      ],
+      "quotes": [
+        "Visit the niffgaff Store"
+      ]
+    },
+    {
+      "id": "S22",
+      "title": "ORDORA Official Storefront on Amazon",
+      "publisher": "Amazon.com, Inc. (ORDORA Store)",
+      "url": "https://www.amazon.com/stores/ORDORA/page/468503BB-376C-4D9F-B8BE-DECBCF25C460",
+      "page_date": "Live storefront; retrieved 2026-11-20",
+      "retrieved": "2026-11-20",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Confirms ORDORA official brand storefront linked from ASIN B08DY9HRWD"
+      ],
+      "quotes": [
+        "Visit the ORDORA Store"
+      ]
+    },
+    {
+      "id": "S23",
+      "title": "Associates Program Standard Commission Income Statement",
+      "publisher": "Amazon.com, Inc. (Amazon Associates Central)",
+      "url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ",
+      "page_date": "Live public schedule; retrieved 2026-11-20",
+      "retrieved": "2026-11-20",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Public Table 1 lists fixed Standard Commission Income rates: Kitchen 4.50%; Home, Home Improvement, Tools 3.00%",
+        "Exact SKU-level payout assignment between Kitchen (4.50%) and Home (3.00%) remains unverified until first-party Associates earnings reports exist"
+      ],
+      "quotes": [
+        "Kitchen: 4.50%",
+        "Home, Furniture, Lawn & Garden, Pets Products, Pantry, Home Improvement, Tools: 3.00%"
+      ]
+    },
+    {
+      "id": "S24",
+      "title": "Amazon Associates Help \u2014 Create Simple Text Links & ASIN Definition",
+      "publisher": "Amazon.com, Inc. (Amazon Associates Central)",
+      "url": "https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC",
+      "page_date": "Live public help topic; retrieved 2026-11-20",
+      "retrieved": "2026-11-20",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Public first-party Amazon Associates definition of ASIN as a 10-character Amazon Standard Item Number"
+      ],
+      "quotes": [
+        "ASIN is the 10-digit code that Amazon uses to denote specific products. It is short for 'Amazon.com Standard Item Number.'"
+      ]
+    },
+    {
+      "id": "S25",
+      "title": "Air Fryers and Food Safety",
+      "publisher": "USDA Food Safety and Inspection Service (FSIS)",
+      "url": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/air-fryers-and-food-safety",
+      "page_date": "Live agency guidance; retrieved 2026-11-20",
+      "retrieved": "2026-11-20",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Advises against overcrowding air fryer baskets (which restricts rapid air circulation) and checking internal food temperature with a food thermometer"
+      ],
+      "quotes": [
+        "Avoid overcrowding the air fryer basket",
+        "Always use a food thermometer to check the internal temperature"
       ]
     }
   ]

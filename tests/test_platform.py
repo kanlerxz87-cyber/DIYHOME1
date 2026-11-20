@@ -113,5 +113,42 @@ class TestAffiliatePlatform(unittest.TestCase):
         self.assertIn("COMES FROM AMAZON", CONTENT_ATTRIBUTION_NOTICE)
 
 
+class TestFinalIntegrationEngine(unittest.TestCase):
+    def setUp(self) -> None:
+        import sys
+        if str(REPO_ROOT / "scripts") not in sys.path:
+            sys.path.insert(0, str(REPO_ROOT / "scripts"))
+        import platform_engine as pe
+        self.pe = pe
+
+    def test_short_link_tokens_rejected_as_asins(self) -> None:
+        for valid in ("B08FKW9JRM", "B0BSKQW2T2", "B08DY9HRWD"):
+            self.assertTrue(self.pe.is_valid_asin(valid))
+        for token in ("B0hmGG4m2", "B03QDuGdo", "B0hpD2JGQ", "b08fkw9jrm"):
+            self.assertFalse(self.pe.is_valid_asin(token))
+
+    def test_special_link_builder_query_tag(self) -> None:
+        self.assertEqual(
+            self.pe.build_special_link("B0BSKQW2T2", "shopnow047c-20"),
+            "https://www.amazon.com/dp/B0BSKQW2T2?tag=shopnow047c-20",
+        )
+        with self.assertRaises(ValueError):
+            self.pe.build_special_link("B03QDuGdo", "shopnow047c-20")
+
+    def test_offer_approval_gate(self) -> None:
+        unconfirmed = {"id": "S01", "intendedAsin": None, "specialLink": None}
+        ok, reasons = self.pe.check_offer_approval(unconfirmed, "shopnow047c-20")
+        self.assertFalse(ok)
+        self.assertTrue(reasons)
+
+    def test_canonical_52_row_product_spec_and_source_audit(self) -> None:
+        report = self.pe.audit_verified_datasets(REPO_ROOT)
+        self.assertEqual(report["errors"], [])
+        self.assertEqual(report["products_checked"], 3)
+        self.assertEqual(report["attribute_rows_verified"], 52)
+        self.assertEqual(report["canonical_sources_count"], 25)
+        self.assertEqual(report["parallel_passes_count"], 4)
+
+
 if __name__ == "__main__":
     unittest.main()
