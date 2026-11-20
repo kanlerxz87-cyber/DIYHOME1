@@ -1,0 +1,342 @@
+{
+  "verified_on": "2026-11-20",
+  "sources": [
+    {
+      "code": "S01",
+      "category": "Amazon Associates Legal",
+      "title": "Associates Program Operating Agreement (§1 Special Links, §5 Associate Identification, §7 Disclaimers, §12 Monitoring)",
+      "finding": "Requires proper tagged Special Links and clear, prominent display of 'As an Amazon Associate I earn from qualifying purchases.' Prohibits unauthorized public claims about the Agreement.",
+      "status": "Verified",
+      "url": "https://affiliate-program.amazon.com/help/operating/agreement"
+    },
+    {
+      "code": "S02",
+      "category": "Amazon Associates Linking & Short Links",
+      "title": "Associates Program Policies & Linking Tools (`link.amazon` Short-Link Compliance Status)",
+      "finding": "Special Links must use formats provided by Amazon and track in Associates Central. Exact compliance and attribution status of supplied `https://link.amazon/...` short links is unresolved (do NOT claim they are invalid); validate one Special Link per product in the enrolled `shopnow047c-20` workflow and confirm tracking reports before scaling.",
+      "status": "Needs Review",
+      "url": "https://affiliate-program.amazon.com/help/operating/policies"
+    },
+    {
+      "code": "S03",
+      "category": "Amazon Commission Schedule",
+      "title": "Associates Program Standard Commission Income Statement (Table 1 Fixed Rates)",
+      "finding": "Fixed Standard Commission Income rates list Kitchen at 4.50% and Home, Home Improvement, Tools, Furniture, Lawn & Garden at 3.00% of Qualifying Revenue, paid ~60 days post-month-end.",
+      "status": "Verified",
+      "url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ"
+    },
+    {
+      "code": "S04",
+      "category": "Amazon Catalog Identifiers",
+      "title": "Understanding ASINs: Amazon Standard Identification Number",
+      "finding": "Defines ASIN as a 10-character alphanumeric catalog identifier (distinct from 9-character mixed-case `link.amazon` share path tokens).",
+      "status": "Verified",
+      "url": "https://sell.amazon.com/blog/what-is-an-asin"
+    },
+    {
+      "code": "S05",
+      "category": "Amazon Associates Participation",
+      "title": "Associates Program Participation Requirements (§2 Trademarks, §14 No Incentives, §22 No Framing, §29 No Self-Purchase, §30 No Link Cloaking)",
+      "finding": "Prohibits incentivized clicks, self-orders through Special Links, framing Amazon pages, unauthorized seller logos, and URL cloaking that obscures the referring site.",
+      "status": "Verified",
+      "url": "https://affiliate-program.amazon.com/help/operating/participation/"
+    },
+    {
+      "code": "S06",
+      "category": "Amazon Product Advertising API",
+      "title": "Product Advertising API (PA-API 5.0) Access & Usage Requirements",
+      "finding": "Requires an approved Associates account and PA-API credentials to request programmatic prices, images, and reviews; static un-refreshed prices risk policy violation.",
+      "status": "Verified",
+      "url": "https://affiliate-program.amazon.com/help/node/topic/GVJ2BJP35457CLML"
+    },
+    {
+      "code": "S07",
+      "category": "FTC Regulation",
+      "title": "FTC Guides Concerning the Use of Endorsements and Testimonials in Advertising (16 CFR Part 255, §255.5 Material Connections)",
+      "finding": "Mandates clear, conspicuous disclosure of unexpected material connections (including affiliate commissions) where consumers can notice it easily without hunting or scrolling past endorsements.",
+      "status": "Verified",
+      "url": "https://www.ftc.gov/system/files/ftc_gov/pdf/p204500_endorsement_guides_in_2023.pdf"
+    },
+    {
+      "code": "S08",
+      "category": "Amazon Link Verification",
+      "title": "Associates Central Tag & Link Checker Guidance",
+      "finding": "Enrolled Associates must verify destination and tracking tag attribution inside Associates Central without placing self-purchases.",
+      "status": "Verified",
+      "url": "https://affiliate-program.amazon.com/help/node/topic/G6253GFSARDQENZR"
+    },
+    {
+      "code": "S09",
+      "category": "Amazon First-Party Reporting",
+      "title": "Associates Central Earnings, Clicks & Orders Reporting Guide",
+      "finding": "First-party Associates reports are the sole authoritative source for Amazon-counted clicks, shipped items, and reported orders.",
+      "status": "Verified",
+      "url": "https://affiliate-program.amazon.com/help/node/topic/GMWAK55DQX8JEK7C"
+    },
+    {
+      "code": "S10",
+      "category": "Observed Product Listing (S01)",
+      "title": "Amazon Detail Page — ASIN B08FKW9JRM (Art3d Smoothing Tool Kit for Peel and Stick Wallpaper)",
+      "finding": "Observed redirect destination for `https://link.amazon/B0hmGG4m2` on 2026-11-20. Verified brand `Art3d`, model `A17999`, dimensions `7.72 x 4.33 x 0.79 in`, weight `3.52 oz`.",
+      "status": "Verified",
+      "url": "https://www.amazon.com/dp/B08FKW9JRM",
+      "is_product_url": true
+    },
+    {
+      "code": "S11",
+      "category": "Official Brand Store (S01)",
+      "title": "Art3d Official Storefront on Amazon",
+      "finding": "Confirms Art3d brand storefront linked from ASIN `B08FKW9JRM`.",
+      "status": "Verified",
+      "url": "https://www.amazon.com/stores/Art3d/page/4A1CDF78-64DC-486F-A9B8-85098BEA0D44"
+    },
+    {
+      "code": "S12",
+      "category": "Observed Product Listing (S02/S03)",
+      "title": "Amazon Detail Page — ASIN B0BSKQW2T2 (niffgaff Under-Cabinet Matte Black Aluminum Paper Towel Holder)",
+      "finding": "Observed redirect destination for duplicate submissions `https://link.amazon/B03QDuGdo` on 2026-11-20. Verified brand `niffgaff`, model `TN2200-BLK-NA 01`, `12.2-inch` aluminum rail, `5 oz`.",
+      "status": "Verified",
+      "url": "https://www.amazon.com/dp/B0BSKQW2T2",
+      "is_product_url": true
+    },
+    {
+      "code": "S13",
+      "category": "Official Brand Store (S02/S03)",
+      "title": "niffgaff Official Storefront on Amazon",
+      "finding": "Confirms niffgaff brand storefront linked from ASIN `B0BSKQW2T2`.",
+      "status": "Verified",
+      "url": "https://www.amazon.com/stores/niffgaff/page/531DB5A2-A3D9-4D02-8477-9A9F32ABB8D8"
+    },
+    {
+      "code": "S14",
+      "category": "Observed Product Listing (S04)",
+      "title": "Amazon Detail Page — ASIN B08DY9HRWD (ORDORA 8-Tier Under-Cabinet Pots & Pans Organizer)",
+      "finding": "Observed redirect destination for `https://link.amazon/B0hpD2JGQ` on 2026-11-20. Verified brand `ORDORA`, model `ODR8Tier`, UPC `655100721821`, 3 DIY footprints, `3.3 lbs`.",
+      "status": "Verified",
+      "url": "https://www.amazon.com/dp/B08DY9HRWD",
+      "is_product_url": true
+    },
+    {
+      "code": "S15",
+      "category": "Official Brand Store (S04)",
+      "title": "ORDORA Official Storefront on Amazon",
+      "finding": "Confirms ORDORA brand storefront linked from ASIN `B08DY9HRWD`.",
+      "status": "Verified",
+      "url": "https://www.amazon.com/stores/ORDORA/page/468503BB-376C-4D9F-B8BE-DECBCF25C460"
+    },
+    {
+      "code": "S16",
+      "category": "Amazon Reference Pricing",
+      "title": "Amazon Customer Help — Typical Price & List Price Methodology",
+      "finding": "Defines Typical Price as 90-day customer-paid median (excluding limited-time promos) and List Price as supplier-provided reference price validated against recent sales.",
+      "status": "Verified",
+      "url": "https://www.amazon.com/gp/help/customer/display.html?nodeId=GQ6B6RH72AX8D2TD"
+    },
+    {
+      "code": "S17",
+      "category": "Google Search Central",
+      "title": "Qualify Your Outbound Links to Google (`rel=\"sponsored\"`)",
+      "finding": "Recommends qualifying all affiliate and paid links with `rel=\"sponsored\"` whether created manually or dynamically.",
+      "status": "Verified",
+      "url": "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links"
+    },
+    {
+      "code": "S18",
+      "category": "Google Search Central",
+      "title": "Google Web Search Spam Policies — Thin Affiliation vs. Original Editorial Value",
+      "finding": "Distinguishes thin scraped merchant copy from original buyer checklists, measurement guidance, clear authorship, and category comparisons.",
+      "status": "Verified",
+      "url": "https://developers.google.com/search/docs/essentials/spam-policies"
+    },
+    {
+      "code": "S19",
+      "category": "Google Search Central",
+      "title": "Build and Submit a Sitemap (`sitemap.xml` & `robots.txt`)",
+      "finding": "UTF-8 XML sitemaps at the site root referenced in `robots.txt` (`Sitemap: ...`) cover all descendant URLs.",
+      "status": "Verified",
+      "url": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap"
+    },
+    {
+      "code": "S20",
+      "category": "Google Search Central",
+      "title": "Consolidate Duplicate URLs (`rel=\"canonical\"`)",
+      "finding": "Every HTML document specifies a single self-consistent `https://kanlerxz87-cyber.github.io/DIYHOME1/...` canonical URL.",
+      "status": "Verified",
+      "url": "https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls"
+    },
+    {
+      "code": "S21",
+      "category": "Google Search Console",
+      "title": "Get Started with Search Console — Ownership Verification & Query Measurement",
+      "finding": "Search Console query performance requires external domain/URL-prefix verification by the site owner before query-driven topic selection begins.",
+      "status": "Needs Review",
+      "url": "https://developers.google.com/search/docs/monitor-debug/search-console-start"
+    },
+    {
+      "code": "S22",
+      "category": "Food & Appliance Safety",
+      "title": "USDA FSIS — Air Fryers and Food Safety",
+      "finding": "Advises against overcrowding air fryer baskets (which restricts rapid air circulation) and recommends verifying internal food temperature with a food thermometer.",
+      "status": "Verified",
+      "url": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/air-fryers-and-food-safety"
+    },
+    {
+      "code": "S23",
+      "category": "Hosting Infrastructure",
+      "title": "GitHub Pages Official Documentation",
+      "finding": "Repository `kanlerxz87-cyber/DIYHOME1` serves static files from `main` `/` over HTTPS at `https://kanlerxz87-cyber.github.io/DIYHOME1/` with `.nojekyll`.",
+      "status": "Verified",
+      "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages"
+    },
+    {
+      "code": "S24",
+      "category": "FTC Plain-Language Disclosure",
+      "title": "FTC Disclosures 101 & Associate Link-Level Disclosure Guidance",
+      "finding": "Requires plain, unambiguous disclosure language (`paid link`, `sponsored`, plus the Operating Agreement Associate statement) placed where readers see it before/with affiliate links.",
+      "status": "Verified",
+      "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers"
+    }
+  ],
+  "parallel_passes": [
+    {
+      "code": "SG-27",
+      "area": "Navigation Labels & Single Desk Group",
+      "implementation": "Primary buyer navigation uses plain editorial labels (`Shop`, `Categories`, `Buying guides`, `Comparisons`, `RSS`) while consolidating every operational/dashboard surface (`Executive summary`, `Research register`, `Campaign ledger`, `Automation & gate`, `Flagged for Review`, `Privacy`) inside one `Site desk` dropdown and repeating all links in the footer.",
+      "status": "Done (Verified)",
+      "source_url": "https://developers.google.com/search/docs/fundamentals/get-started-developers"
+    },
+    {
+      "code": "SG-28",
+      "area": "Shipped RSS 2.0 Feed (`feed.xml`)",
+      "implementation": "Valid UTF-8 RSS 2.0 feed generated automatically by `scripts/build.py`, advertised via `<link rel=\"alternate\" type=\"application/rss+xml\">` in every page `<head>`, and validated by `scripts/check.py` and `release-review/check_release.py`.",
+      "status": "Done (Verified)",
+      "source_url": "https://kanlerxz87-cyber.github.io/DIYHOME1/feed.xml"
+    },
+    {
+      "code": "SG-29",
+      "area": "Search Console & Indexing Readiness",
+      "implementation": "Single canonical host (`https://kanlerxz87-cyber.github.io/DIYHOME1/`), root `robots.txt` with `Sitemap:` directive, complete `sitemap.xml`, and explicit `Needs Review` handoff for external Search Console property verification (`S21`).",
+      "status": "Needs Review (Owner Verification)",
+      "source_url": "https://developers.google.com/search/docs/monitor-debug/search-console-start"
+    },
+    {
+      "code": "SG-30",
+      "area": "Privacy-Preserving Reader Capture",
+      "implementation": "Zero-PII RSS reader subscription callout (`data-event=\"rss_open\"`) plus local browser-only DIY project checklist & question planner—collects zero email addresses, sets zero cookies, and transmits no personal data.",
+      "status": "Done (Verified)",
+      "source_url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers"
+    }
+  ],
+  "flagged_items": [
+    {
+      "id": "IRR-01",
+      "item": "Initial Repo State (`main` @ `faef478`)",
+      "status": "Resolved & Logged",
+      "finding": "Initial `main` branch contained only a 10-byte `README.md` (`# DIYHOME1`) with no `COORDINATION.md`, no disclosures, and no Pages HTML.",
+      "action_required": "Resolved via coordinated branch integration and GitHub Pages deployment; documented for audit provenance.",
+      "source_label": "GitHub Repository Commits",
+      "source_url": "https://github.com/kanlerxz87-cyber/DIYHOME1/commits/main"
+    },
+    {
+      "id": "IRR-02",
+      "item": "Duplicate Input URL (`S03` == `S02`)",
+      "status": "Flagged for Review",
+      "finding": "`https://link.amazon/B03QDuGdo` was submitted twice in the prompt product list (lines 2 and 3, followed by a blank line before line 4).",
+      "action_required": "Retained as distinct audit row `S03` (`duplicateOf: S02`) in the Research Register; deduplicated on buyer-facing category pages. Operator should confirm whether a fourth distinct product URL was intended.",
+      "source_label": "Amazon Link Verification",
+      "source_url": "https://affiliate-program.amazon.com/help/node/topic/G6253GFSARDQENZR"
+    },
+    {
+      "id": "IRR-03",
+      "item": "Short-Link Tokens vs. 10-Char ASINs (`B0hmGG4m2`, `B03QDuGdo`, `B0hpD2JGQ`)",
+      "status": "Flagged for Review",
+      "finding": "All three supplied `link.amazon` path tokens begin with `B0` and have 9 mixed-case characters, superficially resembling ASINs, but official ASINs are 10 uppercase alphanumeric characters (`B08FKW9JRM`, `B0BSKQW2T2`, `B08DY9HRWD`).",
+      "action_required": "Never treat `link.amazon` tokens as ASINs. Keep `observedRedirect` separate from `intendedAsin` until operator confirms intended ASINs.",
+      "source_label": "Amazon ASIN Guide",
+      "source_url": "https://sell.amazon.com/blog/what-is-an-asin"
+    },
+    {
+      "id": "IRR-04",
+      "item": "Unresolved `link.amazon` Compliance & Missing `tag=` (`S02`)",
+      "status": "Needs Review",
+      "finding": "Observed redirects from `https://link.amazon/...` carried `btn_type=ss` and `sprefix=diy+home+upgrades` without `tag=shopnow047c-20`. Per `S02`, we do NOT claim `link.amazon` short links are invalid; their Associates compliance/attribution status is unresolved.",
+      "action_required": "Generate one validated Special Link (`https://www.amazon.com/dp/<ASIN>?tag=shopnow047c-20`) per confirmed product inside the enrolled Associates account and verify click/tracking reporting without self-purchasing.",
+      "source_label": "Amazon Associates Policies",
+      "source_url": "https://affiliate-program.amazon.com/help/operating/policies"
+    },
+    {
+      "id": "IRR-05",
+      "item": "Operator Product-Intent Confirmation (`S01–S04`)",
+      "status": "Unverified",
+      "finding": "While HTTP redirects on 2026-11-20 landed on `B08FKW9JRM`, `B0BSKQW2T2`, and `B08DY9HRWD`, an observed redirect alone does not prove operator product intent.",
+      "action_required": "Populate `intendedAsin`, `officialListing`, `confirmedOn`, and `confirmationSource` in `data/catalog.json` only after operator sign-off.",
+      "source_label": "Amazon ASIN Topic Help",
+      "source_url": "https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC"
+    },
+    {
+      "id": "IRR-06",
+      "item": "Editorial Hypotheses vs. Observed DIY Catalog Mismatch",
+      "status": "Flagged for Review",
+      "finding": "The brief's working guide hypotheses focus on air fryers and multi-function kitchen appliances, whereas the three observed `link.amazon` products are DIY wall-treatment tools (`B08FKW9JRM`), an under-cabinet paper towel holder (`B0BSKQW2T2`), and an under-cabinet cookware rack (`B08DY9HRWD`).",
+      "action_required": "Both the 4 kitchen appliance editorial guides and 3 dedicated DIY upgrade category guides are published without inventing unsubmitted air-fryer ASINs. Operator should confirm target niche alignment.",
+      "source_label": "Google Thin Affiliation Policy",
+      "source_url": "https://developers.google.com/search/docs/essentials/spam-policies"
+    },
+    {
+      "id": "IRR-07",
+      "item": "Unverified Catalog Identifiers (`UPC` & `Date First Available`)",
+      "status": "Unverified",
+      "finding": "`UPC` is absent from official specification tables on `B08FKW9JRM` and `B0BSKQW2T2` (verified only on `B08DY9HRWD` as `655100721821`). `Date First Available` is absent from the rendered specification tables on `B0BSKQW2T2` and `B08DY9HRWD` (verified only on `B08FKW9JRM` as `August 11, 2020`).",
+      "action_required": "Left blank in all verification tables per strict zero-inference policy; populate only if confirmed via Seller/Manufacturer documentation or PA-API 5.0.",
+      "source_label": "Amazon PA-API Item Details",
+      "source_url": "https://affiliate-program.amazon.com/help/node/topic/GM6Z4B6SQMSG7D8U"
+    },
+    {
+      "id": "IRR-08",
+      "item": "`B08FKW9JRM` Package Quantity Discrepancy & Prop 65 Notice",
+      "status": "Flagged for Review",
+      "finding": "On `https://www.amazon.com/dp/B08FKW9JRM`, Technical Details lists `Item Package Quantity: 3`, whereas the feature bullets list 5 components (large smoother, blue squeegee, utility knife, replacement blades, measuring tape), and a California Proposition 65 warning link appears.",
+      "action_required": "Verify exact included piece count on physical packaging or PA-API `ItemInfo` before publishing piece-count guarantees.",
+      "source_label": "Official Listing B08FKW9JRM",
+      "source_url": "https://www.amazon.com/dp/B08FKW9JRM",
+      "is_product_url": true
+    },
+    {
+      "id": "IRR-09",
+      "item": "`B08DY9HRWD` Pan Size Copy (`11\"` vs `12\"`) & Newer Model Banner (`B0BYYTQMTR`)",
+      "status": "Flagged for Review",
+      "finding": "On `https://www.amazon.com/dp/B08DY9HRWD`, the title states `Fits Lightweight Cookware Up to 11\"` (`10 lbs` per tier), bullet #4 states `up to 12 inches`, and Amazon displays a newer heavy-duty model banner (`B0BYYTQMTR`, `20.8\"`, `120 lbs`).",
+      "action_required": "Disclosed in the Cabinet & Cookware buying guide so cast-iron owners check weight limits; confirm whether `B08DY9HRWD` or `B0BYYTQMTR` is the intended target.",
+      "source_label": "Official Listing B08DY9HRWD",
+      "source_url": "https://www.amazon.com/dp/B08DY9HRWD",
+      "is_product_url": true
+    },
+    {
+      "id": "IRR-10",
+      "item": "Dynamic Pricing, Prime-Exclusive Tiering & Review Staleness Gate",
+      "status": "Needs Review",
+      "finding": "Observed listings showed time-limited Black Friday deals and Prime-exclusive pricing (`B08DY9HRWD` Prime deal vs Regular List Price). Static prices and review counts become stale quickly without live PA-API 5.0 / Creators API refresh.",
+      "action_required": "Static retail prices, star ratings, and commission forecasts remain omitted from buyer cards until authorized PA-API credentials and timestamped caching are active.",
+      "source_label": "Amazon PA-API 5.0 Requirements",
+      "source_url": "https://affiliate-program.amazon.com/help/node/topic/GVJ2BJP35457CLML"
+    },
+    {
+      "id": "IRR-11",
+      "item": "SKU-Level Commission Sub-Node Classification (`Kitchen` 4.50% vs `Home` 3.00%)",
+      "status": "Needs Review",
+      "finding": "`B0BSKQW2T2` and `B08DY9HRWD` sit under `Home & Kitchen › Kitchen & Dining`. Amazon's Standard Commission Income table lists `Kitchen` at `4.50%` and `Home` / `Home Improvement` / `Tools` at `3.00%`.",
+      "action_required": "Confirm actual SKU commission category assignment from first-party Associates Central fee-schedule reports; no revenue forecast is presented.",
+      "source_label": "Standard Commission Income Rates",
+      "source_url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ"
+    },
+    {
+      "id": "IRR-12",
+      "item": "External Search Console Verification & Production Analytics Endpoint",
+      "status": "Needs Review",
+      "finding": "GitHub Pages serves static assets only; `analyticsEndpoint` in `data/catalog.json` is intentionally empty (`\"\"`) until `analytics/server.py` is deployed on operator TLS infrastructure, and Search Console ownership requires operator token placement.",
+      "action_required": "Deploy `analytics/server.py` behind HTTPS, set `analyticsEndpoint`, verify Search Console ownership, and import only authorized Associates CSV reports into `data/campaign.csv`.",
+      "source_label": "Search Console Setup Guide",
+      "source_url": "https://developers.google.com/search/docs/monitor-debug/search-console-start"
+    }
+  ]
+}
