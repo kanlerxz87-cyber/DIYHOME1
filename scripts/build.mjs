@@ -1158,6 +1158,21 @@ ${prod ? `<section class="block"><div class="wrap">
     <h2>Where the numbers will come from</h2>
     <p>Five events are instrumented and firing in the browser: <span class="mono">page_view</span>, <span class="mono">disclosure_view</span>, <span class="mono">outbound_click</span>, <span class="mono">site_search</span>, <span class="mono">guide_read</span>. They are queued locally and sent nowhere until an endpoint is deployed. The campaign ledger stays empty until a dated first-party report exists. That is the whole measurement story, and it is deliberately boring.</p>
 
+    <h2>Release record</h2>
+    <div class="table-wrap" style="margin:18px 0">
+      <table>
+        <caption>Only fields that are actually known are shown. Blank means not recorded, never zero.</caption>
+        <tbody>
+          <tr><th scope="row">Pull request</th><td>${release.pr_url ? `<a href="${esc(release.pr_url)}" target="_blank" rel="noopener">#${esc(release.pr_number)} — ${esc(release.pr_url)}</a>` : `<span class="blank">not recorded</span>`}</td></tr>
+          <tr><th scope="row">Merge commit</th><td>${release.merge_commit ? `<span class="mono">${esc(release.merge_commit)}</span>` : `<span class="blank">not recorded</span>`}</td></tr>
+          <tr><th scope="row">Merged at</th><td>${release.merged_at ? esc(release.merged_at) + " UTC" : `<span class="blank">not recorded</span>`}</td></tr>
+          <tr><th scope="row">Published URL</th><td><a href="${esc(release.pages_url)}" target="_blank" rel="noopener">${esc(release.pages_url)}</a></td></tr>
+          <tr><th scope="row">Pages build</th><td>${esc(release.pages_status)}</td></tr>
+          <tr><th scope="row">Pages source</th><td><span class="mono">${esc(release.pages_source)}</span> (${esc(release.pages_build_type)})</td></tr>
+        </tbody>
+      </table>
+    </div>
+
     <h2>Read next</h2>
     <ul>
       <li><a href="../sources/">Source register</a> &mdash; every source with the text it supports</li>
