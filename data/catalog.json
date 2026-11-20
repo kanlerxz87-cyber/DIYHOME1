@@ -1,0 +1,55 @@
+{
+  "trackingId": "shopnow047c-20",
+  "submissions": [
+    {
+      "id": "S01",
+      "url": "https://link.amazon/B0hmGG4m2",
+      "intendedAsin": null,
+      "officialListing": null,
+      "confirmedOn": null,
+      "confirmationSource": null,
+      "observedRedirect": null,
+      "specialLink": null,
+      "trackingReportSource": null,
+      "policyReviewedOn": null
+    },
+    {
+      "id": "S02",
+      "url": "https://link.amazon/B03QDuGdo",
+      "intendedAsin": null,
+      "officialListing": null,
+      "confirmedOn": null,
+      "confirmationSource": null,
+      "observedRedirect": null,
+      "specialLink": null,
+      "trackingReportSource": null,
+      "policyReviewedOn": null
+    },
+    {
+      "id": "S03",
+      "url": "https://link.amazon/B03QDuGdo",
+      "duplicateOf": "S02",
+      "intendedAsin": null,
+      "officialListing": null,
+      "confirmedOn": null,
+      "confirmationSource": null,
+      "observedRedirect": null,
+      "specialLink": null,
+      "trackingReportSource": null,
+      "policyReviewedOn": null
+    },
+    {
+      "id": "S04",
+      "url": "https://link.amazon/B0hpD2JGQ",
+      "intendedAsin": null,
+      "officialListing": null,
+      "confirmedOn": null,
+      "confirmationSource": null,
+      "observedRedirect": null,
+      "specialLink": null,
+      "trackingReportSource": null,
+      "policyReviewedOn": null
+    }
+  ],
+  "analyticsEndpoint": ""
+}
