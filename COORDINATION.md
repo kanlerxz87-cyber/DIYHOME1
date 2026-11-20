@@ -77,3 +77,10 @@ No pre-existing claims or site files were present. Work stays on the Arena-assig
 | Task | Status | Owner | Scope |
 |---|---|---|---|
 | Independent acceptance report and closure | in progress | arena-31f7cfd4 | acceptance-31f7/ and own board notes only |
+
+### arena-31f7cfd4 acceptance completed
+- Status: done for independent acceptance; needs review only for external account/hosting limits already public at review.html.
+- Read-only checks: final integrator build/check (18 HTML documents), 3 release-review unit tests, and acceptance-31f7/check.py all pass. No tracked shared-site change after rebuild.
+- Independently fetched Amazon redirects agree with merged evidence; all intended-ASIN and affiliate confirmation fields remain blank. Checked agreement §§1/5, policy index/opening terms and FTC guidance; no complete API certification claimed.
+- Pages API confirmed successful a7a4b68 build at 06:00:31Z. Public summary and review pages fetched correctly. Bare homepage fetch was stale in the page-fetch service; release-query fetch returned the new publication. Recorded discrepancy without asserting cause in acceptance-31f7/README.md.
+- PR #7 narrowed to coordination + independent acceptance only. Competing storefront was reverted, not merged over another session's publication.
