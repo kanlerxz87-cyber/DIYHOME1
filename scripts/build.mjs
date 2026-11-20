@@ -542,7 +542,7 @@ for (const prod of products) {
     <div class="card">
       <dl class="facts">
         <dt>Intended ASIN</dt>
-        <dd class="blank">Not verified &mdash; the submitted short link contains no ASIN. ${esc(prod.intended_asin_status)}</dd>
+        <dd class="blank">${esc(prod.intended_asin_status)}</dd>
         <dt>Observed ASIN</dt>
         <dd><span class="mono">${esc(prod.asin_observed)}</span> &middot; parsed from the page the short link resolved to (${srcBadge(prod.confirmation_source, 2)}), not from the link itself</dd>
         <dt>Official listing URL</dt>

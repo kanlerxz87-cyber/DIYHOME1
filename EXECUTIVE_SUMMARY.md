@@ -19,7 +19,7 @@ A static, multi-page affiliate publication built from `data/*.json`, published b
 | `/about/` | Method, definition of "verified", automation boundaries |
 | `/disclosures/` | Affiliate disclosure, link policy, privacy, withheld data |
 | `/sources/` | Register of 18 sources with the text each supports |
-| `/flagged/` | 13 flagged items with severity, what would close each one, and sources |
+| `/flagged/` | 14 flagged items with severity, what would close each one, and sources |
 | `/measurement/` | Five defined events, privacy rules, honest status, local event viewer |
 | `/ledger/` | Product-intent record + campaign ledger (schema published, zero rows) |
 | `/summary/` | This summary, on the site |
@@ -87,11 +87,11 @@ Amazon's current terms add **Agent Terms**: automated software interacting with 
 
 ---
 
-## 5. Flagged for review (13 items)
+## 5. Flagged for review (14 items)
 
 High: **F01** — short links not confirmed as enrolled/tracked.
 Medium: **F03** air-fryer working titles have no matching products; **F04** no Search Console token; **F05** no analytics endpoint, so events stay local; **F10** commission rates unverifiable; **F13** verification fetches did not identify as an agent.
-Low: **F02** duplicate link supplied; **F06** Amazon's ASIN definition is behind a sign-in; **F11** one listing has no brand in its title; **F12** tracking ID enrolment unconfirmed.
+Low: **F02** duplicate link supplied; **F14** robots.txt sits inside the project path, not at the host root; **F06** Amazon's ASIN definition is behind a sign-in; **F11** one listing has no brand in its title; **F12** tracking ID enrolment unconfirmed.
 Info (withheld by design): **F07** prices/ratings/reviews observed but not published; **F08** nothing tested; **F09** no Amazon imagery.
 
 Full detail, with the source links and what would close each item: `/flagged/` on the site, `data/flagged.json` in the repo.
