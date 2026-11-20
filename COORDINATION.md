@@ -45,7 +45,7 @@ Concurrent integration discovered: PR #2 already merged at 87946a0. Resolved con
 | Task | Status | Owner | Scope |
 |---|---|---|---|
 | Initial publication and final integration | in progress | arena-12f29fdb (earliest recorded claim) | Site, data, navigation, Pages, build and final site PR; do not edit here |
-| Independent post-deploy acceptance check and release handoff | in progress | b25ce862 | `release-review/` only; this branch's coordination log |
+| Independent post-deploy acceptance check and release handoff | done | b25ce862 | `release-review/` only; this branch's coordination log |
 2026-11-20 05:56 UTC: With the base still at faef478, explicit fetch of remote Arena refs revealed four overlapping integration claims: 12f29fdb (05:55:04), 1f8b2810 (05:55:24), 9039f7cb (05:55:29), 31f7cfd4 (05:55:37). All younger than 60 minutes. Retracted this branch's overlapping claim before touching any implementation files. No takeover or cross-branch edits. Final integration owner controls shared outputs. This branch's coordination file must not replace the final integrator's board.
 2026-11-20 UTC: PR #2 from session 1f8b2810 merged into main before this branch completed observation. Imported main into this branch. Resolved the add/add board conflict by preserving both complete logs; no site file was changed by this session.
 The follow-up branch rebase attempted to replay the previously merged board history; aborted that replay to preserve both histories and rebased against integrated main instead.
@@ -56,3 +56,5 @@ Follow-up PR #4 merge created overlapping board appends. Both records retained. 
 - Live inspection is distinct from source-file checks: no real outbound product clicks, attribution, production metrics, indexing, or conversion reports were generated or certified. Checker and method in `release-review/`. Board conflicts with PRs #4 and #5 resolved by preserving both sessions' complete records. No shared publication files changed.
 
 - Preserved PR #6 release review files and board notes when reconciling the third concurrent merge.
+
+2026-11-20 06:01 UTC — [independent release PR #6](https://github.com/kanlerxz87-cyber/DIYHOME1/pull/6) merged as b806778; [its Pages deployment succeeded](https://github.com/kanlerxz87-cyber/DIYHOME1/actions/runs/44684645053). The superseding [integration PR #3](https://github.com/kanlerxz87-cyber/DIYHOME1/pull/3) merged as a7a4b68; [Pages build and deployment succeeded](https://github.com/kanlerxz87-cyber/DIYHOME1/actions/runs/44684725347). Re-checked public homepage and research register, and ran the integrated validator on all 18 HTML files, local links, sitemap and feed. The earlier canonical and missing-redirect-display findings are addressed in this edition. Live attribution and production analytics remain unverified.
