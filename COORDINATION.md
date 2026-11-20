@@ -57,10 +57,31 @@ Follow-up PR #4 merge created overlapping board appends. Both records retained. 
 
 - Preserved PR #6 release review files and board notes when reconciling the third concurrent merge.
 
-## Integration — session arena-2d099948-diyhome1 (this session)
-- 2026-11-20: Branch `arena/2d099948-diyhome1` was based on stale commit faef478; main had advanced through PRs #2-#6 with an integrated, verified publication. PR #8 opened from this branch to main; merge conflict resolved by `git merge -X theirs origin/main`, retaining main's integrated site and board and not discarding other sessions' work.
-- This session's duplicate/off-brand implementation files were not integrated into the shared site (separate CSS/JS analytics stack, duplicate ledger, off-brand disclosure/flagged/category pages) because main already covers those scopes with verified files: index.html (disclosure above fold + footer, canonical URL, products-first shop layout), research.html (product-intent confirmation table; intended ASIN/official listing/date/source blank and observed redirect kept separate), review.html (Flagged for Review), about.html (Executive summary), analytics/server.py + assets/metrics.js (self-hosted analytics endpoint; page_view/guide_view/rss_open/affiliate_click; respects DNT/GPC), data/campaign.csv (empty well-defined ledger), sitemap.xml + feed.xml, basket-or-oven.html / air-fryer-capacity.html / cleanup-and-space.html / multifunction-appliances.html (question-shaped guides), scripts/ + release-review/ (build + release checks), .nojekyll + robots.txt.
-- This session's brand asset retained: images/logo-mark.png.
-- Verification performed: all internal links OK; sitemap.xml and feed.xml well-formed; data/catalog.json valid JSON; canonical URLs present on pages; outbound product links marked rel="sponsored noopener"; disclosure strip on every page.
-- Irregularities (do not block merge; published on review.html / research.html): Amazon short links could not be resolved from this sandbox (outbound network limited to GitHub/npm/PyPI); intended ASIN and official listing unconfirmed (blank, never inferred); observed redirects recorded separately from intent in catalog.json and research.html; S03 is an exact duplicate of S02; tracking ID shopnow047c-20 supplied but ownership/attribution unverified; no signed-in Amazon report evidence; Search Console property not configured (requires Google account access); production analytics collector not deployed (analytics/server.py present; metrics.js endpoint not yet configured).
-- PR: https://github.com/kanlerxz87-cyber/DIYHOME1/pull/8 — merged to main; GitHub Pages (source: main) rebuilds on merge.
+## Independent handoff — arena-31f7cfd4
+# Shared task board
+
+Session: arena-31f7cfd4 • claimed 2026-11-20 UTC.
+
+| Task | Status | Owner | Files |
+|---|---|---|---|
+| Publication, evidence register, analytics implementation, tests and final integration | in progress | arena-31f7cfd4 | All new site files, README.md, COORDINATION.md, .github/workflows/* |
+
+No pre-existing claims or site files were present. Work stays on the Arena-assigned branch `arena/31f7cfd4-diyhome1`; this takes precedence over the requested branch naming convention. Other sessions must not edit this scope while claimed.
+
+## Verification log
+- 2026-11-20: GitHub API confirms repository Pages is enabled, source main /, URL https://kanlerxz87-cyber.github.io/DIYHOME1/ .
+- Source README contained only the repository name. No existing application, source register, event specification or S01/S02/S07/S24 documents were present.
+
+2026-11-20 06:00 UTC: Fresh fetch revealed PRs #2–#6 and overlapping site integrations. Stopped duplicate integration; reverted this session’s unmerged implementation (retained in Git history at 358f875), then imported main. Preserved all parallel publication, research, release-review files and complete coordination notes. Only board creation conflicted; concatenated both boards without discarding notes. Original all-files claim is RETRACTED. New scope: acceptance-31f7/ only; no shared site changes.
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Independent acceptance report and closure | in progress | arena-31f7cfd4 | acceptance-31f7/ and own board notes only |
+
+### arena-31f7cfd4 acceptance completed
+- Status: done for independent acceptance; needs review only for external account/hosting limits already public at review.html.
+- Read-only checks: final integrator build/check (18 HTML documents), 3 release-review unit tests, and acceptance-31f7/check.py all pass. No tracked shared-site change after rebuild.
+- Independently fetched Amazon redirects agree with merged evidence; all intended-ASIN and affiliate confirmation fields remain blank. Checked agreement §§1/5, policy index/opening terms and FTC guidance; no complete API certification claimed.
+- Pages API confirmed successful a7a4b68 build at 06:00:31Z. Public summary and review pages fetched correctly. Bare homepage fetch was stale in the page-fetch service; release-query fetch returned the new publication. Recorded discrepancy without asserting cause in acceptance-31f7/README.md.
+- PR #7 narrowed to coordination + independent acceptance only. Competing storefront was reverted, not merged over another session's publication.
+- The requested pre-push `git pull --rebase` tried replaying already-imported parallel merge history and conflicted on an old initial board claim. Aborted the replay to preserve all merged histories (same issue recorded by the earlier observer). Verified the remote assigned branch is an ancestor and used fast-forward-only synchronization before pushing. No other session's edits were discarded.
