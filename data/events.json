@@ -1,0 +1,32 @@
+[
+  {
+    "id": "page_view",
+    "when": "Once per page load, after the page is interactive.",
+    "payload": ["event", "path", "referrer_class", "session"],
+    "why": "Which pages get opened, and from where: direct, internal, search, or external."
+  },
+  {
+    "id": "disclosure_view",
+    "when": "The disclosure strip under the masthead is at least 50 percent visible in the viewport.",
+    "payload": ["event", "path", "session"],
+    "why": "Confirms the affiliate disclosure was actually on screen, not merely in the HTML. This is the compliance signal, measured."
+  },
+  {
+    "id": "outbound_click",
+    "when": "A visitor clicks a Sponsored link to Amazon. The click is recorded and the browser navigates directly; nothing is intercepted or redirected.",
+    "payload": ["event", "path", "asin", "session"],
+    "why": "Outbound intent per product. This is the only click metric the site can produce without Amazon reporting."
+  },
+  {
+    "id": "site_search",
+    "when": "A visitor runs a search on this site.",
+    "payload": ["event", "path", "query", "result_count", "session"],
+    "why": "The replacement for guessed keywords: the next guide topic is chosen from what visitors typed here, once an endpoint is live."
+  },
+  {
+    "id": "guide_read",
+    "when": "A guide page reaches 60 percent scroll depth, once per page view.",
+    "payload": ["event", "path", "slug", "session"],
+    "why": "Distinguishes a guide that gets read from one that gets bounced, before more guides are written."
+  }
+]

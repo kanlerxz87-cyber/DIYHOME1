@@ -1,1 +1,63 @@
-# DIYHOME1
+# DIY Home Upgrades
+
+A small Amazon-associate publication for DIY home upgrades: three verified products, four question-shaped buying guides, and a source register behind every claim.
+
+**Live site:** https://kanlerxz87-cyber.github.io/DIYHOME1/
+**Tracking ID:** `shopnow047c-20` (used on every outbound product link; enrolment not verified — see F01)
+
+---
+
+## What is in this repository
+
+| Path | What it is |
+|---|---|
+| `index.html`, `products/`, `guides/`, `about/`, `disclosures/`, `sources/`, `flagged/`, `measurement/`, `ledger/`, `summary/`, `search/` | The published site. Generated — do not hand-edit. |
+| `data/*.json`, `data/*.csv` | The only source of truth: products, sources, guides, flags, events, ledger schema |
+| `scripts/build.mjs` | Generates every page, `sitemap.xml`, `feed.xml`, `robots.txt`, `assets/js/config.js` |
+| `scripts/validate.mjs` | The gate: links, disclosure, sponsored attributes, tags, sitemap coverage, feed, data integrity |
+| `assets/css/site.css` | One stylesheet, no external fonts, no third-party requests |
+| `assets/js/site.js` | The five measurement events, product filter, site search, local event viewer |
+| `worker/collect.js` | Self-hosted analytics collector (Cloudflare Worker). **Not deployed.** |
+| `COORDINATION.md` | Multi-session task board and verification log |
+| `EXECUTIVE_SUMMARY.md` | Summary of what was verified, refused and left blocked |
+
+## Build and check
+
+```sh
+node scripts/build.mjs     # regenerate the site from data/
+node scripts/validate.mjs  # fail on a broken link, missing disclosure or unmarked Amazon link
+```
+
+No dependencies, no package install, Node 18+.
+
+`scripts/validate.mjs` enforces, among other things:
+
+- exactly one `h1` per page, a `<title>`, a meta description and a canonical URL;
+- a disclosure strip **and** a footer disclosure on every page;
+- `rel="sponsored nofollow"` on every sponsored Amazon link, plus `data-asin` for click attribution;
+- `?tag=shopnow047c-20` on every product URL, and no second tag anywhere;
+- citation links (evidence, in the source register) are never used as call-to-action buttons, and never carry a tag;
+- no cloaking: no Amazon link routed through this site;
+- no third-party subresources;
+- every internal link and form action resolves;
+- every page appears in `sitemap.xml`, and every sitemap URL exists;
+- `sitemap.xml` and `feed.xml` are well-formed;
+- `price`, `rating`, `review_count`, `image` and `intended_asin` stay `null` in `data/products.json`;
+- the campaign ledger stays empty until a first-party report exists.
+
+## Two data rules that matter
+
+1. **Intended and observed are never merged.** `data/product-intents.csv` keeps `intended_asin` (blank — the supplied short links carry no ASIN) separate from `observed_asin` and `observed_redirect_target`.
+2. **Blank means "not obtained".** It never means zero. Prices, ratings, review counts, availability and commission rates are absent by design; `/flagged/` says why for each one, with the policy source.
+
+## Flags
+
+14 items are published at `/flagged/` with severity, what would close each one, and a source link. The actionable ones all need an account this build did not have:
+
+- **F01** Associates tracking for the three supplied short links is unconfirmed.
+- **F04** No Search Console verification token.
+- **F05** No analytics endpoint deployed, so the five events stay in the visitor's browser.
+- **F10** Commission rate card requires a sign-in, so no rate or revenue figure is published.
+- **F13** The verification fetches did not identify themselves as an automated agent under Amazon's Agent Terms.
+
+Nothing in this repository is presented as verified beyond what an official source supports on the date shown in the page.
