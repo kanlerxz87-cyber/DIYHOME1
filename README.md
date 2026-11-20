@@ -1,35 +1,71 @@
-# DIYHOME1 — Field & Fixture (DIY Home Upgrades)
+# DIY Home Upgrades
 
-**Live GitHub Pages Site:** [https://kanlerxz87-cyber.github.io/DIYHOME1/](https://kanlerxz87-cyber.github.io/DIYHOME1/)  
-**Selected Tracking ID:** `shopnow047c-20`
+A small Amazon-associate publication for DIY home upgrades: three verified products, four question-shaped buying guides, and a source register behind every claim.
 
-## Overview
+**Live site:** https://kanlerxz87-cyber.github.io/DIYHOME1/
+**Tracking ID:** `shopnow047c-20` (used on every outbound product link; enrolment not verified — see F01)
 
-`DIYHOME1` hosts **Field & Fixture**, a shop-first DIY home upgrades publication paired with a transparent verification dashboard, automated compliance tooling, and a privacy-preserving 5-event analytics stack.
+---
 
-### Repository Structure
+## What is in this repository
 
-- `index.html` — Publication front page leading with curated product picks, room clusters, question-shaped guides, reader capture, and above-the-fold + footer Associates disclosures.
-- `categories/` — Room & project category pages (`kitchen-storage.html`, `walls-surfaces.html`) with verified spec comparison tables.
-- `guides/` — Question-shaped buyer guides (`paper-towel-holder-mounting.html`, `pot-rack-cabinet-sizing.html`, `peel-and-stick-smoothing-tools.html`) and editorial cadence table (`index.html`).
-- `dashboard/` — Operations dashboard (`index.html`), Executive Summary (`executive-summary.html`), Verification & Product-Intent Register (`verification-register.html`), Campaign Ledger & Telemetry (`campaign-ledger.html`), and Automation & Compliance Gate (`platform-architecture.html`).
-- `review/flagged.html` — Dedicated **Flagged for Review** page documenting all unverified items, duplicate submissions, redirect findings, and API/compliance gates with official source links.
-- `data/` — Verified JSON source datasets (`products.json`, `verification-ledger.json`, `campaign-ledger.json`).
-- `platform/` — Python CLI and site generator (`build_site.py`, `affiliate_platform.py`, `creators_api_client.py`).
-- `analytics-server/server.mjs` — Zero-dependency Node.js self-hosted endpoint for the 5 defined privacy-preserving events.
-- `feed.xml`, `sitemap.xml`, `robots.txt` — Discoverability and RSS feed files.
-- `COORDINATION.md` — Shared task board, official sources registry, flagged irregularities, and PR/deployment log.
+| Path | What it is |
+|---|---|
+| `index.html`, `products/`, `guides/`, `about/`, `disclosures/`, `sources/`, `flagged/`, `measurement/`, `ledger/`, `summary/`, `search/` | The published site. Generated — do not hand-edit. |
+| `data/*.json`, `data/*.csv` | The only source of truth: products, sources, guides, flags, events, ledger schema |
+| `scripts/build.mjs` | Generates every page, `sitemap.xml`, `feed.xml`, `robots.txt`, `assets/js/config.js` |
+| `scripts/validate.mjs` | The gate: links, disclosure, sponsored attributes, tags, sitemap coverage, feed, data integrity |
+| `assets/css/site.css` | One stylesheet, no external fonts, no third-party requests |
+| `assets/js/site.js` | The five measurement events, product filter, site search, local event viewer |
+| `worker/collect.js` | Self-hosted analytics collector (Cloudflare Worker). **Not deployed.** |
+| `archive/practical-home/` | The earlier "The Practical Home" edition from parallel sessions, preserved intact with `noindex` and a banner. Not part of the live publication. |
+| `COORDINATION.md` | Multi-session task board and verification log |
+| `EXECUTIVE_SUMMARY.md` | Summary of what was verified, refused and left blocked |
 
-## Running Verification & Site Build Locally
+## Build and check
 
-```bash
-python3 platform/build_site.py
-python3 platform/affiliate_platform.py validate-registry
-python3 platform/affiliate_platform.py validate-ledger
-python3 platform/affiliate_platform.py audit-site
-python3 -m unittest discover -s tests -v
+```sh
+node scripts/build.mjs     # regenerate the site from data/
+node scripts/validate.mjs  # fail on a broken link, missing disclosure or unmarked Amazon link
 ```
 
-## Disclosure
+No dependencies, no package install, Node 18+.
 
-As an Amazon Associate I earn from qualifying purchases. All outbound product links include `rel="sponsored noopener noreferrer"`.
+`scripts/validate.mjs` enforces, among other things:
+
+- exactly one `h1` per page, a `<title>`, a meta description and a canonical URL;
+- a disclosure strip **and** a footer disclosure on every page;
+- `rel="sponsored nofollow"` on every sponsored Amazon link, plus `data-asin` for click attribution;
+- `?tag=shopnow047c-20` on every product URL, and no second tag anywhere;
+- citation links (evidence, in the source register) are never used as call-to-action buttons, and never carry a tag;
+- no cloaking: no Amazon link routed through this site;
+- no third-party subresources;
+- every internal link and form action resolves;
+- every page appears in `sitemap.xml`, and every sitemap URL exists;
+- `sitemap.xml` and `feed.xml` are well-formed;
+- `price`, `rating`, `review_count`, `image` and `intended_asin` stay `null` in `data/products.json`;
+- the campaign ledger stays empty until a first-party report exists.
+
+## Editions
+
+This repository has two editions, and only one is indexed:
+
+- **Live:** the product-led publication at the site root, generated by `scripts/build.mjs` from `data/`.
+- **Archived:** "The Practical Home", built by parallel sessions in PRs #2–#8, preserved at `archive/practical-home/` with its data, scripts and QA under `acceptance-31f7/` and `release-review/`. It is `noindex`, banner-linked back to the live edition, and excluded from `sitemap.xml`. `archive/practical-home/scripts/preserve-archive.py` documents the only change made to it.
+
+## Two data rules that matter
+
+1. **Intended and observed are never merged.** `data/product-intents.csv` keeps `intended_asin` (blank — the supplied short links carry no ASIN) separate from `observed_asin` and `observed_redirect_target`.
+2. **Blank means "not obtained".** It never means zero. Prices, ratings, review counts, availability and commission rates are absent by design; `/flagged/` says why for each one, with the policy source.
+
+## Flags
+
+14 items are published at `/flagged/` with severity, what would close each one, and a source link. The actionable ones all need an account this build did not have:
+
+- **F01** Associates tracking for the three supplied short links is unconfirmed.
+- **F04** No Search Console verification token.
+- **F05** No analytics endpoint deployed, so the five events stay in the visitor's browser.
+- **F10** Commission rate card requires a sign-in, so no rate or revenue figure is published.
+- **F13** The verification fetches did not identify themselves as an automated agent under Amazon's Agent Terms.
+
+Nothing in this repository is presented as verified beyond what an official source supports on the date shown in the page.

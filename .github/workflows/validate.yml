@@ -1,0 +1,34 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Build the site from data
+        run: node scripts/build.mjs
+
+      - name: Validate links, disclosures, tags, sitemap and data
+        run: node scripts/validate.mjs
+
+      - name: Committed output must match data
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "::error::Built output differs from what is committed. Run: node scripts/build.mjs, then commit the result."
+            git status --porcelain
+            git --no-pager diff
+            exit 1
+          fi

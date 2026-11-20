@@ -1,55 +1,294 @@
-# COORDINATION.md — DIY Home Upgrades Affiliate Platform & GitHub Pages Site
+# COORDINATION — shared task board
 
-**Repository:** `kanlerxz87-cyber/DIYHOME1`  
-**Live Site Target:** `https://kanlerxz87-cyber.github.io/DIYHOME1/`  
-**Selected Tracking ID:** `shopnow047c-20`  
-**Active Integration Branch:** `arena/d24c607b-diyhome1` (Arena single-branch workflow; PR target: `main`)  
-**Last Updated:** 2026-11-20 UTC
+Repo: `kanlerxz87-cyber/DIYHOME1`
+Site (GitHub Pages, legacy build): https://kanlerxz87-cyber.github.io/DIYHOME1/
+Publishing source: branch `main`, folder `/` (confirmed via `GET /repos/kanlerxz87-cyber/DIYHOME1/pages` → `build_type: legacy`, `source: {branch: main, path: /}`, `https_enforced: true`)
 
----
+**Rules for any session reading this file**
 
-## Shared Task Board
-
-| Task ID | Task Description | Status | Owning Session | Branch | File Scope | Notes / Verification |
-| --- | --- | --- | --- | --- | --- | --- |
-| T-01 | Repository audit, Amazon link resolution, official policy & FTC verification | done | `arena-d24c607b` | `arena/d24c607b-diyhome1` | `COORDINATION.md`, `data/products.json`, `data/verification-ledger.json` | Verified all 4 submitted URLs (`link.amazon/B0hmGG4m2`, duplicate `link.amazon/B03QDuGdo`, `link.amazon/B0hpD2JGQ`) via live fetch against official `amazon.com` listings, Amazon Associates Policies, Creators API docs, FTC Endorsement Guides, and Google Search Central docs. |
-| T-02 | Automation platform scripts, analytics server, and compliance validators | done | `arena-d24c607b` | `arena/d24c607b-diyhome1` | `platform/`, `analytics-server/`, `data/campaign-ledger.json`, `tests/`, `.github/workflows/ci.yml` | Verified via `validate-registry`, `validate-ledger`, `audit-site`, `unittest` (6/6 passing), and Node `server.mjs` smoke test. |
-| T-03 | Publication & dashboard GitHub Pages site (landing, categories, guides, dashboard, flagged review, SEO feeds) | done | `arena-d24c607b` | `arena/d24c607b-diyhome1` | `index.html`, `categories/`, `guides/`, `dashboard/`, `review/`, `assets/`, `feed.xml`, `sitemap.xml`, `robots.txt`, `.nojekyll`, `README.md` | 13 HTML pages + XML sitemap + RSS feed + 359 links + 30 `rel="sponsored"` Amazon product links verified with 0 errors. |
-| T-04 | End-to-end verification, PR creation, merge to `main`, and GitHub Pages live deployment check | in progress | `arena-d24c607b` | `arena/d24c607b-diyhome1` | `COORDINATION.md` | Opening PR from `arena/d24c607b-diyhome1` to `main`, merging, and confirming GitHub Pages build/deploy. |
+1. Read this file before starting. Claim a task by writing your session ID + file scope below, then commit and push the claim *immediately*.
+2. Never start a task another session has claimed. Keep scopes non-overlapping. Work only on your own branch `session-<id>/<task>`.
+3. If you need a change in a file owned by another session, log a request here instead of editing it.
+4. Never mark anything verified without an official source link recorded in `data/sources.json` and in the task row.
+5. Shared outputs (table data, site index, navigation, sitemap, feed, `assets/js/config.js`) are changed only by the integration session — and only by editing `data/*.json` and re-running `node scripts/build.mjs`. Never hand-edit generated HTML.
+6. A claim older than 60 minutes with no commits may be taken over; note the handoff.
 
 ---
 
-## Verified Official Sources Registry
+## Session registry
 
-1. **Amazon Associates Program Operating Agreement (Updated Oct 15, 2025):** `https://affiliate-program.amazon.com/help/operating/agreement`
-2. **Amazon Associates Program Policies (Updated Apr 14, 2026) — Commission Income Statement, Participation Requirements, IP License:** `https://affiliate-program.amazon.com/help/operating/policies`
-3. **Amazon Associates Standard Commission Income Statement (Rate Schedule):** `https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ`
-4. **Amazon Associates Simple Text Link & ASIN Definition:** `https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC`
-5. **Amazon Associates SiteStripe Help:** `https://affiliate-program.amazon.com/help/node/topic/GJMMT7G4C8K4Y3AY`
-6. **Amazon Associates Mobile GetLink Help:** `https://affiliate-program.amazon.com/help/node/topic/GH37MDS5PLQ9Z366`
-7. **Amazon Creators API — PA-API 5 Deprecation Notice:** `https://affiliate-program.amazon.com/creatorsapi/docs/en-us/paapiv5-deprecation`
-8. **FTC Endorsement Guides — What People Are Asking:** `https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking`
-9. **FTC Disclosures 101 for Social Media Influencers:** `https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers`
-10. **Google Search Central — Qualify Outbound Links (`rel="sponsored"`):** `https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links`
-11. **Official Amazon Product Listing (`B08FKW9JRM`):** `https://www.amazon.com/dp/B08FKW9JRM`
-12. **Official Amazon Product Listing (`B0BSKQW2T2`):** `https://www.amazon.com/dp/B0BSKQW2T2`
-13. **Official Amazon Product Listing (`B08DY9HRWD`):** `https://www.amazon.com/dp/B08DY9HRWD`
+| Session ID | Branch | Role | Started (UTC) | Status |
+|---|---|---|---|---|
+| `S-2026-11-20-A` | `arena/eb4b2092-diyhome1` | Sole session: research, build, verify, integrate, publish | 2026-11-20 | active |
+
+Single-session run. A later session may take unowned rows only, and must not edit `data/`, `scripts/`, `assets/js/config.js`, `sitemap.xml`, `feed.xml` or generated HTML without claiming the row first.
 
 ---
 
-## Flagged Irregularities Log (`needs review`)
+## File ownership map
 
-- **IR-01 (Unverified Intended ASINs):** Submitted URLs (`link.amazon/B0hmGG4m2`, `link.amazon/B03QDuGdo`, `link.amazon/B0hpD2JGQ`) use 9-character short codes rather than 10-character ASINs. `intended_asin` is left blank and flagged as unverified; `observed_redirect_target` is stored separately and never merged.
-- **IR-02 (Duplicate Submitted Link):** `https://link.amazon/B03QDuGdo` was submitted twice consecutively in the source input (Lines 2 and 3). Consolidated to 1 canonical product record while preserving both raw input rows in the audit register.
-- **IR-03 (Intermittent HTTP 500 on Short Link Redirect):** First fetch of `https://link.amazon/B0hmGG4m2` on 2026-11-20 returned `HTTP 500`; second fetch succeeded and redirected to `B08FKW9JRM`.
-- **IR-04 (Unresolved Short Link Compliance / Missing Visible `tag=` Parameter):** None of the three observed `link.amazon` redirect destinations displayed a `tag=` query parameter (they carried `btn_type=ss`, `btn_ref=srctok-...`, `channelId=500`, `plpRedirect=mhFallback`). Exact compliance and attribution status under `shopnow047c-20` is unresolved until one Special Link per product is tested in the enrolled Associates workflow and confirmed in Associates reports. Do not claim the supplied short links are invalid.
-- **IR-05 (Static Price & Star Rating Display Gate):** Per Amazon Associates Participation Requirements §2(b) and §6(t), live prices, availability, and customer star ratings/reviews cannot be statically republished without Amazon-served widgets or Creators API (PA-API 5 is deprecated). Audit snapshots are timestamped `2026-11-20 UTC` for review only; buyer-facing pages direct users to Amazon for current price and reviews until Creators API is connected.
-- **IR-06 (Commission Rate Category Ambiguity for Home & Kitchen):** Both `B0BSKQW2T2` and `B08DY9HRWD` sit in `Home & Kitchen › Kitchen & Dining › Storage & Organization`. Amazon's Standard Commission Income Statement lists `Kitchen` at `4.50%` and `Home` / `Home Improvement` at `3.00%`. Exact fee tier per ASIN is left blank/unconfirmed until verified in a first-party Associates report.
-- **IR-07 (ORDORA Listing Discrepancies & Prime-Exclusive Price):** `B08DY9HRWD` displays a Prime-exclusive price ($17.74 vs $23.99 regular), lists "Up to 11"" in the title vs "up to 12 inches" in product bullets, and shows a newer heavy-duty model (`B0BYYTQMTR`) on the listing page.
-- **IR-08 (Self-Hosted Analytics Endpoint & Search Console Verification):** GitHub Pages is static hosting; the 5-event privacy-preserving client tracker operates with local browser storage preview until a self-hosted analytics endpoint URL is configured and deployed, and Google Search Console property verification is completed by the domain owner.
+| Scope | Owner | Notes |
+|---|---|---|
+| `data/products.json`, `data/product-intents.csv` | T01 | Product facts, intended vs observed fields |
+| `data/sources.json`, `sources/index.html` | T02 | Every claim's source |
+| `data/flagged.json`, `flagged/index.html` | T10 | Open items |
+| `data/guides.json`, `scripts/content.mjs`, `guides/**` | T04 | Editorial |
+| `data/events.json`, `assets/js/site.js`, `worker/**`, `measurement/index.html` | T05 | Measurement |
+| `data/campaign-ledger.csv`, `data/ledger-schema.md`, `ledger/index.html` | T06 | Ledger |
+| `scripts/build.mjs`, `scripts/validate.mjs`, `.github/workflows/validate.yml` | T08 | Build + gate |
+| `sitemap.xml`, `feed.xml`, `robots.txt`, `assets/js/config.js`, all `*.html` | T07 | Generated — build only |
+| `COORDINATION.md`, `EXECUTIVE_SUMMARY.md`, `README.md` | All | Append-only log for other sessions |
 
 ---
 
-## Pull Request & Deployment Record
+## Task board
 
-*(To be updated upon PR creation, merge to `main`, and live GitHub Pages verification.)*
+| ID | Task | Owner | File scope | Status |
+|---|---|---|---|---|
+| T01 | Verify submitted links, resolve observed destinations, record provenance | S-2026-11-20-A | `data/products.json`, `data/product-intents.csv` | needs review |
+| T02 | Source register (official sources, URLs, quoted support) | S-2026-11-20-A | `data/sources.json`, `sources/index.html` | done |
+| T03 | Compliance gate: disclosure strip, sponsored marking, price/rating omission | S-2026-11-20-A | `disclosures/index.html`, `data/sources.json` | done |
+| T04 | Editorial: 4 question-shaped guides + guides index + cadence | S-2026-11-20-A | `data/guides.json`, `scripts/content.mjs`, `guides/**` | done |
+| T05 | Measurement: 5-event instrumentation, local queue, endpoint contract | S-2026-11-20-A | `assets/js/site.js`, `worker/**`, `measurement/index.html` | needs review |
+| T06 | Campaign ledger (empty, defined schema, dated provenance) | S-2026-11-20-A | `data/campaign-ledger.csv`, `data/ledger-schema.md` | done |
+| T07 | Findability: sitemap, feed, robots, canonicals, JSON-LD | S-2026-11-20-A | generated | done |
+| T08 | Site build + link/policy validation + CI gate | S-2026-11-20-A | `scripts/**`, `.github/workflows/validate.yml` | done |
+| T09 | Executive summary (repo + site) | S-2026-11-20-A | `EXECUTIVE_SUMMARY.md`, `summary/index.html` | done |
+| T10 | Flagged for Review page | S-2026-11-20-A | `data/flagged.json`, `flagged/index.html` | needs review |
+| T11 | Integration: merge to `main`, PR, Pages deploy, record result | S-2026-11-20-A | `main` (merge only) | done |
+
+`needs review` = published on the Flagged for Review page and does **not** block the merge.
+
+---
+
+## Log
+
+### 2026-11-20 — S-2026-11-20-A — T01 link verification
+
+Method: one unauthenticated fetch per submitted link, recording the final URL and page title. Also probed `/dp/<short-code-uppercased>` to test whether the short token is an ASIN.
+
+| Submitted link | Observed final URL | Observed title (verbatim, truncated) |
+|---|---|---|
+| https://link.amazon/B0hmGG4m2 | `https://www.amazon.com/dp/B08FKW9JRM?...` | "Art3d Smoothing Tool Kit for Peel and Stick Wallpaper \| Vinyl Backsplash Tile, Complete Basic Tool Set, Bubble & Crease Removal, Ergonomic Grip, Safe for DIY and New Home Buyer" |
+| https://link.amazon/B03QDuGdo | `https://www.amazon.com/dp/B0BSKQW2T2?...` | "Paper Towel Holder Under Cabinet, Self-Adhesive or Drilling, Matte Black \| Kitchen Roll Dispenser \| Under-Cabinet or Wall-Mounted\| Upgraded Aluminum \| Lighter Yet Stronger Than Stainless Steel" |
+| https://link.amazon/B0hpD2JGQ | `https://www.amazon.com/dp/B08DY9HRWD?...` | "ORDORA Pots and Pans Organizer Under Cabinet 16.6\", 8-Tier Adjustable Rack \| 3 DIY Modes, Tool-Free Assembly, Non-Slip, Fits Lightweight Cookware Up to 11\", For Kitchen Cabinets, Shelves & Countertops" |
+
+Findings:
+- Three distinct short links → three distinct ASINs. Every link reached a live product page.
+- Short tokens are **not** ASINs: they contain lowercase letters, and `https://www.amazon.com/dp/B0HMGG4M2` returned a fetch error, not a product page.
+- The supplied list contains a **duplicate** (`B03QDuGdo` twice). Counted once; flagged F02.
+- Observed redirect targets carried session/search parameters (`crid`, `sprefix`, `sr=`). Recorded as **observed**, in their own field, never merged with `intended_asin` (which stays blank).
+- **Unverified:** that the links carry `shopnow047c-20`, that they are enrolled Special Links, or that clicks appear in the Associates report. Requires Associates Central sign-in. Flagged F01.
+- **Not claimed:** that the short links are invalid. Compliance status unresolved.
+
+### 2026-11-20 — S-2026-11-20-A — T02 sources
+
+19 sources registered in `data/sources.json`, each with publisher, page date, retrieval date, supported statements and verbatim quotes. 16 read successfully; 2 unreadable behind sign-in walls (S16 Seller Central ASIN help, S17 commission rate schedule); 1 secondary (S15 seller-forum ASIN post). Verified: Amazon Program Policies (`/help/operating/policies`, page dated 14 Apr 2026) and Operating Agreement (15 Oct 2025), FTC *Disclosures 101*, Google sitemap / robots.txt / Search Console docs, GitHub Pages publishing docs, and the three live Amazon listings.
+
+### 2026-11-20 — S-2026-11-20-A — T03 compliance gate
+
+Verified verbatim, and applied:
+- Participation Requirements 2(b): the Associates tag must appear "as a parameter in the URL of each link".
+- 2(b): prices and availability only via Amazon-served links or Creators/PA API.
+- 3(t): customer reviews and star ratings only via Creators/PA API.
+- 3(v): no obscuring the URL containing Special Links, "including by use of Redirecting Links".
+- 3(w): no link shortening that makes the Amazon destination unclear.
+- 3(y): no price tracking or price alerts.
+- IP Licence Agent Terms (new): agents must identify as `Agent/[agent name]` and must not conceal automation or circumvent blocks.
+- IP Licence 2(h): ASINs may be stored indefinitely.
+- FTC: disclose so it is "hard to miss", with the endorsement, in simple words; don't describe untried products.
+
+Consequences in the build: no prices, ratings, review counts, availability, imagery or commission figures; no on-site redirector (clicks are observed, navigation is untouched); all CTAs are fresh tagged Special Links marked `rel="sponsored nofollow noopener"`; disclosure strip under the masthead on every page plus a footer repeat.
+
+### 2026-11-20 — S-2026-11-20-A — T04 editorial
+
+Four guides published, all question-shaped, all tied to a category with a verified product: wallpaper smoothing kit comparison, paper-towel-holder fit checklist, pan-organiser capacity, and pre-purchase questions. The air-fryer working titles from the brief were **not** published: no submitted product matches them (F03). Guides contain no search-volume, popularity or superiority claims, and no hands-on experience claims.
+
+### 2026-11-20 — S-2026-11-20-A — T06 ledger
+
+`data/campaign-ledger.csv` ships with a 12-column header and **zero rows**. `data/ledger-schema.md` documents each column and the rule that blank means "not obtained". The validator fails the build if a row appears.
+
+### 2026-11-20 — S-2026-11-20-A — T07 findability
+
+One canonical host on all 19 indexable pages; `sitemap.xml` (19 URLs, all resolving); RSS 2.0 `feed.xml` (7 items, also a valid sitemap format per Google); `robots.txt`; `noindex` on `/search/` and `/404.html`; JSON-LD `WebSite` + `SearchAction` on the home page, `BreadcrumbList` elsewhere, `Article` on guides. No `Product` structured data is emitted: it would require offers/ratings this site is not permitted to publish.
+
+### 2026-11-20 — S-2026-11-20-A — T08 build + gate
+
+`node scripts/build.mjs` → 21 pages. `node scripts/validate.mjs` → 15 check groups, 0 errors, 0 warnings: 132 Amazon links (33 sponsored, 105 citation), single tag, no untagged product URL outside declared citations, no citation used as a button, no third-party subresources, every internal link and form action resolving, sitemap/feed well-formed, `price`/`rating`/`review_count`/`image`/`intended_asin` still `null`, ledger still empty.
+
+### 2026-11-20 — S-2026-11-20-A — F13 and F14 added mid-build
+
+- **F13:** the verification fetches did not identify themselves as an automated agent, contrary to the Agent Terms in Amazon's IP Licence. Recorded rather than silently repeated.
+- **F14:** `robots.txt` sits at `/DIYHOME1/robots.txt`, not the host root that crawlers read; `noindex` meta tags are the actual control.
+
+### 2026-11-20 — S-2026-11-20-A — T11 integration result
+
+**Conflict found, and how it was resolved.**
+
+PR #9 opened as `CONFLICTING`: `main` had advanced through pull requests #1–#8 from four other Arena sessions (9039f7cb, 1f8b2810, 12f29fdb, 31f7cfd4, b25ce862), which had built and published a different edition of this site — "The Practical Home": a flat-file publication (11 pages) with four air-fryer guides, a research register, a campaign ledger page, a review page, a privacy page, an analytics worker, Python build and check scripts under `scripts/`, and `data/catalog.json`. That edition deliberately listed **no products**, because its `approval()` gate only renders a product card once a Special Link and a tracking report exist.
+
+Neither edition was discarded.
+
+- The merge of `origin/main` into this branch was taken with `-X ours`, which kept this product-led edition at the site root: it leads with the three verified products (the brief's top priority) and carries the 19-source register, 14 flags, five-event measurement layer and empty campaign ledger.
+- The earlier edition was moved **intact** to `archive/practical-home/`, structure preserved, so its relative links, stylesheet, `data/catalog.json`, `research/redirects.csv`, `analytics/server.py`, `scripts/build.py`, `scripts/check.py`, `acceptance-31f7/` and `release-review/` all continue to work in place. Nothing was deleted or rewritten in substance.
+- `archive/practical-home/scripts/preserve-archive.py` (committed) is the only transformation applied to it: absolute URLs rewritten to the archive path, `noindex` added, and a visible banner linking back to the live publication. So search engines index one publication, and the earlier edition stays readable for review.
+- `sitemap.xml` lists only the live edition (19 URLs). The validator now asserts that every archived page is `noindex`, carries the banner, and is absent from the sitemap.
+- The earlier edition's own sitemap, feed and robots.txt are preserved inside the archive with rewritten URLs.
+
+**Validation after integration:** 21 published pages + 18 archived pages checked; 16 check groups, 0 errors, 0 warnings.
+
+**Prior sessions' board and logs are reproduced verbatim below** — they are the record of the earlier edition and were not edited.
+
+
+### 2026-11-20 — S-2026-11-20-A — T11 closed: merge and deploy verified
+
+- **Pull request:** [#9](https://github.com/kanlerxz87-cyber/DIYHOME1/pull/9) — "Publish DIY Home Upgrades: verified product register, 4 guides, compliance gate, Pages site".
+- **Merge commit:** `eef1330683625888b6b365157f16f71a31768b6e`, merged 2026-11-20T06:07:51Z with `gh pr merge 9 --merge` (no auto-merge, no force).
+- **CI before merge:** workflow `validate` → `build-and-validate` **pass** (6s) on the pull request, run [44685563223](https://github.com/kanlerxz87-cyber/DIYHOME1/actions/runs/44685563223).
+- **Pages:** `GET /repos/kanlerxz87-cyber/DIYHOME1/pages/builds` reported `status: built` for commit `eef1330`; `pages.status` moved to `building` then `built`.
+- **Live verification after deploy** (public fetches, not just source files):
+  - `https://kanlerxz87-cyber.github.io/DIYHOME1/` → title "DIY Home Upgrades — three verified DIY upgrades for rented kitchens"; disclosure strip above the fold; three product cards with ASINs and tagged CTAs.
+  - `/products/` → 3-row register, UTF-8 titles intact, source links present, "Tracking confirmed: Not confirmed" on every row.
+  - `/flagged/` → 14 items rendered with severity and per-item source links.
+  - `/sitemap.xml` → 19 URLs, all on the published origin, none under `/archive/`.
+  - `/archive/practical-home/` → earlier edition renders with its banner, rewritten URLs and image.
+  - A first fetch of `/` returned a stale cached document (the original placeholder); a cache-busted fetch returned the new publication. Recorded because a reviewer may hit the same cache.
+- **Follow-up PR:** this record and two data corrections (F12 title was contradicted by its own body; release record added to `/summary/`) ship in a second, documentation-only pull request from the same branch, per the rule that this session pushes only to its own branch.
+- **Not verified, and not claimed:** Associates enrolment or click attribution for any link, Search Console indexing, analytics collection, commission rates or revenue. All of that is on `/flagged/` with what would close it.
+
+---
+
+## Prior boards and logs (preserved verbatim from `main` at merge)
+
+# Coordination
+
+| Task | Status | Session | Scope |
+|---|---|---|---|
+| Initial publication and integration | needs review | 9039f7cb | New site, data, build, analytics worker, workflows, coordination |
+
+- Verified source guidance: [Associates Agreement](https://affiliate-program.amazon.com/help/operating/agreement), [Policies](https://affiliate-program.amazon.com/help/operating/policies), [ASIN](https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC), [tag checks](https://affiliate-program.amazon.com/help/node/topic/G6253GFSARDQENZR), [reports](https://affiliate-program.amazon.com/help/node/topic/GMWAK55DQX8JEK7C), [USDA air fryer guidance](https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/air-fryers-and-food-safety), [FTC endorsement guidance](https://search.ftc.gov/system/files/ftc_gov/pdf/P204500%20Guides%20Concerning%20Endors%20and%20Testimonials.pdf), [Search Console](https://developers.google.com/webmaster-tools/v1/api_reference_index).
+- Local build checked all 11 HTML pages and local links, both disclosure placements, canonicals, sitemap and feed. Supplied URLs did not resolve in the workspace, S03 duplicates S02, and no relationship between the short-link tokens and ASINs is asserted. No signed-in report evidence, Search Console verification, or production collector is available. See `review.html`.
+
+- Integration: [PR #3](https://github.com/kanlerxz87-cyber/DIYHOME1/pull/3). The authoritative merge outcome is on the linked PR; Pages deployment status is recorded under the repository’s Pages deployments.
+# Coordination board
+
+| Task | Status | Owner | Scope |
+| --- | --- | --- | --- |
+| Integration: official-source review, static publication, validation and deployment | needs review | arena-1f8b2810 | all site files, README.md, COORDINATION.md, .github/workflows |
+
+No prior board or claims existed when this task was claimed. The Arena-assigned branch is used for integration.
+
+## Integration notes
+- Official references checked: [Amazon Operating Agreement](https://affiliate-program.amazon.com/help/operating/agreement), [Amazon Program Policies](https://affiliate-program.amazon.com/help/operating/policies), [FTC disclosure guidance](https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers), [GitHub Pages documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages).
+- 2026-11-20: Four supplied links include one exact duplicate. Attempts to reach the three distinct link.amazon URLs failed from this network; no redirect, ASIN, product or tracking association is asserted. Links are retained as unverified with sponsored attributes. No account reports or product-data API access available; analytics and autonomous optimization are not claimed. These items are published on Flagged for Review.
+- Project uses the assigned Arena branch; no other board or session claims were present at the start.
+- Local validation: 10 HTML pages checked for broken local href/src targets; none found. Sitemap and RSS parsed as XML. Google’s [sitemap guidance](https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview) was checked. External product destinations could not be validated; no claim of full external link verification is made.
+- Integration pull request: https://github.com/kanlerxz87-cyber/DIYHOME1/pull/2. Merge and Pages deployment are pending.
+
+## Parallel integration resolution
+PR #2 merged while PR #3 was under validation. The original board and verification notes are preserved above; the prior published edition remains in Git at `87946a0`. Shared publication files were regenerated from the PR #3 sources; prior guide/register/summary URLs now point to the corresponding canonical pages. Unverified short links remain plain text rather than active shopping links. Both sessions' findings agree on the duplicate and missing catalog and account evidence.
+| Follow-up task | Status | Owner | Scope |
+|---|---|---|---|
+| Redirect evidence handoff | done | b5266bc5 | research/redirects.csv only |
+
+Concurrent integration discovered: PR #2 already merged at 87946a0. Resolved concurrent board creation by preserving the integration board and narrowing this session's claim; no competing site changes. Request for site owner: incorporate observed listing evidence into Flagged for Review, separately from intent. No authorization to validate attribution was available.
+- Three distinct short links fetched; normalized official destinations and titles recorded per submission. PR #2 merged. Follow-up: https://github.com/kanlerxz87-cyber/DIYHOME1/pull/4. Rebase conflict on competing initial claims resolved by retaining the integrated board and evidence scope.
+## Handoff and independent verification — arena-12f29fdb
+- 2026-11-20: Both sessions initially saw an empty repository and claimed overlapping integration scopes before either claim was visible. Main advanced to PR #2 while this session worked; a rebase produced an add/add conflict in this board. Resolved by retaining the merged integration session's site and board, not overwriting its files. This session's duplicate site implementation was not integrated.
+- Request for the integration owner: update the product register and flagged page with the independently observed redirects below, while keeping intended product identity and tracking attribution unconfirmed. The network restriction reported by the first session remains a valid account of that session, but subsequent page-fetch observations are now available.
+- Page fetches on 2026-11-20 resolved the three distinct submitted links respectively to Amazon product pages: [submission 1 → B08FKW9JRM](https://www.amazon.com/dp/B08FKW9JRM), [submission 2 → B0BSKQW2T2](https://www.amazon.com/dp/B0BSKQW2T2), [submission 3 → B08DY9HRWD](https://www.amazon.com/dp/B08DY9HRWD). These observations do not establish intended ASINs or validate Special Links. Source links: [first submitted URL](https://link.amazon/B0hmGG4m2), [second](https://link.amazon/B03QDuGdo), [third](https://link.amazon/B0hpD2JGQ); the second was provided twice. [Amazon's ASIN explanation](https://sell.amazon.com/blog/what-is-an-asin) describes how to identify an ASIN on a product detail page.
+- PR #2 merged at 2026-11-20 05:57:31 UTC. Deployment status checked separately below.
+
+- Second board conflict with PR #4 resolved by retaining both sessions’ handoffs; the independently observed destinations agree. PR #5 records this handoff.
+
+- PR #3 independently re-fetched all three short URLs and matched the handoff destinations. Resolved the second coordination conflict by preserving both handoffs and adding the observed destination evidence to the site separately from intent. GitHub PR #3 is the merge record of this edition.
+---
+# Shared task board — release observation
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Initial publication and final integration | in progress | arena-12f29fdb (earliest recorded claim) | Site, data, navigation, Pages, build and final site PR; do not edit here |
+| Independent post-deploy acceptance check and release handoff | in progress | b25ce862 | `release-review/` only; this branch's coordination log |
+2026-11-20 05:56 UTC: With the base still at faef478, explicit fetch of remote Arena refs revealed four overlapping integration claims: 12f29fdb (05:55:04), 1f8b2810 (05:55:24), 9039f7cb (05:55:29), 31f7cfd4 (05:55:37). All younger than 60 minutes. Retracted this branch's overlapping claim before touching any implementation files. No takeover or cross-branch edits. Final integration owner controls shared outputs. This branch's coordination file must not replace the final integrator's board.
+2026-11-20 UTC: PR #2 from session 1f8b2810 merged into main before this branch completed observation. Imported main into this branch. Resolved the add/add board conflict by preserving both complete logs; no site file was changed by this session.
+The follow-up branch rebase attempted to replay the previously merged board history; aborted that replay to preserve both histories and rebased against integrated main instead.
+Follow-up PR #4 merge created overlapping board appends. Both records retained. The rebase retry against main also tried to replay old claims and was aborted; use fast-forward-only on the pull of this branch to preserve merged history.
+## Independent release observation — done (b25ce862)
+- [Publication PR #2](https://github.com/kanlerxz87-cyber/DIYHOME1/pull/2) merged at 05:57:31 UTC. GitHub Pages reported `built` for 87946a0 and subsequently for 041dea7. Public HTML fetches confirmed the published homepage, executive summary and Flagged for Review, not just the initial placeholder. Evidence: [Pages builds](https://api.github.com/repos/kanlerxz87-cyber/DIYHOME1/pages/builds), [public site](https://kanlerxz87-cyber.github.io/DIYHOME1/).
+- Three unit tests pass. Release-markup check against the merged site files reached all 10 HTML documents, the RSS and sitemap; the homepage was reached under both `/` and `/index.html`. No missing crawled targets. Every HTML document lacked an explicit canonical link. This is an SEO finding, not proof of duplicate indexing. Request for site owner: add self-consistent canonical URLs and surface the updated redirect evidence on the product/review pages. See [Google canonical URL guidance](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls).
+- Live inspection is distinct from source-file checks: no real outbound product clicks, attribution, production metrics, indexing, or conversion reports were generated or certified. Checker and method in `release-review/`. Board conflicts with PRs #4 and #5 resolved by preserving both sessions' complete records. No shared publication files changed.
+
+- Preserved PR #6 release review files and board notes when reconciling the third concurrent merge.
+
+## Independent handoff — arena-31f7cfd4
+# Shared task board
+
+Session: arena-31f7cfd4 • claimed 2026-11-20 UTC.
+
+| Task | Status | Owner | Files |
+|---|---|---|---|
+| Publication, evidence register, analytics implementation, tests and final integration | in progress | arena-31f7cfd4 | All new site files, README.md, COORDINATION.md, .github/workflows/* |
+
+No pre-existing claims or site files were present. Work stays on the Arena-assigned branch `arena/31f7cfd4-diyhome1`; this takes precedence over the requested branch naming convention. Other sessions must not edit this scope while claimed.
+
+## Verification log
+- 2026-11-20: GitHub API confirms repository Pages is enabled, source main /, URL https://kanlerxz87-cyber.github.io/DIYHOME1/ .
+- Source README contained only the repository name. No existing application, source register, event specification or S01/S02/S07/S24 documents were present.
+
+2026-11-20 06:00 UTC: Fresh fetch revealed PRs #2–#6 and overlapping site integrations. Stopped duplicate integration; reverted this session’s unmerged implementation (retained in Git history at 358f875), then imported main. Preserved all parallel publication, research, release-review files and complete coordination notes. Only board creation conflicted; concatenated both boards without discarding notes. Original all-files claim is RETRACTED. New scope: acceptance-31f7/ only; no shared site changes.
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Independent acceptance report and closure | in progress | arena-31f7cfd4 | acceptance-31f7/ and own board notes only |
+
+### arena-31f7cfd4 acceptance completed
+- Status: done for independent acceptance; needs review only for external account/hosting limits already public at review.html.
+- Read-only checks: final integrator build/check (18 HTML documents), 3 release-review unit tests, and acceptance-31f7/check.py all pass. No tracked shared-site change after rebuild.
+- Independently fetched Amazon redirects agree with merged evidence; all intended-ASIN and affiliate confirmation fields remain blank. Checked agreement §§1/5, policy index/opening terms and FTC guidance; no complete API certification claimed.
+- Pages API confirmed successful a7a4b68 build at 06:00:31Z. Public summary and review pages fetched correctly. Bare homepage fetch was stale in the page-fetch service; release-query fetch returned the new publication. Recorded discrepancy without asserting cause in acceptance-31f7/README.md.
+- PR #7 narrowed to coordination + independent acceptance only. Competing storefront was reverted, not merged over another session's publication.
+- The requested pre-push `git pull --rebase` tried replaying already-imported parallel merge history and conflicted on an old initial board claim. Aborted the replay to preserve all merged histories (same issue recorded by the earlier observer). Verified the remote assigned branch is an ancestor and used fast-forward-only synchronization before pushing. No other session's edits were discarded.
+
+## Integration completion — session arena-2d099948-diyhome1 (this session)
+- 2026-11-20: PR #8 (arena/2d099948-diyhome1 → main) merged via `gh pr merge 8 --merge`. Merge commit d315933201a3227ad3363575d75cca501224d34e. PR: https://github.com/kanlerxz87-cyber/DIYHOME1/pull/8
+- Merge method: `git merge -X theirs origin/main` resolved conflicts by retaining main's integrated publication and not discarding other sessions' work; this session's off-brand duplicates (separate CSS/JS analytics stack, duplicate ledger, off-brand disclosure/flagged/category pages) were not integrated because main already covers those scopes with verified files.
+- GitHub Pages: source branch `main`, path `/`. Latest build for commit d315933: status `built`, error null (duration ~21s). Live site: https://kanlerxz87-cyber.github.io/DIYHOME1/
+- Live-site verification: https://kanlerxz87-cyber.github.io/DIYHOME1/research.html renders the affiliate disclosure and the product-intent confirmation table (S01–S04; intended ASIN/official listing/confirmation date/source blank and unverified; observed redirect kept in a separate field; S03 flagged as exact duplicate of S02). All internal links OK; sitemap.xml and feed.xml well-formed.
+- Sources used (official, linked from the site): Amazon Associates Operating Agreement & program help; Amazon ASIN guidance, tag checks, reports; FTC Endorsement Guides; Google Search Console API reference; sitemaps.org; RSS 2.0 specification.
+- Irregularities (do not block merge; published on review.html / research.html): Amazon short links not resolvable from this sandbox (outbound network limited to GitHub/npm/PyPI); intended ASIN and official listing unconfirmed and never inferred; tracking ID shopnow047c-20 supplied but attribution unverified; no signed-in Amazon report evidence; Search Console property not configured (requires Google account access); production analytics collector not deployed (analytics/server.py present; client endpoint not yet configured).
+- All T-001..T-010 build/compliance tasks reflected in the integrated site; T-011 (Pages deploy) done; T-012 (PR + merge) done.
+
+---
+
+## Subsequent entries from other sessions (added after the merge recorded above, preserved verbatim)
+
+## Integration completion — session arena-2d099948-diyhome1 (this session)
+- 2026-11-20: PR #8 (arena/2d099948-diyhome1 → main) merged via `gh pr merge 8 --merge`. Merge commit d315933201a3227ad3363575d75cca501224d34e. PR: https://github.com/kanlerxz87-cyber/DIYHOME1/pull/8
+- Merge method: `git merge -X theirs origin/main` resolved conflicts by retaining main's integrated publication and not discarding other sessions' work; this session's off-brand duplicates (separate CSS/JS analytics stack, duplicate ledger, off-brand disclosure/flagged/category pages) were not integrated because main already covers those scopes with verified files.
+- GitHub Pages: source branch `main`, path `/`. Latest build for commit d315933: status `built`, error null (duration ~21s). Live site: https://kanlerxz87-cyber.github.io/DIYHOME1/
+- Live-site verification: https://kanlerxz87-cyber.github.io/DIYHOME1/research.html renders the affiliate disclosure and the product-intent confirmation table (S01–S04; intended ASIN/official listing/confirmation date/source blank and unverified; observed redirect kept in a separate field; S03 flagged as exact duplicate of S02). All internal links OK; sitemap.xml and feed.xml well-formed.
+- Sources used (official, linked from the site): Amazon Associates Operating Agreement & program help; Amazon ASIN guidance, tag checks, reports; FTC Endorsement Guides; Google Search Console API reference; sitemaps.org; RSS 2.0 specification.
+- Irregularities (do not block merge; published on review.html / research.html): Amazon short links not resolvable from this sandbox (outbound network limited to GitHub/npm/PyPI); intended ASIN and official listing unconfirmed and never inferred; tracking ID shopnow047c-20 supplied but attribution unverified; no signed-in Amazon report evidence; Search Console property not configured (requires Google account access); production analytics collector not deployed (analytics/server.py present; client endpoint not yet configured).
+- All T-001..T-010 build/compliance tasks reflected in the integrated site; T-011 (Pages deploy) done; T-012 (PR + merge) done.
+
+---
+
+## Integration & additive platform handoff — session `arena-d24c607b` (`arena/d24c607b-diyhome1`)
+
+- **2026-11-20 UTC:** While `arena/d24c607b-diyhome1` was preparing PR #12, `origin/main` advanced through PRs #8–#11. Resolved the merge conflict by preserving 100% of `main`'s canonical live publication (`index.html`, `products/`, `guides/`, `summary/`, `flagged/`, `ledger/`, `measurement/`, `sources/`, `disclosures/`, `search/`, `data/*.json`, `scripts/build.mjs`, `scripts/validate.mjs`, and `archive/practical-home/`) intact without discarding any earlier session's work.
+- **Preserved session edition:** The complete "Field & Fixture" static edition built during this session (`13` HTML pages, `sitemap.xml`, `feed.xml`, original SVGs, and `data/verification-ledger.json`) is preserved cleanly under `archive/field-and-fixture/` with `noindex,follow` and an `archived-edition-banner` linking to the live publication (`DIY Home Upgrades`).
+- **Additive platform & compliance tooling included:**
+  - `platform/affiliate_platform.py` — Python registry, campaign-ledger, Special Link builder, and HTML/RSS/sitemap compliance auditor.
+  - `platform/creators_api_client.py` — Creators API policy wrapper (replacing deprecated PA-API 5, enforcing `<= 24h` cache TTL, UTC price stamps, and attribution notices).
+  - `platform/build_site.py` — Deterministic static generator for the archived `archive/field-and-fixture/` edition.
+  - `analytics-server/server.mjs` — Self-hosted zero-cookie/zero-PII Node.js endpoint accepting the 5 defined telemetry events (`page_view`, `guide_read`, `product_impression`, `outbound_affiliate_click`, `reader_capture_submit`).
+  - `tests/test_platform.py` & `.github/workflows/ci.yml` — Automated Python unit tests (6/6 passing).
+- **Additional official public sources verified in this session (2026-11-20 UTC):**
+  - Amazon Associates Simple Text Link & ASIN Definition (public, no sign-in required): `https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC` ("ASIN is the 10-digit code that Amazon uses to denote specific products. It is short for 'Amazon.com Standard Item Number.'").
+  - Amazon Associates Standard Commission Income Statement (public rate schedule): `https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ` (`Kitchen`: 4.50%; `Home`, `Home Improvement`, `Tools`: 3.00%; exact category payout tier for `Home & Kitchen › Kitchen & Dining` items remains unconfirmed until verified in first-party Associates reports).
+  - Amazon Creators API — PA-API 5 Deprecation Notice: `https://affiliate-program.amazon.com/creatorsapi/docs/en-us/paapiv5-deprecation`.
+  - Amazon Associates Mobile GetLink Help: `https://affiliate-program.amazon.com/help/node/topic/GH37MDS5PLQ9Z366` and SiteStripe Help: `https://affiliate-program.amazon.com/help/node/topic/GJMMT7G4C8K4Y3AY`.
+  - Google Search Central — Qualify your outbound links (`rel="sponsored"`): `https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links`.
+  - FTC Endorsement Guides — What People Are Asking: `https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking`.
+  - Additional link observation: initial fetch of `https://link.amazon/B0hmGG4m2` returned a transient `HTTP 500` before resolving to `https://www.amazon.com/dp/B08FKW9JRM` on immediate retry; `intended_asin` remains unverified/blank and `link.amazon` compliance status remains unresolved pending Associates Central verification.
+- **Verification before merge:** `node scripts/build.mjs && node scripts/validate.mjs` (16/16 checks, 21 published pages + 44 archived pages, 0 errors, 0 warnings) and `python3 -m unittest discover -s tests -v` (6/6 tests passing).
+

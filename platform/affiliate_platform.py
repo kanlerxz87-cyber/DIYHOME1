@@ -264,11 +264,12 @@ def audit_site(root: Path) -> dict[str, Any]:
         for loc in locs:
             parsed = urlparse(loc)
             path_part = parsed.path
-            prefix = "/DIYHOME1/"
-            if path_part.startswith(prefix):
-                local_rel = path_part[len(prefix):] or "index.html"
-                if not (root / local_rel).exists():
-                    errors.append(f"sitemap.xml points to missing file: {local_rel}")
+            for prefix in ("/DIYHOME1/archive/field-and-fixture/", "/DIYHOME1/"):
+                if path_part.startswith(prefix):
+                    local_rel = path_part[len(prefix):] or "index.html"
+                    if not (root / local_rel).exists():
+                        errors.append(f"sitemap.xml points to missing file: {local_rel}")
+                    break
 
     # Validate feed.xml
     feed_path = root / "feed.xml"
@@ -285,11 +286,12 @@ def audit_site(root: Path) -> dict[str, Any]:
                 errors.append("feed.xml item missing valid https link.")
             else:
                 parsed = urlparse(link_el.text.strip())
-                prefix = "/DIYHOME1/"
-                if parsed.path.startswith(prefix):
-                    local_rel = parsed.path[len(prefix):] or "index.html"
-                    if not (root / local_rel).exists():
-                        errors.append(f"feed.xml points to missing file: {local_rel}")
+                for prefix in ("/DIYHOME1/archive/field-and-fixture/", "/DIYHOME1/"):
+                    if parsed.path.startswith(prefix):
+                        local_rel = parsed.path[len(prefix):] or "index.html"
+                        if not (root / local_rel).exists():
+                            errors.append(f"feed.xml points to missing file: {local_rel}")
+                        break
 
     return {
         "ok": len(errors) == 0,
@@ -329,7 +331,7 @@ def ingest_authorized_report(root: Path, report_path: Path) -> dict[str, Any]:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="DIYHOME1 Affiliate Platform CLI")
-    parser.add_argument("--root", default=".", help="Repository root path")
+    parser.add_argument("--root", default="archive/field-and-fixture", help="Edition root path")
     sub = parser.add_subparsers(dest="command", required=True)
 
     sub.add_parser("validate-registry", help="Validate product and link confirmation records")

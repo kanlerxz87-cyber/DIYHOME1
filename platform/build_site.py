@@ -15,7 +15,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-BASE_URL = "https://kanlerxz87-cyber.github.io/DIYHOME1"
+BASE_URL = "https://kanlerxz87-cyber.github.io/DIYHOME1/archive/field-and-fixture"
 TRACKING_ID = "shopnow047c-20"
 PUB_NAME = "Field & Fixture"
 PUB_TAGLINE = "DIY Home Upgrades · Practical Buyer Guides & Verified Product Notes"
@@ -42,6 +42,7 @@ def render_page(
     extra_head: str = "",
 ) -> str:
     prefix = rel_prefix(page_rel)
+    live_root_href = f"{prefix}../../index.html"
     canonical = f"{BASE_URL}/{'' if page_rel == 'index.html' else page_rel}"
 
     nav_items = [
@@ -62,6 +63,7 @@ def render_page(
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="robots" content="noindex,follow">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{esc(title)} | {PUB_NAME}</title>
   <meta name="description" content="{esc(description)}">
@@ -71,6 +73,9 @@ def render_page(
   {extra_head}
 </head>
 <body data-page-type="{esc(page_type)}">
+  <div id="archived-edition-banner" role="note" style="font:14px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#fdf4e4;border-bottom:1px solid #eddcbd;color:#5b4300;padding:10px 16px">
+    <strong>Archived edition.</strong> Preserved from the &ldquo;Field &amp; Fixture&rdquo; session edition (<code>arena/d24c607b-diyhome1</code>). The live publication is <a href="{esc(live_root_href)}" style="color:#8a4b00;font-weight:700">DIY Home Upgrades</a>.
+  </div>
   <div class="disclosure-strip" id="top-disclosure" role="region" aria-label="Affiliate Disclosure">
     <div class="container">
       <span><strong>Disclosure:</strong> As an Amazon Associate I earn from qualifying purchases (Tracking ID: <code>{TRACKING_ID}</code>). Outbound product links are marked <code>rel="sponsored"</code>.</span>
@@ -122,7 +127,7 @@ def render_page(
             <li><a href="{prefix}review/flagged.html">Flagged for Review</a></li>
             <li><a href="{prefix}feed.xml">RSS Feed (feed.xml)</a></li>
             <li><a href="{prefix}sitemap.xml">XML Sitemap (sitemap.xml)</a></li>
-            <li><a href="{prefix}robots.txt">robots.txt</a></li>
+            <li><a href="{prefix}../../robots.txt">robots.txt</a></li>
           </ul>
         </div>
       </div>
@@ -1204,7 +1209,8 @@ def build_feed() -> str:
 
 
 def main() -> None:
-    root = Path(__file__).resolve().parent.parent
+    repo_root = Path(__file__).resolve().parent.parent
+    root = repo_root / "archive" / "field-and-fixture"
     products = json.loads((root / "data" / "products.json").read_text(encoding="utf-8"))["products"]
     ledger = json.loads((root / "data" / "verification-ledger.json").read_text(encoding="utf-8"))
     campaign = json.loads((root / "data" / "campaign-ledger.json").read_text(encoding="utf-8"))
@@ -1226,12 +1232,8 @@ def main() -> None:
 
     (root / "sitemap.xml").write_text(build_sitemap(sorted(outputs.keys())), encoding="utf-8")
     (root / "feed.xml").write_text(build_feed(), encoding="utf-8")
-    (root / "robots.txt").write_text(
-        f"User-agent: *\nAllow: /\nSitemap: {BASE_URL}/sitemap.xml\n", encoding="utf-8"
-    )
-    (root / ".nojekyll").write_text("", encoding="utf-8")
 
-    print(f"Generated {len(outputs)} HTML pages, sitemap.xml, feed.xml, robots.txt, and .nojekyll.")
+    print(f"Generated {len(outputs)} archived HTML pages, sitemap.xml, and feed.xml in archive/field-and-fixture/.")
 
 
 if __name__ == "__main__":

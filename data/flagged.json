@@ -1,0 +1,194 @@
+{
+  "generated": "2026-11-20",
+  "legend": "Severity high = could cost commission income or breach program terms. medium = a required step cannot be completed without account access or a user action. low = inconsistency worth fixing. info = deliberately withheld data, not an error.",
+  "items": [
+    {
+      "id": "F01",
+      "severity": "high",
+      "title": "The three submitted short links are not confirmed as enrolled Associates Special Links",
+      "what": "Each short link was fetched once and resolved to a live product page. What could not be checked is whether those links carry the tracking ID shopnow047c-20, whether they are enrolled in the Associates account, or whether clicks appear in the Associates tracking report.",
+      "why_it_matters": "Amazon's Program Policies require Special Links to carry the Associate tag as a URL parameter, and require the Associate to keep track of which link formats are permitted. Publishing links whose tracking is unconfirmed risks earning nothing while looking like it works.",
+      "sources": [
+        "S01",
+        "S02",
+        "S10",
+        "S11",
+        "S12"
+      ],
+      "needs": "Sign-in to Associates Central, open SiteStripe, build one link per product, confirm the destination and confirm the click in the tracking report before adding more products.",
+      "action": "Every outbound link on this site therefore uses a freshly built tagged URL (https://www.amazon.com/dp/ASIN?tag=shopnow047c-20) rather than the short token, and is marked Sponsored.",
+      "status": "needs review"
+    },
+    {
+      "id": "F02",
+      "severity": "low",
+      "title": "One submitted link was supplied twice",
+      "what": "https://link.amazon/B03QDuGdo appears twice in the supplied list.",
+      "why_it_matters": "Duplicates inflate the product count and can hide a missing fourth product.",
+      "sources": [
+        "S11"
+      ],
+      "needs": "Confirm whether a fourth product was intended.",
+      "action": "Counted once. The site publishes three products, and says three.",
+      "status": "needs review"
+    },
+    {
+      "id": "F03",
+      "severity": "medium",
+      "title": "The air-fryer working titles in the brief have no matching products",
+      "what": "The editorial hypotheses supplied (basket versus oven-style air fryer, air fryer capacity, cleanup and counter space, multi-function appliance questions) do not match the three DIY home products actually submitted.",
+      "why_it_matters": "Publishing four air-fryer guides against a wallpaper tool and two cabinet racks would be a content-to-product mismatch, and the brief itself described those titles as working titles, not verified demand.",
+      "sources": [],
+      "needs": "Either submit air-fryer products, or accept the replacement guide set.",
+      "action": "Four replacement guides were written in the same question-shaped format against the categories that do have verified products. The air-fryer titles remain unpublished in the live edition. The earlier edition's four air-fryer guides are preserved at /archive/practical-home/ with noindex, kept for the record rather than promoted.",
+      "status": "needs review"
+    },
+    {
+      "id": "F04",
+      "severity": "medium",
+      "title": "Search Console is not verified: no verification token was available",
+      "what": "Google requires a verification token tied to a specific Search Console user. This session has no access to that account, so no meta tag or HTML verification file could be created.",
+      "why_it_matters": "Without Search Console, the site cannot report which queries it appears for, so topic selection cannot be driven by measured queries.",
+      "sources": [
+        "S09"
+      ],
+      "needs": "Add the property in Search Console, copy the HTML tag, paste it into data/site.json as search_console_token, rerun the build.",
+      "action": "The build already supports the token: it emits the meta tag on every page as soon as the value is supplied. sitemap.xml and feed.xml are ready to submit.",
+      "status": "needs review"
+    },
+    {
+      "id": "F05",
+      "severity": "medium",
+      "title": "The analytics endpoint is not deployed, so the five events stay in the browser",
+      "what": "The five events are instrumented and fire on real page views on this site. The self-hosted collector requires a host (the included Cloudflare Worker, or any endpoint that accepts the documented JSON). No hosting credentials were available to this session.",
+      "why_it_matters": "Instrumentation without a sink produces no reports, so the ledger stays empty.",
+      "sources": [],
+      "needs": "Deploy worker/collect.js, then set the endpoint in data/site.json and rebuild, or paste it into assets/js/config.js at runtime.",
+      "action": "No data leaves the browser until an endpoint is configured. Nothing is simulated, estimated or back-filled.",
+      "status": "needs review"
+    },
+    {
+      "id": "F06",
+      "severity": "low",
+      "title": "Amazon's own ASIN definition could not be read without signing in",
+      "what": "The Seller Central help page that defines ASIN redirected to a sign-in wall. The format claim on this site rests on observation (10-character uppercase alphanumeric, /dp/{ASIN} resolves) plus a secondary forum post.",
+      "why_it_matters": "The site states that an ASIN is a checkable identifier, which should rest on Amazon's own documentation.",
+      "sources": [
+        "S15",
+        "S16",
+        "S13",
+        "S04"
+      ],
+      "needs": "Paste the ASIN wording from Seller Central help once signed in, or link an accessible Amazon page that defines it.",
+      "action": "The claim is marked as observed plus secondary, not as official documentation.",
+      "status": "needs review"
+    },
+    {
+      "id": "F07",
+      "severity": "info",
+      "title": "Prices, star ratings, review counts and availability are observed but deliberately not published",
+      "what": "Those values were visible on the listings during verification. Amazon's Program Policies only allow showing prices and availability if Amazon serves the link containing that data or the data comes from the Creators API or PA API, and only allow customer reviews and star ratings if obtained through those APIs.",
+      "why_it_matters": "Republishing them without those routes would breach the terms this site is required to follow, and a scraped price is stale the moment it is written.",
+      "sources": [
+        "S01",
+        "S18"
+      ],
+      "needs": "Creators API or PA API credentials, if price and rating display is wanted at all.",
+      "action": "Table columns for price, rating and availability are left out rather than filled with a stale number. No price tracking or price alerts exist anywhere on this site.",
+      "status": "needs review"
+    },
+    {
+      "id": "F08",
+      "severity": "info",
+      "title": "No product appears on this site as tested or used",
+      "what": "No product in this set has been bought, unboxed or used by this site, and there are no customer reviews, photos or field notes to draw on.",
+      "why_it_matters": "FTC guidance is explicit that you cannot talk about your experience with a product you have not tried. Every product page therefore describes the listing and the buying decision, and never a personal experience.",
+      "sources": [
+        "S03"
+      ],
+      "needs": "Actual hands-on testing, if experience claims are ever wanted.",
+      "action": "Copy avoids first-person product experience claims entirely, and product pages say so on the page.",
+      "status": "needs review"
+    },
+    {
+      "id": "F09",
+      "severity": "info",
+      "title": "No Amazon product imagery or Amazon brand assets are used",
+      "what": "Product tiles are CSS-drawn category glyphs, not listing photos or the Amazon logo.",
+      "why_it_matters": "Product imagery and Amazon marks are program content with their own licence terms, and this site has no licensed feed or API access.",
+      "sources": [
+        "S01",
+        "S02"
+      ],
+      "needs": "Nothing, unless licensed imagery is added later through an approved route.",
+      "action": "Recorded as a deliberate constraint so nobody adds hotlinked listing images later without reading the licence.",
+      "status": "needs review"
+    },
+    {
+      "id": "F10",
+      "severity": "medium",
+      "title": "Commission rates could not be verified, so no commission percentages or revenue forecasts appear",
+      "what": "The Standard Commission Income schedule redirected to a sign-in wall. Category rates, conversion rates and earnings therefore cannot be stated.",
+      "why_it_matters": "A 'commission potential' score built on remembered or guessed rates would be fabrication.",
+      "sources": [
+        "S17"
+      ],
+      "needs": "Read the rate card inside Associates Central and record it with a date, then it can be shown as a dated fact.",
+      "action": "The commission column is empty by design, and the ledger starts empty. No conversion score or revenue forecast is presented.",
+      "status": "needs review"
+    },
+    {
+      "id": "F11",
+      "severity": "low",
+      "title": "One product has no brand shown anywhere in its listing title",
+      "what": "The paper towel holder listing title does not contain a brand name.",
+      "why_it_matters": "Guessing a brand from the seller line or from search results would be inference, which the verification rule forbids.",
+      "sources": [
+        "S05"
+      ],
+      "needs": "Nothing, or a brand field supplied by the owner.",
+      "action": "Brand is left blank and marked unverified in the table.",
+      "status": "needs review"
+    },
+    {
+      "id": "F12",
+      "severity": "low",
+      "title": "The tracking ID's enrolment in the Associates account is unconfirmed",
+      "what": "Amazon's Program Policies describe the tag as appearing in the format XXXXX-##. The supplied tracking ID shopnow047c-20 fits that shape, but whether it is an active, enrolled tracking ID on the account was not verified.",
+      "why_it_matters": "A wrong or unenrolled tag silently attributes nothing.",
+      "sources": [
+        "S01"
+      ],
+      "needs": "Confirm in Associates Central that shopnow047c-20 is an active tracking ID on the account.",
+      "action": "The ID is used exactly as supplied and labelled as the tracking ID, without claiming it is enrolled.",
+      "status": "needs review"
+    },
+    {
+      "id": "F13",
+      "severity": "medium",
+      "title": "The verification fetches did not identify themselves as an automated agent",
+      "what": "Amazon's IP Licence now carries Agent Terms: software that accesses program content must identify itself in its HTTP user agent string as Agent/[agent name], must not conceal that it is automated, and must not circumvent measures meant to distinguish computers from humans.",
+      "why_it_matters": "This build read public listing pages by automated fetch. Whatever those fetches were or were not, the rule now exists and any scheduled rebuild of this site has to comply with it rather than quietly repeat the pattern.",
+      "sources": [
+        "S01"
+      ],
+      "needs": "Any automated refresh must set a user agent of the form Agent/diyhome-verifier and must not work around blocks. If Amazon asks an agent to stop, it stops.",
+      "action": "Recorded here rather than silently fixed, because it changes what the next automated build is allowed to do. This site uses no program content (no prices, images, reviews), which limits but does not remove the exposure.",
+      "status": "needs review"
+    },
+    {
+      "id": "F14",
+      "severity": "low",
+      "title": "robots.txt is published inside the project path, not at the host root",
+      "what": "Google documents that a robots.txt file lives at the root of the site. This site is a GitHub project site at /DIYHOME1/, so the host root belongs to the github.io domain rather than to this repository, and the published file may never be read by a crawler.",
+      "why_it_matters": "The site should not count on robots.txt to keep /search/ out of the index, and shouldn't claim it does.",
+      "sources": [
+        "S19",
+        "S08"
+      ],
+      "needs": "Submit the sitemap in Search Console (F04) and check the robots.txt report there. A custom domain, or the user/organisation Pages site at the host root, would make robots.txt authoritative.",
+      "action": "The search page and the 404 page carry a noindex meta tag instead, which Google documents as the actual mechanism. robots.txt is still published, with a comment saying exactly this.",
+      "status": "needs review"
+    }
+  ]
+}

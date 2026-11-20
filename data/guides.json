@@ -1,0 +1,54 @@
+{
+  "generated": "2026-11-20",
+  "cadence_note": "Four guides, one per week of the first month. Every guide is question-shaped and tied to a category that actually has a verified product in data/products.json. No search-volume, popularity or superiority claims are made anywhere: no keyword tool with first-party or licensed data was available to this session.",
+  "guides": [
+    {
+      "slug": "wallpaper-smoothing-kit-what-to-compare",
+      "title": "Peel-and-stick wallpaper smoothing kit: what should you compare before you buy?",
+      "short_title": "What should you compare in a smoothing kit?",
+      "dek": "Four things that decide whether a kit earns its place in a drawer, checked against the Art3d kit linked from this site.",
+      "category": "wallpaper-tools",
+      "published": "2026-11-20",
+      "published_display": "20 November 2026",
+      "week": 1,
+      "intent": "Reader is mid-project, has the vinyl or contact paper in a cart, and is deciding whether a tool kit is part of the order.",
+      "next_step": "Compare the tool list against what you already own, then check wall texture."
+    },
+    {
+      "slug": "paper-towel-holder-fit-checklist",
+      "title": "Under-cabinet paper towel holder: how do you check the fit before ordering?",
+      "short_title": "How do you check an under-cabinet holder fits?",
+      "dek": "Adhesive or screws, roll width, cabinet overhang and clearance. Measure these five things before you trust a photo.",
+      "category": "kitchen-storage",
+      "published": "2026-11-20",
+      "published_display": "20 November 2026",
+      "week": 2,
+      "intent": "Reader is replacing a countertop holder or freeing counter space in a rental.",
+      "next_step": "Write down five measurements, then decide adhesive versus drilling."
+    },
+    {
+      "slug": "pot-pan-organizer-capacity",
+      "title": "How many tiers does your cabinet actually need?",
+      "short_title": "How many tiers do you need?",
+      "dek": "A short measurement routine that stops you buying eight tiers for a cabinet that fits four, using the ORDORA 8-tier rack as the worked example.",
+      "category": "kitchen-storage",
+      "published": "2026-11-20",
+      "published_display": "20 November 2026",
+      "week": 3,
+      "intent": "Reader has pans stacked three deep and is considering a rack.",
+      "next_step": "Measure internal height, pan diameter and pan weight."
+    },
+    {
+      "slug": "questions-before-under-cabinet-upgrade",
+      "title": "What should you ask before any small under-cabinet upgrade?",
+      "short_title": "What should you ask before buying?",
+      "dek": "The six questions that cover adhesive failure, rental damage, clearance and whether storage is even your real problem.",
+      "category": "kitchen-storage",
+      "published": "2026-11-20",
+      "published_display": "20 November 2026",
+      "week": 4,
+      "intent": "Reader is browsing broadly and has not chosen a product type.",
+      "next_step": "Answer six questions, then pick a category rather than a product."
+    }
+  ]
+}

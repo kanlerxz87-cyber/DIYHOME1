@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product-intent record and empty campaign ledger | DIY Home Upgrades</title>
+<meta name="description" content="The product-intent confirmation record, with intended ASIN and observed redirect in separate fields, and a campaign ledger that is empty because no first-party report exists.">
+<link rel="canonical" href="https://kanlerxz87-cyber.github.io/DIYHOME1/ledger/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:site_name" content="DIY Home Upgrades">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Product-intent record and empty campaign ledger | DIY Home Upgrades">
+<meta property="og:description" content="The product-intent confirmation record, with intended ASIN and observed redirect in separate fields, and a campaign ledger that is empty because no first-party report exists.">
+<meta property="og:url" content="https://kanlerxz87-cyber.github.io/DIYHOME1/ledger/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#10574a">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="alternate" type="application/rss+xml" title="DIY Home Upgrades — new guides" href="https://kanlerxz87-cyber.github.io/DIYHOME1/feed.xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://kanlerxz87-cyber.github.io/DIYHOME1/"},{"@type":"ListItem","position":2,"name":"Ledger","item":"https://kanlerxz87-cyber.github.io/DIYHOME1/ledger/"}]}</script>
+</head>
+<body data-page="ledger">
+<a class="skip" href="#main">Skip to content</a>
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <a class="wordmark" href="../">DIY&nbsp;HOME<br><span class="wm-2">UPGRADES</span></a>
+    <div class="masthead-tag">Small upgrades for rented rooms and real budgets.</div>
+    <nav class="site-nav" aria-label="Primary"><ul><li><a href="../" aria-current="page">Home</a></li><li><a href="../products/">Products</a></li><li><a href="../guides/">Guides</a></li><li><a href="../about/">How we verify</a></li><li><a href="../search/">Search</a></li></ul></nav>
+  </div>
+</header>
+<div class="disclosure" data-disclosure>
+  <div class="wrap">
+    <strong>Sponsored</strong>
+    <span>As an Amazon Associate we earn from qualifying purchases. Links marked <em>Sponsored</em> on this page are affiliate links to Amazon carrying our tag shopnow047c-20.</span>
+    <a href="../disclosures/">How this site earns</a>
+  </div>
+</div>
+<main id="main">
+<div class="wrap breadcrumb"><a href="../">Home</a><span aria-hidden="true">/</span><span aria-current="page">Ledger</span></div>
+<div class="wrap page-head">
+  <p class="kicker">Data surfaces</p>
+  <h1>Product-intent record and campaign ledger</h1>
+  <p class="standfirst">Two records that stay separate: what a link was supposed to point at, and what it actually returned. Below them, a campaign ledger with a defined schema and no rows, because no first-party report has been obtained.</p>
+</div>
+
+<section class="wrap">
+  <h2>1. Product-intent confirmation record</h2>
+  <p class="prose">For each submitted link: the intended ASIN, the official listing URL, the confirmation date and the source, with the observed redirect target kept in its own field. The two are never merged, because a redirect target is an observation and an intended ASIN is a claim.</p>
+  <div class="table-wrap">
+    <table>
+      <caption>Published from <span class="mono">data/product-intents.csv</span>. Blank intended ASIN means the short link carries no ASIN, not that none exists.</caption>
+      <thead><tr><th scope="col">Submitted link</th><th scope="col">Intended ASIN</th><th scope="col">Observed ASIN</th><th scope="col">Official listing URL</th><th scope="col">Confirmed</th><th scope="col">Source</th><th scope="col">Observed redirect target</th><th scope="col">Tracking confirmed</th></tr></thead>
+      <tbody><tr>
+      <td><a href="https://link.amazon/B0hmGG4m2" data-sponsored="amazon" data-link-kind="provenance" data-citation="true" target="_blank" rel="sponsored nofollow noopener" class="mono">link.amazon/B0hmGG4m2</a></td>
+      <td class="blank">not in the link</td>
+      <td class="mono">B08FKW9JRM</td>
+      <td><a href="https://www.amazon.com/dp/B08FKW9JRM?tag=shopnow047c-20" data-sponsored="amazon" data-asin="B08FKW9JRM" rel="sponsored nofollow noopener" class="mono">dp/B08FKW9JRM?tag=shopnow047c-20</a></td>
+      <td>2026-11-20</td>
+      <td><a class="src" href="https://www.amazon.com/dp/B08FKW9JRM" data-citation="true" target="_blank" rel="noopener" title="Amazon listing B08FKW9JRM — Art3d Smoothing Tool Kit for Peel and Stick Wallpaper">S04</a></td>
+      <td class="mono" style="word-break:break-all;max-width:280px">https://www.amazon.com/dp/B08FKW9JRM?lv=shuf&amp;btn_type=ss&amp;crid=2Y94AV6ZXMMJ&hellip;</td>
+      <td><span class="badge warn">no</span></td>
+    </tr><tr>
+      <td><a href="https://link.amazon/B03QDuGdo" data-sponsored="amazon" data-link-kind="provenance" data-citation="true" target="_blank" rel="sponsored nofollow noopener" class="mono">link.amazon/B03QDuGdo</a></td>
+      <td class="blank">not in the link</td>
+      <td class="mono">B0BSKQW2T2</td>
+      <td><a href="https://www.amazon.com/dp/B0BSKQW2T2?tag=shopnow047c-20" data-sponsored="amazon" data-asin="B0BSKQW2T2" rel="sponsored nofollow noopener" class="mono">dp/B0BSKQW2T2?tag=shopnow047c-20</a></td>
+      <td>2026-11-20</td>
+      <td><a class="src" href="https://www.amazon.com/dp/B0BSKQW2T2" data-citation="true" target="_blank" rel="noopener" title="Amazon listing B0BSKQW2T2 — Paper Towel Holder Under Cabinet, Self-Adhesive or Drilling, Matte Black">S05</a></td>
+      <td class="mono" style="word-break:break-all;max-width:280px">https://www.amazon.com/dp/B0BSKQW2T2?lv=shuf&amp;btn_type=ss&amp;crid=2Y94AV6ZXMMJ&hellip;</td>
+      <td><span class="badge warn">no</span></td>
+    </tr><tr>
+      <td><a href="https://link.amazon/B0hpD2JGQ" data-sponsored="amazon" data-link-kind="provenance" data-citation="true" target="_blank" rel="sponsored nofollow noopener" class="mono">link.amazon/B0hpD2JGQ</a></td>
+      <td class="blank">not in the link</td>
+      <td class="mono">B08DY9HRWD</td>
+      <td><a href="https://www.amazon.com/dp/B08DY9HRWD?tag=shopnow047c-20" data-sponsored="amazon" data-asin="B08DY9HRWD" rel="sponsored nofollow noopener" class="mono">dp/B08DY9HRWD?tag=shopnow047c-20</a></td>
+      <td>2026-11-20</td>
+      <td><a class="src" href="https://www.amazon.com/dp/B08DY9HRWD" data-citation="true" target="_blank" rel="noopener" title="Amazon listing B08DY9HRWD — ORDORA Pots and Pans Organizer Under Cabinet 16.6&quot;, 8-Tier Adjustable Rack">S06</a></td>
+      <td class="mono" style="word-break:break-all;max-width:280px">https://www.amazon.com/dp/B08DY9HRWD?lv=shuf&amp;btn_type=ss&amp;crid=2Y94AV6ZXMMJ&hellip;</td>
+      <td><span class="badge warn">no</span></td>
+    </tr></tbody>
+    </table>
+  </div>
+  <p class="link-note" style="margin-top:10px">Note on the last column: the ASIN definition itself rests on observation plus a secondary source, because Amazon&rsquo;s own definition page needs a sign-in. <a href="../flagged/#F06">F06</a></p>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <h2>2. Campaign ledger</h2>
+    <p class="prose">Empty by design. A row is added only from an authorised first-party report, with the timestamp, the source, the channel, eligible sessions, clicks and reported orders. Blank means &ldquo;not obtained&rdquo;; it never means zero. No conversion score, revenue forecast or commission percentage is presented anywhere on this site, because the rate card and reports both require a sign-in this build did not have.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">record_id</th><th scope="col">timestamp_utc</th><th scope="col">source</th><th scope="col">channel</th><th scope="col" class="num">eligible_sessions</th><th scope="col" class="num">outbound_clicks</th><th scope="col" class="num">reported_orders</th><th scope="col" class="num">revenue_reported</th><th scope="col">provenance_url</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <p class="empty">0 rows. No first-party report has been obtained, so this table has nothing to show and nothing has been estimated.</p>
+    </div>
+    <p class="link-note" style="margin-top:10px">Schema and column rules: <a href="../data/ledger-schema.md">data/ledger-schema.md</a> &middot; CSV: <a href="../data/campaign-ledger.csv">data/campaign-ledger.csv</a> &middot; Intent CSV: <a href="../data/product-intents.csv">data/product-intents.csv</a></p>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-note">
+        <strong>DIY Home Upgrades</strong><br>
+        Small upgrades for rented rooms and real budgets. Three products, four guides, one rule: if a value could not be read on an official source, it is blank and flagged rather than filled in.
+      </div>
+      <nav class="footer-nav" aria-label="Site sections and data"><div><h2>Shop</h2><ul><li><a href="../products/">All products</a></li><li><a href="../products/wallpaper-tools/">Wallpaper & surface prep</a></li><li><a href="../products/kitchen-storage/">Under-cabinet storage</a></li><li><a href="../guides/">Guides</a></li><li><a href="../search/">Search</a></li></ul></div><div><h2>Verification</h2><ul><li><a href="../sources/">Source register</a></li><li><a href="../flagged/">Flagged for review</a></li><li><a href="../about/">How we verify</a></li><li><a href="../disclosures/">Disclosures</a></li></ul></div><div><h2>Data</h2><ul><li><a href="../measurement/">Measurement & events</a></li><li><a href="../ledger/">Campaign ledger</a></li><li><a href="../summary/">Executive summary</a></li><li><a href="../archive/practical-home/">Earlier edition (archived)</a></li><li><a href="../sitemap.xml">sitemap.xml</a></li><li><a href="../feed.xml">feed.xml</a></li></ul></div></nav>
+    </div>
+    <div class="footer-legal">
+      <p><strong>Affiliate disclosure:</strong> DIY Home Upgrades is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. As an Amazon Associate we earn from qualifying purchases. Every outbound link to Amazon on this site is a sponsored affiliate link and carries the tracking ID shopnow047c-20.</p>
+      <p>Prices, star ratings, review counts and availability are not displayed on this site. See <a href="../disclosures/">Disclosures</a> for why, with the policy sources.</p>
+      <p>Amazon and Amazon.com are trademarks of Amazon.com, Inc. or its affiliates. This site is not endorsed by Amazon. Built 20 November 2026 from <a href="../sources/">19 registered sources</a>.</p>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/config.js" defer></script>
+<script src="../assets/js/site.js" defer></script>
+</body>
+</html>

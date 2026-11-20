@@ -1,0 +1,63 @@
+{
+  "trackingId": "shopnow047c-20",
+  "submissions": [
+    {
+      "id": "S01",
+      "url": "https://link.amazon/B0hmGG4m2",
+      "intendedAsin": null,
+      "officialListing": null,
+      "confirmedOn": null,
+      "confirmationSource": null,
+      "observedRedirect": "https://www.amazon.com/dp/B08FKW9JRM",
+      "specialLink": null,
+      "trackingReportSource": null,
+      "policyReviewedOn": null,
+      "observedTitle": "Art3d wallpaper smoothing tool kit",
+      "observedOn": "2026-11-20"
+    },
+    {
+      "id": "S02",
+      "url": "https://link.amazon/B03QDuGdo",
+      "intendedAsin": null,
+      "officialListing": null,
+      "confirmedOn": null,
+      "confirmationSource": null,
+      "observedRedirect": "https://www.amazon.com/dp/B0BSKQW2T2",
+      "specialLink": null,
+      "trackingReportSource": null,
+      "policyReviewedOn": null,
+      "observedTitle": "Under-cabinet paper towel holder",
+      "observedOn": "2026-11-20"
+    },
+    {
+      "id": "S03",
+      "url": "https://link.amazon/B03QDuGdo",
+      "duplicateOf": "S02",
+      "intendedAsin": null,
+      "officialListing": null,
+      "confirmedOn": null,
+      "confirmationSource": null,
+      "observedRedirect": "https://www.amazon.com/dp/B0BSKQW2T2",
+      "specialLink": null,
+      "trackingReportSource": null,
+      "policyReviewedOn": null,
+      "observedTitle": "Under-cabinet paper towel holder",
+      "observedOn": "2026-11-20"
+    },
+    {
+      "id": "S04",
+      "url": "https://link.amazon/B0hpD2JGQ",
+      "intendedAsin": null,
+      "officialListing": null,
+      "confirmedOn": null,
+      "confirmationSource": null,
+      "observedRedirect": "https://www.amazon.com/dp/B08DY9HRWD",
+      "specialLink": null,
+      "trackingReportSource": null,
+      "policyReviewedOn": null,
+      "observedTitle": "ORDORA pots and pans organizer",
+      "observedOn": "2026-11-20"
+    }
+  ],
+  "analyticsEndpoint": ""
+}

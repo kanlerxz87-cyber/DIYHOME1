@@ -18,16 +18,17 @@ from platform.creators_api_client import (
 )
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
+EDITION_ROOT = REPO_ROOT / "archive" / "field-and-fixture"
 
 
 class TestAffiliatePlatform(unittest.TestCase):
     def test_registry_validates_and_separates_intended_vs_observed(self) -> None:
-        res = validate_registry(REPO_ROOT)
+        res = validate_registry(EDITION_ROOT)
         self.assertTrue(res["ok"], msg=res["errors"])
         self.assertEqual(res["submitted_rows"], 4)
         self.assertEqual(res["unique_products"], 3)
 
-        ledger = json.loads((REPO_ROOT / "data" / "verification-ledger.json").read_text())
+        ledger = json.loads((EDITION_ROOT / "data" / "verification-ledger.json").read_text())
         for row in ledger["submitted_links_register"]:
             self.assertEqual(row["intended_asin"], "")
             self.assertEqual(row["intended_asin_status"], "unverified")
@@ -42,7 +43,7 @@ class TestAffiliatePlatform(unittest.TestCase):
             build_special_link("B0hmGG4m2", "shopnow047c-20")
 
     def test_campaign_ledger_starts_empty_without_forecasts(self) -> None:
-        res = validate_campaign_ledger(REPO_ROOT)
+        res = validate_campaign_ledger(EDITION_ROOT)
         self.assertTrue(res["ok"], msg=res["errors"])
         self.assertEqual(res["record_count"], 0)
 
@@ -51,7 +52,7 @@ class TestAffiliatePlatform(unittest.TestCase):
             tmp_path = Path(tmp)
             (tmp_path / "data").mkdir()
             (tmp_path / "data" / "campaign-ledger.json").write_text(
-                (REPO_ROOT / "data" / "campaign-ledger.json").read_text()
+                (EDITION_ROOT / "data" / "campaign-ledger.json").read_text()
             )
             bad_report = tmp_path / "bad.json"
             bad_report.write_text(
@@ -95,7 +96,7 @@ class TestAffiliatePlatform(unittest.TestCase):
             self.assertTrue(validate_campaign_ledger(tmp_path)["ok"])
 
     def test_site_audit_passes_all_pages(self) -> None:
-        res = audit_site(REPO_ROOT)
+        res = audit_site(EDITION_ROOT)
         self.assertTrue(res["ok"], msg=res["errors"])
         self.assertEqual(res["html_pages_checked"], 13)
         self.assertGreaterEqual(res["outbound_sponsored_amazon_links"], 30)
