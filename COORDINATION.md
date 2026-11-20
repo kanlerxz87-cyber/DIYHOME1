@@ -55,7 +55,7 @@ Single-session run. A later session may take unowned rows only, and must not edi
 | T08 | Site build + link/policy validation + CI gate | S-2026-11-20-A | `scripts/**`, `.github/workflows/validate.yml` | done |
 | T09 | Executive summary (repo + site) | S-2026-11-20-A | `EXECUTIVE_SUMMARY.md`, `summary/index.html` | done |
 | T10 | Flagged for Review page | S-2026-11-20-A | `data/flagged.json`, `flagged/index.html` | needs review |
-| T11 | Integration: merge to `main`, PR, Pages deploy, record result | S-2026-11-20-A | `main` (merge only) | in progress |
+| T11 | Integration: merge to `main`, PR, Pages deploy, record result | S-2026-11-20-A | `main` (merge only) | done |
 
 `needs review` = published on the Flagged for Review page and does **not** block the merge.
 
@@ -138,6 +138,23 @@ Neither edition was discarded.
 **Validation after integration:** 21 published pages + 18 archived pages checked; 16 check groups, 0 errors, 0 warnings.
 
 **Prior sessions' board and logs are reproduced verbatim below** — they are the record of the earlier edition and were not edited.
+
+
+### 2026-11-20 — S-2026-11-20-A — T11 closed: merge and deploy verified
+
+- **Pull request:** [#9](https://github.com/kanlerxz87-cyber/DIYHOME1/pull/9) — "Publish DIY Home Upgrades: verified product register, 4 guides, compliance gate, Pages site".
+- **Merge commit:** `eef1330683625888b6b365157f16f71a31768b6e`, merged 2026-11-20T06:07:51Z with `gh pr merge 9 --merge` (no auto-merge, no force).
+- **CI before merge:** workflow `validate` → `build-and-validate` **pass** (6s) on the pull request, run [44685563223](https://github.com/kanlerxz87-cyber/DIYHOME1/actions/runs/44685563223).
+- **Pages:** `GET /repos/kanlerxz87-cyber/DIYHOME1/pages/builds` reported `status: built` for commit `eef1330`; `pages.status` moved to `building` then `built`.
+- **Live verification after deploy** (public fetches, not just source files):
+  - `https://kanlerxz87-cyber.github.io/DIYHOME1/` → title "DIY Home Upgrades — three verified DIY upgrades for rented kitchens"; disclosure strip above the fold; three product cards with ASINs and tagged CTAs.
+  - `/products/` → 3-row register, UTF-8 titles intact, source links present, "Tracking confirmed: Not confirmed" on every row.
+  - `/flagged/` → 14 items rendered with severity and per-item source links.
+  - `/sitemap.xml` → 19 URLs, all on the published origin, none under `/archive/`.
+  - `/archive/practical-home/` → earlier edition renders with its banner, rewritten URLs and image.
+  - A first fetch of `/` returned a stale cached document (the original placeholder); a cache-busted fetch returned the new publication. Recorded because a reviewer may hit the same cache.
+- **Follow-up PR:** this record and two data corrections (F12 title was contradicted by its own body; release record added to `/summary/`) ship in a second, documentation-only pull request from the same branch, per the rule that this session pushes only to its own branch.
+- **Not verified, and not claimed:** Associates enrolment or click attribution for any link, Search Console indexing, analytics collection, commission rates or revenue. All of that is on `/flagged/` with what would close it.
 
 ---
 

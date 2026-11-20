@@ -153,8 +153,8 @@
     {
       "id": "F12",
       "severity": "low",
-      "title": "Tracking ID format does not match the pattern Amazon describes",
-      "what": "Amazon's Program Policies describe the tag as appearing in the format XXXXX-##. The supplied tracking ID shopnow047c-20 ends in -20, which fits that shape, but the association between this ID and the account was not verified.",
+      "title": "The tracking ID's enrolment in the Associates account is unconfirmed",
+      "what": "Amazon's Program Policies describe the tag as appearing in the format XXXXX-##. The supplied tracking ID shopnow047c-20 fits that shape, but whether it is an active, enrolled tracking ID on the account was not verified.",
       "why_it_matters": "A wrong or unenrolled tag silently attributes nothing.",
       "sources": [
         "S01"
