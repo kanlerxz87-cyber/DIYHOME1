@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Executive summary — what this build verified | DIY Home Upgrades</title>
+<meta name="description" content="Executive summary: three products verified against live Amazon listings, four question-shaped guides, what was refused, and what remains blocked.">
+<link rel="canonical" href="https://kanlerxz87-cyber.github.io/DIYHOME1/summary/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:site_name" content="DIY Home Upgrades">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Executive summary — what this build verified | DIY Home Upgrades">
+<meta property="og:description" content="Executive summary: three products verified against live Amazon listings, four question-shaped guides, what was refused, and what remains blocked.">
+<meta property="og:url" content="https://kanlerxz87-cyber.github.io/DIYHOME1/summary/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#10574a">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="alternate" type="application/rss+xml" title="DIY Home Upgrades — new guides" href="https://kanlerxz87-cyber.github.io/DIYHOME1/feed.xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://kanlerxz87-cyber.github.io/DIYHOME1/"},{"@type":"ListItem","position":2,"name":"Executive summary","item":"https://kanlerxz87-cyber.github.io/DIYHOME1/summary/"}]}</script>
+</head>
+<body data-page="summary">
+<a class="skip" href="#main">Skip to content</a>
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <a class="wordmark" href="../">DIY&nbsp;HOME<br><span class="wm-2">UPGRADES</span></a>
+    <div class="masthead-tag">Small upgrades for rented rooms and real budgets.</div>
+    <nav class="site-nav" aria-label="Primary"><ul><li><a href="../" aria-current="page">Home</a></li><li><a href="../products/">Products</a></li><li><a href="../guides/">Guides</a></li><li><a href="../about/">How we verify</a></li><li><a href="../search/">Search</a></li></ul></nav>
+  </div>
+</header>
+<div class="disclosure" data-disclosure>
+  <div class="wrap">
+    <strong>Sponsored</strong>
+    <span>As an Amazon Associate we earn from qualifying purchases. Links marked <em>Sponsored</em> on this page are affiliate links to Amazon carrying our tag shopnow047c-20.</span>
+    <a href="../disclosures/">How this site earns</a>
+  </div>
+</div>
+<main id="main">
+<div class="wrap breadcrumb"><a href="../">Home</a><span aria-hidden="true">/</span><span aria-current="page">Executive summary</span></div>
+<div class="wrap page-head">
+  <p class="kicker">Executive summary &middot; 20 November 2026</p>
+  <h1>What this build contains, and what it proved</h1>
+  <p class="standfirst">One page for the reader who will not read the site: what was verified, what was refused, what is still blocked, and where every claim traces to.</p>
+</div>
+<section class="wrap">
+  <div class="stat-grid">
+    <div class="stat"><span class="n">3</span><span class="l">Products, each resolved from a supplied link to a live listing</span></div>
+    <div class="stat"><span class="n">4</span><span class="l">Question-shaped guides, one per week of the issue</span></div>
+    <div class="stat"><span class="n">19</span><span class="l">Registered sources, 16 read, 3 not readable</span></div>
+    <div class="stat"><span class="n">14</span><span class="l">Items flagged for review (11 actionable, 3 withheld by design)</span></div>
+  </div>
+
+  <div class="prose">
+    <h2>What was verified</h2>
+    <ul>
+      <li>Three supplied short links each resolved to a live Amazon product page, and the final URL and listing title were recorded: <span class="mono">B08FKW9JRM</span> (Art3d smoothing tool kit), <span class="mono">B0BSKQW2T2</span> (paper towel holder), <span class="mono">B08DY9HRWD</span> (ORDORA 8-tier pan organiser).</li>
+      <li>The short-link tokens are not ASINs: they contain lowercase letters, and <span class="mono">/dp/B0HMGG4M2</span> returned no product page. ASINs are recorded from the resolved pages, in a separate field from the intended value.</li>
+      <li>Amazon&rsquo;s Associates Program Policies and Operating Agreement were read directly, including the clauses that govern price display, review and rating display, link cloaking, link shortening, price tracking and automated agents.</li>
+      <li>FTC disclosure guidance was read directly, and the disclosure strip placement follows it: under the masthead, above the content, on every page, repeated in the footer.</li>
+      <li>GitHub Pages is enabled on this repository with the legacy build from <span class="mono">main:/</span>, so the site publishes from the repository root with no build step on GitHub&rsquo;s side.</li>
+    </ul>
+
+    <h2>What was refused</h2>
+    <ul>
+      <li>No prices, star ratings, review counts, availability or product images, because this site has no Amazon-served link widget and no Creators/PA API access.</li>
+      <li>No commission percentages, conversion scores or revenue forecasts, because the rate schedule and the reports both require a sign-in.</li>
+      <li>No hands-on experience claims, because nothing was bought or used.</li>
+      <li>No invented brand for the one product whose listing title does not state one.</li>
+      <li>No search-volume or popularity claims for any guide title.</li>
+    </ul>
+
+    <h2>What is still blocked</h2>
+    <ol>
+      <li><strong>F01 The three submitted short links are not confirmed as enrolled Associates Special Links</strong> &mdash; Sign-in to Associates Central, open SiteStripe, build one link per product, confirm the destination and confirm the click in the tracking report before adding more products.</li><li><strong>F03 The air-fryer working titles in the brief have no matching products</strong> &mdash; Either submit air-fryer products, or accept the replacement guide set.</li><li><strong>F04 Search Console is not verified: no verification token was available</strong> &mdash; Add the property in Search Console, copy the HTML tag, paste it into data/site.json as search_console_token, rerun the build.</li><li><strong>F05 The analytics endpoint is not deployed, so the five events stay in the browser</strong> &mdash; Deploy worker/collect.js, then set the endpoint in data/site.json and rebuild, or paste it into assets/js/config.js at runtime.</li><li><strong>F10 Commission rates could not be verified, so no commission percentages or revenue forecasts appear</strong> &mdash; Read the rate card inside Associates Central and record it with a date, then it can be shown as a dated fact.</li><li><strong>F13 The verification fetches did not identify themselves as an automated agent</strong> &mdash; Any automated refresh must set a user agent of the form Agent/diyhome-verifier and must not work around blocks. If Amazon asks an agent to stop, it stops.</li>
+    </ol>
+
+    <h2>How the site is built</h2>
+    <p>Every page is generated from <span class="mono">data/*.json</span> by <span class="mono">scripts/build.mjs</span>. No page is hand-edited, so the disclosure strip, the navigation, the canonical URL and the link attributes cannot drift between pages. <span class="mono">scripts/validate.mjs</span> then enforces: one <span class="mono">h1</span> per page, a disclosure on every page, <span class="mono">rel="sponsored nofollow"</span> on every Amazon link, the correct tag on every product URL, no cloaked redirects, every internal link resolving, every page in the sitemap, and a well-formed feed.</p>
+
+    <h2>Where the numbers will come from</h2>
+    <p>Five events are instrumented and firing in the browser: <span class="mono">page_view</span>, <span class="mono">disclosure_view</span>, <span class="mono">outbound_click</span>, <span class="mono">site_search</span>, <span class="mono">guide_read</span>. They are queued locally and sent nowhere until an endpoint is deployed. The campaign ledger stays empty until a dated first-party report exists. That is the whole measurement story, and it is deliberately boring.</p>
+
+    <h2>Read next</h2>
+    <ul>
+      <li><a href="../sources/">Source register</a> &mdash; every source with the text it supports</li>
+      <li><a href="../flagged/">Flagged for review</a> &mdash; 14 open items</li>
+      <li><a href="../about/">How we verify</a> &mdash; method, limits and the automation boundary</li>
+      <li><a href="../disclosures/">Disclosures</a> &mdash; affiliate, privacy and data omissions</li>
+      <li><a href="../EXECUTIVE_SUMMARY.md">EXECUTIVE_SUMMARY.md</a> in the repository</li>
+    </ul>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-note">
+        <strong>DIY Home Upgrades</strong><br>
+        Small upgrades for rented rooms and real budgets. Three products, four guides, one rule: if a value could not be read on an official source, it is blank and flagged rather than filled in.
+      </div>
+      <nav class="footer-nav" aria-label="Site sections and data"><div><h2>Shop</h2><ul><li><a href="../products/">All products</a></li><li><a href="../products/wallpaper-tools/">Wallpaper & surface prep</a></li><li><a href="../products/kitchen-storage/">Under-cabinet storage</a></li><li><a href="../guides/">Guides</a></li><li><a href="../search/">Search</a></li></ul></div><div><h2>Verification</h2><ul><li><a href="../sources/">Source register</a></li><li><a href="../flagged/">Flagged for review</a></li><li><a href="../about/">How we verify</a></li><li><a href="../disclosures/">Disclosures</a></li></ul></div><div><h2>Data</h2><ul><li><a href="../measurement/">Measurement & events</a></li><li><a href="../ledger/">Campaign ledger</a></li><li><a href="../summary/">Executive summary</a></li><li><a href="../archive/practical-home/">Earlier edition (archived)</a></li><li><a href="../sitemap.xml">sitemap.xml</a></li><li><a href="../feed.xml">feed.xml</a></li></ul></div></nav>
+    </div>
+    <div class="footer-legal">
+      <p><strong>Affiliate disclosure:</strong> DIY Home Upgrades is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. As an Amazon Associate we earn from qualifying purchases. Every outbound link to Amazon on this site is a sponsored affiliate link and carries the tracking ID shopnow047c-20.</p>
+      <p>Prices, star ratings, review counts and availability are not displayed on this site. See <a href="../disclosures/">Disclosures</a> for why, with the policy sources.</p>
+      <p>Amazon and Amazon.com are trademarks of Amazon.com, Inc. or its affiliates. This site is not endorsed by Amazon. Built 20 November 2026 from <a href="../sources/">19 registered sources</a>.</p>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/config.js" defer></script>
+<script src="../assets/js/site.js" defer></script>
+</body>
+</html>

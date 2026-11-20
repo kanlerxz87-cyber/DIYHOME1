@@ -1,0 +1,37 @@
+{
+  "name": "DIY Home Upgrades",
+  "wordmark": "DIY&nbsp;HOME<br><span class=\"wm-2\">UPGRADES</span>",
+  "tagline": "Small upgrades for rented rooms and real budgets.",
+  "description": "A small product journal for DIY home upgrades: peel-and-stick surface tools and under-cabinet storage, checked against the live Amazon listing before publication.",
+  "base_url": "https://kanlerxz87-cyber.github.io/DIYHOME1/",
+  "associate_tag": "shopnow047c-20",
+  "associate_tracking_id_label": "shopnow047c-20",
+  "disclosure_short": "As an Amazon Associate we earn from qualifying purchases.",
+  "disclosure_long": "DIY Home Upgrades is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. As an Amazon Associate we earn from qualifying purchases. Every outbound link to Amazon on this site is a sponsored affiliate link and carries the tracking ID shopnow047c-20.",
+  "built": "2026-11-20",
+  "built_display": "20 November 2026",
+  "locale": "en-US",
+  "categories": [
+    {
+      "slug": "wallpaper-tools",
+      "name": "Wallpaper & surface prep",
+      "kicker": "Rentals, feature walls, peel-and-stick",
+      "blurb": "Tools that make peel-and-stick vinyl and contact paper behave: smoothing, bubble removal, cutting.",
+      "browse_node": 164701011,
+      "browse_url": "https://www.amazon.com/wallpaper-tools/b/?node=164701011"
+    },
+    {
+      "slug": "kitchen-storage",
+      "name": "Under-cabinet kitchen storage",
+      "kicker": "Cabinets that are already full",
+      "blurb": "Under-cabinet racks and holders that add storage without a drill, a renovation, or a landlord conversation.",
+      "browse_node": 23691552011,
+      "browse_url": "https://www.amazon.com/Kitchen-Racks-Holders/b/?node=23691552011"
+    }
+  ],
+  "analytics": {
+    "endpoint": "",
+    "site_id": "diyhome1",
+    "note": "Empty endpoint = nothing leaves the browser. See measurement page."
+  }
+}

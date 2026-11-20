@@ -1,3 +1,9 @@
+# DIY Home Upgrades
+# Advisory only. This is a GitHub project site, so this file sits at /DIYHOME1/robots.txt
+# and not at the host root that crawlers read (flagged as F14).
+# The search page and the 404 page carry a noindex meta tag, which is the actual control.
 User-agent: *
 Allow: /
+Disallow: /search/
+
 Sitemap: https://kanlerxz87-cyber.github.io/DIYHOME1/sitemap.xml
