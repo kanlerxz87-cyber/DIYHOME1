@@ -1,0 +1,355 @@
+{
+  "generated": "2026-11-20",
+  "method": "Each source below was retrieved and read in this session unless marked otherwise. 'verified' means the text quoted in the site was read on that page. 'secondary' means the page is not first-party documentation and is used only to explain a flagged gap. 'unavailable' means the source exists but could not be retrieved without credentials.",
+  "sources": [
+    {
+      "id": "S01",
+      "title": "Amazon Associates Program Policies",
+      "publisher": "Amazon.com, Inc. (Amazon Associates Central)",
+      "url": "https://affiliate-program.amazon.com/help/operating/policies",
+      "page_date": "Updated April 14, 2026 (as stated on the page)",
+      "retrieved": "2026-11-20",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Special Links must include the Associates tag as a URL parameter (Participation Requirements, 2(b))",
+        "Prices and availability may only be shown via Amazon-served links or Creators API / PA API (Participation Requirements, 2(b))",
+        "Customer reviews and star ratings may only be displayed if obtained via Creators API / PA API (Participation Requirements, 3(t))",
+        "No cloaking, hiding or obscuring of the URL containing Special Links, including by Redirecting Links (3(v))",
+        "No link-shortening that makes it unclear you are linking to an Amazon Site (3(w))",
+        "The Site must not have price tracking or price alerting functionality (3(y))",
+        "Associates must comply with applicable disclosure law, naming the U.S. FTC Guides Concerning the Use of Endorsements and Testimonials in Advertising as an example (Responsibility for Your Site, 3(b))",
+        "Automated agents may only interact with Program Content if they identify themselves in the user agent as 'Agent/[agent name]', do not conceal that they are agents, and do not circumvent blocking measures (IP License, Agent Terms)",
+        "ASINs may be stored indefinitely for use with the Program (IP License, 2(h))"
+      ],
+      "quotes": [
+        "you must include your Associates ID or “tag” (appearing as XXXXX-##, or such other format as we may designate) as a parameter in the URL of each link you place on your Site to an Amazon Site",
+        "your Site may only show prices and availability if: (a) we serve the link in which that price and availability data are displayed, or (b) you obtain Product pricing and availability data via Creators API or PA API",
+        "You will not display or otherwise use any of our customer reviews or star ratings, in part or in whole, on your Site unless you have obtained a link to that customer review or star rating through Creators API or PA API",
+        "You will not cloak, hide, spoof, or otherwise obscure the URL of your Site containing Special Links (including by use of Redirecting Links)",
+        "You will not use a link shortening service, button, hyperlink or other ad placement in a manner that makes it unclear that you are linking to an Amazon Site.",
+        "Unless otherwise agreed by Amazon, your Site must not have price tracking and/or price alerting functionality.",
+        "No Agent may access, use, or interact with Program Content unless, at all times, it identifies itself",
+        "Agents must ... disclose the name of the Agent by including the following in the request's user agent string: “Agent/[agent name]”",
+        "you may store individual Amazon Standard Identification Numbers (ASINs) for an indefinite period until the termination of this License"
+      ]
+    },
+    {
+      "id": "S02",
+      "title": "Amazon Associates Program Operating Agreement",
+      "publisher": "Amazon.com, Inc. (Amazon Associates Central)",
+      "url": "https://affiliate-program.amazon.com/help/operating/agreement",
+      "page_date": "Updated October 15, 2025 (as stated on the page)",
+      "retrieved": "2026-11-20",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Special Links must use the tagged link formats Amazon provides and comply with the Agreement",
+        "The Associates Program Policies are incorporated by reference into the Agreement",
+        "Amazon customers are not the Associate's customers"
+      ],
+      "quotes": [
+        "The links must properly use the special “tagged” link formats we provide and comply with this Agreement (“Special Links”).",
+        "you agree to this Agreement, including the Program Policies (defined in Section 12), which are incorporated by reference"
+      ]
+    },
+    {
+      "id": "S03",
+      "title": "Disclosures 101 for Social Media Influencers",
+      "publisher": "U.S. Federal Trade Commission",
+      "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers",
+      "page_date": "November 2019 (as stated on the page)",
+      "retrieved": "2026-11-20",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Disclose financial relationships with a brand, not only payment but anything of value",
+        "Place the disclosure so it is hard to miss, with the endorsement itself",
+        "Disclosures are likely to be missed if they appear only on an about page, at the end of posts, or behind a 'more' click",
+        "Use simple, clear language such as 'advertisement', 'ad', or 'sponsored'",
+        "Do not describe products you have not tried"
+      ],
+      "quotes": [
+        "Make sure people will see and understand the disclosure. Place it so it's hard to miss.",
+        "Disclosures are likely to be missed if they appear only on an ABOUT ME or profile page, at the end of posts or videos, or anywhere that requires a person to click MORE.",
+        "So are terms like “advertisement,” “ad,” and “sponsored.”",
+        "You can't talk about your experience with a product you haven't tried."
+      ]
+    },
+    {
+      "id": "S04",
+      "title": "Amazon listing B08FKW9JRM — Art3d Smoothing Tool Kit for Peel and Stick Wallpaper",
+      "publisher": "Amazon.com, Inc.",
+      "url": "https://www.amazon.com/dp/B08FKW9JRM",
+      "page_date": "Live listing; retrieved 2026-11-20 (content is dynamic)",
+      "retrieved": "2026-11-20",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Listing title and category breadcrumb used on the product page and table row",
+        "Existence of a resolvable product detail page at /dp/B08FKW9JRM"
+      ],
+      "quotes": [
+        "Art3d Smoothing Tool Kit for Peel and Stick Wallpaper | Vinyl Backsplash Tile, Complete Basic Tool Set, Bubble & Crease Removal, Ergonomic Grip, Safe for DIY and New Home Buyer"
+      ]
+    },
+    {
+      "id": "S05",
+      "title": "Amazon listing B0BSKQW2T2 — Paper Towel Holder Under Cabinet, Self-Adhesive or Drilling, Matte Black",
+      "publisher": "Amazon.com, Inc.",
+      "url": "https://www.amazon.com/dp/B0BSKQW2T2",
+      "page_date": "Live listing; retrieved 2026-11-20 (content is dynamic)",
+      "retrieved": "2026-11-20",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Listing title and category breadcrumb used on the product page and table row",
+        "Existence of a resolvable product detail page at /dp/B0BSKQW2T2"
+      ],
+      "quotes": [
+        "Paper Towel Holder Under Cabinet, Self-Adhesive or Drilling, Matte Black | Kitchen Roll Dispenser | Under-Cabinet or Wall-Mounted| Upgraded Aluminum | Lighter Yet Stronger Than Stainless Steel"
+      ]
+    },
+    {
+      "id": "S06",
+      "title": "Amazon listing B08DY9HRWD — ORDORA Pots and Pans Organizer Under Cabinet 16.6\", 8-Tier Adjustable Rack",
+      "publisher": "Amazon.com, Inc.",
+      "url": "https://www.amazon.com/dp/B08DY9HRWD",
+      "page_date": "Live listing; retrieved 2026-11-20 (content is dynamic)",
+      "retrieved": "2026-11-20",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Listing title and category breadcrumb used on the product page and table row",
+        "Observed seller line 'Ships from: Amazon  Sold by: ORDORA Official' at time of retrieval (dynamic; not a lasting guarantee)",
+        "Existence of a resolvable product detail page at /dp/B08DY9HRWD"
+      ],
+      "quotes": [
+        "ORDORA Pots and Pans Organizer Under Cabinet 16.6\", 8-Tier Adjustable Rack | 3 DIY Modes, Tool-Free Assembly, Non-Slip, Fits Lightweight Cookware Up to 11\", For Kitchen Cabinets, Shelves & Countertops"
+      ]
+    },
+    {
+      "id": "S07",
+      "title": "Configuring a publishing source for your GitHub Pages site",
+      "publisher": "GitHub, Inc. (GitHub Docs)",
+      "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site",
+      "page_date": "Live documentation; retrieved 2026-11-20",
+      "retrieved": "2026-11-20",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Pages can publish from a branch, with the source folder being the repository root or a /docs folder",
+        "GitHub Pages sites are publicly available on the internet"
+      ],
+      "quotes": [
+        "the source folder can either be the root of the repository (/) on the source branch or a /docs folder on the source branch",
+        "GitHub Pages sites are publicly available on the internet, even if the repository for the site is private"
+      ]
+    },
+    {
+      "id": "S08",
+      "title": "Build and submit a sitemap",
+      "publisher": "Google (Search Central documentation)",
+      "url": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap",
+      "page_date": "Live documentation; retrieved 2026-11-20",
+      "retrieved": "2026-11-20",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Google supports the sitemaps.org protocol and several formats, including XML and RSS/Atom",
+        "Sitemaps can be submitted to Google"
+      ],
+      "quotes": [
+        "Google supports the sitemap formats defined by the sitemaps protocol.",
+        "RSS, mRSS, and Atom 1.0"
+      ]
+    },
+    {
+      "id": "S09",
+      "title": "Verify your site ownership (Search Console Help)",
+      "publisher": "Google LLC",
+      "url": "https://support.google.com/webmasters/answer/9008080",
+      "page_date": "Live documentation; retrieved 2026-11-20",
+      "retrieved": "2026-11-20",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Search Console verification requires a verification token tied to a specific user and account",
+        "Data is collected once a property is added, and takes a few days to accrue"
+      ],
+      "quotes": [
+        "Verify ownership of a site by uploading a special HTML file to a specific location on your site. This file is tied to a specific user.",
+        "Data is collected for a property as soon as anyone adds it in Search Console, even before verification occurs. However, it takes a few days for data to start to accrue for the property."
+      ]
+    },
+    {
+      "id": "S10",
+      "title": "Submitted short link 1 (as supplied by the site owner)",
+      "publisher": "Amazon (link.amazon)",
+      "url": "https://link.amazon/B0hmGG4m2",
+      "page_date": "Dynamic",
+      "retrieved": "2026-11-20",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Observed resolution to https://www.amazon.com/dp/B08FKW9JRM with additional query parameters",
+        "Confirms the short-link token is not itself the ASIN"
+      ],
+      "quotes": [
+        "Final URL observed by a single unauthenticated fetch on 2026-11-20: https://www.amazon.com/dp/B08FKW9JRM?lv=shuf&btn_type=ss&crid=2Y94AV6ZXMMJI&sprefix=diy+home+upgrades..."
+      ]
+    },
+    {
+      "id": "S11",
+      "title": "Submitted short link 2 (as supplied by the site owner; submitted twice)",
+      "publisher": "Amazon (link.amazon)",
+      "url": "https://link.amazon/B03QDuGdo",
+      "page_date": "Dynamic",
+      "retrieved": "2026-11-20",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Observed resolution to https://www.amazon.com/dp/B0BSKQW2T2 with additional query parameters"
+      ],
+      "quotes": [
+        "Final URL observed by a single unauthenticated fetch on 2026-11-20: https://www.amazon.com/dp/B0BSKQW2T2?lv=shuf&btn_type=ss&crid=2Y94AV6ZXMMJI&sprefix=diy%2Bhome%2Bupgrades..."
+      ]
+    },
+    {
+      "id": "S12",
+      "title": "Submitted short link 3 (as supplied by the site owner)",
+      "publisher": "Amazon (link.amazon)",
+      "url": "https://link.amazon/B0hpD2JGQ",
+      "page_date": "Dynamic",
+      "retrieved": "2026-11-20",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Observed resolution to https://www.amazon.com/dp/B08DY9HRWD with additional query parameters"
+      ],
+      "quotes": [
+        "Final URL observed by a single unauthenticated fetch on 2026-11-20: https://www.amazon.com/dp/B08DY9HRWD?lv=shuf&btn_type=ss&crid=2Y94AV6ZXMMJI&sprefix=diy%2Bhome%2Bupgrades..."
+      ]
+    },
+    {
+      "id": "S13",
+      "title": "Product page test for B0HMGG4M2 (short-link token treated as an ASIN)",
+      "publisher": "Amazon.com, Inc.",
+      "url": "https://www.amazon.com/dp/B0HMGG4M2",
+      "page_date": "n/a",
+      "retrieved": "2026-11-20",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "The fetch of this URL failed; no product detail page was returned",
+        "Supports the conclusion that the link.amazon path tokens are not ASINs"
+      ],
+      "quotes": [
+        "Result of fetch on 2026-11-20: error — 'Failed to fetch page'"
+      ]
+    },
+    {
+      "id": "S14",
+      "title": "GitHub Pages configuration record for kanlerxz87-cyber/DIYHOME1",
+      "publisher": "GitHub API",
+      "url": "https://api.github.com/repos/kanlerxz87-cyber/DIYHOME1/pages",
+      "page_date": "Live record; retrieved 2026-11-20",
+      "retrieved": "2026-11-20",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Pages is enabled with build_type 'legacy', source branch 'main', source path '/', and https_enforced true",
+        "Published URL is https://kanlerxz87-cyber.github.io/DIYHOME1/"
+      ],
+      "quotes": [
+        "\"status\":\"built\",\"build_type\":\"legacy\",\"source\":{\"branch\":\"main\",\"path\":\"/\"},\"html_url\":\"https://kanlerxz87-cyber.github.io/DIYHOME1/\""
+      ]
+    },
+    {
+      "id": "S15",
+      "title": "Amazon Seller Forums staff post defining ASIN (secondary, not documentation)",
+      "publisher": "Amazon Seller Forums (community forum)",
+      "url": "https://sellercentral.amazon.com/seller-forums/discussions/t/fda2fde7-2d0c-49c0-a4c6-cd8b9fc466d3",
+      "page_date": "Undated in the retrieved snippet",
+      "retrieved": "2026-11-20",
+      "type": "secondary",
+      "verified": false,
+      "supports": [
+        "Quoted only as a secondary explanation of the ASIN format; not treated as official documentation"
+      ],
+      "quotes": [
+        "ASINs are unique blocks of 10 letters and/or numbers that identify items and are generated by the system when you create a listing."
+      ]
+    },
+    {
+      "id": "S16",
+      "title": "Amazon Seller Central help page 200220550 (ASIN reference cited by the forum post)",
+      "publisher": "Amazon Seller Central",
+      "url": "https://sellercentral.amazon.com/gp/help/200220550",
+      "page_date": "n/a",
+      "retrieved": "2026-11-20",
+      "type": "unavailable",
+      "verified": false,
+      "supports": [
+        "Nothing. The page redirected to a sign-in wall, so no content could be read or cited."
+      ],
+      "quotes": [
+        "Result of fetch on 2026-11-20: redirected to Amazon Sign-In; no help content returned."
+      ]
+    },
+    {
+      "id": "S17",
+      "title": "Standard Commission Income rate schedule (Appendix link from the Program Policies)",
+      "publisher": "Amazon Associates Central",
+      "url": "https://affiliate-program.amazon.com/help/operating/schedule",
+      "page_date": "n/a",
+      "retrieved": "2026-11-20",
+      "type": "unavailable",
+      "verified": false,
+      "supports": [
+        "Nothing. The URL redirected to a sign-in wall (return_to=/home/account/payment/customratecard), so no commission rates could be read or cited.",
+        "Reason this site publishes no commission percentages, conversion scores or revenue forecasts."
+      ],
+      "quotes": [
+        "Result of fetch on 2026-11-20: redirected to https://www.amazon.com/ap/signin?...openid.return_to=https%3A%2F%2Faffiliate-program.amazon.com%2Fhome%2Faccount%2Fpayment%2Fcustomratecard"
+      ]
+    },
+    {
+      "id": "S18",
+      "title": "Creators API reference point named in the Program Policies (pricing, availability, reviews, star ratings)",
+      "publisher": "Amazon Associates Central",
+      "url": "https://affiliate-program.amazon.com/help/operating/policies",
+      "page_date": "Updated April 14, 2026 (as stated on the page)",
+      "retrieved": "2026-11-20",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "The only sanctioned routes this site found for programmatic price/availability and review/star-rating data are Amazon-served links, Creators API, or PA API",
+        "No Creators API or PA API credentials were available to this session, so none of that data is republished here"
+      ],
+      "quotes": [
+        "(b) you obtain Product pricing and availability data via Creators API or PA API and you comply with the requirements regarding use of Creators API or PA API in the License",
+        "unless you have obtained a link to that customer review or star rating through Creators API or PA API"
+      ]
+    },
+    {
+      "id": "S19",
+      "title": "Introduction to robots.txt",
+      "publisher": "Google (Search Central documentation)",
+      "url": "https://developers.google.com/search/docs/crawling-indexing/robots/intro",
+      "page_date": "Last updated 2025-12-10 UTC (as stated on the page)",
+      "retrieved": "2026-11-20",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "A robots.txt file lives at the root of the site, which a GitHub project subpath is not",
+        "robots.txt is not a mechanism for keeping a page out of Google; noindex is",
+        "A disallowed page can still be indexed if other sites link to it"
+      ],
+      "quotes": [
+        "A robots.txt file lives at the root of your site.",
+        "it is not a mechanism for keeping a web page out of Google. To keep a web page out of Google, block indexing with noindex or password-protect the page."
+      ]
+    }
+  ]
+}

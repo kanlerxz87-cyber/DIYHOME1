@@ -1,15 +1,71 @@
-# The Practical Home
+# DIY Home Upgrades
 
-GitHub Pages publication: https://kanlerxz87-cyber.github.io/DIYHOME1/
+A small Amazon-associate publication for DIY home upgrades: three verified products, four question-shaped buying guides, and a source register behind every claim.
 
-Build with `python3 scripts/build.py`, check with `python3 scripts/check.py`, and preview with `python3 -m http.server 8000`. Pages publishes the generated files from the root of `main`. Commit generated HTML/XML together with source changes. Update `data/guides.json` and the edition date in the build for a new edition. This repository has no AI provider or enrolled Associates session configured.
+**Live site:** https://kanlerxz87-cyber.github.io/DIYHOME1/
+**Tracking ID:** `shopnow047c-20` (used on every outbound product link; enrolment not verified — see F01)
 
-## Measurement
+---
 
-The event contract is `page_view`, `guide_view`, `rss_open`, `affiliate_click`, and `reported_orders`. The first four are aggregate counters. Reported orders belong only in the authorized first-party campaign ledger (`data/campaign.csv`); the public collector deliberately rejects them. RSS events count link activations, not subscriptions. This design does not estimate unique visitors or eligible sessions from page views.
+## What is in this repository
 
-To deploy analytics, run `python3 analytics/server.py` on infrastructure you control, with a TLS proxy, request-size/time limits, rate limiting, persistent SQLite volume outside the public site directory, and no access logs. Set `SITE_ORIGIN` to the exact Pages origin, `METRICS_DB` to the persistent path and `PORT` to the upstream port. Add the HTTPS `/events` URL to `data/catalog.json` and rebuild. Counts older than 90 days are removed on receipt of the next valid event; schedule deletion separately if a hard retention limit is required. Query the local SQLite database with operator access only. Origin checks do not authenticate a browser or prevent spoofed traffic; counters are directional, not order evidence.
+| Path | What it is |
+|---|---|
+| `index.html`, `products/`, `guides/`, `about/`, `disclosures/`, `sources/`, `flagged/`, `measurement/`, `ledger/`, `summary/`, `search/` | The published site. Generated — do not hand-edit. |
+| `data/*.json`, `data/*.csv` | The only source of truth: products, sources, guides, flags, events, ledger schema |
+| `scripts/build.mjs` | Generates every page, `sitemap.xml`, `feed.xml`, `robots.txt`, `assets/js/config.js` |
+| `scripts/validate.mjs` | The gate: links, disclosure, sponsored attributes, tags, sitemap coverage, feed, data integrity |
+| `assets/css/site.css` | One stylesheet, no external fonts, no third-party requests |
+| `assets/js/site.js` | The five measurement events, product filter, site search, local event viewer |
+| `worker/collect.js` | Self-hosted analytics collector (Cloudflare Worker). **Not deployed.** |
+| `archive/practical-home/` | The earlier "The Practical Home" edition from parallel sessions, preserved intact with `noindex` and a banner. Not part of the live publication. |
+| `COORDINATION.md` | Multi-session task board and verification log |
+| `EXECUTIVE_SUMMARY.md` | Summary of what was verified, refused and left blocked |
 
-## Verification and publishing
+## Build and check
 
-The Research register preserves all four submissions. `specialLink` must stay empty until the intended ASIN, listing, dates, confirmation and report evidence are available. Keep sensitive report artifacts outside the public repo and only use non-sensitive provenance references. Test in the enrolled Associates workflow before enabling a listing. See the Executive summary and Flagged for Review pages for official references and limitations. There are no imported conversion rows, verified trend claims, or authorized API credentials. Search Console ownership and production analytics activation require external infrastructure/account access not available in this session.
+```sh
+node scripts/build.mjs     # regenerate the site from data/
+node scripts/validate.mjs  # fail on a broken link, missing disclosure or unmarked Amazon link
+```
+
+No dependencies, no package install, Node 18+.
+
+`scripts/validate.mjs` enforces, among other things:
+
+- exactly one `h1` per page, a `<title>`, a meta description and a canonical URL;
+- a disclosure strip **and** a footer disclosure on every page;
+- `rel="sponsored nofollow"` on every sponsored Amazon link, plus `data-asin` for click attribution;
+- `?tag=shopnow047c-20` on every product URL, and no second tag anywhere;
+- citation links (evidence, in the source register) are never used as call-to-action buttons, and never carry a tag;
+- no cloaking: no Amazon link routed through this site;
+- no third-party subresources;
+- every internal link and form action resolves;
+- every page appears in `sitemap.xml`, and every sitemap URL exists;
+- `sitemap.xml` and `feed.xml` are well-formed;
+- `price`, `rating`, `review_count`, `image` and `intended_asin` stay `null` in `data/products.json`;
+- the campaign ledger stays empty until a first-party report exists.
+
+## Editions
+
+This repository has two editions, and only one is indexed:
+
+- **Live:** the product-led publication at the site root, generated by `scripts/build.mjs` from `data/`.
+- **Archived:** "The Practical Home", built by parallel sessions in PRs #2–#8, preserved at `archive/practical-home/` with its data, scripts and QA under `acceptance-31f7/` and `release-review/`. It is `noindex`, banner-linked back to the live edition, and excluded from `sitemap.xml`. `archive/practical-home/scripts/preserve-archive.py` documents the only change made to it.
+
+## Two data rules that matter
+
+1. **Intended and observed are never merged.** `data/product-intents.csv` keeps `intended_asin` (blank — the supplied short links carry no ASIN) separate from `observed_asin` and `observed_redirect_target`.
+2. **Blank means "not obtained".** It never means zero. Prices, ratings, review counts, availability and commission rates are absent by design; `/flagged/` says why for each one, with the policy source.
+
+## Flags
+
+14 items are published at `/flagged/` with severity, what would close each one, and a source link. The actionable ones all need an account this build did not have:
+
+- **F01** Associates tracking for the three supplied short links is unconfirmed.
+- **F04** No Search Console verification token.
+- **F05** No analytics endpoint deployed, so the five events stay in the visitor's browser.
+- **F10** Commission rate card requires a sign-in, so no rate or revenue figure is published.
+- **F13** The verification fetches did not identify themselves as an automated agent under Amazon's Agent Terms.
+
+Nothing in this repository is presented as verified beyond what an official source supports on the date shown in the page.

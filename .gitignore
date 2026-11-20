@@ -1,2 +1,8 @@
+node_modules/
+.DS_Store
+*.log
+.wrangler/
 __pycache__/
-*.sqlite*
+*.pyc
+analytics-events.ndjson
+.pytest_cache/

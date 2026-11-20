@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 280" role="img" aria-label="Under-cabinet mounted paper towel holder illustration">
+  <rect width="480" height="280" fill="#f7f4ee"/>
+  <rect x="48" y="34" width="384" height="54" rx="4" fill="#e4ddd0" stroke="#2c3531" stroke-width="2.5"/>
+  <line x1="48" y1="88" x2="432" y2="88" stroke="#2c3531" stroke-width="2.5"/>
+  <!-- Bracket -->
+  <path d="M128 88 L128 118 L340 118" fill="none" stroke="#1e2421" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="344" cy="118" r="6" fill="#1e2421"/>
+  <!-- Paper towel roll -->
+  <rect x="158" y="102" width="154" height="72" rx="10" fill="#ffffff" stroke="#2c3531" stroke-width="2.5"/>
+  <ellipse cx="312" cy="138" rx="14" ry="36" fill="#ede7dc" stroke="#2c3531" stroke-width="2.5"/>
+  <ellipse cx="312" cy="138" rx="5" ry="13" fill="#b79b78" stroke="#2c3531" stroke-width="1.5"/>
+  <path d="M168 174 L168 232 L248 232 L248 174" fill="#ffffff" stroke="#2c3531" stroke-width="2.5"/>
+  <line x1="168" y1="205" x2="248" y2="205" stroke="#c8beb0" stroke-width="1.5" stroke-dasharray="5 5"/>
+  <text x="48" y="258" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#4f5d56">12.2" Aluminum Rail · Adhesive or Screw Mount (B0BSKQW2T2)</text>
+</svg>

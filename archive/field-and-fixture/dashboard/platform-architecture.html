@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex,follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Platform Architecture &amp; Compliance Gates | Field & Fixture</title>
+  <meta name="description" content="Automated affiliate platform workflows paired with human compliance gates for Creators API, FTC Endorsement Guides, and Amazon Associates policies.">
+  <link rel="canonical" href="https://kanlerxz87-cyber.github.io/DIYHOME1/archive/field-and-fixture/dashboard/platform-architecture.html">
+  <link rel="alternate" type="application/rss+xml" title="Field & Fixture RSS Feed" href="../feed.xml">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  
+</head>
+<body data-page-type="dashboard">
+  <div id="archived-edition-banner" role="note" style="font:14px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#fdf4e4;border-bottom:1px solid #eddcbd;color:#5b4300;padding:10px 16px">
+    <strong>Archived edition.</strong> Preserved from the &ldquo;Field &amp; Fixture&rdquo; session edition (<code>arena/d24c607b-diyhome1</code>). The live publication is <a href="../../../index.html" style="color:#8a4b00;font-weight:700">DIY Home Upgrades</a>.
+  </div>
+  <div class="disclosure-strip" id="top-disclosure" role="region" aria-label="Affiliate Disclosure">
+    <div class="container">
+      <span><strong>Disclosure:</strong> As an Amazon Associate I earn from qualifying purchases (Tracking ID: <code>shopnow047c-20</code>). Outbound product links are marked <code>rel="sponsored"</code>.</span>
+      <a href="../review/flagged.html">Verification &amp; Flagged Review Queue</a>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html">
+        <span class="brand-title">Field & Fixture</span>
+        <span class="brand-tag">DIY Home Upgrades · Practical Buyer Guides & Verified Product Notes</span>
+      </a>
+      <nav class="primary-nav" aria-label="Primary Navigation">
+          <a href="../index.html">Home</a>
+          <a href="../categories/kitchen-storage.html">Kitchen &amp; Storage</a>
+          <a href="../categories/walls-surfaces.html">Walls &amp; Surfaces</a>
+          <a href="../guides/index.html">Buying Guides</a>
+          <a href="../review/flagged.html">Flagged for Review</a>
+          <a href="../dashboard/index.html" aria-current="page">Platform &amp; Ledger</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <span class="eyebrow">Trustworthy Machinery · Automate vs. Gate</span>
+      <h1>AI-Powered Affiliate Platform &amp; Compliance Gates</h1>
+      <p class="lead">Deterministic checks and content generation pipelines run automatically in code; policy-sensitive actions stop at explicit human compliance gates.</p>
+    </section>
+
+    <section class="section">
+      <h2>Automation Boundary: Automated Machinery vs. Human Compliance Gates</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Workflow Stage</th>
+              <th>Automated Capability (Implemented in Repo)</th>
+              <th>Compliance Gate (Requires Human Approval)</th>
+              <th>Official Policy Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Product Intent &amp; Link Registry</strong></td>
+              <td><code>validate-registry</code> checks 10-char ASIN syntax, detects duplicate submissions, and enforces separation of <code>intended_asin</code> vs. <code>observed_redirect_target</code>.</td>
+              <td>Confirming submitter's intended ASIN and resolving <code>link.amazon</code> compliance status via Associates Central test click.</td>
+              <td><a href="https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC" target="_blank" rel="noopener noreferrer">ASIN &amp; Simple Text Links</a></td>
+            </tr>
+            <tr>
+              <td><strong>Special Link Generation</strong></td>
+              <td><code>build-special-link</code> generates canonical <code>https://www.amazon.com/dp/ASIN/ref=nosim?tag=shopnow047c-20</code> links.</td>
+              <td>Testing 1 link per product in enrolled Associates workflow and confirming tracking report credit before scaling.</td>
+              <td><a href="https://affiliate-program.amazon.com/help/operating/policies" target="_blank" rel="noopener noreferrer">Associates Program Policies §2</a></td>
+            </tr>
+            <tr>
+              <td><strong>Catalog, Price &amp; Review Sync</strong></td>
+              <td><code>creators_api_client.py</code> enforces &le;24h cache TTL, UTC price timestamps, and Amazon disclaimers.</td>
+              <td>Provisioning Creators API credentials (replacing deprecated PA-API 5) and reviewing Amazon's IP License terms.</td>
+              <td><a href="https://affiliate-program.amazon.com/creatorsapi/docs/en-us/paapiv5-deprecation" target="_blank" rel="noopener noreferrer">Creators API Migration Notice</a></td>
+            </tr>
+            <tr>
+              <td><strong>Editorial &amp; SEO Publishing</strong></td>
+              <td><code>build_site.py</code> + <code>audit-site</code> verify canonical tags, <code>sitemap.xml</code>, <code>feed.xml</code>, disclosure strips, and <code>rel="sponsored"</code> on every outbound link.</td>
+              <td>Reviewing editorial claims for FTC truthfulness (no unverified performance claims or misleading endorsements).</td>
+              <td><a href="https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking" target="_blank" rel="noopener noreferrer">FTC Endorsement Guides</a></td>
+            </tr>
+            <tr>
+              <td><strong>Analytics &amp; Campaign Ledger</strong></td>
+              <td>Client 5-event telemetry + self-hosted <code>server.mjs</code> + schema-checked <code>ingest-report</code> CLI rejecting fabricated forecasts.</td>
+              <td>Exporting and authorizing first-party Amazon Associates click/order reports and deploying the self-hosted endpoint.</td>
+              <td><a href="https://affiliate-program.amazon.com/help/operating/agreement" target="_blank" rel="noopener noreferrer">Associates Operating Agreement</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Field & Fixture · Shop &amp; Guides</h4>
+          <ul>
+            <li><a href="../index.html">Home (Front Page)</a></li>
+            <li><a href="../categories/kitchen-storage.html">Kitchen &amp; Storage Upgrades</a></li>
+            <li><a href="../categories/walls-surfaces.html">Walls, Surfaces &amp; DIY Tools</a></li>
+            <li><a href="../guides/index.html">Question-Shaped Buying Guides</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Dashboard &amp; Audit Surfaces</h4>
+          <ul>
+            <li><a href="../dashboard/index.html">Dashboard Overview</a></li>
+            <li><a href="../dashboard/executive-summary.html">Executive Summary</a></li>
+            <li><a href="../dashboard/verification-register.html">Verification &amp; Intent Register</a></li>
+            <li><a href="../dashboard/campaign-ledger.html">Campaign Ledger &amp; Telemetry</a></li>
+            <li><a href="../dashboard/platform-architecture.html">Automation &amp; Compliance Gate</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Review &amp; Discoverability</h4>
+          <ul>
+            <li><a href="../review/flagged.html">Flagged for Review</a></li>
+            <li><a href="../feed.xml">RSS Feed (feed.xml)</a></li>
+            <li><a href="../sitemap.xml">XML Sitemap (sitemap.xml)</a></li>
+            <li><a href="../../../robots.txt">robots.txt</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-disclosure">
+        <p><strong>Affiliate &amp; FTC Disclosure:</strong> As an Amazon Associate I earn from qualifying purchases. Selected Tracking ID: <code>shopnow047c-20</code>. Every outbound Amazon product link on this site carries <code>rel="sponsored noopener noreferrer"</code>. Product prices and availability on Amazon can change at any time; check the destination Amazon listing for current price, availability, and customer reviews.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/analytics.js" defer></script>
+</body>
+</html>

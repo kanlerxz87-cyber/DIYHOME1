@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 280" role="img" aria-label="Peel and stick wallpaper and backsplash smoothing tool kit illustration">
+  <rect width="480" height="280" fill="#f7f4ee"/>
+  <!-- Tile grid backdrop -->
+  <rect x="46" y="30" width="170" height="190" rx="6" fill="#e8e2d6" stroke="#2c3531" stroke-width="2"/>
+  <line x1="46" y1="93" x2="216" y2="93" stroke="#cfc6b5" stroke-width="2"/>
+  <line x1="46" y1="156" x2="216" y2="156" stroke="#cfc6b5" stroke-width="2"/>
+  <line x1="131" y1="30" x2="131" y2="220" stroke="#cfc6b5" stroke-width="2"/>
+  <!-- Red Squeegee -->
+  <path d="M180 62 L278 62 L262 128 L164 128 Z" fill="#c04b34" stroke="#2c3531" stroke-width="2.5"/>
+  <!-- Blue Felt Squeegee -->
+  <rect x="275" y="138" width="120" height="58" rx="6" fill="#2f6690" stroke="#2c3531" stroke-width="2.5"/>
+  <rect x="275" y="182" width="120" height="14" rx="2" fill="#e9ecef" stroke="#2c3531" stroke-width="2"/>
+  <!-- Craft Knife -->
+  <rect x="308" y="54" width="118" height="18" rx="4" fill="#3b4742" stroke="#2c3531" stroke-width="2"/>
+  <polygon points="308,54 282,63 308,72" fill="#d9dee0" stroke="#2c3531" stroke-width="2"/>
+  <!-- Tape Measure -->
+  <circle cx="385" cy="112" r="24" fill="#d99b38" stroke="#2c3531" stroke-width="2.5"/>
+  <circle cx="385" cy="112" r="9" fill="#f7f4ee" stroke="#2c3531" stroke-width="2"/>
+  <text x="46" y="258" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#4f5d56">Smoothing Squeegees, Craft Knife + 5 Blades, Tape (B08FKW9JRM)</text>
+</svg>
