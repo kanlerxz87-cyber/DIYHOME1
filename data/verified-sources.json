@@ -5,7 +5,7 @@
       "code": "S01",
       "category": "Amazon Associates Legal",
       "title": "Associates Program Operating Agreement (§1 Special Links, §5 Associate Identification, §7 Disclaimers, §12 Monitoring)",
-      "finding": "Requires proper tagged Special Links and clear, prominent display of 'As an Amazon Associate I earn from qualifying purchases.' Prohibits unauthorized public claims about the Agreement.",
+      "finding": "Requires proper tagged Special Links and clear, prominent display of the required Associate qualifying-purchases statement under §5. Prohibits unauthorized public claims about the Agreement.",
       "status": "Verified",
       "url": "https://affiliate-program.amazon.com/help/operating/agreement"
     },

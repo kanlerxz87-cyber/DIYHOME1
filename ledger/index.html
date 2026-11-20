@@ -24,7 +24,7 @@
   <div class="wrap masthead-inner">
     <a class="wordmark" href="../">DIY&nbsp;HOME<br><span class="wm-2">UPGRADES</span></a>
     <div class="masthead-tag">Small upgrades for rented rooms and real budgets.</div>
-    <nav class="site-nav" aria-label="Primary"><ul><li><a href="../" aria-current="page">Home</a></li><li><a href="../products/">Products</a></li><li><a href="../guides/">Guides</a></li><li><a href="../about/">How we verify</a></li><li><a href="../search/">Search</a></li></ul></nav>
+    <nav class="site-nav" aria-label="Primary"><ul><li><a href="../">Home</a></li><li><a href="../products/">Products</a></li><li><a href="../products/comparisons/">Comparisons</a></li><li><a href="../guides/">Guides</a></li><li><a href="../search/">Search</a></li><li><a href="../feed.xml">RSS</a></li><li><details class="desk-dropdown"><summary>Site desk</summary><ul class="desk-menu"><li><a href="../summary/">Executive summary</a></li><li><a href="../sources/">Source register</a></li><li><a href="../ledger/" aria-current="page">Product-intent & ledger</a></li><li><a href="../flagged/">Flagged for review</a></li><li><a href="../measurement/">Measurement & events</a></li><li><a href="../automation/">Automation & gate</a></li><li><a href="../about/">How we verify</a></li><li><a href="../disclosures/">Disclosures</a></li></ul></details></li></ul></nav>
   </div>
 </header>
 <div class="disclosure" data-disclosure>
@@ -43,15 +43,15 @@
 </div>
 
 <section class="wrap">
-  <h2>1. Product-intent confirmation record</h2>
-  <p class="prose">For each submitted link: the intended ASIN, the official listing URL, the confirmation date and the source, with the observed redirect target kept in its own field. The two are never merged, because a redirect target is an observation and an intended ASIN is a claim.</p>
+  <h2>1. Product-intent confirmation record (all 4 submitted rows)</h2>
+  <p class="prose">For each submitted link: the intended ASIN, the official listing URL, the confirmation date and the source, with the observed redirect target kept in its own field. Submission #3 repeats submission #2 (<a href="../flagged/#F02">F02</a>). Intended ASINs remain blank and unverified rather than merged with observed redirect targets.</p>
   <div class="table-wrap">
     <table>
-      <caption>Published from <span class="mono">data/product-intents.csv</span>. Blank intended ASIN means the short link carries no ASIN, not that none exists.</caption>
+      <caption>Published from <span class="mono">data/product-intents.csv</span>. Blank intended ASIN means unconfirmed operator intent, kept strictly separate from observed redirect ASINs.</caption>
       <thead><tr><th scope="col">Submitted link</th><th scope="col">Intended ASIN</th><th scope="col">Observed ASIN</th><th scope="col">Official listing URL</th><th scope="col">Confirmed</th><th scope="col">Source</th><th scope="col">Observed redirect target</th><th scope="col">Tracking confirmed</th></tr></thead>
       <tbody><tr>
-      <td><a href="https://link.amazon/B0hmGG4m2" data-sponsored="amazon" data-link-kind="provenance" data-citation="true" target="_blank" rel="sponsored nofollow noopener" class="mono">link.amazon/B0hmGG4m2</a></td>
-      <td class="blank">not in the link</td>
+      <td><span class="mono">#1</span> <a href="https://link.amazon/B0hmGG4m2" data-sponsored="amazon" data-link-kind="provenance" data-citation="true" target="_blank" rel="sponsored nofollow noopener" class="mono">link.amazon/B0hmGG4m2</a></td>
+      <td><span class="badge warn">Unverified (blank)</span></td>
       <td class="mono">B08FKW9JRM</td>
       <td><a href="https://www.amazon.com/dp/B08FKW9JRM?tag=shopnow047c-20" data-sponsored="amazon" data-asin="B08FKW9JRM" rel="sponsored nofollow noopener" class="mono">dp/B08FKW9JRM?tag=shopnow047c-20</a></td>
       <td>2026-11-20</td>
@@ -59,8 +59,8 @@
       <td class="mono" style="word-break:break-all;max-width:280px">https://www.amazon.com/dp/B08FKW9JRM?lv=shuf&amp;btn_type=ss&amp;crid=2Y94AV6ZXMMJ&hellip;</td>
       <td><span class="badge warn">no</span></td>
     </tr><tr>
-      <td><a href="https://link.amazon/B03QDuGdo" data-sponsored="amazon" data-link-kind="provenance" data-citation="true" target="_blank" rel="sponsored nofollow noopener" class="mono">link.amazon/B03QDuGdo</a></td>
-      <td class="blank">not in the link</td>
+      <td><span class="mono">#2</span> <a href="https://link.amazon/B03QDuGdo" data-sponsored="amazon" data-link-kind="provenance" data-citation="true" target="_blank" rel="sponsored nofollow noopener" class="mono">link.amazon/B03QDuGdo</a></td>
+      <td><span class="badge warn">Unverified (blank)</span></td>
       <td class="mono">B0BSKQW2T2</td>
       <td><a href="https://www.amazon.com/dp/B0BSKQW2T2?tag=shopnow047c-20" data-sponsored="amazon" data-asin="B0BSKQW2T2" rel="sponsored nofollow noopener" class="mono">dp/B0BSKQW2T2?tag=shopnow047c-20</a></td>
       <td>2026-11-20</td>
@@ -68,8 +68,17 @@
       <td class="mono" style="word-break:break-all;max-width:280px">https://www.amazon.com/dp/B0BSKQW2T2?lv=shuf&amp;btn_type=ss&amp;crid=2Y94AV6ZXMMJ&hellip;</td>
       <td><span class="badge warn">no</span></td>
     </tr><tr>
-      <td><a href="https://link.amazon/B0hpD2JGQ" data-sponsored="amazon" data-link-kind="provenance" data-citation="true" target="_blank" rel="sponsored nofollow noopener" class="mono">link.amazon/B0hpD2JGQ</a></td>
-      <td class="blank">not in the link</td>
+      <td><span class="mono">#3</span> <a href="https://link.amazon/B03QDuGdo" data-sponsored="amazon" data-link-kind="provenance" data-citation="true" target="_blank" rel="sponsored nofollow noopener" class="mono">link.amazon/B03QDuGdo</a><br><span class="badge warn">Exact duplicate of submission 2 (F02)</span></td>
+      <td><span class="badge warn">Unverified (blank)</span></td>
+      <td class="mono">B0BSKQW2T2</td>
+      <td><a href="https://www.amazon.com/dp/B0BSKQW2T2?tag=shopnow047c-20" data-sponsored="amazon" data-asin="B0BSKQW2T2" rel="sponsored nofollow noopener" class="mono">dp/B0BSKQW2T2?tag=shopnow047c-20</a></td>
+      <td>2026-11-20</td>
+      <td><a class="src" href="https://www.amazon.com/dp/B0BSKQW2T2" data-citation="true" target="_blank" rel="noopener" title="Amazon listing B0BSKQW2T2 — Paper Towel Holder Under Cabinet, Self-Adhesive or Drilling, Matte Black">S05</a></td>
+      <td class="mono" style="word-break:break-all;max-width:280px">https://www.amazon.com/dp/B0BSKQW2T2?lv=shuf&amp;btn_type=ss&amp;crid=2Y94AV6ZXMMJ&hellip;</td>
+      <td><span class="badge warn">no</span></td>
+    </tr><tr>
+      <td><span class="mono">#4</span> <a href="https://link.amazon/B0hpD2JGQ" data-sponsored="amazon" data-link-kind="provenance" data-citation="true" target="_blank" rel="sponsored nofollow noopener" class="mono">link.amazon/B0hpD2JGQ</a></td>
+      <td><span class="badge warn">Unverified (blank)</span></td>
       <td class="mono">B08DY9HRWD</td>
       <td><a href="https://www.amazon.com/dp/B08DY9HRWD?tag=shopnow047c-20" data-sponsored="amazon" data-asin="B08DY9HRWD" rel="sponsored nofollow noopener" class="mono">dp/B08DY9HRWD?tag=shopnow047c-20</a></td>
       <td>2026-11-20</td>
@@ -79,7 +88,7 @@
     </tr></tbody>
     </table>
   </div>
-  <p class="link-note" style="margin-top:10px">Note on the last column: the ASIN definition itself rests on observation plus a secondary source, because Amazon&rsquo;s own definition page needs a sign-in. <a href="../flagged/#F06">F06</a></p>
+  <p class="link-note" style="margin-top:10px">Official Amazon ASIN definition: <a class="src" href="https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC" data-citation="true" target="_blank" rel="noopener" title="Amazon Associates Help — Create Simple Text Links &amp; ASIN Definition">S24</a> (plus Seller Central notes on <a href="../flagged/#F06">F06</a>).</p>
 </section>
 
 <section class="block">
@@ -104,12 +113,12 @@
         <strong>DIY Home Upgrades</strong><br>
         Small upgrades for rented rooms and real budgets. Three products, four guides, one rule: if a value could not be read on an official source, it is blank and flagged rather than filled in.
       </div>
-      <nav class="footer-nav" aria-label="Site sections and data"><div><h2>Shop</h2><ul><li><a href="../products/">All products</a></li><li><a href="../products/wallpaper-tools/">Wallpaper & surface prep</a></li><li><a href="../products/kitchen-storage/">Under-cabinet storage</a></li><li><a href="../guides/">Guides</a></li><li><a href="../search/">Search</a></li></ul></div><div><h2>Verification</h2><ul><li><a href="../sources/">Source register</a></li><li><a href="../flagged/">Flagged for review</a></li><li><a href="../about/">How we verify</a></li><li><a href="../disclosures/">Disclosures</a></li></ul></div><div><h2>Data</h2><ul><li><a href="../measurement/">Measurement & events</a></li><li><a href="../ledger/">Campaign ledger</a></li><li><a href="../summary/">Executive summary</a></li><li><a href="../archive/practical-home/">Earlier edition (archived)</a></li><li><a href="../sitemap.xml">sitemap.xml</a></li><li><a href="../feed.xml">feed.xml</a></li></ul></div></nav>
+      <nav class="footer-nav" aria-label="Site sections and data"><div><h2>Shop</h2><ul><li><a href="../products/">All products</a></li><li><a href="../products/wallpaper-tools/">Wallpaper & surface prep</a></li><li><a href="../products/kitchen-storage/">Under-cabinet storage</a></li><li><a href="../products/comparisons/">Side-by-side comparisons</a></li><li><a href="../guides/">Guides</a></li><li><a href="../search/">Search</a></li></ul></div><div><h2>Verification</h2><ul><li><a href="../sources/">Source register</a></li><li><a href="../flagged/">Flagged for review</a></li><li><a href="../automation/">Automation & compliance gate</a></li><li><a href="../about/">How we verify</a></li><li><a href="../disclosures/">Disclosures</a></li></ul></div><div><h2>Data & Editions</h2><ul><li><a href="../summary/">Executive summary</a></li><li><a href="../ledger/">Product-intent & campaign ledger</a></li><li><a href="../measurement/">Measurement & events</a></li><li><a href="../archive/practical-home/">Practical Home edition (archived)</a></li><li><a href="../archive/field-and-fixture/">Field & Fixture edition (archived)</a></li><li><a href="../sitemap.xml">sitemap.xml</a></li><li><a href="../feed.xml">feed.xml</a></li></ul></div></nav>
     </div>
     <div class="footer-legal">
       <p><strong>Affiliate disclosure:</strong> DIY Home Upgrades is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. As an Amazon Associate we earn from qualifying purchases. Every outbound link to Amazon on this site is a sponsored affiliate link and carries the tracking ID shopnow047c-20.</p>
       <p>Prices, star ratings, review counts and availability are not displayed on this site. See <a href="../disclosures/">Disclosures</a> for why, with the policy sources.</p>
-      <p>Amazon and Amazon.com are trademarks of Amazon.com, Inc. or its affiliates. This site is not endorsed by Amazon. Built 20 November 2026 from <a href="../sources/">19 registered sources</a>.</p>
+      <p>Amazon and Amazon.com are trademarks of Amazon.com, Inc. or its affiliates. This site is not endorsed by Amazon. Built 20 November 2026 from <a href="../sources/">25 registered sources</a>.</p>
     </div>
   </div>
 </footer>

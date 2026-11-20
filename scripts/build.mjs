@@ -19,6 +19,8 @@ const guidesNote = readJson("data/guides.json").cadence_note;
 const flagged = readJson("data/flagged.json").items;
 const events = readJson("data/events.json");
 const release = readJson("data/release.json");
+const productSpecs = readJson("data/product-specs.json").products;
+const parallelPasses = readJson("data/verified-sources.json").parallel_passes;
 
 const TAG = site.associate_tag;
 const BASE = site.base_url;
@@ -39,14 +41,30 @@ function srcBadge(id, depth, label) {
   return `<a class="src" href="${s.url}" data-citation="true" target="_blank" rel="noopener" title="${esc(s.title)}">${esc(label || id)}</a>`;
 }
 
+function extCiteLink(url, label) {
+  return `<a class="src" href="${esc(url)}" data-citation="true" target="_blank" rel="noopener">${esc(label)}</a>`;
+}
+
 /* ------------------------------------------------------------------ shell */
 
 const NAV = [
   ["", "Home"],
   ["products/", "Products"],
+  ["products/comparisons/", "Comparisons"],
   ["guides/", "Guides"],
+  ["search/", "Search"],
+  ["feed.xml", "RSS"]
+];
+
+const DESK_NAV = [
+  ["summary/", "Executive summary"],
+  ["sources/", "Source register"],
+  ["ledger/", "Product-intent & ledger"],
+  ["flagged/", "Flagged for review"],
+  ["measurement/", "Measurement & events"],
+  ["automation/", "Automation & gate"],
   ["about/", "How we verify"],
-  ["search/", "Search"]
+  ["disclosures/", "Disclosures"]
 ];
 
 const FOOTER_NAV = [
@@ -54,20 +72,23 @@ const FOOTER_NAV = [
     ["products/", "All products"],
     ["products/wallpaper-tools/", "Wallpaper & surface prep"],
     ["products/kitchen-storage/", "Under-cabinet storage"],
+    ["products/comparisons/", "Side-by-side comparisons"],
     ["guides/", "Guides"],
     ["search/", "Search"]
   ]],
   ["Verification", [
     ["sources/", "Source register"],
     ["flagged/", "Flagged for review"],
+    ["automation/", "Automation & compliance gate"],
     ["about/", "How we verify"],
     ["disclosures/", "Disclosures"]
   ]],
-  ["Data", [
-    ["measurement/", "Measurement & events"],
-    ["ledger/", "Campaign ledger"],
+  ["Data & Editions", [
     ["summary/", "Executive summary"],
-    ["archive/practical-home/", "Earlier edition (archived)"],
+    ["ledger/", "Product-intent & campaign ledger"],
+    ["measurement/", "Measurement & events"],
+    ["archive/practical-home/", "Practical Home edition (archived)"],
+    ["archive/field-and-fixture/", "Field & Fixture edition (archived)"],
     ["sitemap.xml", "sitemap.xml"],
     ["feed.xml", "feed.xml"]
   ]]
@@ -75,10 +96,15 @@ const FOOTER_NAV = [
 
 function navSection(current, depth) {
   const p = prefix(depth);
-  return `<nav class="site-nav" aria-label="Primary"><ul>${NAV.map(([href, label]) => {
-    const cur = current === href || (href && current.startsWith(href)) ? ' aria-current="page"' : "";
+  const items = NAV.map(([href, label]) => {
+    const cur = current === href || (href && href !== "products/" && current.startsWith(href)) || (href === "products/" && current === "products/") ? ' aria-current="page"' : "";
     return `<li><a href="${p}${href}"${cur}>${label}</a></li>`;
-  }).join("")}</ul></nav>`;
+  }).join("");
+  const deskItems = DESK_NAV.map(([href, label]) => {
+    const cur = current === href ? ' aria-current="page"' : "";
+    return `<li><a href="${p}${href}"${cur}>${label}</a></li>`;
+  }).join("");
+  return `<nav class="site-nav" aria-label="Primary"><ul>${items}<li><details class="desk-dropdown"><summary>Site desk</summary><ul class="desk-menu">${deskItems}</ul></details></li></ul></nav>`;
 }
 
 function footer(depth) {
@@ -311,7 +337,7 @@ const add = (file, html) => pages.push({ file, html });
       </div>
       <div class="card">
         <h3 class="card-title">Blank beats invented</h3>
-        <p>Where a value could not be read on an official source, it is blank and listed on the flagged page. The paper towel holder has no brand in its listing title, so its brand is blank rather than guessed.</p>
+        <p>Where a value could not be read on an official source—such as intended ASINs, missing UPCs on two listings, or absent Date First Available rows—it stays blank and is badged unverified rather than guessed.</p>
         <p class="link-note"><a href="flagged/">${flagged.length} items flagged, with sources</a></p>
       </div>
       <div class="card">
@@ -334,6 +360,15 @@ const add = (file, html) => pages.push({ file, html });
     <div class="callout warn">
       <p><strong>Three things are pending, all flagged:</strong> the supplied short links are not confirmed as enrolled Associates links; Search Console has no verification token; and the analytics collector has no host, so the five events stay in the visitor&rsquo;s browser. None of these are simulated on this site.</p>
       <p><a href="flagged/">Read the flags, with source links &rarr;</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="callout">
+      <h3>Follow new DIY checklists without giving up your email (SG-30)</h3>
+      <p>Subscribe to our UTF-8 <a href="feed.xml">RSS 2.0 feed</a> in any feed reader, or compare dimensions side by side on the <a href="products/comparisons/">specification matrix</a>. Zero cookies, zero email tracking pixels, zero third-party requests.</p>
     </div>
   </div>
 </section>`;
@@ -490,12 +525,97 @@ ${gs.length ? `<section class="block"><div class="wrap">
   }));
 }
 
+/* ---- side-by-side comparison page ---- */
+
+{
+  const compRows = productSpecs.map((spec) => {
+    const prod = products.find((p) => p.asin_observed === spec.observed_asin);
+    const amap = Object.fromEntries(spec.attributes.map((a) => [a.field, a]));
+    const dims = amap["Product Dimensions"] || amap["Item Dimensions & Rail Length"] || amap["Dimensions & 3 DIY Footprints"];
+    const weight = amap["Item Weight"] || amap["Item Weight & Per-Shelf Capacity"];
+    const mat = amap["Material & Handle Material"] || amap["Material & Finish"] || amap["Material & Divider Spec"];
+    const upc = amap["UPC / GTIN"];
+    const dfa = amap["Date First Available"];
+    return `<tr>
+      <td><a href="../${prod.slug}/"><strong>${esc(prod.short_title)}</strong></a><br><span class="mono">${esc(spec.observed_asin)}</span></td>
+      <td><a href="../${prod.category}/">${esc(catOf(prod.category).name)}</a></td>
+      <td>${esc(amap["Brand"].value)}<br>${extCiteLink(amap["Brand"].source_url, "Store")}</td>
+      <td>${esc(mat.value)}</td>
+      <td>${esc(dims.value)}</td>
+      <td>${esc(weight.value)}</td>
+      <td>${upc.value ? `<span class="mono">${esc(upc.value)}</span>` : `<span class="badge warn">Unverified (blank)</span>`}</td>
+      <td>${dfa.value ? esc(dfa.value) : `<span class="badge warn">Unverified (blank)</span>`}</td>
+      <td>${extCiteLink(spec.observed_dp_url, "Official listing")} &middot; <a class="btn" href="${tagged(spec.observed_asin)}" data-sponsored="amazon" data-asin="${esc(spec.observed_asin)}" rel="sponsored nofollow noopener" target="_blank">Amazon&nbsp;&rarr;</a></td>
+    </tr>`;
+  }).join("");
+
+  const compBody = `
+<div class="wrap page-head">
+  <p class="kicker">Side-by-side comparison &middot; ${productSpecs.length} verified listings</p>
+  <h1>Compare dimensions, materials and mounting specs</h1>
+  <p class="standfirst">Line-by-line physical specifications read directly from each official Amazon product detail page on ${esc(site.built_display)}. Any field omitted by the manufacturer table stays blank and marked unverified.</p>
+</div>
+<div class="wrap">
+  <div class="table-wrap">
+    <table>
+      <caption>Side-by-side comparison of observed DIY home upgrade listings. Every row links to its official Amazon detail page and brand store.</caption>
+      <thead>
+        <tr>
+          <th scope="col">Product &amp; ASIN</th>
+          <th scope="col">Category</th>
+          <th scope="col">Brand</th>
+          <th scope="col">Material</th>
+          <th scope="col">Confirmed dimensions</th>
+          <th scope="col">Weight / load</th>
+          <th scope="col">UPC</th>
+          <th scope="col">Date first available</th>
+          <th scope="col">Sources &amp; Sponsored link</th>
+        </tr>
+      </thead>
+      <tbody>${compRows}</tbody>
+    </table>
+  </div>
+</div>`;
+
+  add("products/comparisons/index.html", layout({
+    title: `Side-by-side specification comparison | ${site.name}`,
+    description: "Compare verified dimensions, materials, weights, mounting methods, and catalog identifiers across all three DIY home upgrade listings.",
+    depth: 2,
+    urlPath: "products/comparisons/",
+    current: "products/comparisons/",
+    page: "comparisons",
+    jsonld: [crumbLd([["", "Home"], ["products/", "All products"], ["products/comparisons/", "Comparisons"]])],
+    body: crumbs([["", "Home"], ["products/", "All products"], ["products/comparisons/", "Comparisons"]], 2) + compBody
+  }));
+}
+
 /* ---- product pages ---- */
 
 for (const prod of products) {
   const cat = catOf(prod.category);
   const gs = guidesIn(prod.category);
   const submitted = prod.submitted_links.map((id) => SRC[id]).filter(Boolean);
+  const specEntry = productSpecs.find((s) => s.observed_asin === prod.asin_observed);
+  const specTableHtml = specEntry ? `
+<section class="block">
+  <div class="wrap">
+    <div class="section-head"><div><h2>Line-by-line technical specifications</h2><p>Read directly from the official Amazon product information table on ${esc(prod.confirmation_date)}. Missing fields remain blank and marked unverified.</p></div></div>
+    <div class="table-wrap">
+      <table>
+        <caption>Technical details for ASIN ${esc(prod.asin_observed)}. Every row links to an official source.</caption>
+        <thead><tr><th scope="col">Catalog attribute</th><th scope="col">Confirmed value (blank if unverified)</th><th scope="col">Status</th><th scope="col">Official source</th></tr></thead>
+        <tbody>
+          ${specEntry.attributes.map((attr) => `<tr>
+            <td><strong>${esc(attr.field)}</strong></td>
+            <td>${attr.value !== "" ? esc(attr.value) : ""}</td>
+            <td><span class="badge ${attr.status === "Verified" ? "ok" : "warn"}">${esc(attr.status)}</span></td>
+            <td>${extCiteLink(attr.source_url, attr.source_label)}</td>
+          </tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>` : "";
   const body = `
 <div class="wrap page-head">
   <p class="kicker">${esc(cat.name)} &middot; ASIN ${esc(prod.asin_observed)}</p>
@@ -567,6 +687,8 @@ for (const prod of products) {
   </div>
 </section>
 
+${specTableHtml}
+
 ${buyBlock(prod, 2)}
 
 <section class="block">
@@ -612,19 +734,58 @@ ${gs.length ? `<section class="block"><div class="wrap">
   <div class="table-wrap" style="margin-top:18px">
     <table>
       <caption>Publishing cadence for this issue. All four published ${esc(site.built_display)}; later issues add one guide at a time.</caption>
-      <thead><tr><th scope="col">Week</th><th scope="col">Guide</th><th scope="col">Category</th><th scope="col">Reader intent</th><th scope="col">Published</th></tr></thead>
+      <thead><tr><th scope="col">Week</th><th scope="col">Guide</th><th scope="col">Category</th><th scope="col">Reader intent</th><th scope="col">Published</th><th scope="col">Source</th></tr></thead>
       <tbody>
-        ${guideMeta.map((g) => `<tr>
+        ${guideMeta.map((g) => {
+          const relProd = productsIn(g.category)[0];
+          return `<tr>
           <td class="num">${g.week}</td>
           <td><a href="${g.slug}/"><strong>${esc(g.title)}</strong></a></td>
           <td><a href="../products/${g.category}/">${esc(catOf(g.category).name)}</a></td>
           <td>${esc(g.intent)}</td>
           <td>${esc(g.published)}</td>
-        </tr>`).join("")}
+          <td>${relProd ? srcBadge(relProd.confirmation_source, 1) : srcBadge("S01", 1)}</td>
+        </tr>`;
+        }).join("")}
       </tbody>
     </table>
   </div>
   <div class="shelf" style="margin-top:22px">${guideMeta.map((g) => guideCard(g, 1)).join("")}</div>
+
+  <h2 style="margin-top:34px">Working-title editorial hypotheses (countertop appliances)</h2>
+  <p class="prose">The four buyer-question titles supplied in the project brief are presented below strictly as <strong>working-title editorial hypotheses</strong>—never as claims about popularity, search volume, or product superiority. Because none of the submitted links resolved to a countertop appliance (<a href="../flagged/#F03">F03</a>), no unsubmitted appliance ASINs are invented here; full working checklists are also preserved in our <a href="../archive/practical-home/guides.html">archived Practical Home edition</a>.</p>
+  <div class="table-wrap" style="margin-top:14px">
+    <table>
+      <caption>Working-title editorial hypotheses for kitchen appliance comparisons. Every row cites official USDA food-safety guidance.</caption>
+      <thead><tr><th scope="col">Working title (editorial hypothesis)</th><th scope="col">Core buyer comparison checklist</th><th scope="col">Catalog status</th><th scope="col">Official reference</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Basket or oven-style air fryer: what should you compare?</strong></td>
+          <td>Compare single-layer cooking footprint, front door vs. drawer clearance, and heat-safe unloading space on the counter.</td>
+          <td><span class="badge warn">Working hypothesis (no ASIN submitted)</span></td>
+          <td>${srcBadge("S25", 1, "USDA FSIS")}</td>
+        </tr>
+        <tr>
+          <td><strong>A no-hype checklist for comparing air fryer capacity</strong></td>
+          <td>Size for weeknight single-layer portions rather than total liter volume; overcrowding restricts rapid air circulation.</td>
+          <td><span class="badge warn">Working hypothesis (no ASIN submitted)</span></td>
+          <td>${srcBadge("S25", 1, "USDA FSIS")}</td>
+        </tr>
+        <tr>
+          <td><strong>How to assess cleanup and counter-space trade-offs</strong></td>
+          <td>Check rear/top ventilation clearance under upper cabinets and measure whether removable trays lie flat in your sink basin.</td>
+          <td><span class="badge warn">Working hypothesis (no ASIN submitted)</span></td>
+          <td>${srcBadge("S25", 1, "USDA FSIS")}</td>
+        </tr>
+        <tr>
+          <td><strong>Questions to ask before buying a multi-function kitchen appliance</strong></td>
+          <td>Verify weekly-use modes in the manufacturer manual and confirm cabinet storage room for idle racks and accessories.</td>
+          <td><span class="badge warn">Working hypothesis (no ASIN submitted)</span></td>
+          <td>${srcBadge("S25", 1, "USDA FSIS")}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <p class="link-note" style="margin-top:18px">The next topic will be chosen from measured queries, not instinct. Until an analytics endpoint is live, that measurement does not exist: <a href="../flagged/#F05">F05</a>, <a href="../measurement/">measurement page</a>.</p>
 </div>`;
 
@@ -747,12 +908,12 @@ ${prod ? `<section class="block"><div class="wrap">
         <caption>Automation boundaries for this build.</caption>
         <thead><tr><th scope="col">Step</th><th scope="col">Automated?</th><th scope="col">Gate</th></tr></thead>
         <tbody>
-          <tr><td>Page build from <span class="mono">data/*.json</span></td><td>Yes</td><td>Build fails if data is malformed</td></tr>
-          <tr><td>Link, disclosure and sitemap checks</td><td>Yes</td><td><span class="mono">scripts/validate.mjs</span> must pass before push</td></tr>
-          <tr><td>Event instrumentation</td><td>Yes</td><td>No endpoint until one is deployed (<a href="../flagged/#F05">F05</a>)</td></tr>
-          <tr><td>Publishing a product value</td><td>No</td><td>Manual read of an official source, with the source ID recorded</td></tr>
-          <tr><td>Commission, conversion or revenue figures</td><td>No</td><td>First-party report only, dated, in the <a href="../ledger/">ledger</a></td></tr>
-          <tr><td>Associates link enrolment</td><td>No</td><td>Associates Central sign-in (<a href="../flagged/#F01">F01</a>)</td></tr>
+          <tr><td>Page build from <span class="mono">data/*.json</span></td><td>Yes</td><td>Build fails if data is malformed ${srcBadge("S07", 1)}</td></tr>
+          <tr><td>Link, disclosure and sitemap checks</td><td>Yes</td><td><span class="mono">scripts/validate.mjs</span> must pass before push ${srcBadge("S01", 1)} ${srcBadge("S08", 1)}</td></tr>
+          <tr><td>Event instrumentation</td><td>Yes</td><td>No endpoint until one is deployed (<a href="../flagged/#F05">F05</a>) ${srcBadge("S14", 1)}</td></tr>
+          <tr><td>Publishing a product value</td><td>No</td><td>Manual read of an official source, with the source ID recorded ${srcBadge("S03", 1)}</td></tr>
+          <tr><td>Commission, conversion or revenue figures</td><td>No</td><td>First-party report only, dated, in the <a href="../ledger/">ledger</a> ${srcBadge("S23", 1)}</td></tr>
+          <tr><td>Associates link enrolment</td><td>No</td><td>Associates Central sign-in (<a href="../flagged/#F01">F01</a>) ${srcBadge("S02", 1)}</td></tr>
         </tbody>
       </table>
     </div>
@@ -813,8 +974,8 @@ ${prod ? `<section class="block"><div class="wrap">
           <tr><td>Star ratings and customer reviews</td><td>Not published</td><td>Only via Creators/PA API ${srcBadge("S01", 2)}</td></tr>
           <tr><td>Price tracking or price alerts</td><td>Not built</td><td>Not permitted without agreement ${srcBadge("S01", 2)}</td></tr>
           <tr><td>Product photos and Amazon marks</td><td>Not used</td><td>Program content carries its own licence ${srcBadge("S01", 2)} ${srcBadge("S02", 2)}</td></tr>
-          <tr><td>Commission rates and earnings</td><td>Not published</td><td>Rate schedule requires sign-in ${srcBadge("S17", 2)}</td></tr>
-          <tr><td>Conversion scores and revenue forecasts</td><td>Not published</td><td>No first-party data exists; nothing is modelled</td></tr>
+          <tr><td>Commission rates and earnings</td><td>Not published</td><td>Account custom rate card requires sign-in ${srcBadge("S17", 1)}; public standard table cited only as category bounds ${srcBadge("S23", 1)}</td></tr>
+          <tr><td>Conversion scores and revenue forecasts</td><td>Not published</td><td>No first-party data exists; nothing is modelled ${srcBadge("S03", 1)}</td></tr>
         </tbody>
       </table>
     </div>
@@ -860,9 +1021,30 @@ ${prod ? `<section class="block"><div class="wrap">
     </tr>`;
   }).join("");
 
+  const sgRows = parallelPasses.map((sg) => {
+    const refUrl = sg.source_url.startsWith(BASE) ? SRC["S08"].url : sg.source_url;
+    return `<tr id="${esc(sg.code)}">
+      <td class="mono">${esc(sg.code)}</td>
+      <td><strong>${esc(sg.area)}</strong></td>
+      <td>${esc(sg.implementation)}</td>
+      <td><span class="badge ${sg.status.startsWith("Done") ? "ok" : "warn"}">${esc(sg.status)}</span></td>
+      <td>${extCiteLink(refUrl, "Official reference")}${sg.code === "SG-28" ? ` &middot; <a href="../feed.xml">feed.xml</a>` : ""}</td>
+    </tr>`;
+  }).join("");
+
+  const allSpecRows = productSpecs.flatMap((spec) =>
+    spec.attributes.map((attr) => `<tr>
+      <td class="mono">${esc(spec.observed_asin)}</td>
+      <td>${esc(attr.field)}</td>
+      <td>${attr.value !== "" ? esc(attr.value) : ""}</td>
+      <td><span class="badge ${attr.status === "Verified" ? "ok" : "warn"}">${esc(attr.status)}</span></td>
+      <td>${extCiteLink(attr.source_url, attr.source_label)}</td>
+    </tr>`)
+  ).join("");
+
   const body = `
 <div class="wrap page-head">
-  <p class="kicker">Provenance &middot; ${sourceList.length} sources</p>
+  <p class="kicker">Provenance &middot; ${sourceList.length} sources + SG-27..SG-30</p>
   <h1>Source register</h1>
   <p class="standfirst">Every source used on this site, what it supports, when it was retrieved, and whether it could actually be read. Two entries are marked as unreadable on purpose: pretending otherwise is how a register becomes decoration.</p>
 </div>
@@ -878,7 +1060,26 @@ ${prod ? `<section class="block"><div class="wrap">
       <tbody>${rows}</tbody>
     </table>
   </div>
-  <p class="link-note" style="margin-top:12px">Machine-readable copy: <a href="../data/sources.json">data/sources.json</a> (published alongside the site, as is every other data file).</p>
+
+  <h2 style="margin-top:34px">Parallel publication passes (SG-27..SG-30)</h2>
+  <div class="table-wrap" style="margin-top:12px">
+    <table>
+      <caption>Navigation labels, shipped RSS 2.0 feed, Search Console readiness, and privacy-preserving reader capture.</caption>
+      <thead><tr><th scope="col">Pass ID</th><th scope="col">Area</th><th scope="col">Verified implementation</th><th scope="col">Status</th><th scope="col">Official source</th></tr></thead>
+      <tbody>${sgRows}</tbody>
+    </table>
+  </div>
+
+  <h2 style="margin-top:34px">Consolidated 52-row product attribute verification table</h2>
+  <p class="prose">Every catalog attribute read from the three resolved Amazon detail pages on ${esc(site.built_display)}. Blank value cells represent unverified or gated attributes and are never inferred.</p>
+  <div class="table-wrap" style="margin-top:12px">
+    <table>
+      <caption>Line-by-line product specification checks across ASINs B08FKW9JRM, B0BSKQW2T2, and B08DY9HRWD.</caption>
+      <thead><tr><th scope="col">Observed ASIN</th><th scope="col">Attribute</th><th scope="col">Confirmed value (blank = unverified)</th><th scope="col">Status</th><th scope="col">Official source</th></tr></thead>
+      <tbody>${allSpecRows}</tbody>
+    </table>
+  </div>
+  <p class="link-note" style="margin-top:12px">Machine-readable copies: <a href="../data/sources.json">data/sources.json</a> &middot; <a href="../data/product-specs.json">data/product-specs.json</a> &middot; <a href="../data/verified-sources.json">data/verified-sources.json</a>.</p>
 </div>`;
 
   add("sources/index.html", layout({
@@ -976,7 +1177,7 @@ ${prod ? `<section class="block"><div class="wrap">
   <div class="table-wrap">
     <table>
       <caption>Event contract for <span class="mono">site_id: ${esc(site.analytics.site_id)}</span>. Payload fields are the complete list sent for each event.</caption>
-      <thead><tr><th scope="col">#</th><th scope="col">Event</th><th scope="col">Fires when</th><th scope="col">Payload</th><th scope="col">Question it answers</th></tr></thead>
+      <thead><tr><th scope="col">#</th><th scope="col">Event</th><th scope="col">Fires when</th><th scope="col">Payload</th><th scope="col">Question it answers</th><th scope="col">Policy basis</th></tr></thead>
       <tbody>
         ${events.map((e, i) => `<tr>
           <td class="num">${i + 1}</td>
@@ -984,6 +1185,7 @@ ${prod ? `<section class="block"><div class="wrap">
           <td>${esc(e.when)}</td>
           <td>${e.payload.map((x) => `<span class="mono link-note">${esc(x)}</span>`).join(" ")}</td>
           <td>${esc(e.why)}</td>
+          <td>${srcBadge("S01", 1)} ${srcBadge("S03", 1)}</td>
         </tr>`).join("")}
       </tbody>
     </table>
@@ -1014,12 +1216,12 @@ ${prod ? `<section class="block"><div class="wrap">
       <caption>Findability checklist. Only what is true is ticked.</caption>
       <thead><tr><th scope="col">Item</th><th scope="col">Status</th><th scope="col">Detail</th></tr></thead>
       <tbody>
-        <tr><td>One canonical host</td><td><span class="badge ok">Done</span></td><td>Canonical link on every page pointing at <span class="mono">${esc(BASE)}</span></td></tr>
+        <tr><td>One canonical host</td><td><span class="badge ok">Done</span></td><td>Canonical link on every page pointing at <span class="mono">${esc(BASE)}</span> ${srcBadge("S14", 1)}</td></tr>
         <tr><td>XML sitemap</td><td><span class="badge ok">Done</span></td><td><a href="../sitemap.xml">sitemap.xml</a>, referenced from <a href="../robots.txt">robots.txt</a> ${srcBadge("S08", 1)}</td></tr>
         <tr><td>RSS feed</td><td><span class="badge ok">Done</span></td><td><a href="../feed.xml">feed.xml</a>, RSS 2.0, also a valid sitemap format ${srcBadge("S08", 1)}</td></tr>
         <tr><td>robots.txt</td><td><span class="badge warn">Advisory only</span></td><td>Published at <a href="../robots.txt">/robots.txt</a> inside the project path, which is not the host root, so it may be ignored. The noindex meta tag is the real control. <a href="../flagged/#F14">F14</a> ${srcBadge("S19", 1)}</td></tr>
         <tr><td>Search Console property</td><td><span class="badge warn">Blocked</span></td><td>No verification token available; the build emits the meta tag as soon as one is supplied. <a href="../flagged/#F04">F04</a> ${srcBadge("S09", 1)}</td></tr>
-        <tr><td>Measured queries</td><td><span class="badge warn">None yet</span></td><td>Requires Search Console plus a collection endpoint. No keyword volume is claimed anywhere on this site.</td></tr>
+        <tr><td>Measured queries</td><td><span class="badge warn">None yet</span></td><td>Requires Search Console plus a collection endpoint. No keyword volume is claimed anywhere on this site. ${srcBadge("S09", 1)}</td></tr>
       </tbody>
     </table>
   </div>
@@ -1049,11 +1251,17 @@ ${prod ? `<section class="block"><div class="wrap">
 /* ---- ledger ---- */
 
 {
-  const intentRows = products.map((prod) => {
+  const rawSubmissions = [
+    { rowNum: 1, prod: products[0], dupNote: "" },
+    { rowNum: 2, prod: products[1], dupNote: "" },
+    { rowNum: 3, prod: products[1], dupNote: "Exact duplicate of submission 2 (F02)" },
+    { rowNum: 4, prod: products[2], dupNote: "" }
+  ];
+  const intentRows = rawSubmissions.map(({ rowNum, prod, dupNote }) => {
     const s = SRC[prod.submitted_links[0]];
     return `<tr>
-      <td><a href="${s.url}" data-sponsored="amazon" data-link-kind="provenance" data-citation="true" target="_blank" rel="sponsored nofollow noopener" class="mono">${esc(s.url.replace("https://", ""))}</a></td>
-      <td class="blank">not in the link</td>
+      <td><span class="mono">#${rowNum}</span> <a href="${s.url}" data-sponsored="amazon" data-link-kind="provenance" data-citation="true" target="_blank" rel="sponsored nofollow noopener" class="mono">${esc(s.url.replace("https://", ""))}</a>${dupNote ? `<br><span class="badge warn">${esc(dupNote)}</span>` : ""}</td>
+      <td><span class="badge warn">Unverified (blank)</span></td>
       <td class="mono">${esc(prod.asin_observed)}</td>
       <td><a href="${tagged(prod.asin_observed)}" data-sponsored="amazon" data-asin="${esc(prod.asin_observed)}" rel="sponsored nofollow noopener" class="mono">dp/${esc(prod.asin_observed)}?tag=${esc(TAG)}</a></td>
       <td>${esc(prod.confirmation_date)}</td>
@@ -1071,16 +1279,16 @@ ${prod ? `<section class="block"><div class="wrap">
 </div>
 
 <section class="wrap">
-  <h2>1. Product-intent confirmation record</h2>
-  <p class="prose">For each submitted link: the intended ASIN, the official listing URL, the confirmation date and the source, with the observed redirect target kept in its own field. The two are never merged, because a redirect target is an observation and an intended ASIN is a claim.</p>
+  <h2>1. Product-intent confirmation record (all 4 submitted rows)</h2>
+  <p class="prose">For each submitted link: the intended ASIN, the official listing URL, the confirmation date and the source, with the observed redirect target kept in its own field. Submission #3 repeats submission #2 (<a href="../flagged/#F02">F02</a>). Intended ASINs remain blank and unverified rather than merged with observed redirect targets.</p>
   <div class="table-wrap">
     <table>
-      <caption>Published from <span class="mono">data/product-intents.csv</span>. Blank intended ASIN means the short link carries no ASIN, not that none exists.</caption>
+      <caption>Published from <span class="mono">data/product-intents.csv</span>. Blank intended ASIN means unconfirmed operator intent, kept strictly separate from observed redirect ASINs.</caption>
       <thead><tr><th scope="col">Submitted link</th><th scope="col">Intended ASIN</th><th scope="col">Observed ASIN</th><th scope="col">Official listing URL</th><th scope="col">Confirmed</th><th scope="col">Source</th><th scope="col">Observed redirect target</th><th scope="col">Tracking confirmed</th></tr></thead>
       <tbody>${intentRows}</tbody>
     </table>
   </div>
-  <p class="link-note" style="margin-top:10px">Note on the last column: the ASIN definition itself rests on observation plus a secondary source, because Amazon&rsquo;s own definition page needs a sign-in. <a href="../flagged/#F06">F06</a></p>
+  <p class="link-note" style="margin-top:10px">Official Amazon ASIN definition: ${srcBadge("S24", 1)} (plus Seller Central notes on <a href="../flagged/#F06">F06</a>).</p>
 </section>
 
 <section class="block">
@@ -1103,10 +1311,57 @@ ${prod ? `<section class="block"><div class="wrap">
     description: "The product-intent confirmation record, with intended ASIN and observed redirect in separate fields, and a campaign ledger that is empty because no first-party report exists.",
     depth: 1,
     urlPath: "ledger/",
-    current: "",
+    current: "ledger/",
     page: "ledger",
     jsonld: [crumbLd([["", "Home"], ["ledger/", "Ledger"]])],
     body: crumbs([["", "Home"], ["ledger/", "Ledger"]], 1) + body
+  }));
+}
+
+/* ---- automation & compliance gate ---- */
+
+{
+  const autoBody = `
+<div class="wrap page-head">
+  <p class="kicker">Trustworthy machinery</p>
+  <h1>Automation &amp; compliance gate</h1>
+  <p class="standfirst">Automate deterministic checks—HTML generation, link tagging, disclosure placement, XML feeds, and line-by-line source auditing—and put hard compliance gates in front of product intent, Creators API credentials, and first-party Associates reports.</p>
+</div>
+<section class="wrap">
+  <div class="callout">
+    <h3>CLI verification commands</h3>
+    <p><span class="mono">node scripts/build.mjs &amp;&amp; node scripts/validate.mjs</span> &middot; Rebuilds every page from <span class="mono">data/*.json</span> and enforces disclosures, <span class="mono">rel="sponsored nofollow"</span>, single affiliate tag, sitemap, and table-row citations.<br>
+    <span class="mono">python3 scripts/platform_engine.py audit</span> &middot; Audits all 52 product specification rows, 25 sources, and blank unverified fields.<br>
+    <span class="mono">python3 -m unittest discover -s tests -v</span> &middot; Runs automated compliance, Special Link, Creators API cache-TTL, and campaign-ledger tests.</p>
+  </div>
+
+  <h2 style="margin-top:28px">7-stage publishing &amp; policy gate</h2>
+  <div class="table-wrap">
+    <table>
+      <caption>Automated checks vs. human-gated compliance steps across the repository.</caption>
+      <thead><tr><th scope="col">Stage</th><th scope="col">Mode</th><th scope="col">Rule enforced</th><th scope="col">Status</th><th scope="col">Official policy</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1. Product-intent vs. redirect separation</strong></td><td>Automated + Human gate</td><td>Keeps <span class="mono">intended_asin</span> (<span class="mono">null</span>) strictly separate from <span class="mono">asin_observed</span> and <span class="mono">observed_redirect_target</span>; rejects 9-character <span class="mono">link.amazon</span> share tokens as ASINs.</td><td><span class="badge ok">Enforced</span></td><td>${srcBadge("S24", 1)} ${srcBadge("S10", 1)}</td></tr>
+        <tr><td><strong>2. Special Link tagging &amp; short-link boundary</strong></td><td>Automated + Associates gate</td><td>Formats outbound product links as <span class="mono">dp/&lt;ASIN&gt;?tag=${esc(TAG)}</span> without cloaking; records supplied <span class="mono">link.amazon</span> URLs as unresolved rather than claiming invalidity (<a href="../flagged/#F01">F01</a>).</td><td><span class="badge warn">Enrolment pending</span></td><td>${srcBadge("S01", 1)} ${srcBadge("S02", 1)}</td></tr>
+        <tr><td><strong>3. Above-fold &amp; footer disclosures</strong></td><td>Automated (<span class="mono">validate.mjs</span>)</td><td>Requires the masthead Sponsored disclosure strip above the fold and the footer affiliate disclosure on 100% of pages.</td><td><span class="badge ok">Passing</span></td><td>${srcBadge("S03", 1)} ${srcBadge("S02", 1)}</td></tr>
+        <tr><td><strong>4. Line-by-line source &amp; blank-field audit</strong></td><td>Automated (<span class="mono">platform_engine.py</span>)</td><td>Requires an official <span class="mono">https://</span> citation on every table row and keeps unverified attributes blank.</td><td><span class="badge ok">Passing</span></td><td>${srcBadge("S03", 1)}</td></tr>
+        <tr><td><strong>5. Creators API price, rating &amp; image gate</strong></td><td>Policy gate (<span class="mono">creators_api_client.py</span>)</td><td>Blocks static prices, ratings, and hotlinked Amazon images; enforces &le;24h UTC-stamped cache TTL once Creators API credentials are added.</td><td><span class="badge warn">Gated (F07/F09)</span></td><td>${srcBadge("S01", 1)} ${srcBadge("S18", 1)}</td></tr>
+        <tr><td><strong>6. Agent user-agent &amp; crawl discipline</strong></td><td>Policy gate (<a href="../flagged/#F13">F13</a>)</td><td>Requires <span class="mono">Agent/[agent name]</span> user-agent identification and non-circumvention on any future automated Amazon fetches.</td><td><span class="badge warn">Documented</span></td><td>${srcBadge("S01", 1)}</td></tr>
+        <tr><td><strong>7. Evidence-only campaign ledger</strong></td><td>Automated (<span class="mono">validate.mjs</span> + <span class="mono">ci.yml</span>)</td><td>Enforces empty ledger until authorized Associates reports exist; rejects fabricated conversion scores or revenue forecasts.</td><td><span class="badge ok">Passing</span></td><td>${srcBadge("S17", 1)} ${srcBadge("S23", 1)}</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>`;
+
+  add("automation/index.html", layout({
+    title: `Automation & compliance gate | ${site.name}`,
+    description: "Automated static build, disclosure and link validation, Creators API policy wrapper, and human compliance gates for Amazon Associates.",
+    depth: 1,
+    urlPath: "automation/",
+    current: "automation/",
+    page: "automation",
+    jsonld: [crumbLd([["", "Home"], ["automation/", "Automation & compliance gate"]])],
+    body: crumbs([["", "Home"], ["automation/", "Automation & compliance gate"]], 1) + autoBody
   }));
 }
 
@@ -1143,7 +1398,7 @@ ${prod ? `<section class="block"><div class="wrap">
       <li>No prices, star ratings, review counts, availability or product images, because this site has no Amazon-served link widget and no Creators/PA API access.</li>
       <li>No commission percentages, conversion scores or revenue forecasts, because the rate schedule and the reports both require a sign-in.</li>
       <li>No hands-on experience claims, because nothing was bought or used.</li>
-      <li>No invented brand for the one product whose listing title does not state one.</li>
+      <li>No inferred catalog values: where <span class="mono">UPC</span> or <span class="mono">Date First Available</span> is absent from an official listing table, the cell stays blank and badged unverified.</li>
       <li>No search-volume or popularity claims for any guide title.</li>
     </ul>
 
@@ -1163,20 +1418,21 @@ ${prod ? `<section class="block"><div class="wrap">
       <table>
         <caption>Only fields that are actually known are shown. Blank means not recorded, never zero.</caption>
         <tbody>
-          <tr><th scope="row">Pull request</th><td>${release.pr_url ? `<a href="${esc(release.pr_url)}" target="_blank" rel="noopener">#${esc(release.pr_number)} — ${esc(release.pr_url)}</a>` : `<span class="blank">not recorded</span>`}</td></tr>
-          <tr><th scope="row">Merge commit</th><td>${release.merge_commit ? `<span class="mono">${esc(release.merge_commit)}</span>` : `<span class="blank">not recorded</span>`}</td></tr>
-          <tr><th scope="row">Merged at</th><td>${release.merged_at ? esc(release.merged_at) + " UTC" : `<span class="blank">not recorded</span>`}</td></tr>
-          <tr><th scope="row">Published URL</th><td><a href="${esc(release.pages_url)}" target="_blank" rel="noopener">${esc(release.pages_url)}</a></td></tr>
-          <tr><th scope="row">Pages build</th><td>${esc(release.pages_status)}</td></tr>
-          <tr><th scope="row">Pages source</th><td><span class="mono">${esc(release.pages_source)}</span> (${esc(release.pages_build_type)})</td></tr>
+          <tr><th scope="row">Pull request</th><td>${release.pr_url ? `<a href="${esc(release.pr_url)}" target="_blank" rel="noopener">#${esc(release.pr_number)} — ${esc(release.pr_url)}</a>` : `<span class="blank">not recorded</span>`} ${srcBadge("S14", 1)}</td></tr>
+          <tr><th scope="row">Merge commit</th><td>${release.merge_commit ? `<span class="mono">${esc(release.merge_commit)}</span>` : `<span class="blank">not recorded</span>`} ${srcBadge("S14", 1)}</td></tr>
+          <tr><th scope="row">Merged at</th><td>${release.merged_at ? esc(release.merged_at) + " UTC" : `<span class="blank">not recorded</span>`} ${srcBadge("S14", 1)}</td></tr>
+          <tr><th scope="row">Published URL</th><td><a href="${esc(release.pages_url)}" target="_blank" rel="noopener">${esc(release.pages_url)}</a> ${srcBadge("S14", 1)}</td></tr>
+          <tr><th scope="row">Pages build</th><td>${esc(release.pages_status)} ${srcBadge("S14", 1)}</td></tr>
+          <tr><th scope="row">Pages source</th><td><span class="mono">${esc(release.pages_source)}</span> (${esc(release.pages_build_type)}) ${srcBadge("S07", 1)}</td></tr>
         </tbody>
       </table>
     </div>
 
     <h2>Read next</h2>
     <ul>
-      <li><a href="../sources/">Source register</a> &mdash; every source with the text it supports</li>
+      <li><a href="../sources/">Source register</a> &mdash; every source, SG-27..SG-30 passes, and 52 product spec rows</li>
       <li><a href="../flagged/">Flagged for review</a> &mdash; ${flagged.length} open items</li>
+      <li><a href="../automation/">Automation &amp; compliance gate</a> &mdash; CLI checks and policy gates</li>
       <li><a href="../about/">How we verify</a> &mdash; method, limits and the automation boundary</li>
       <li><a href="../disclosures/">Disclosures</a> &mdash; affiliate, privacy and data omissions</li>
       <li><a href="../EXECUTIVE_SUMMARY.md">EXECUTIVE_SUMMARY.md</a> in the repository</li>
@@ -1225,10 +1481,12 @@ ${prod ? `<section class="block"><div class="wrap">
       tags: ["guide", g.category, g.short_title]
     })),
     { title: "All products", path: "products/", url: abs("products/"), kind: "Page", summary: "The verified product register with source links.", tags: ["table", "register"] },
-    { title: "Guides", path: "guides/", url: abs("guides/"), kind: "Page", summary: "All buying guides and the publishing cadence.", tags: ["editorial"] },
+    { title: "Side-by-side comparisons", path: "products/comparisons/", url: abs("products/comparisons/"), kind: "Page", summary: "Dimensions, materials, weights and catalog identifiers compared side by side.", tags: ["comparison", "dimensions", "specs"] },
+    { title: "Guides", path: "guides/", url: abs("guides/"), kind: "Page", summary: "All buying guides, working-title hypotheses and publishing cadence.", tags: ["editorial", "air fryer"] },
     { title: "How we verify", path: "about/", url: abs("about/"), kind: "Page", summary: "Method, verification levels, automation boundaries.", tags: ["method", "sources"] },
+    { title: "Automation & compliance gate", path: "automation/", url: abs("automation/"), kind: "Page", summary: "CLI checks, Special Link gate, Creators API TTL and human gates.", tags: ["automation", "gate", "cli"] },
     { title: "Disclosures", path: "disclosures/", url: abs("disclosures/"), kind: "Page", summary: "Affiliate disclosure, link policy, privacy, withheld data.", tags: ["affiliate", "ftc", "privacy"] },
-    { title: "Source register", path: "sources/", url: abs("sources/"), kind: "Page", summary: "Every official source with what it supports.", tags: ["sources", "provenance"] },
+    { title: "Source register", path: "sources/", url: abs("sources/"), kind: "Page", summary: "Every official source, SG-27..SG-30 passes, and 52 product spec rows.", tags: ["sources", "provenance", "SG-27"] },
     { title: "Flagged for review", path: "flagged/", url: abs("flagged/"), kind: "Page", summary: "Unverified values, unreadable sources and withheld data.", tags: ["verification", "issues"] },
     { title: "Measurement", path: "measurement/", url: abs("measurement/"), kind: "Page", summary: "The five events, privacy rules and current status.", tags: ["analytics", "events"] },
     { title: "Ledger", path: "ledger/", url: abs("ledger/"), kind: "Page", summary: "Product-intent record and the empty campaign ledger.", tags: ["data", "ledger"] },

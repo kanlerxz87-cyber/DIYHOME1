@@ -133,6 +133,37 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .site-nav a:hover { background: var(--paper-2); color: var(--ink); }
 .site-nav a[aria-current="page"] { background: var(--accent-soft); color: var(--accent-ink); }
 
+.desk-dropdown { position: relative; }
+.desk-dropdown summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 7px 12px;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  user-select: none;
+}
+.desk-dropdown summary::-webkit-details-marker { display: none; }
+.desk-dropdown summary:hover { color: var(--ink); border-color: var(--line-strong); }
+.desk-dropdown .desk-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  z-index: 40;
+  background: var(--card);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 8px;
+  min-width: 240px;
+  display: grid !important;
+  gap: 2px;
+}
+.desk-dropdown .desk-menu a { padding: 7px 10px; font-size: 13.5px; }
+
 /* ---------- disclosure strip (must be above the fold on every page) ---------- */
 
 .disclosure {

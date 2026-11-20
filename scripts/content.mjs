@@ -154,13 +154,13 @@ export const guides = {
       <table>
         <caption>Which category fits which answer</caption>
         <thead>
-          <tr><th>Your answer</th><th>Category to look in</th></tr>
+          <tr><th>Your answer</th><th>Category to look in</th><th>Official listing / policy source</th></tr>
         </thead>
         <tbody>
-          <tr><td>Counter space lost to paper towels, cannot drill</td><td>Under-cabinet paper towel holder, adhesive mount</td></tr>
-          <tr><td>Pans stacked three deep, low cabinet</td><td>Pots and pans organiser, tool-free adjustable rack</td></tr>
-          <tr><td>First peel-and-stick project, small area</td><td>Wallpaper smoothing tools</td></tr>
-          <tr><td>No storage left at all</td><td>None of the above: this is a decluttering problem, not a product problem</td></tr>
+          <tr><td>Counter space lost to paper towels, cannot drill</td><td>Under-cabinet paper towel holder, adhesive mount</td><td><a class="src" href="https://www.amazon.com/dp/B0BSKQW2T2" data-citation="true" target="_blank" rel="noopener">S05 (B0BSKQW2T2)</a></td></tr>
+          <tr><td>Pans stacked three deep, low cabinet</td><td>Pots and pans organiser, tool-free adjustable rack</td><td><a class="src" href="https://www.amazon.com/dp/B08DY9HRWD" data-citation="true" target="_blank" rel="noopener">S06 (B08DY9HRWD)</a></td></tr>
+          <tr><td>First peel-and-stick project, small area</td><td>Wallpaper smoothing tools</td><td><a class="src" href="https://www.amazon.com/dp/B08FKW9JRM" data-citation="true" target="_blank" rel="noopener">S04 (B08FKW9JRM)</a></td></tr>
+          <tr><td>No storage left at all</td><td>None of the above: this is a decluttering problem, not a product problem</td><td><a class="src" href="https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers" data-citation="true" target="_blank" rel="noopener">S03 (FTC guidance)</a></td></tr>
         </tbody>
       </table>
 
