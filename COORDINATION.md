@@ -25,3 +25,18 @@ No prior board or claims existed when this task was claimed. The Arena-assigned 
 
 ## Parallel integration resolution
 PR #2 merged while PR #3 was under validation. The original board and verification notes are preserved above; the prior published edition remains in Git at `87946a0`. Shared publication files were regenerated from the PR #3 sources; prior guide/register/summary URLs now point to the corresponding canonical pages. Unverified short links remain plain text rather than active shopping links. Both sessions' findings agree on the duplicate and missing catalog and account evidence.
+| Follow-up task | Status | Owner | Scope |
+|---|---|---|---|
+| Redirect evidence handoff | done | b5266bc5 | research/redirects.csv only |
+
+Concurrent integration discovered: PR #2 already merged at 87946a0. Resolved concurrent board creation by preserving the integration board and narrowing this session's claim; no competing site changes. Request for site owner: incorporate observed listing evidence into Flagged for Review, separately from intent. No authorization to validate attribution was available.
+- Three distinct short links fetched; normalized official destinations and titles recorded per submission. PR #2 merged. Follow-up: https://github.com/kanlerxz87-cyber/DIYHOME1/pull/4. Rebase conflict on competing initial claims resolved by retaining the integrated board and evidence scope.
+## Handoff and independent verification — arena-12f29fdb
+- 2026-11-20: Both sessions initially saw an empty repository and claimed overlapping integration scopes before either claim was visible. Main advanced to PR #2 while this session worked; a rebase produced an add/add conflict in this board. Resolved by retaining the merged integration session's site and board, not overwriting its files. This session's duplicate site implementation was not integrated.
+- Request for the integration owner: update the product register and flagged page with the independently observed redirects below, while keeping intended product identity and tracking attribution unconfirmed. The network restriction reported by the first session remains a valid account of that session, but subsequent page-fetch observations are now available.
+- Page fetches on 2026-11-20 resolved the three distinct submitted links respectively to Amazon product pages: [submission 1 → B08FKW9JRM](https://www.amazon.com/dp/B08FKW9JRM), [submission 2 → B0BSKQW2T2](https://www.amazon.com/dp/B0BSKQW2T2), [submission 3 → B08DY9HRWD](https://www.amazon.com/dp/B08DY9HRWD). These observations do not establish intended ASINs or validate Special Links. Source links: [first submitted URL](https://link.amazon/B0hmGG4m2), [second](https://link.amazon/B03QDuGdo), [third](https://link.amazon/B0hpD2JGQ); the second was provided twice. [Amazon's ASIN explanation](https://sell.amazon.com/blog/what-is-an-asin) describes how to identify an ASIN on a product detail page.
+- PR #2 merged at 2026-11-20 05:57:31 UTC. Deployment status checked separately below.
+
+- Second board conflict with PR #4 resolved by retaining both sessions’ handoffs; the independently observed destinations agree. PR #5 records this handoff.
+
+- PR #3 independently re-fetched all three short URLs and matched the handoff destinations. Resolved the second coordination conflict by preserving both handoffs and adding the observed destination evidence to the site separately from intent. GitHub PR #3 is the merge record of this edition.
