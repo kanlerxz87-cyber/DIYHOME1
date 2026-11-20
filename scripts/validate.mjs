@@ -29,8 +29,20 @@ function walk(dir, out = []) {
   return out;
 }
 
-const htmlFiles = walk(ROOT).sort();
-ok("HTML pages found", String(htmlFiles.length));
+const allHtml = walk(ROOT).sort();
+const htmlFiles = allHtml.filter((f) => !rel(f).startsWith("archive/"));
+const archivedHtml = allHtml.filter((f) => rel(f).startsWith("archive/"));
+ok("HTML pages found", `${htmlFiles.length} published, ${archivedHtml.length} archived`);
+
+/* ---------- archived earlier edition: preserved, never indexed ---------- */
+for (const file of archivedHtml) {
+  const html = fs.readFileSync(file, "utf8");
+  const name = rel(file);
+  if (!/<meta name="robots" content="noindex/.test(html)) err(`${name}: archived page must be noindex`);
+  if (!/archived-edition-banner/.test(html)) err(`${name}: archived page missing the archive banner`);
+  if (!/href="[^"]*"[^>]*>DIY Home Upgrades</.test(html)) err(`${name}: archive banner must link to the live publication`);
+}
+ok("Archived edition preserved (noindex + banner)", String(archivedHtml.length));
 
 /* ---------- per page ---------- */
 
@@ -176,6 +188,7 @@ const sitemap = fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8");
 const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
 ok("Sitemap URLs", String(locs.length));
 for (const loc of locs) {
+  if (loc.includes("/archive/")) err(`sitemap must not list archived pages: ${loc}`);
   const p = loc.replace("https://kanlerxz87-cyber.github.io/DIYHOME1/", "");
   const target = p === "" ? path.join(ROOT, "index.html") : path.join(ROOT, p, "index.html");
   if (!fs.existsSync(target)) err(`sitemap lists a missing page: ${loc}`);

@@ -119,7 +119,17 @@ No endpoint is configured, so no event leaves the browser; events are visible in
 
 ---
 
-## 8. Where it stands
+## 8. Parallel sessions and the merged publication
+
+`main` advanced through PRs #1–#8 from four other Arena sessions before this branch merged. Those sessions published a different edition — "The Practical Home" — which deliberately showed **no products** at all: its build only rendered a product card once a Special Link and an Associates tracking report existed.
+
+This integration did not discard it. The earlier edition is preserved intact at `/archive/practical-home/` with its data (`catalog.json`, `redirects.csv`), Python build and check scripts, analytics worker, acceptance and release-review harnesses, all still runnable in place. Three things were added to it, by the committed script `archive/practical-home/scripts/preserve-archive.py`: absolute URLs rewritten to the archive path, `noindex`, and a banner linking back here. It is excluded from `sitemap.xml`, so one publication is indexed.
+
+The live root is now the product-led edition, because the brief's first priority was to lead with products, and a shop with zero products cannot do that. Both editions' findings agree on the substance: the three distinct short links resolve to three distinct ASINs, the fourth submission is a duplicate, and no tracking attribution can be confirmed without Associates Central access.
+
+Prior sessions' board and logs are reproduced verbatim in `COORDINATION.md`.
+
+## 9. Where it stands
 
 The site builds and passes every check. Three things need account access the build did not have: Associates tracking confirmation, Search Console verification, and an analytics host. All three are published on `/flagged/` with what would close them.
 

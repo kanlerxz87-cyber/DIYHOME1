@@ -67,6 +67,7 @@ const FOOTER_NAV = [
     ["measurement/", "Measurement & events"],
     ["ledger/", "Campaign ledger"],
     ["summary/", "Executive summary"],
+    ["archive/practical-home/", "Earlier edition (archived)"],
     ["sitemap.xml", "sitemap.xml"],
     ["feed.xml", "feed.xml"]
   ]]
