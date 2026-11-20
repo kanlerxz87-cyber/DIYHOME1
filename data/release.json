@@ -1,10 +1,10 @@
 {
-  "pr_url": "https://github.com/kanlerxz87-cyber/DIYHOME1/pull/9",
-  "pr_number": "9",
-  "merge_commit": "eef1330683625888b6b365157f16f71a31768b6e",
-  "merged_at": "2026-11-20T06:07:51Z",
+  "pr_url": "https://github.com/kanlerxz87-cyber/DIYHOME1/pull/13",
+  "pr_number": "13",
+  "merge_commit": "e32d1e4b9556768f33c6bbd8e4f8ccab7129f800",
+  "merged_at": "2026-11-20T06:58:16Z",
   "pages_url": "https://kanlerxz87-cyber.github.io/DIYHOME1/",
-  "pages_status": "built \u2014 Pages reported build_type legacy for commit eef1330, and the live pages were fetched and confirmed",
+  "pages_status": "built \u2014 Pages reported status 'built' (legacy, main:/) for commit e32d1e4b9556 at 2026-11-20T06:58:39Z; live pages (/DIYHOME1/, /products/comparisons/, /automation/, /sources/, /flagged/) fetched and confirmed",
   "pages_build_type": "legacy",
   "pages_source": "main:/",
   "notes": "Filled in by the integration session after the merge. Empty fields are genuinely unknown, not zero."
