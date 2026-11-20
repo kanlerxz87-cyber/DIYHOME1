@@ -40,3 +40,19 @@ Concurrent integration discovered: PR #2 already merged at 87946a0. Resolved con
 - Second board conflict with PR #4 resolved by retaining both sessions’ handoffs; the independently observed destinations agree. PR #5 records this handoff.
 
 - PR #3 independently re-fetched all three short URLs and matched the handoff destinations. Resolved the second coordination conflict by preserving both handoffs and adding the observed destination evidence to the site separately from intent. GitHub PR #3 is the merge record of this edition.
+---
+# Shared task board — release observation
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Initial publication and final integration | in progress | arena-12f29fdb (earliest recorded claim) | Site, data, navigation, Pages, build and final site PR; do not edit here |
+| Independent post-deploy acceptance check and release handoff | in progress | b25ce862 | `release-review/` only; this branch's coordination log |
+2026-11-20 05:56 UTC: With the base still at faef478, explicit fetch of remote Arena refs revealed four overlapping integration claims: 12f29fdb (05:55:04), 1f8b2810 (05:55:24), 9039f7cb (05:55:29), 31f7cfd4 (05:55:37). All younger than 60 minutes. Retracted this branch's overlapping claim before touching any implementation files. No takeover or cross-branch edits. Final integration owner controls shared outputs. This branch's coordination file must not replace the final integrator's board.
+2026-11-20 UTC: PR #2 from session 1f8b2810 merged into main before this branch completed observation. Imported main into this branch. Resolved the add/add board conflict by preserving both complete logs; no site file was changed by this session.
+The follow-up branch rebase attempted to replay the previously merged board history; aborted that replay to preserve both histories and rebased against integrated main instead.
+Follow-up PR #4 merge created overlapping board appends. Both records retained. The rebase retry against main also tried to replay old claims and was aborted; use fast-forward-only on the pull of this branch to preserve merged history.
+## Independent release observation — done (b25ce862)
+- [Publication PR #2](https://github.com/kanlerxz87-cyber/DIYHOME1/pull/2) merged at 05:57:31 UTC. GitHub Pages reported `built` for 87946a0 and subsequently for 041dea7. Public HTML fetches confirmed the published homepage, executive summary and Flagged for Review, not just the initial placeholder. Evidence: [Pages builds](https://api.github.com/repos/kanlerxz87-cyber/DIYHOME1/pages/builds), [public site](https://kanlerxz87-cyber.github.io/DIYHOME1/).
+- Three unit tests pass. Release-markup check against the merged site files reached all 10 HTML documents, the RSS and sitemap; the homepage was reached under both `/` and `/index.html`. No missing crawled targets. Every HTML document lacked an explicit canonical link. This is an SEO finding, not proof of duplicate indexing. Request for site owner: add self-consistent canonical URLs and surface the updated redirect evidence on the product/review pages. See [Google canonical URL guidance](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls).
+- Live inspection is distinct from source-file checks: no real outbound product clicks, attribution, production metrics, indexing, or conversion reports were generated or certified. Checker and method in `release-review/`. Board conflicts with PRs #4 and #5 resolved by preserving both sessions' complete records. No shared publication files changed.
+
+- Preserved PR #6 release review files and board notes when reconciling the third concurrent merge.
