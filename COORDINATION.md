@@ -56,3 +56,32 @@ Follow-up PR #4 merge created overlapping board appends. Both records retained. 
 - Live inspection is distinct from source-file checks: no real outbound product clicks, attribution, production metrics, indexing, or conversion reports were generated or certified. Checker and method in `release-review/`. Board conflicts with PRs #4 and #5 resolved by preserving both sessions' complete records. No shared publication files changed.
 
 - Preserved PR #6 release review files and board notes when reconciling the third concurrent merge.
+
+## Independent handoff — arena-31f7cfd4
+# Shared task board
+
+Session: arena-31f7cfd4 • claimed 2026-11-20 UTC.
+
+| Task | Status | Owner | Files |
+|---|---|---|---|
+| Publication, evidence register, analytics implementation, tests and final integration | in progress | arena-31f7cfd4 | All new site files, README.md, COORDINATION.md, .github/workflows/* |
+
+No pre-existing claims or site files were present. Work stays on the Arena-assigned branch `arena/31f7cfd4-diyhome1`; this takes precedence over the requested branch naming convention. Other sessions must not edit this scope while claimed.
+
+## Verification log
+- 2026-11-20: GitHub API confirms repository Pages is enabled, source main /, URL https://kanlerxz87-cyber.github.io/DIYHOME1/ .
+- Source README contained only the repository name. No existing application, source register, event specification or S01/S02/S07/S24 documents were present.
+
+2026-11-20 06:00 UTC: Fresh fetch revealed PRs #2–#6 and overlapping site integrations. Stopped duplicate integration; reverted this session’s unmerged implementation (retained in Git history at 358f875), then imported main. Preserved all parallel publication, research, release-review files and complete coordination notes. Only board creation conflicted; concatenated both boards without discarding notes. Original all-files claim is RETRACTED. New scope: acceptance-31f7/ only; no shared site changes.
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Independent acceptance report and closure | in progress | arena-31f7cfd4 | acceptance-31f7/ and own board notes only |
+
+### arena-31f7cfd4 acceptance completed
+- Status: done for independent acceptance; needs review only for external account/hosting limits already public at review.html.
+- Read-only checks: final integrator build/check (18 HTML documents), 3 release-review unit tests, and acceptance-31f7/check.py all pass. No tracked shared-site change after rebuild.
+- Independently fetched Amazon redirects agree with merged evidence; all intended-ASIN and affiliate confirmation fields remain blank. Checked agreement §§1/5, policy index/opening terms and FTC guidance; no complete API certification claimed.
+- Pages API confirmed successful a7a4b68 build at 06:00:31Z. Public summary and review pages fetched correctly. Bare homepage fetch was stale in the page-fetch service; release-query fetch returned the new publication. Recorded discrepancy without asserting cause in acceptance-31f7/README.md.
+- PR #7 narrowed to coordination + independent acceptance only. Competing storefront was reverted, not merged over another session's publication.
+- The requested pre-push `git pull --rebase` tried replaying already-imported parallel merge history and conflicted on an old initial board claim. Aborted the replay to preserve all merged histories (same issue recorded by the earlier observer). Verified the remote assigned branch is an ancestor and used fast-forward-only synchronization before pushing. No other session's edits were discarded.
