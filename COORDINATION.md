@@ -564,6 +564,7 @@ Claimed before editing (see this branch's earlier commit history on `arena/818bf
 
 ---
 
+
 ### 2026-11-21 — `S-2026-11-21-9513affd` (`arena/9513affd-diyhome1`) — Non-overlapping session claim
 
 - **Branch:** `arena/9513affd-diyhome1` (Arena-assigned branch; synced to `origin/main` @ `063dae1` after PR #18).
@@ -590,6 +591,30 @@ Claimed before editing (see this branch's earlier commit history on `arena/818bf
 - **Status:** T-9513-01 and T-9513-02 marked `done`.
 - **Post-merge coordination record (PR #29):** the release-record commit was merged via [PR #29](https://github.com/kanlerxz87-cyber/DIYHOME1/pull/29) (`MERGED`, merge commit `191341d`, both CI workflows `pass`). **Transparency note:** while merging that record, PR #28 (session `arena/fe2b1ce4-diyhome1`, "fix(summary): correct the 21 Nov citation badges and stop understating the link re-fetch") was also merged to `main` at `2026-11-21T23:36:07Z` (merge commit `c150c9b`) — that PR belonged to a concurrent session and was open with green checks; it is recorded here so the merge is auditable. No files from that session were modified or discarded by this session.
 - **Final live state (2026-11-21, after PR #29):** GitHub Pages `status: "built"` for `main`; live fetches confirmed the dossier at `/verification-9513affd/VERIFICATION-REPORT.md`, the homepage, and `/flagged/` (19 open items, each with official source links). Final checks on the merged state: `node scripts/build.mjs` (23 pages, deterministic), `node scripts/validate.mjs` (16/16, no broken links), `python3 -m unittest discover -s tests` (**28/28**).
+
+---
+
+---
+
+## Completion record — session `S-2026-11-21-G` (`arena/fe2b1ce4-diyhome1`)
+
+| Task | Scope | Status | Evidence |
+|---|---|---|---|
+| `T-B01` | Re-verify the 3 supplied short links + 3 resolved listings on 2026-11-21 | `done` | All three re-fetched and resolved to the same ASINs. Observed redirect targets, listing titles and `tag_parameter_in_redirect: false` recorded in `data/products.json` + `data/product-intents.csv`; the 2026-11-20 redirect kept in `observed_redirect_target_history`. |
+| `T-B02` | Re-check the blanks (`UPC/GTIN` ×2, `Date First Available` ×2) | `done` | Read the "Product information" and "Item details" tables on all three listings. The four fields are genuinely absent, so they stay blank; each now carries `audit_note` + `checked_on: 2026-11-21` and renders that note beside the cell. |
+| `T-B03` | Commission schedule | `done` | Public Standard Commission Income Statement read without sign-in (now **S32**): Kitchen 4.50%; Home/Home Improvement/Tools 3.00%. Band recorded as a schedule reference badged *Needs Review*; **no percentage or revenue figure published**, ledger still empty. |
+| `T-B04` | Landing page leads with products | `done` | Shop-first hero, "which one is your job?" picker (explicitly *not* a ranking), cards carrying material/size/weight/mounting/box contents derived from `data/product-specs.json`; verification apparatus consolidated into one band below the shop. |
+| `T-B05` | Executive summary, README, release notes | `done` | `EXECUTIVE_SUMMARY.md` §0 records what changed; `/summary/` carries the same block with badges now resolving to S30/S31/S32; `README.md` and `SESSION_NOTES.md` updated. |
+| `T-B06` | Build, gate, PR, merge, deploy | `done` | PRs [#23](https://github.com/kanlerxz87-cyber/DIYHOME1/pull/23), [#25](https://github.com/kanlerxz87-cyber/DIYHOME1/pull/25), [#28](https://github.com/kanlerxz87-cyber/DIYHOME1/pull/28) merged. Pages `built`, error `null`. |
+
+**New sources added (after collision renumbering):** `S30` tracking-ID-in-URL help, `S31` simple text link + ASIN definition, `S32` public commission rate table.
+**New flags added:** `F20` hardcoded counts now computed; `F21` dynamic listing observations recorded but never rendered.
+
+**Verification performed on the merged tree:** `node scripts/build.mjs` (23 pages) · `node scripts/validate.mjs` (19/19 groups, 0 errors) · `python3 platform/affiliate_platform.py validate-registry|validate-ledger|audit-site` (0 errors) · `python3 scripts/platform_engine.py audit` (0 errors) · `python3 -m unittest discover -s tests` (16/16).
+
+**Merge conflicts and how they were resolved (nothing discarded):** `main` advanced four times during this session (PRs #15–#22, #26, #30). Each merge kept both sides — main's register numbering wins, this branch's additions re-added as S30–S32 and F20–F21; `COORDINATION.md` keeps every session's log; generated HTML regenerated from data. The session label was renamed `…-B` → `…-G` because the registry already used `…-B`.
+
+**Irregularities flagged, not hidden:** F01/F12 tracking and enrolment unconfirmed (Associates report required); F04 no Search Console token; F05 no analytics host; F13 automated fetches did not identify as an agent; F17–F19, F22 carried over from parallel sessions. None of these block publication; all are on `/flagged/` with sources.
 
 ---
 
