@@ -193,10 +193,43 @@
       "why_it_matters": "The site should not count on robots.txt to keep /search/ out of the index, and shouldn't claim it does.",
       "sources": [
         "S19",
-        "S08"
+        "S08",
+        "S26"
       ],
       "needs": "Submit the sitemap in Search Console (F04) and check the robots.txt report there. A custom domain, or the user/organisation Pages site at the host root, would make robots.txt authoritative.",
       "action": "The search page and the 404 page carry a noindex meta tag instead, which Google documents as the actual mechanism. robots.txt is still published, with a comment saying exactly this.",
+      "status": "needs review"
+    },
+    {
+      "id": "F15",
+      "severity": "low",
+      "title": "Five source quotes were not verbatim and have been corrected",
+      "what": "On 2026-11-21 every source carrying a quote was opened again and the quoted strings were compared with the page text. Five did not match: S01 elided an agent user-agent sentence with '...'; S07 cut a parenthetical; S08 quoted a section heading instead of a sentence; S23 paraphrased two commission-table rows and inserted 'Pantry', which is not in the 3.00% row; S25 paraphrased two USDA sentences. All five were replaced with the exact wording read on the page.",
+      "why_it_matters": "A register of verbatim quotes is only worth the exactness of its quotes. A paraphrase filed as a quote is a small fabrication even when the meaning is close, and the S23 error changed which categories appeared at 3.00%.",
+      "sources": [
+        "S01",
+        "S07",
+        "S08",
+        "S23",
+        "S25"
+      ],
+      "needs": "Nothing outstanding. Recorded so the correction is auditable rather than silent.",
+      "action": "Quotes corrected in data/sources.json and re-rendered on the source register. The two rates the site actually relies on (Kitchen 4.50%, Home/Home Improvement/Tools 3.00%) are unchanged by the correction.",
+      "status": "needs review"
+    },
+    {
+      "id": "F16",
+      "severity": "low",
+      "title": "The Amazon Product Information tables could not be re-read in this session's fetch",
+      "what": "The 2026-11-21 re-check re-read each listing's title, breadcrumb, merchant line, feature bullets and the three dimension strings for B08DY9HRWD. The Product Information / Technical Details tables did not surface in this session's text rendering, so the UPC, model number, item weight, material and Date First Available rows in the 52-row register could not be re-confirmed here. They rest on the 2026-11-20 record and link to the same official listing.",
+      "why_it_matters": "Those rows are labelled Verified. A reader should know which of them was confirmed, on which date and by which route, rather than assume every badge was re-tested today.",
+      "sources": [
+        "S04",
+        "S05",
+        "S06"
+      ],
+      "needs": "A signed-in or API route to the Product Information table, or a spot-check by the site owner, to re-confirm those fields after any listing change.",
+      "action": "The values were left exactly as published rather than upgraded, blanked or re-inferred, and this limitation is stated rather than hidden.",
       "status": "needs review"
     }
   ]
