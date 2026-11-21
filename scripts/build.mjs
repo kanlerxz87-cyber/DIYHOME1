@@ -1488,7 +1488,7 @@ ${relProds.length ? `<section class="block"><div class="wrap">
       <li><strong>The Product Information tables were reachable after all.</strong> F16 recorded that Amazon did not render them on 21 November. That was true of the desktop page; <span class="mono">/gp/product/&lt;ASIN&gt;</span> does render them. 11 fields of B08FKW9JRM and 10 of B0BSKQW2T2 were re-confirmed verbatim against those tables.</li>
       <li><strong>What still could not be confirmed was downgraded, not kept.</strong> B08DY9HRWD kept serving the reduced layout, so its model number, manufacturer part number, UPC, per-tier limit and included components, plus the &ldquo;Ships from / Sold by&rdquo; line for all three listings, are kept exactly as recorded on 20 November and badged <em>Needs Review</em>. The register reads 29 Verified / 13 Needs Review / 10 Unverified across 52 rows. No value was re-typed or inferred.</li>
       <li><strong>Three build defects fixed.</strong> &ldquo;How we verify&rdquo; described the listing title and breadcrumb as the only published product attributes, contradicting the 52-row register; the comparison matrix printed Needs-Review values as plain facts; the audit engine labelled all 52 rows &ldquo;verified&rdquo; regardless of status. All three now report what is actually true.</li>
-      <li><strong>Not re-run by this pass:</strong> the <span class="mono">link.amazon</span> submission fetches. A further unattended automated request against an Amazon page is the conduct Agent Terms 4 makes disclosable (${srcBadge("S01", 1)}, F13). The register shows the truth per link: short links 1 and 3 carry a 21 November retrieval, short link 2 is dated 20 November, so all three observations are dated rather than presented as fresh.</li>
+      <li><strong>Not re-run by the table-re-read pass:</strong> the <span class="mono">link.amazon</span> submission fetches (a parallel session did fetch all three on 21 November; see the next section). A further unattended automated request against an Amazon page is the conduct Agent Terms 4 makes disclosable (${srcBadge("S01", 1)}, F13). The register shows the truth per link: short links 1 and 3 carry a 21 November retrieval, short link 2 is dated 20 November, so all three observations are dated rather than presented as fresh.</li>
     </ul>
 
     <h2>What was verified</h2>
@@ -1512,8 +1512,8 @@ ${relProds.length ? `<section class="block"><div class="wrap">
     <h2>What the 21 November 2026 pass changed</h2>
     <ul>
       <li><strong>Short-link tracking, re-examined.</strong> All three supplied links were fetched again and resolved to the same ASINs. None carries the tag in its redirect, and Amazon's own help topic says the tracking ID is not expected to appear there because the session is tagged instead. ${srcBadge("S30", 1)} That is why the flag is about the Associates report, not about the missing parameter.</li>
-      <li><strong>The ASIN definition is now first-party and public.</strong> Amazon defines the ASIN as its 10-digit item code and documents the link format used here. ${srcBadge("S24", 1)}</li>
-      <li><strong>Commission bands are public.</strong> Kitchen 4.50%, Home/Home Improvement/Tools 3.00%. ${srcBadge("S23", 1)} The band is not the payout, so no percentage is published and the ledger stays empty.</li>
+      <li><strong>The ASIN definition is now first-party and public.</strong> Amazon defines the ASIN as its 10-digit item code and documents the link format used here. ${srcBadge("S31", 1)}</li>
+      <li><strong>Commission bands are public.</strong> Kitchen 4.50%, Home/Home Improvement/Tools 3.00%. ${srcBadge("S32", 1)} The band is not the payout, so no percentage is published and the ledger stays empty.</li>
       <li><strong>Blanks now explain themselves.</strong> Every unverified field says what was checked and when &mdash; two listings expose no UPC, two expose no date first available.</li>
     </ul>
 
