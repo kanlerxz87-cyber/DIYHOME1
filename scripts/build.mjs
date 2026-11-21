@@ -19,7 +19,8 @@ const guidesNote = readJson("data/guides.json").cadence_note;
 const flagged = readJson("data/flagged.json").items;
 const events = readJson("data/events.json");
 const release = readJson("data/release.json");
-const productSpecs = readJson("data/product-specs.json").products;
+const specMeta = readJson("data/product-specs.json");
+const productSpecs = specMeta.products;
 const parallelPasses = readJson("data/verified-sources.json").parallel_passes;
 const reverify = readJson("data/sources.json").reverification;
 
@@ -31,6 +32,9 @@ const SRC = Object.fromEntries(sourceList.map((s) => [s.id, s]));
 const esc = (v) => String(v ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const prefix = (depth) => (depth === 0 ? "" : "../".repeat(depth));
 const tagged = (asin) => `https://www.amazon.com/dp/${asin}?tag=${TAG}`;
+const fmtLong = (iso) => new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+const specVerifiedDisplay = fmtLong(specMeta.verified_on);
+const specReverifiedDisplay = fmtLong(specMeta.reverified_on);
 const abs = (p) => BASE + p;
 const catOf = (slug) => CATS.find((c) => c.slug === slug);
 const productsIn = (slug) => products.filter((p) => p.category === slug);
@@ -271,9 +275,9 @@ const add = (file, html) => pages.push({ file, html });
 <section class="wrap hero">
   <div class="hero-grid">
     <div>
-      <p class="kicker">Issue 01 &middot; ${esc(site.built_display)} &middot; Three verified products</p>
+      <p class="kicker">Issue 01 &middot; ${esc(site.issue_date_display)} &middot; Three verified products</p>
       <h1>Three upgrades that make a rented kitchen work harder</h1>
-      <p class="standfirst">A smoothing kit for the first peel-and-stick wall, a paper towel holder that does not need a drill, and an eight-tier pan rack for a cabinet that is already full. Each listing was opened and read on 20 November 2026, and its title, breadcrumb and merchant line were re-read on 21 November 2026.</p>
+      <p class="standfirst">A smoothing kit for the first peel-and-stick wall, a paper towel holder that does not need a drill, and an eight-tier pan rack for a cabinet that is already full. Each listing was opened and read on ${esc(specVerifiedDisplay)} before it went on this page, and opened again on ${esc(specReverifiedDisplay)} for the fields recorded in the specification register.</p>
       <div class="bylines">
         <span>${products.length} products, each with a source link</span><span class="dot">&middot;</span>
         <span>${guideMeta.length} buying guides</span><span class="dot">&middot;</span>
@@ -414,7 +418,7 @@ const add = (file, html) => pages.push({ file, html });
 <div class="wrap page-head">
   <p class="kicker">The shop &middot; ${products.length} products</p>
   <h1>Products, each with the listing it came from</h1>
-  <p class="standfirst">Every row resolves to a live Amazon listing that was opened on ${esc(site.built_display)}. The source column links to the official listing, so you can check any value yourself. Blank cells are blank on purpose.</p>
+  <p class="standfirst">Every row resolves to a live Amazon listing that was opened on ${esc(specVerifiedDisplay)}. The source column links to the official listing, so you can check any value yourself. Blank cells are blank on purpose.</p>
 </div>
 
 <div class="wrap">
@@ -435,7 +439,7 @@ const add = (file, html) => pages.push({ file, html });
 
   <div class="table-wrap">
     <table id="product-table">
-      <caption>Verified product register. Source column links to the official Amazon listing. Verification date ${esc(site.built_display)}.</caption>
+      <caption>Verified product register. Source column links to the official Amazon listing. Verification date ${esc(specVerifiedDisplay)}.</caption>
       <thead>
         <tr>
           <th scope="col">Product</th>
@@ -511,7 +515,7 @@ ${gs.length ? `<section class="block"><div class="wrap">
 </div></section>` : ""}
 <section class="block"><div class="wrap">
   <div class="section-head"><div><h2>What is not in this category page</h2></div></div>
-  <div class="callout warn"><p>No prices, no star ratings, no review counts, no &ldquo;best of&rdquo; ranking. There is one verified product in this category as of ${esc(site.built_display)}${items.length > 1 ? ` (${items.length} here)` : ""}, which is not enough to rank anything. ${srcBadge("S01", 1)}</p></div>
+  <div class="callout warn"><p>No prices, no star ratings, no review counts, no &ldquo;best of&rdquo; ranking. There is one verified product in this category as of ${esc(specVerifiedDisplay)}${items.length > 1 ? ` (${items.length} here)` : ""}, which is not enough to rank anything. ${srcBadge("S01", 1)}</p></div>
 </div></section>`;
 
   add(`products/${cat.slug}/index.html`, layout({
@@ -554,7 +558,7 @@ ${gs.length ? `<section class="block"><div class="wrap">
 <div class="wrap page-head">
   <p class="kicker">Side-by-side comparison &middot; ${productSpecs.length} verified listings</p>
   <h1>Compare dimensions, materials and mounting specs</h1>
-  <p class="standfirst">Line-by-line physical specifications read directly from each official Amazon product detail page on 20 November 2026. Titles, breadcrumbs and merchant lines were re-read on 21 November 2026; the Product Information table itself could not be re-read that day, which is stated as <a href="../../flagged/#F16">F16</a>. Any field omitted by the manufacturer table stays blank and marked unverified.</p>
+  <p class="standfirst">Line-by-line physical specifications read directly from each official Amazon product detail page on ${esc(specVerifiedDisplay)}, and partially re-checked on ${esc(specReverifiedDisplay)} — the per-product scope is in the register, with <a href="../../flagged/#F19">F19</a> for this pass and <a href="../../flagged/#F16">F16</a> for the pass that could not surface the tables. Any field omitted by the manufacturer table stays blank and marked unverified.</p>
 </div>
 <div class="wrap">
   <div class="table-wrap">
@@ -734,7 +738,7 @@ ${gs.length ? `<section class="block"><div class="wrap">
   </div>
   <div class="table-wrap" style="margin-top:18px">
     <table>
-      <caption>Publishing cadence for this issue. All four published ${esc(site.built_display)}; later issues add one guide at a time.</caption>
+      <caption>Publishing cadence for this issue. All four published ${esc(site.issue_date_display)}; later issues add one guide at a time.</caption>
       <thead><tr><th scope="col">Week</th><th scope="col">Guide</th><th scope="col">Category</th><th scope="col">Reader intent</th><th scope="col">Published</th><th scope="col">Source</th></tr></thead>
       <tbody>
         ${guideMeta.map((g) => {
@@ -1023,13 +1027,12 @@ ${prod ? `<section class="block"><div class="wrap">
   }).join("");
 
   const sgRows = parallelPasses.map((sg) => {
-    const refUrl = sg.source_url.startsWith(BASE) ? SRC["S08"].url : sg.source_url;
     return `<tr id="${esc(sg.code)}">
       <td class="mono">${esc(sg.code)}</td>
       <td><strong>${esc(sg.area)}</strong></td>
       <td>${esc(sg.implementation)}</td>
       <td><span class="badge ${sg.status.startsWith("Done") ? "ok" : "warn"}">${esc(sg.status)}</span></td>
-      <td>${extCiteLink(refUrl, "Official reference")}${sg.code === "SG-28" ? ` &middot; <a href="../feed.xml">feed.xml</a>` : ""}</td>
+      <td>${extCiteLink(sg.source_url, "Official reference")}${sg.source_supports ? `<br><span class="link-note">${esc(sg.source_supports)}</span>` : ""}${sg.code === "SG-28" ? ` &middot; <a href="../feed.xml">feed.xml</a>` : ""}</td>
     </tr>`;
   }).join("");
 
@@ -1077,7 +1080,7 @@ ${prod ? `<section class="block"><div class="wrap">
   </div>
 
   <h2 style="margin-top:34px">Consolidated 52-row product attribute verification table</h2>
-  <p class="prose">Every catalog attribute read from the three resolved Amazon detail pages on ${esc(site.built_display)}. Blank value cells represent unverified or gated attributes and are never inferred.</p>
+  <p class="prose">Every catalog attribute read from the three resolved Amazon detail pages on ${esc(specVerifiedDisplay)} and partially re-checked on ${esc(specReverifiedDisplay)}. Per-product scope of the re-check is recorded in <a href="../data/product-specs.json">data/product-specs.json</a>. Blank value cells represent unverified or gated attributes and are never inferred.</p>
   <div class="table-wrap" style="margin-top:12px">
     <table>
       <caption>Line-by-line product specification checks across ASINs B08FKW9JRM, B0BSKQW2T2, and B08DY9HRWD.</caption>

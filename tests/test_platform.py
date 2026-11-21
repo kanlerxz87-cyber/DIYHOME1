@@ -146,7 +146,8 @@ class TestFinalIntegrationEngine(unittest.TestCase):
         self.assertEqual(report["errors"], [])
         self.assertEqual(report["products_checked"], 3)
         self.assertEqual(report["attribute_rows_verified"], 52)
-        self.assertEqual(report["canonical_sources_count"], 26)
+        self.assertEqual(report["canonical_sources_count"], 29)
+        self.assertEqual(report["snapshot_sources_count"], 24)
         self.assertEqual(report["parallel_passes_count"], 4)
 
 

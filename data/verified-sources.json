@@ -2,7 +2,7 @@
   "verified_on": "2026-11-20",
   "sources": [
     {
-      "code": "S01",
+      "code": "VS01",
       "category": "Amazon Associates Legal",
       "title": "Associates Program Operating Agreement (§1 Special Links, §5 Associate Identification, §7 Disclaimers, §12 Monitoring)",
       "finding": "Requires proper tagged Special Links and clear, prominent display of the required Associate qualifying-purchases statement under §5. Prohibits unauthorized public claims about the Agreement.",
@@ -10,7 +10,7 @@
       "url": "https://affiliate-program.amazon.com/help/operating/agreement"
     },
     {
-      "code": "S02",
+      "code": "VS02",
       "category": "Amazon Associates Linking & Short Links",
       "title": "Associates Program Policies & Linking Tools (`link.amazon` Short-Link Compliance Status)",
       "finding": "Special Links must use formats provided by Amazon and track in Associates Central. Exact compliance and attribution status of supplied `https://link.amazon/...` short links is unresolved (do NOT claim they are invalid); validate one Special Link per product in the enrolled `shopnow047c-20` workflow and confirm tracking reports before scaling.",
@@ -18,7 +18,7 @@
       "url": "https://affiliate-program.amazon.com/help/operating/policies"
     },
     {
-      "code": "S03",
+      "code": "VS03",
       "category": "Amazon Commission Schedule",
       "title": "Associates Program Standard Commission Income Statement (Table 1 Fixed Rates)",
       "finding": "Fixed Standard Commission Income rates list Kitchen at 4.50% and Home, Home Improvement, Tools, Furniture, Lawn & Garden at 3.00% of Qualifying Revenue, paid ~60 days post-month-end.",
@@ -26,7 +26,7 @@
       "url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ"
     },
     {
-      "code": "S04",
+      "code": "VS04",
       "category": "Amazon Catalog Identifiers",
       "title": "Understanding ASINs: Amazon Standard Identification Number",
       "finding": "Defines ASIN as a 10-character alphanumeric catalog identifier (distinct from 9-character mixed-case `link.amazon` share path tokens).",
@@ -34,7 +34,7 @@
       "url": "https://sell.amazon.com/blog/what-is-an-asin"
     },
     {
-      "code": "S05",
+      "code": "VS05",
       "category": "Amazon Associates Participation",
       "title": "Associates Program Participation Requirements (§2 Trademarks, §14 No Incentives, §22 No Framing, §29 No Self-Purchase, §30 No Link Cloaking)",
       "finding": "Prohibits incentivized clicks, self-orders through Special Links, framing Amazon pages, unauthorized seller logos, and URL cloaking that obscures the referring site.",
@@ -42,7 +42,7 @@
       "url": "https://affiliate-program.amazon.com/help/operating/participation/"
     },
     {
-      "code": "S06",
+      "code": "VS06",
       "category": "Amazon Product Advertising API",
       "title": "Product Advertising API (PA-API 5.0) Access & Usage Requirements",
       "finding": "Requires an approved Associates account and PA-API credentials to request programmatic prices, images, and reviews; static un-refreshed prices risk policy violation.",
@@ -50,7 +50,7 @@
       "url": "https://affiliate-program.amazon.com/help/node/topic/GVJ2BJP35457CLML"
     },
     {
-      "code": "S07",
+      "code": "VS07",
       "category": "FTC Regulation",
       "title": "FTC Guides Concerning the Use of Endorsements and Testimonials in Advertising (16 CFR Part 255, §255.5 Material Connections)",
       "finding": "Mandates clear, conspicuous disclosure of unexpected material connections (including affiliate commissions) where consumers can notice it easily without hunting or scrolling past endorsements.",
@@ -58,7 +58,7 @@
       "url": "https://www.ftc.gov/system/files/ftc_gov/pdf/p204500_endorsement_guides_in_2023.pdf"
     },
     {
-      "code": "S08",
+      "code": "VS08",
       "category": "Amazon Link Verification",
       "title": "Associates Central Tag & Link Checker Guidance",
       "finding": "Enrolled Associates must verify destination and tracking tag attribution inside Associates Central without placing self-purchases.",
@@ -66,7 +66,7 @@
       "url": "https://affiliate-program.amazon.com/help/node/topic/G6253GFSARDQENZR"
     },
     {
-      "code": "S09",
+      "code": "VS09",
       "category": "Amazon First-Party Reporting",
       "title": "Associates Central Earnings, Clicks & Orders Reporting Guide",
       "finding": "First-party Associates reports are the sole authoritative source for Amazon-counted clicks, shipped items, and reported orders.",
@@ -74,7 +74,7 @@
       "url": "https://affiliate-program.amazon.com/help/node/topic/GMWAK55DQX8JEK7C"
     },
     {
-      "code": "S10",
+      "code": "VS10",
       "category": "Observed Product Listing (S01)",
       "title": "Amazon Detail Page — ASIN B08FKW9JRM (Art3d Smoothing Tool Kit for Peel and Stick Wallpaper)",
       "finding": "Observed redirect destination for `https://link.amazon/B0hmGG4m2` on 2026-11-20. Verified brand `Art3d`, model `A17999`, dimensions `7.72 x 4.33 x 0.79 in`, weight `3.52 oz`.",
@@ -83,7 +83,7 @@
       "is_product_url": true
     },
     {
-      "code": "S11",
+      "code": "VS11",
       "category": "Official Brand Store (S01)",
       "title": "Art3d Official Storefront on Amazon",
       "finding": "Confirms Art3d brand storefront linked from ASIN `B08FKW9JRM`.",
@@ -91,7 +91,7 @@
       "url": "https://www.amazon.com/stores/Art3d/page/4A1CDF78-64DC-486F-A9B8-85098BEA0D44"
     },
     {
-      "code": "S12",
+      "code": "VS12",
       "category": "Observed Product Listing (S02/S03)",
       "title": "Amazon Detail Page — ASIN B0BSKQW2T2 (niffgaff Under-Cabinet Matte Black Aluminum Paper Towel Holder)",
       "finding": "Observed redirect destination for duplicate submissions `https://link.amazon/B03QDuGdo` on 2026-11-20. Verified brand `niffgaff`, model `TN2200-BLK-NA 01`, `12.2-inch` aluminum rail, `5 oz`.",
@@ -100,7 +100,7 @@
       "is_product_url": true
     },
     {
-      "code": "S13",
+      "code": "VS13",
       "category": "Official Brand Store (S02/S03)",
       "title": "niffgaff Official Storefront on Amazon",
       "finding": "Confirms niffgaff brand storefront linked from ASIN `B0BSKQW2T2`.",
@@ -108,7 +108,7 @@
       "url": "https://www.amazon.com/stores/niffgaff/page/531DB5A2-A3D9-4D02-8477-9A9F32ABB8D8"
     },
     {
-      "code": "S14",
+      "code": "VS14",
       "category": "Observed Product Listing (S04)",
       "title": "Amazon Detail Page — ASIN B08DY9HRWD (ORDORA 8-Tier Under-Cabinet Pots & Pans Organizer)",
       "finding": "Observed redirect destination for `https://link.amazon/B0hpD2JGQ` on 2026-11-20. Verified brand `ORDORA`, model `ODR8Tier`, UPC `655100721821`, 3 DIY footprints, `3.3 lbs`.",
@@ -117,7 +117,7 @@
       "is_product_url": true
     },
     {
-      "code": "S15",
+      "code": "VS15",
       "category": "Official Brand Store (S04)",
       "title": "ORDORA Official Storefront on Amazon",
       "finding": "Confirms ORDORA brand storefront linked from ASIN `B08DY9HRWD`.",
@@ -125,7 +125,7 @@
       "url": "https://www.amazon.com/stores/ORDORA/page/468503BB-376C-4D9F-B8BE-DECBCF25C460"
     },
     {
-      "code": "S16",
+      "code": "VS16",
       "category": "Amazon Reference Pricing",
       "title": "Amazon Customer Help — Typical Price & List Price Methodology",
       "finding": "Defines Typical Price as 90-day customer-paid median (excluding limited-time promos) and List Price as supplier-provided reference price validated against recent sales.",
@@ -133,7 +133,7 @@
       "url": "https://www.amazon.com/gp/help/customer/display.html?nodeId=GQ6B6RH72AX8D2TD"
     },
     {
-      "code": "S17",
+      "code": "VS17",
       "category": "Google Search Central",
       "title": "Qualify Your Outbound Links to Google (`rel=\"sponsored\"`)",
       "finding": "Recommends qualifying all affiliate and paid links with `rel=\"sponsored\"` whether created manually or dynamically.",
@@ -141,7 +141,7 @@
       "url": "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links"
     },
     {
-      "code": "S18",
+      "code": "VS18",
       "category": "Google Search Central",
       "title": "Google Web Search Spam Policies — Thin Affiliation vs. Original Editorial Value",
       "finding": "Distinguishes thin scraped merchant copy from original buyer checklists, measurement guidance, clear authorship, and category comparisons.",
@@ -149,7 +149,7 @@
       "url": "https://developers.google.com/search/docs/essentials/spam-policies"
     },
     {
-      "code": "S19",
+      "code": "VS19",
       "category": "Google Search Central",
       "title": "Build and Submit a Sitemap (`sitemap.xml` & `robots.txt`)",
       "finding": "UTF-8 XML sitemaps at the site root referenced in `robots.txt` (`Sitemap: ...`) cover all descendant URLs.",
@@ -157,7 +157,7 @@
       "url": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap"
     },
     {
-      "code": "S20",
+      "code": "VS20",
       "category": "Google Search Central",
       "title": "Consolidate Duplicate URLs (`rel=\"canonical\"`)",
       "finding": "Every HTML document specifies a single self-consistent `https://kanlerxz87-cyber.github.io/DIYHOME1/...` canonical URL.",
@@ -165,7 +165,7 @@
       "url": "https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls"
     },
     {
-      "code": "S21",
+      "code": "VS21",
       "category": "Google Search Console",
       "title": "Get Started with Search Console — Ownership Verification & Query Measurement",
       "finding": "Search Console query performance requires external domain/URL-prefix verification by the site owner before query-driven topic selection begins.",
@@ -173,7 +173,7 @@
       "url": "https://developers.google.com/search/docs/monitor-debug/search-console-start"
     },
     {
-      "code": "S22",
+      "code": "VS22",
       "category": "Food & Appliance Safety",
       "title": "USDA FSIS — Air Fryers and Food Safety",
       "finding": "Advises against overcrowding air fryer baskets (which restricts rapid air circulation) and recommends verifying internal food temperature with a food thermometer.",
@@ -181,7 +181,7 @@
       "url": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/air-fryers-and-food-safety"
     },
     {
-      "code": "S23",
+      "code": "VS23",
       "category": "Hosting Infrastructure",
       "title": "GitHub Pages Official Documentation",
       "finding": "Repository `kanlerxz87-cyber/DIYHOME1` serves static files from `main` `/` over HTTPS at `https://kanlerxz87-cyber.github.io/DIYHOME1/` with `.nojekyll`.",
@@ -189,7 +189,7 @@
       "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages"
     },
     {
-      "code": "S24",
+      "code": "VS24",
       "category": "FTC Plain-Language Disclosure",
       "title": "FTC Disclosures 101 & Associate Link-Level Disclosure Guidance",
       "finding": "Requires plain, unambiguous disclosure language (`paid link`, `sponsored`, plus the Operating Agreement Associate statement) placed where readers see it before/with affiliate links.",
@@ -201,30 +201,38 @@
     {
       "code": "SG-27",
       "area": "Navigation Labels & Single Desk Group",
-      "implementation": "Primary buyer navigation uses plain editorial labels (Home, Products, Comparisons, Guides, Search, RSS) while consolidating every operational/dashboard surface (Executive summary, Source register, Product-intent & ledger, Flagged for review, Measurement & events, Automation & gate, How we verify, Disclosures) inside one Site desk dropdown and repeating all links in the footer.",
-      "status": "Done (Verified)",
-      "source_url": "https://developers.google.com/search/docs/fundamentals/get-started-developers"
+      "implementation": "The shipped primary row is Home, Products, Comparisons, Guides, Search, RSS. Every operational surface — Executive summary, Source register, Product-intent & ledger, Flagged for review, Measurement & events, Automation & gate, How we verify, Disclosures — sits in one \"Site desk\" group and is repeated in the footer. No dashboard link appears in the primary row.",
+      "source_url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide",
+      "source_supports": "Google recommends organizing a site logically so search engines and users can understand how pages relate.",
+      "verified_on": "2026-11-21",
+      "status": "Done (Verified)"
     },
     {
       "code": "SG-28",
-      "area": "Shipped RSS 2.0 Feed (`feed.xml`)",
-      "implementation": "Valid UTF-8 RSS 2.0 feed generated automatically by scripts/build.mjs, advertised via <link rel=\"alternate\" type=\"application/rss+xml\"> in every page <head>, and validated by scripts/validate.mjs.",
-      "status": "Done (Verified)",
-      "source_url": "https://kanlerxz87-cyber.github.io/DIYHOME1/feed.xml"
+      "area": "Shipped RSS 2.0 Feed (feed.xml)",
+      "implementation": "feed.xml is generated by scripts/build.mjs on every build, advertised with <link rel=\"alternate\" type=\"application/rss+xml\"> in the head of every published page, and checked by scripts/validate.mjs for well-formed XML and resolvable item links. The channel carries the three elements the RSS 2.0 specification requires: title, link and description.",
+      "source_url": "https://www.rssboard.org/rss-specification",
+      "source_supports": "The RSS 2.0 specification lists title, link and description as the required channel elements.",
+      "verified_on": "2026-11-21",
+      "status": "Done (Verified)"
     },
     {
       "code": "SG-29",
       "area": "Search Console & Indexing Readiness",
-      "implementation": "Single canonical host (https://kanlerxz87-cyber.github.io/DIYHOME1/), complete sitemap.xml, and robots.txt published at the project path (not the host root — see F14). Search Console property verification remains a Needs Review handoff for the site owner (F04); sitemap.xml and feed.xml are ready to submit once verified.",
-      "status": "Needs Review (Owner Verification)",
-      "source_url": "https://developers.google.com/search/docs/monitor-debug/search-console-start"
+      "implementation": "One canonical host on all 21 published pages. sitemap.xml lists 21 URLs and scripts/validate.mjs fails the build if any is missing or points at a page that does not exist. robots.txt carries a Sitemap: directive but is served at /DIYHOME1/robots.txt, not the host root a crawler reads (flag F14), so the noindex meta tags on /search/ and /404.html are the actual control. The Search Console property itself is not verified (flag F04).",
+      "source_url": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap",
+      "source_supports": "Google documents the sitemap format and the sitemap index location; property verification happens in Search Console.",
+      "verified_on": "2026-11-21",
+      "status": "Needs Review (Owner Verification)"
     },
     {
       "code": "SG-30",
       "area": "Privacy-Preserving Reader Capture",
-      "implementation": "Zero-PII RSS reader subscription callout (`data-event=\"rss_open\"`) plus local browser-only DIY project checklist & question planner—collects zero email addresses, sets zero cookies, and transmits no personal data.",
-      "status": "Done (Verified)",
-      "source_url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers"
+      "implementation": "Reader capture is a public RSS 2.0 subscribe callout plus a checklist that runs in the visitor's own browser. No email address is requested, no cookie is set, and scripts/validate.mjs fails the build if any third-party subresource, script, image or stylesheet is added.",
+      "source_url": "https://www.ftc.gov/business-guidance/privacy-security",
+      "source_supports": "FTC business guidance treats collecting only what you need and being clear about data practices as the baseline.",
+      "verified_on": "2026-11-21",
+      "status": "Done (Verified)"
     }
   ],
   "flagged_items": [
@@ -239,12 +247,13 @@
     },
     {
       "id": "IRR-02",
-      "item": "Duplicate Input URL (`S03` == `S02`)",
+      "item": "Duplicate Input URL (submitted link 2 == submitted link 3)",
       "status": "Flagged for Review",
       "finding": "`https://link.amazon/B03QDuGdo` was submitted twice in the prompt product list (lines 2 and 3, followed by a blank line before line 4).",
-      "action_required": "Retained as distinct audit row `S03` (`duplicateOf: S02`) in the Research Register; deduplicated on buyer-facing category pages. Operator should confirm whether a fourth distinct product URL was intended.",
+      "action_required": "Retained as a distinct audit row in `data/product-intents.csv` (marked as an exact duplicate) and deduplicated on buyer-facing category pages. Operator should confirm whether a fourth distinct product URL was intended.",
       "source_label": "Amazon Link Verification",
-      "source_url": "https://affiliate-program.amazon.com/help/node/topic/G6253GFSARDQENZR"
+      "source_url": "https://affiliate-program.amazon.com/help/node/topic/G6253GFSARDQENZR",
+      "submitted_link_reference": "https://link.amazon/B03QDuGdo"
     },
     {
       "id": "IRR-03",
@@ -257,19 +266,19 @@
     },
     {
       "id": "IRR-04",
-      "item": "Unresolved `link.amazon` Compliance & Missing `tag=` (`S02`)",
+      "item": "Unresolved `link.amazon` Compliance & Missing `tag=`",
       "status": "Needs Review",
-      "finding": "Observed redirects from `https://link.amazon/...` carried `btn_type=ss` and `sprefix=diy+home+upgrades` without `tag=shopnow047c-20`. Per `S02`, we do NOT claim `link.amazon` short links are invalid; their Associates compliance/attribution status is unresolved.",
+      "finding": "Observed redirects from `https://link.amazon/...` carried `btn_type=ss` and `sprefix=diy+home+upgrades` without `tag=shopnow047c-20`. Per `VS02`, we do NOT claim `link.amazon` short links are invalid; their Associates compliance/attribution status is unresolved.",
       "action_required": "Generate one validated Special Link (`https://www.amazon.com/dp/<ASIN>?tag=shopnow047c-20`) per confirmed product inside the enrolled Associates account and verify click/tracking reporting without self-purchasing.",
       "source_label": "Amazon Associates Policies",
       "source_url": "https://affiliate-program.amazon.com/help/operating/policies"
     },
     {
       "id": "IRR-05",
-      "item": "Operator Product-Intent Confirmation (`S01–S04`)",
+      "item": "Operator Product-Intent Confirmation (all four submitted links)",
       "status": "Unverified",
       "finding": "While HTTP redirects on 2026-11-20 landed on `B08FKW9JRM`, `B0BSKQW2T2`, and `B08DY9HRWD`, an observed redirect alone does not prove operator product intent.",
-      "action_required": "Populate `intendedAsin`, `officialListing`, `confirmedOn`, and `confirmationSource` in `data/catalog.json` only after operator sign-off.",
+      "action_required": "Populate `intended_asin`, `official_listing_url`, `confirmation_date` and `confirmation_source` in `data/product-intents.csv` only after operator sign-off.",
       "source_label": "Amazon ASIN Topic Help",
       "source_url": "https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC"
     },
@@ -339,5 +348,5 @@
       "source_url": "https://developers.google.com/search/docs/monitor-debug/search-console-start"
     }
   ],
-  "code_note": "Canonical citation register is data/sources.json (S01-S26); site badges use those codes. Codes in this file (S01-S13+) are local to this file's parallel-pass history and must not be used as site citation badges."
+  "register_note": "Snapshot register from the 2026-11-20 verification pass. Entries here use the VS__ prefix and deliberately do not share identifiers with data/sources.json (S__), which is the canonical citation register rendered on /sources/ — site badges use those S__ codes, never VS__ ones. Until 2026-11-21 both files used S__ for different documents, so the same label meant two different pages (flag F17). Sources added to the canonical register on 2026-11-21 (S27-S29, after S26 was taken by the robots.txt document) are recorded only in data/sources.json."
 }
