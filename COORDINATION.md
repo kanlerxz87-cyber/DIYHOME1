@@ -59,8 +59,8 @@ Note (S-2026-11-21-F): this session works on the Arena-assigned branch `arena/f4
 | T09 | Executive summary (repo + site) | S-2026-11-20-A | `EXECUTIVE_SUMMARY.md`, `summary/index.html` | done |
 | T10 | Flagged for Review page | S-2026-11-20-A | `data/flagged.json`, `flagged/index.html` | needs review |
 | T11 | Integration: merge to `main`, PR, Pages deploy, record result | S-2026-11-20-A | `main` (merge only) | done |
-| T12 | Fresh line-by-line re-verification 2026-11-21 against official sources; correct register wording drift (S23 quotes, S24 supports, SG-28/SG-29) | S-2026-11-21-F | `data/sources.json`, `data/verified-sources.json`, generated `sources/index.html` (via build) | in progress |
-| T13 | Align `analytics-server/server.mjs` to the canonical 5-event contract (`data/events.json` + `worker/collect.js` + `assets/js/site.js` payload shape); add smoke test | S-2026-11-21-F | `analytics-server/server.mjs`, `tests/test_analytics_server.py` | in progress |
+| T12 | Fresh line-by-line re-verification 2026-11-21 against official sources; correct register wording drift (S23 quotes, S24 supports, SG-27/SG-28/SG-29) | S-2026-11-21-F | `data/sources.json`, `data/verified-sources.json`, generated `sources/index.html` (via build) | done |
+| T13 | Align `analytics-server/server.mjs` to the canonical 5-event contract (`data/events.json` + `worker/collect.js` + `assets/js/site.js` payload shape); add smoke test | S-2026-11-21-F | `analytics-server/server.mjs`, `tests/test_analytics_server.py` | done |
 | T14 | Integration: rebuild, validate, python tests, live-site check, PR to `main`, merge, Pages confirm, record result | S-2026-11-21-F | `main` (merge only) + generated files via build | in progress |
 
 `needs review` = published on the Flagged for Review page and does **not** block the merge.
@@ -316,3 +316,17 @@ No pre-existing claims or site files were present. Work stays on the Arena-assig
 - **Merge Outcome:** `MERGED` at `2026-11-20T06:58:16Z` · Merge commit `e32d1e4b9556768f33c6bbd8e4f8ccab7129f800` (both `build-and-validate` and `verify` CI workflows green).
 - **GitHub Pages Deployment:** Confirmed `status: "built"` for commit `e32d1e4b9556` at `2026-11-20T06:58:39Z` (`main:/`, HTTPS enforced).
 - **Live Verification:** Fetched and verified live public pages at `https://kanlerxz87-cyber.github.io/DIYHOME1/`, `/products/comparisons/`, `/automation/`, `/sources/`, and `/flagged/` — confirming above-the-fold and footer disclosures, `rel="sponsored nofollow noopener"` with tag `shopnow047c-20`, single `Site desk` masthead group (`SG-27`), 52-row product specification register (`niffgaff` verified via `S21`; absent `UPC` and `Date First Available` left blank and badged `Unverified`), 4 working-title countertop-appliance hypotheses, empty first-party campaign ledger, and zero broken links.
+
+### 2026-11-21 — S-2026-11-21-F — T12 re-verification + T13 analytics-server fix
+
+**T12 — re-read on 2026-11-21 (official sources, links in `data/sources.json`):**
+- S01 Program Policies (still *Updated April 14, 2026*): 2(b) tag clause, price/availability clause, 3(t)/3(v)/3(w)/3(y) — all match stored quotes verbatim. S03 FTC (Nov 2019) — all quotes match. S24 ASIN definition + `dp/ASIN/ref=nosim?tag=` format — confirmed. S23 Table 1 (Kitchen 4.50%, Home/Tools 3.00%) — confirmed; per-product rate still withheld (F10).
+- S04/S05/S06 listing titles + breadcrumbs match `data/products.json` verbatim. Live prices visible on all three listings; withheld per 2(b) (F07). No price value recorded in this repo.
+- S10 `https://link.amazon/B0hmGG4m2` still resolves to `B08FKW9JRM` with no `tag=` in the observed URL. F01 remains open (unresolved, not disproven). Short links are never claimed invalid.
+- Corrections (data-only, then rebuilt): S23 quotes replaced with verbatim Table 1 rows; S24 supports now uses Amazon's "10-digit code" wording; SG-27 nav labels corrected to the actual labels (Home, Products, Comparisons, Guides, Search, RSS); SG-28 now credits `scripts/build.mjs`/`validate.mjs`; SG-29 corrected to project-path `robots.txt` (F14); `code_note` added to `data/verified-sources.json` (canonical register is `data/sources.json` S01–S25). Rebuild changed only `sources/index.html`.
+- `retrieved` bumped to 2026-11-21 for S01, S03, S04, S05, S06, S08, S10, S23, S24 (the ones re-read today).
+
+**T13 — analytics-server contract fix (new irregularity, fixed):**
+- `analytics-server/server.mjs` accepted the archived Field & Fixture event names (`product_impression`, `outbound_affiliate_click`, `reader_capture_submit`) with `{event, page, meta}`. Live `assets/js/site.js` sends `{e, path, sid, …}` with the canonical five events — every live event would have been rejected (400). Rewrote the server to the canonical contract (same per-event allowlist + 2048-byte cap as `worker/collect.js`), `POST /collect` + `/api/events` alias, `GET /api/health`, `GET /api/summary`. Added `tests/test_analytics_server.py` (6 tests). Full suite 16/16. Endpoint still not deployed (F05 open); ledger still empty.
+
+**Checks:** `node scripts/build.mjs` (23 pages) + `node scripts/validate.mjs` (16/16; 288 Amazon links: 38 sponsored, 257 citations; single tag `shopnow047c-20`) + `python3 -m unittest discover -s tests` (16/16).
