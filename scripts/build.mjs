@@ -351,7 +351,7 @@ const add = (file, html) => pages.push({ file, html });
     <div>
       <p class="kicker">Issue 01 &middot; ${esc(site.issue_date_display)} &middot; Three verified products</p>
       <h1>Three upgrades that make a rented kitchen work harder</h1>
-      <p class="standfirst">A smoothing kit for the first peel-and-stick wall, a paper towel holder that does not need a drill, and an eight-tier pan rack for a cabinet that is already full. Each listing was opened and read on ${esc(specVerifiedDisplay)} before it went on this page, and opened again on ${esc(specReverifiedDisplay)} for the fields recorded in the specification register.</p>
+      <p class="standfirst">A smoothing kit for the first peel-and-stick wall, a paper towel holder that does not need a drill, and an eight-tier pan rack for a cabinet that is already full. Each listing was opened and read on ${esc(specVerifiedDisplay)} before it went on this page${specVerifiedDisplay === specReverifiedDisplay ? "" : `, and read again on ${esc(specReverifiedDisplay)}`} for the fields recorded in the specification register.</p>
       <div class="bylines">
         <span>${products.length} products</span><span class="dot">&middot;</span>
         <span>${guideMeta.length} buying guides</span><span class="dot">&middot;</span>
