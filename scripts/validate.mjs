@@ -325,6 +325,52 @@ for (const s of sources) {
 }
 ok("Source register checked", String(sources.length));
 
+/* ---------- two registers must not share identifiers ---------- */
+const snapshot = readJson("data/verified-sources.json");
+const sIds = new Set(sources.map((s) => s.id));
+const vsIds = snapshot.sources.map((s) => s.code);
+if (!vsIds.every((id) => /^VS\d{2}$/.test(id))) err("second source register must use the VS__ prefix, not S__");
+for (const id of vsIds) {
+  if (sIds.has(id)) err(`register namespace collision: ${id} is used by both registers`);
+}
+if (!/Snapshot register/.test(snapshot.register_note || "")) err("second source register must state that it is a snapshot");
+ok("Source registers use distinct namespaces", `${sources.length} S__ + ${vsIds.length} VS__`);
+
+/* ---------- product-spec register ---------- */
+const specFile = readJson("data/product-specs.json");
+const catSlugs = new Set(readJson("data/site.json").categories.map((c) => c.slug));
+const guideSlugs = new Set(guideMeta.map((g) => g.slug));
+let specRows = 0;
+for (const spec of specFile.products) {
+  const prod = products.find((p) => p.asin_observed === spec.observed_asin);
+  if (!prod) { err(`spec register: ${spec.observed_asin} has no matching product`); continue; }
+  const a = [...spec.submission_ids].sort().join(",");
+  const b = [...prod.submitted_links].sort().join(",");
+  if (a !== b) err(`spec register: ${spec.observed_asin} submission_ids [${a}] do not match products.json [${b}]`);
+  if (!catSlugs.has(spec.category_slug)) err(`spec register: ${spec.observed_asin} has unknown category_slug ${spec.category_slug}`);
+  if (!guideSlugs.has(spec.guide_slug.replace(/^guides\//, "").replace(/\/$/, ""))) err(`spec register: ${spec.observed_asin} guide_slug ${spec.guide_slug} is not a published guide`);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(spec.reverified_on || "")) err(`spec register: ${spec.observed_asin} missing reverified_on date`);
+  for (const attr of spec.attributes) {
+    specRows++;
+    if (!/^https:\/\//.test(attr.source_url)) err(`spec register: ${spec.observed_asin} / ${attr.field} lacks an https source`);
+    if (!["Verified", "Unverified", "Needs Review"].includes(attr.status)) err(`spec register: ${spec.observed_asin} / ${attr.field} has unknown status ${attr.status}`);
+    if (attr.status === "Verified" && !String(attr.value).trim()) err(`spec register: ${spec.observed_asin} / ${attr.field} is Verified with a blank value`);
+  }
+}
+if (specRows !== 52) err(`spec register must hold 52 rows, found ${specRows}`);
+ok("Product-spec register metadata", `${specRows} rows, slugs and submission IDs resolved`);
+
+/* ---------- parallel passes ---------- */
+for (const [i, pass] of snapshot.parallel_passes.entries()) {
+  const expected = `SG-${27 + i}`;
+  if (pass.code !== expected) err(`parallel pass ${i + 1} should be ${expected}, found ${pass.code}`);
+  if (!/^https:\/\//.test(pass.source_url)) err(`parallel pass ${pass.code} has no https source`);
+  if (pass.source_url.startsWith("https://kanlerxz87-cyber.github.io/")) err(`parallel pass ${pass.code} cites this site as its own official source`);
+  if (!/^(Done \(Verified\)|Needs Review \(Owner Verification\))$/.test(pass.status)) err(`parallel pass ${pass.code} has an undocumented status: ${pass.status}`);
+  if (!pass.source_supports) err(`parallel pass ${pass.code} does not say what its source supports`);
+}
+ok("Parallel passes checked", String(snapshot.parallel_passes.length));
+
 /* csv headers */
 for (const [file, expected] of [
   ["data/campaign-ledger.csv", "record_id,timestamp_utc,source,channel,eligible_sessions,outbound_clicks,reported_orders,revenue_reported,currency,provenance_url,report_id,notes"],

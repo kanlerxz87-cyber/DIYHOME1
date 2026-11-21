@@ -1,15 +1,17 @@
 {
-  "verified_on": "2026-11-20",
+  "verified_on": "2026-11-21",
   "tracking_id": "shopnow047c-20",
   "policy_note": "Observed product metadata below was verified line by line from official Amazon product detail pages on 2026-11-20. Observed redirect targets do NOT establish operator product-intent or affiliate attribution. Any field not explicitly present in the official product information table is left blank (\"\") and flagged Unverified. Dynamic retail prices and review counts are omitted from static shop cards and gated behind authorized PA-API 5.0 / Creators API integration.",
   "products": [
     {
-      "submission_ids": ["S01"],
+      "submission_ids": [
+        "S10"
+      ],
       "submitted_short_url": "https://link.amazon/B0hmGG4m2",
       "short_token": "B0hmGG4m2",
       "observed_asin": "B08FKW9JRM",
       "observed_dp_url": "https://www.amazon.com/dp/B08FKW9JRM",
-      "observed_redirect_query_note": "sprefix=diy+home+upgrades, btn_type=ss (social/mobile share token; no tag= parameter present)",
+      "observed_redirect_query_note": "sprefix=diy+home+upgrades, btn_type=ss (lv=shuf, btn_type=ss; NO tag= parameter present). Per Amazon help topic S26, the absence of the tracking ID in the URL after click-through is not evidence either way, so tracking status remains unverified and recordable only from an Associates report.",
       "candidate_special_link_template": "https://www.amazon.com/dp/B08FKW9JRM?tag=shopnow047c-20",
       "category_slug": "wallpaper-tools",
       "category_name": "Wallpaper & surface prep",
@@ -54,7 +56,7 @@
         },
         {
           "field": "Fulfillment & Seller",
-          "value": "Ships from Amazon · Sold by Art3d®",
+          "value": "Ships from Amazon \u00b7 Sold by Art3d\u00ae",
           "status": "Verified",
           "source_label": "Amazon Buy Box Merchant Info",
           "source_url": "https://www.amazon.com/dp/B08FKW9JRM"
@@ -78,11 +80,13 @@
           "value": "",
           "status": "Unverified",
           "source_label": "Amazon Technical Details (field absent)",
-          "source_url": "https://www.amazon.com/dp/B08FKW9JRM"
+          "source_url": "https://www.amazon.com/dp/B08FKW9JRM",
+          "audit_note": "Checked against the listing's Product information and Item details tables on 2026-11-21: Brand, Model Number, Part Number, ASIN and Number of Items are present; no UPC or GTIN row is exposed. Left blank rather than inferred from the model number.",
+          "checked_on": "2026-11-21"
         },
         {
           "field": "Catalog Breadcrumb",
-          "value": "Tools & Home Improvement › Paint, Wall Treatments & Supplies › Wallpaper & Wallpapering Supplies › Wallpaper Tools",
+          "value": "Tools & Home Improvement \u203a Paint, Wall Treatments & Supplies \u203a Wallpaper & Wallpapering Supplies \u203a Wallpaper Tools",
           "status": "Verified",
           "source_label": "Amazon Category Breadcrumb",
           "source_url": "https://www.amazon.com/dp/B08FKW9JRM"
@@ -110,7 +114,7 @@
         },
         {
           "field": "Included Tools (Listing Bullets)",
-          "value": "Large smoothing tool, blue squeegee, utility knife, replacement blades, measuring tape (Note: Technical Details lists Item Package Quantity: 3 — flagged for review)",
+          "value": "Large smoothing tool, blue squeegee, utility knife, replacement blades, measuring tape (Note: Technical Details lists Item Package Quantity: 3 \u2014 flagged for review)",
           "status": "Needs Review",
           "source_label": "Amazon Official Listing",
           "source_url": "https://www.amazon.com/dp/B08FKW9JRM"
@@ -126,8 +130,10 @@
           "field": "Standard Commission Schedule Reference",
           "value": "3.00% (Tools / Home Improvement category schedule; SKU-level payout unverified until Associates report)",
           "status": "Needs Review",
-          "source_label": "Amazon Standard Commission Income Rates",
-          "source_url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ"
+          "source_label": "Amazon Standard Commission Income Statement (public table)",
+          "source_url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ",
+          "checked_on": "2026-11-21",
+          "audit_note": "Public rate table re-read without sign-in on 2026-11-21 (S32): Kitchen 4.50%; Home, Home Improvement, Tools 3.00%. Band shown for reference only; the band that actually pays on an order is unverified until an Associates report exists."
         },
         {
           "field": "Live Creators API Price & Availability (PA-API 5.0 deprecated)",
@@ -136,15 +142,43 @@
           "source_label": "Amazon Creators API — PA-API 5 Deprecation Notice",
           "source_url": "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/paapiv5-deprecation"
         }
-      ]
+      ],
+      "reverified_on": "2026-11-21",
+      "reverification": {
+        "method": "Single unauthenticated fetch of the official Amazon detail page; only the fields this site publishes were re-read.",
+        "source_url": "https://www.amazon.com/dp/B08FKW9JRM",
+        "confirmed_fields": [
+          "Observed ASIN",
+          "Official Listing Title",
+          "Manufacturer",
+          "Part Number",
+          "Item Weight",
+          "Product Dimensions",
+          "Material & Handle Material",
+          "Catalog Breadcrumb",
+          "Date First Available"
+        ],
+        "partially_confirmed": [],
+        "not_reread": [
+          "Brand",
+          "Fulfillment & Seller",
+          "UPC / GTIN",
+          "Included Tools (Listing Bullets)",
+          "Standard Commission Schedule Reference",
+          "Live PA-API Price & Availability"
+        ],
+        "changes": "None. No published value changed on 2026-11-21; blank fields stayed blank."
+      }
     },
     {
-      "submission_ids": ["S02", "S03"],
+      "submission_ids": [
+        "S11"
+      ],
       "submitted_short_url": "https://link.amazon/B03QDuGdo",
       "short_token": "B03QDuGdo",
       "observed_asin": "B0BSKQW2T2",
       "observed_dp_url": "https://www.amazon.com/dp/B0BSKQW2T2",
-      "observed_redirect_query_note": "sprefix=diy+home+upgrades, btn_type=ss, th=1 (submitted twice as S02 and S03; no tag= parameter present)",
+      "observed_redirect_query_note": "sprefix=diy+home+upgrades, btn_type=ss, th=1 (lv=shuf, btn_type=ss; NO tag= parameter present). Per Amazon help topic S26, the absence of the tracking ID in the URL after click-through is not evidence either way, so tracking status remains unverified and recordable only from an Associates report.",
       "candidate_special_link_template": "https://www.amazon.com/dp/B0BSKQW2T2?tag=shopnow047c-20",
       "category_slug": "kitchen-storage",
       "category_name": "Under-cabinet kitchen storage",
@@ -189,7 +223,7 @@
         },
         {
           "field": "Fulfillment & Seller",
-          "value": "Ships from Amazon · Sold by YH Urban",
+          "value": "Ships from Amazon \u00b7 Sold by YH Urban",
           "status": "Verified",
           "source_label": "Amazon Buy Box Merchant Info",
           "source_url": "https://www.amazon.com/dp/B0BSKQW2T2"
@@ -213,18 +247,20 @@
           "value": "",
           "status": "Unverified",
           "source_label": "Amazon Product Information (field absent)",
-          "source_url": "https://www.amazon.com/dp/B0BSKQW2T2"
+          "source_url": "https://www.amazon.com/dp/B0BSKQW2T2",
+          "audit_note": "Checked against the listing's Product information and Item details tables on 2026-11-21: Material, Color, Brand, Mounting Type, Weight, Dimensions, Size and Number of Items are present; no UPC or GTIN row is exposed. Left blank.",
+          "checked_on": "2026-11-21"
         },
         {
           "field": "Catalog Breadcrumb",
-          "value": "Home & Kitchen › Kitchen & Dining › Storage & Organization › Racks & Holders › Paper Towel Holders",
+          "value": "Home & Kitchen \u203a Kitchen & Dining \u203a Storage & Organization \u203a Racks & Holders \u203a Paper Towel Holders",
           "status": "Verified",
           "source_label": "Amazon Category Breadcrumb",
           "source_url": "https://www.amazon.com/dp/B0BSKQW2T2"
         },
         {
           "field": "Material & Finish",
-          "value": "Aluminum · Matte Black (also offered in Gold and White variations)",
+          "value": "Aluminum \u00b7 Matte Black (also offered in Gold and White variations)",
           "status": "Verified",
           "source_label": "Amazon Product Information",
           "source_url": "https://www.amazon.com/dp/B0BSKQW2T2"
@@ -255,14 +291,18 @@
           "value": "",
           "status": "Unverified",
           "source_label": "Amazon Product Information (field absent)",
-          "source_url": "https://www.amazon.com/dp/B0BSKQW2T2"
+          "source_url": "https://www.amazon.com/dp/B0BSKQW2T2",
+          "audit_note": "The listing as read on 2026-11-21 has no Date First Available row in its Product information or Item details tables. Left blank.",
+          "checked_on": "2026-11-21"
         },
         {
           "field": "Standard Commission Schedule Reference",
           "value": "Kitchen schedule: 4.50% / Home schedule: 3.00% (exact sub-node rate unverified until Associates report)",
           "status": "Needs Review",
-          "source_label": "Amazon Standard Commission Income Rates",
-          "source_url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ"
+          "source_label": "Amazon Standard Commission Income Statement (public table)",
+          "source_url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ",
+          "checked_on": "2026-11-21",
+          "audit_note": "Public rate table re-read without sign-in on 2026-11-21 (S32): Kitchen 4.50%; Home, Home Improvement, Tools 3.00%. Band shown for reference only; the band that actually pays on an order is unverified until an Associates report exists."
         },
         {
           "field": "Live Creators API Price & Availability (PA-API 5.0 deprecated)",
@@ -271,15 +311,43 @@
           "source_label": "Amazon Creators API — PA-API 5 Deprecation Notice",
           "source_url": "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/paapiv5-deprecation"
         }
-      ]
+      ],
+      "reverified_on": "2026-11-21",
+      "reverification": {
+        "method": "Single unauthenticated fetch of the official Amazon detail page; only the fields this site publishes were re-read.",
+        "source_url": "https://www.amazon.com/dp/B0BSKQW2T2",
+        "confirmed_fields": [
+          "Observed ASIN",
+          "Official Listing Title",
+          "Brand",
+          "Material & Finish",
+          "Mounting Type"
+        ],
+        "partially_confirmed": [
+          "Item Dimensions & Rail Length \u2014 the 12.2-inch rail length is stated in the listing's \"About this Item\" block; the 2.56-inch depth was not re-read"
+        ],
+        "not_reread": [
+          "Manufacturer",
+          "Model Number",
+          "Manufacturer Part Number",
+          "Item Weight",
+          "UPC / GTIN",
+          "Date First Available",
+          "Standard Commission Schedule Reference",
+          "Live PA-API Price & Availability"
+        ],
+        "changes": "None. No published value changed on 2026-11-21; blank fields stayed blank."
+      }
     },
     {
-      "submission_ids": ["S04"],
+      "submission_ids": [
+        "S12"
+      ],
       "submitted_short_url": "https://link.amazon/B0hpD2JGQ",
       "short_token": "B0hpD2JGQ",
       "observed_asin": "B08DY9HRWD",
       "observed_dp_url": "https://www.amazon.com/dp/B08DY9HRWD",
-      "observed_redirect_query_note": "sprefix=diy+home+upgrades, btn_type=ss, th=1 (no tag= parameter present)",
+      "observed_redirect_query_note": "sprefix=diy+home+upgrades, btn_type=ss, th=1 (lv=shuf, btn_type=ss; NO tag= parameter present). Per Amazon help topic S26, the absence of the tracking ID in the URL after click-through is not evidence either way, so tracking status remains unverified and recordable only from an Associates report.",
       "candidate_special_link_template": "https://www.amazon.com/dp/B08DY9HRWD?tag=shopnow047c-20",
       "category_slug": "kitchen-storage",
       "category_name": "Under-cabinet kitchen storage",
@@ -324,14 +392,14 @@
         },
         {
           "field": "Fulfillment & Seller",
-          "value": "Ships from Amazon · Sold by ORDORA Official",
+          "value": "Ships from Amazon \u00b7 Sold by ORDORA Official",
           "status": "Verified",
           "source_label": "Amazon Buy Box Merchant Info",
           "source_url": "https://www.amazon.com/dp/B08DY9HRWD"
         },
         {
           "field": "Model Number & Style",
-          "value": "ODR8Tier · Style M-16.61\"H-LightDuty",
+          "value": "ODR8Tier \u00b7 Style M-16.61\"H-LightDuty",
           "status": "Verified",
           "source_label": "Amazon Item Details",
           "source_url": "https://www.amazon.com/dp/B08DY9HRWD"
@@ -352,14 +420,14 @@
         },
         {
           "field": "Catalog Breadcrumb",
-          "value": "Home & Kitchen › Kitchen & Dining › Storage & Organization › Racks & Holders › Pot Racks",
+          "value": "Home & Kitchen \u203a Kitchen & Dining \u203a Storage & Organization \u203a Racks & Holders \u203a Pot Racks",
           "status": "Verified",
           "source_label": "Amazon Category Breadcrumb",
           "source_url": "https://www.amazon.com/dp/B08DY9HRWD"
         },
         {
           "field": "Material & Divider Spec",
-          "value": "Iron · Black (5.0mm plastic-dipped anti-slip M-shaped dividers)",
+          "value": "Iron \u00b7 Black (5.0mm plastic-dipped anti-slip M-shaped dividers)",
           "status": "Verified",
           "source_label": "Amazon Materials & A+ Details",
           "source_url": "https://www.amazon.com/dp/B08DY9HRWD"
@@ -373,14 +441,14 @@
         },
         {
           "field": "Item Weight & Per-Shelf Capacity",
-          "value": "3.3 pounds item weight · 10 pounds per-tier weight limit",
+          "value": "3.3 pounds item weight \u00b7 10 pounds per-tier weight limit",
           "status": "Verified",
           "source_label": "Amazon Features & Measurements",
           "source_url": "https://www.amazon.com/dp/B08DY9HRWD"
         },
         {
           "field": "Cookware Size Guidance",
-          "value": "Title says 'Fits Lightweight Cookware Up to 11\"'; bullet #4 says 'up to 12 inches' (min >2.4\"). Newer heavy-duty model B0BYYTQMTR (20.8\", 120 lbs) noted on listing — flagged for review",
+          "value": "Title says 'Fits Lightweight Cookware Up to 11\"'; bullet #4 says 'up to 12 inches' (min >2.4\"). Newer heavy-duty model B0BYYTQMTR (20.8\", 120 lbs) noted on listing \u2014 flagged for review",
           "status": "Needs Review",
           "source_label": "Amazon Official Listing",
           "source_url": "https://www.amazon.com/dp/B08DY9HRWD"
@@ -397,14 +465,18 @@
           "value": "",
           "status": "Unverified",
           "source_label": "Amazon Item Details (field absent)",
-          "source_url": "https://www.amazon.com/dp/B08DY9HRWD"
+          "source_url": "https://www.amazon.com/dp/B08DY9HRWD",
+          "audit_note": "The listing as read on 2026-11-21 has no Date First Available row in its Product information or Item details tables. Left blank.",
+          "checked_on": "2026-11-21"
         },
         {
           "field": "Standard Commission Schedule Reference",
           "value": "Kitchen schedule: 4.50% / Home schedule: 3.00% (exact sub-node rate unverified until Associates report)",
           "status": "Needs Review",
-          "source_label": "Amazon Standard Commission Income Rates",
-          "source_url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ"
+          "source_label": "Amazon Standard Commission Income Statement (public table)",
+          "source_url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ",
+          "checked_on": "2026-11-21",
+          "audit_note": "Public rate table re-read without sign-in on 2026-11-21 (S32): Kitchen 4.50%; Home, Home Improvement, Tools 3.00%. Band shown for reference only; the band that actually pays on an order is unverified until an Associates report exists."
         },
         {
           "field": "Live Creators API Price & Availability (PA-API 5.0 deprecated)",
@@ -413,7 +485,37 @@
           "source_label": "Amazon Creators API — PA-API 5 Deprecation Notice",
           "source_url": "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/paapiv5-deprecation"
         }
-      ]
+      ],
+      "reverified_on": "2026-11-21",
+      "reverification": {
+        "method": "Single unauthenticated fetch of the official Amazon detail page; only the fields this site publishes were re-read.",
+        "source_url": "https://www.amazon.com/dp/B08DY9HRWD",
+        "confirmed_fields": [
+          "Observed ASIN",
+          "Official Listing Title",
+          "Brand"
+        ],
+        "partially_confirmed": [],
+        "not_reread": [
+          "Manufacturer",
+          "Fulfillment & Seller",
+          "Model Number & Style",
+          "Manufacturer Part Number",
+          "UPC / GTIN",
+          "Catalog Breadcrumb",
+          "Material & Divider Spec",
+          "Dimensions & 3 DIY Footprints",
+          "Item Weight & Per-Shelf Capacity",
+          "Cookware Size Guidance",
+          "Included Components",
+          "Date First Available",
+          "Standard Commission Schedule Reference",
+          "Live PA-API Price & Availability"
+        ],
+        "changes": "None. No published value changed on 2026-11-21; blank fields stayed blank."
+      }
     }
-  ]
+  ],
+  "reverified_on": "2026-11-21",
+  "reverification_note": "The 52 rows were first read on 2026-11-20. On 2026-11-21 each of the three listings was fetched again; only the fields recorded per product under 'reverification' were re-read. Fields not re-read keep their 2026-11-20 verification and are not re-dated. No value changed, and every blank field stayed blank."
 }

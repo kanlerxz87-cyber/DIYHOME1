@@ -1,6 +1,6 @@
 {
-  "generated": "2026-11-20",
-  "notes": "Verified fields come from the live listing and the submitted links, read on 2026-11-20. Prices, star ratings, review counts, availability, image assets and commission rates are deliberately absent: see disclosures and data/flagged.json F07, F09, F11. No product here has been handled, tested or used by this site.",
+  "generated": "2026-11-21",
+  "notes": "Verified fields come from the live listing and the submitted links, re-read 2026-11-21 (first read 2026-11-20). Prices, star ratings, review counts, availability, image assets and commission rates are deliberately absent from the published pages: see disclosures and data/flagged.json F07, F09, F10, F11. Dynamic values observed on 2026-11-21 are stored in this file as dated audit observations only and are never rendered, because Amazon permits price display solely through Amazon-served links or the Creators/PA API. No product here has been handled, tested or used by this site.",
   "products": [
     {
       "id": "P1",
@@ -20,12 +20,12 @@
       "submitted_links": [
         "S10"
       ],
-      "observed_redirect_target": "https://www.amazon.com/dp/B08FKW9JRM?lv=shuf&btn_type=ss&crid=2Y94AV6ZXMMJI&sprefix=diy+home+upgrades%2Caps%2C196&gaOptInStatus=true&language=en_US&sr=8-2&btn_ref=srctok-66dc2f239029f4f9&channelId=500&plpRedirect=mhFallback&th=1",
+      "observed_redirect_target": "https://www.amazon.com/dp/B08FKW9JRM?lv=shuf&btn_type=ss&crid=2Y94AV6ZXMMJI&sprefix=diy+home+upgrades%2Caps%2C196&gaOptInStatus=true&language=en_US&sr=8-2&btn_ref=srctok-4d6e07a6662684d5&channelId=500&plpRedirect=mhFallback&th=1",
       "observed_on": "2026-11-20",
-      "observed_method": "Single unauthenticated fetch of the submitted short link; final URL and page title recorded.",
+      "observed_method": "Unauthenticated fetch of the supplied short link, following redirects, then the resolved /dp/ page read for title, Product information table and dynamic fields. Repeated 2026-11-20 and 2026-11-21 with the same ASIN result.",
       "listing_verified": true,
       "associates_link_verified": false,
-      "associates_status": "Unconfirmed \u2014 requires sign-in to Associates Central to confirm the link is enrolled and that clicks appear in the tracking report.",
+      "associates_status": "Unconfirmed \u2014 requires sign-in to Associates Central to confirm the link is enrolled and that clicks appear in the tracking report. Note S27 (Amazon): the tracking ID is not expected to appear in the URL after click-through, so a missing tag= parameter in the observed redirect is not evidence either way.",
       "seller_observed": "Art3d\u00ae \u2014 Ships from Amazon (observed 2026-11-20; dynamic merchant line)",
       "category_path": [
         {
@@ -63,7 +63,24 @@
         "How much surface are you covering: one backsplash strip, or a whole wall?",
         "Is your wall smooth and painted, or textured and glossy?",
         "Do you own a craft knife and a straight edge already?"
-      ]
+      ],
+      "observed_redirect_target_history": [
+        {
+          "observed_on": "2026-11-20",
+          "observed_redirect_target": "https://www.amazon.com/dp/B08FKW9JRM?lv=shuf&btn_type=ss&crid=2Y94AV6ZXMMJI&sprefix=diy+home+upgrades%2Caps%2C196&gaOptInStatus=true&language=en_US&sr=8-2&btn_ref=srctok-66dc2f239029f4f9&channelId=500&plpRedirect=mhFallback&th=1"
+        }
+      ],
+      "reverified_on": "2026-11-21",
+      "listing_title_observed_2026_11_21": "Art3d Smoothing Tool Kit for Peel and Stick Wallpaper | Vinyl Backsplash Tile, Complete Basic Tool Set, Bubble & Crease Removal, Ergonomic Grip, Safe for DIY and New Home Buyer",
+      "observed_price_displayed": 5.08,
+      "observed_rating_displayed": "4.6 out of 5 stars",
+      "observed_review_count_displayed": 26459,
+      "observed_bought_past_month": "20K+ bought in past month",
+      "observed_badge": "Amazon's Choice",
+      "dynamic_observations_policy": "Observed on the listing 2026-11-21 but NOT republished as a site figure: Program Policies 2(b) limits price/availability display to Amazon-served links or API, and 3(t)-equivalent terms limit review content. Recorded here only as a dated observation for audit.",
+      "tag_parameter_in_redirect": false,
+      "listing_verified_on": "2026-11-21",
+      "start_here": "You have one wall or a backsplash strip, and this is your first peel-and-stick job."
     },
     {
       "id": "P2",
@@ -83,12 +100,12 @@
       "submitted_links": [
         "S11"
       ],
-      "observed_redirect_target": "https://www.amazon.com/dp/B0BSKQW2T2?lv=shuf&btn_type=ss&crid=2Y94AV6ZXMMJI&sprefix=diy%2Bhome%2Bupgrades%2Caps%2C196&gaOptInStatus=true&language=en_US&sr=8-3&btn_ref=srctok-1c4034662c855768&channelId=500&plpRedirect=mhFallback&th=1",
+      "observed_redirect_target": "https://www.amazon.com/dp/B0BSKQW2T2?lv=shuf&btn_type=ss&crid=2Y94AV6ZXMMJI&sprefix=diy%2Bhome%2Bupgrades%2Caps%2C196&gaOptInStatus=true&language=en_US&sr=8-3&btn_ref=srctok-0b56364554864e20&channelId=500&plpRedirect=mhFallback&th=1",
       "observed_on": "2026-11-20",
-      "observed_method": "Single unauthenticated fetch of the submitted short link; final URL and page title recorded.",
+      "observed_method": "Unauthenticated fetch of the supplied short link, following redirects, then the resolved /dp/ page read for title, Product information table and dynamic fields. Repeated 2026-11-20 and 2026-11-21 with the same ASIN result.",
       "listing_verified": true,
       "associates_link_verified": false,
-      "associates_status": "Unconfirmed \u2014 requires sign-in to Associates Central to confirm the link is enrolled and that clicks appear in the tracking report.",
+      "associates_status": "Unconfirmed \u2014 requires sign-in to Associates Central to confirm the link is enrolled and that clicks appear in the tracking report. Note S27 (Amazon): the tracking ID is not expected to appear in the URL after click-through, so a missing tag= parameter in the observed redirect is not evidence either way.",
       "seller_observed": "YH Urban \u2014 Ships from Amazon (observed 2026-11-20; dynamic merchant line)",
       "category_path": [
         {
@@ -130,7 +147,24 @@
         "What is under your cabinet: bare wood, painted MDF, or a glossy laminate?",
         "How wide is the roll you actually buy, and will it clear the backsplash?",
         "Would you rather drill once than trust adhesive?"
-      ]
+      ],
+      "observed_redirect_target_history": [
+        {
+          "observed_on": "2026-11-20",
+          "observed_redirect_target": "https://www.amazon.com/dp/B0BSKQW2T2?lv=shuf&btn_type=ss&crid=2Y94AV6ZXMMJI&sprefix=diy%2Bhome%2Bupgrades%2Caps%2C196&gaOptInStatus=true&language=en_US&sr=8-3&btn_ref=srctok-1c4034662c855768&channelId=500&plpRedirect=mhFallback&th=1"
+        }
+      ],
+      "reverified_on": "2026-11-21",
+      "listing_title_observed_2026_11_21": "Paper Towel Holder Under Cabinet, Self-Adhesive or Drilling, Matte Black | Kitchen Roll Dispenser | Under-Cabinet or Wall-Mounted| Upgraded Aluminum | Lighter Yet Stronger Than Stainless Steel",
+      "observed_price_displayed": 6.79,
+      "observed_rating_displayed": "4.2 out of 5 stars",
+      "observed_review_count_displayed": 12111,
+      "observed_bought_past_month": "9K+ bought in past month",
+      "observed_badge": "Amazon's Choice",
+      "dynamic_observations_policy": "Observed on the listing 2026-11-21 but NOT republished as a site figure: Program Policies 2(b) limits price/availability display to Amazon-served links or API, and 3(t)-equivalent terms limit review content. Recorded here only as a dated observation for audit.",
+      "tag_parameter_in_redirect": false,
+      "listing_verified_on": "2026-11-21",
+      "start_here": "Your counter is already full and you would rather not drill into a cabinet you do not own."
     },
     {
       "id": "P3",
@@ -150,12 +184,12 @@
       "submitted_links": [
         "S12"
       ],
-      "observed_redirect_target": "https://www.amazon.com/dp/B08DY9HRWD?lv=shuf&btn_type=ss&crid=2Y94AV6ZXMMJI&sprefix=diy%2Bhome%2Bupgrades%2Caps%2C196&gaOptInStatus=true&language=en_US&sr=8-13&btn_ref=srctok-46eeea56854d085e&channelId=500&plpRedirect=mhFallback&th=1",
+      "observed_redirect_target": "https://www.amazon.com/dp/B08DY9HRWD?lv=shuf&btn_type=ss&crid=2Y94AV6ZXMMJI&sprefix=diy%2Bhome+upgrades%2Caps%2C196&gaOptInStatus=true&language=en_US&sr=8-13&btn_ref=srctok-204fc7b88ae1881d&channelId=500&plpRedirect=mhFallback&th=1",
       "observed_on": "2026-11-20",
-      "observed_method": "Single unauthenticated fetch of the submitted short link; final URL and page title recorded.",
+      "observed_method": "Unauthenticated fetch of the supplied short link, following redirects, then the resolved /dp/ page read for title, Product information table and dynamic fields. Repeated 2026-11-20 and 2026-11-21 with the same ASIN result.",
       "listing_verified": true,
       "associates_link_verified": false,
-      "associates_status": "Unconfirmed \u2014 requires sign-in to Associates Central to confirm the link is enrolled and that clicks appear in the tracking report.",
+      "associates_status": "Unconfirmed \u2014 requires sign-in to Associates Central to confirm the link is enrolled and that clicks appear in the tracking report. Note S27 (Amazon): the tracking ID is not expected to appear in the URL after click-through, so a missing tag= parameter in the observed redirect is not evidence either way.",
       "seller_observed": "ORDORA Official (observed 2026-11-20; seller lines change and are not a lasting guarantee)",
       "category_path": [
         {
@@ -199,7 +233,24 @@
         "What is the clear internal height of the cabinet?",
         "How heavy is your heaviest pan?",
         "Do you need to reach the rack from one side only?"
-      ]
+      ],
+      "observed_redirect_target_history": [
+        {
+          "observed_on": "2026-11-20",
+          "observed_redirect_target": "https://www.amazon.com/dp/B08DY9HRWD?lv=shuf&btn_type=ss&crid=2Y94AV6ZXMMJI&sprefix=diy%2Bhome%2Bupgrades%2Caps%2C196&gaOptInStatus=true&language=en_US&sr=8-13&btn_ref=srctok-46eeea56854d085e&channelId=500&plpRedirect=mhFallback&th=1"
+        }
+      ],
+      "reverified_on": "2026-11-21",
+      "listing_title_observed_2026_11_21": "ORDORA Pots and Pans Organizer Under Cabinet 16.6\", 8-Tier Adjustable Rack | 3 DIY Modes, Tool-Free Assembly, Non-Slip, Fits Lightweight Cookware Up to 11\", For Kitchen Cabinets, Shelves & Countertops",
+      "observed_price_displayed": 17.74,
+      "observed_rating_displayed": "4.4 out of 5 stars",
+      "observed_review_count_displayed": 18835,
+      "observed_bought_past_month": "1K+ bought in past month",
+      "observed_badge": null,
+      "dynamic_observations_policy": "Observed on the listing 2026-11-21 but NOT republished as a site figure: Program Policies 2(b) limits price/availability display to Amazon-served links or API, and 3(t)-equivalent terms limit review content. Recorded here only as a dated observation for audit.",
+      "tag_parameter_in_redirect": false,
+      "listing_verified_on": "2026-11-21",
+      "start_here": "Your cabinet is a stack of pans and you want the small one without unstacking everything."
     }
   ]
 }

@@ -1,11 +1,11 @@
 {
-  "pr_url": "https://github.com/kanlerxz87-cyber/DIYHOME1/pull/13",
-  "pr_number": "13",
-  "merge_commit": "e32d1e4b9556768f33c6bbd8e4f8ccab7129f800",
-  "merged_at": "2026-11-20T06:58:16Z",
+  "pr_url": "https://github.com/kanlerxz87-cyber/DIYHOME1/pull/19",
+  "pr_number": "19",
+  "merge_commit": "c27383b7af63f5481fd6d0c7eccd1af9ec2b7402",
+  "merged_at": "2026-11-21T23:25:06Z",
   "pages_url": "https://kanlerxz87-cyber.github.io/DIYHOME1/",
-  "pages_status": "built \u2014 Pages reported status 'built' (legacy, main:/) for commit e32d1e4b9556 at 2026-11-20T06:58:39Z; live pages (/DIYHOME1/, /products/comparisons/, /automation/, /sources/, /flagged/) fetched and confirmed",
+  "pages_status": "built — Pages reported build status 'built' for commit c27383b7af63 at 2026-11-21T23:25:43Z (legacy, main:/); /sources/ and /flagged/ fetched live after deploy and confirmed (26 sources, Re-verified 2026-11-21 callout, 16 flags incl. F15/F16)",
   "pages_build_type": "legacy",
   "pages_source": "main:/",
-  "notes": "Filled in by the integration session after the merge. Empty fields are genuinely unknown, not zero."
+  "notes": "Filled in by the integration session after each merge. Empty fields are genuinely unknown, not zero. The 2026-11-21 pass re-verified the links and listings and reworked the front page; its PR/merge values are appended by the integrating session."
 }

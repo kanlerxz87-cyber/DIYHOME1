@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-20",
+  "generated": "2026-11-21",
   "legend": "Severity high = could cost commission income or breach program terms. medium = a required step cannot be completed without account access or a user action. low = inconsistency worth fixing. info = deliberately withheld data, not an error.",
   "items": [
     {
@@ -94,12 +94,12 @@
       "id": "F07",
       "severity": "info",
       "title": "Prices, star ratings, review counts and availability are observed but deliberately not published",
-      "what": "Those values were visible on the listings during verification. Amazon's Program Policies only allow showing prices and availability if Amazon serves the link containing that data or the data comes from the Creators API (PA-API 5.0 is deprecated per S27), and only allow customer reviews and star ratings if obtained through authorized APIs.",
+      "what": "Those values were visible on the listings during verification. Amazon's Program Policies only allow showing prices and availability if Amazon serves the link containing that data or the data comes from the Creators API (PA-API 5.0 is deprecated per S33), and only allow customer reviews and star ratings if obtained through authorized APIs.",
       "why_it_matters": "Republishing them without those routes would breach the terms this site is required to follow, and a scraped price is stale the moment it is written.",
       "sources": [
         "S01",
         "S18",
-        "S27"
+        "S33"
       ],
       "needs": "Creators API credentials, if live price and rating display is wanted at all.",
       "action": "Table columns for price, rating and availability are left out rather than filled with a stale number. No price tracking or price alerts exist anywhere on this site.",
@@ -232,6 +232,79 @@
       "needs": "A signed-in or API route to the Product Information table, or a spot-check by the site owner, to re-confirm those fields after any listing change.",
       "action": "The values were left exactly as published rather than upgraded, blanked or re-inferred, and this limitation is stated rather than hidden.",
       "status": "needs review"
+    },
+    {
+      "id": "F17",
+      "severity": "medium",
+      "title": "Two public source registers used the same S-numbers for different documents",
+      "what": "data/sources.json (S01-S25) and data/verified-sources.json (S01-S24) both labelled their entries Sxx, but all 24 shared labels pointed at different pages: S01 was the Program Policies in one file and the Operating Agreement in the other, and every other shared label differed too. Both files are linked from /sources/. A third numbering, S01-S04 for the four supplied links, also appeared in two audit notes in the second register.",
+      "why_it_matters": "A citation such as \"S02\" could not be resolved without knowing which file the writer meant, which defeats the point of a register.",
+      "sources": [
+        "S01",
+        "S02"
+      ],
+      "needs": "Nothing blocking; data/sources.json is the canonical register and is the one rendered on /sources/.",
+      "action": "The second register now uses VS01-VS24 and states that it is a 2026-11-20 snapshot. Its audit notes name the submitted links directly instead of reusing S-numbers. scripts/validate.mjs now fails if a VS entry collides with an S id or a parallel pass cites this site as its own source.",
+      "status": "needs review"
+    },
+    {
+      "id": "F18",
+      "severity": "low",
+      "title": "The public product-spec register named the wrong submission sources and three guides that do not exist",
+      "what": "Until 2026-11-21, data/product-specs.json recorded submission_ids S01, S02/S03 and S04 for the three products. Those IDs are the Program Policies, the Operating Agreement, FTC guidance and the Art3d listing \u2014 not the submitted links, which are S10, S11 and S12. The same file carried guide_slug values for guides/peel-and-stick-tools.html, guides/adhesive-vs-drilled-mounts.html and guides/cabinet-pan-rack-fit.html, none of which has ever been published, and category_slug values that do not exist in data/site.json. The file is downloadable from /sources/.",
+      "why_it_matters": "A reader, or an automated consumer of the register, would attribute the owner's submitted links to the wrong documents and follow guide paths that 404.",
+      "sources": [
+        "S10",
+        "S11",
+        "S12"
+      ],
+      "needs": "Nothing further for these labels; they are corrected. Whether the submitted links are enrolled Special Links is still open (F01).",
+      "action": "Corrected to S10/S11/S12, the three live guide paths and the two live category slugs on 2026-11-21. scripts/validate.mjs now fails the build if any of them drift again.",
+      "status": "needs review"
+    },
+    {
+      "id": "F19",
+      "severity": "info",
+      "title": "The 2026-11-21 re-check re-read part of the 52-row register, not all of it",
+      "what": "In this session all three listings were opened on 2026-11-21. For B08FKW9JRM the Product Information / Technical Details table did surface and was re-read. For B0BSKQW2T2 the title, brand, material, mounting type and the 12.2-inch rail length in the 'About this Item' block were re-read. For B08DY9HRWD only the title and brand were re-read. No value changed and no blank was filled. F16 records that a different 2026-11-21 session could not surface the Product Information tables at all; both statements describe different fetches and both are true.",
+      "why_it_matters": "So the register does not claim a complete second read. Rows that were not re-read keep their 2026-11-20 date.",
+      "sources": [
+        "S04",
+        "S05",
+        "S06"
+      ],
+      "needs": "A later pass can re-read the technical tables for B0BSKQW2T2 and B08DY9HRWD and record it in each product's reverification block; F16 records the same gap from the other session's route.",
+      "action": "data/product-specs.json records, per product, which fields were re-read, which were not, and that nothing changed. Rows not re-read keep their 2026-11-20 date.",
+      "status": "needs review"
+    },
+    {
+      "id": "F20",
+      "severity": "low",
+      "title": "Landing-page flag counts were hardcoded and could drift from data/flagged.json",
+      "what": "The front page and the summary page printed fixed numbers of flagged items and specification rows. Those numbers matched on 2026-11-21 but would silently go stale the next time an item was added or closed.",
+      "why_it_matters": "A published count that does not match the register behind it is a factual error on a page whose whole argument is that counts are checkable.",
+      "sources": [
+        "S07"
+      ],
+      "needs": "Nothing further; fixed in the same build by deriving the counts from data/*.json.",
+      "action": "Every count on the generated pages is now computed from the data files at build time.",
+      "status": "needs review",
+      "updated": "2026-11-21"
+    },
+    {
+      "id": "F21",
+      "severity": "info",
+      "title": "Dynamic listing values observed on 2026-11-21 are recorded for audit but deliberately not published",
+      "what": "The three listings displayed a price, star rating, review count and 'bought in past month' line when read on 2026-11-21. Those observations are stored in data/products.json for provenance and are not rendered on any page.",
+      "why_it_matters": "Amazon permits price and availability display only through Amazon-served links or the Creators/PA API, and its terms restrict republishing review content without API access.",
+      "sources": [
+        "S01",
+        "S03"
+      ],
+      "needs": "Creators API credentials, or an Amazon-served link, before any price or rating can appear on the site.",
+      "action": "No price, rating, review count or availability figure appears on the site. The observation is kept as a dated audit record with this explanation.",
+      "status": "needs review",
+      "updated": "2026-11-21"
     }
   ]
 }

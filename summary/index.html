@@ -45,8 +45,8 @@
   <div class="stat-grid">
     <div class="stat"><span class="n">3</span><span class="l">Products, each resolved from a supplied link to a live listing</span></div>
     <div class="stat"><span class="n">4</span><span class="l">Question-shaped guides, one per week of the issue</span></div>
-    <div class="stat"><span class="n">28</span><span class="l">Registered sources, 25 read, 3 not readable</span></div>
-    <div class="stat"><span class="n">16</span><span class="l">Items flagged for review (13 actionable, 3 withheld by design)</span></div>
+    <div class="stat"><span class="n">34</span><span class="l">Registered sources, 31 read, 3 not readable</span></div>
+    <div class="stat"><span class="n">21</span><span class="l">Items flagged for review (16 actionable, 5 withheld by design)</span></div>
   </div>
 
   <div class="prose">
@@ -68,9 +68,17 @@
       <li>No search-volume or popularity claims for any guide title.</li>
     </ul>
 
+    <h2>What the 21 November 2026 pass changed</h2>
+    <ul>
+      <li><strong>Short-link tracking, re-examined.</strong> All three supplied links were fetched again and resolved to the same ASINs. None carries the tag in its redirect, and Amazon's own help topic says the tracking ID is not expected to appear there because the session is tagged instead. <a class="src" href="https://www.rssboard.org/rss-specification" data-citation="true" target="_blank" rel="noopener" title="RSS 2.0 Specification (current version 2.0.11)">S27</a> That is why the flag is about the Associates report, not about the missing parameter.</li>
+      <li><strong>The ASIN definition is now first-party and public.</strong> Amazon defines the ASIN as its 10-digit item code and documents the link format used here. <a class="src" href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide" data-citation="true" target="_blank" rel="noopener" title="Search Engine Optimization (SEO) Starter Guide">S28</a></li>
+      <li><strong>Commission bands are public.</strong> Kitchen 4.50%, Home/Home Improvement/Tools 3.00%. <a class="src" href="https://www.ftc.gov/business-guidance/privacy-security" data-citation="true" target="_blank" rel="noopener" title="Privacy and Security — business guidance">S29</a> The band is not the payout, so no percentage is published and the ledger stays empty.</li>
+      <li><strong>Blanks now explain themselves.</strong> Every unverified field says what was checked and when &mdash; two listings expose no UPC, two expose no date first available.</li>
+    </ul>
+
     <h2>What is still blocked</h2>
     <ol>
-      <li><strong>F01 The three submitted short links are not confirmed as enrolled Associates Special Links</strong> &mdash; Sign-in to Associates Central, open SiteStripe, build one link per product, confirm the destination and confirm the click in the tracking report before adding more products.</li><li><strong>F03 The air-fryer working titles in the brief have no matching products</strong> &mdash; Either submit air-fryer products, or accept the replacement guide set.</li><li><strong>F04 Search Console is not verified: no verification token was available</strong> &mdash; Add the property in Search Console, copy the HTML tag, paste it into data/site.json as search_console_token, rerun the build.</li><li><strong>F05 The analytics endpoint is not deployed, so the five events stay in the browser</strong> &mdash; Deploy worker/collect.js, then set the endpoint in data/site.json and rebuild, or paste it into assets/js/config.js at runtime.</li><li><strong>F10 Commission rates could not be verified, so no commission percentages or revenue forecasts appear</strong> &mdash; Read the rate card inside Associates Central and record it with a date, then it can be shown as a dated fact.</li><li><strong>F13 The verification fetches did not identify themselves as an automated agent</strong> &mdash; Any automated refresh must set a user agent of the form Agent/diyhome-verifier and must not work around blocks. If Amazon asks an agent to stop, it stops.</li>
+      <li><strong>F01 The three submitted short links are not confirmed as enrolled Associates Special Links</strong> &mdash; Sign-in to Associates Central, open SiteStripe, build one link per product, confirm the destination and confirm the click in the tracking report before adding more products.</li><li><strong>F03 The air-fryer working titles in the brief have no matching products</strong> &mdash; Either submit air-fryer products, or accept the replacement guide set.</li><li><strong>F04 Search Console is not verified: no verification token was available</strong> &mdash; Add the property in Search Console, copy the HTML tag, paste it into data/site.json as search_console_token, rerun the build.</li><li><strong>F05 The analytics endpoint is not deployed, so the five events stay in the browser</strong> &mdash; Deploy worker/collect.js, then set the endpoint in data/site.json and rebuild, or paste it into assets/js/config.js at runtime.</li><li><strong>F10 Commission rates could not be verified, so no commission percentages or revenue forecasts appear</strong> &mdash; Read the rate card inside Associates Central and record it with a date, then it can be shown as a dated fact.</li><li><strong>F13 The verification fetches did not identify themselves as an automated agent</strong> &mdash; Any automated refresh must set a user agent of the form Agent/diyhome-verifier and must not work around blocks. If Amazon asks an agent to stop, it stops.</li><li><strong>F17 Two public source registers used the same S-numbers for different documents</strong> &mdash; Nothing blocking; data/sources.json is the canonical register and is the one rendered on /sources/.</li>
     </ol>
 
     <h2>How the site is built</h2>
@@ -84,11 +92,11 @@
       <table>
         <caption>Only fields that are actually known are shown. Blank means not recorded, never zero.</caption>
         <tbody>
-          <tr><th scope="row">Pull request</th><td><a href="https://github.com/kanlerxz87-cyber/DIYHOME1/pull/13" target="_blank" rel="noopener">#13 — https://github.com/kanlerxz87-cyber/DIYHOME1/pull/13</a> <a class="src" href="https://api.github.com/repos/kanlerxz87-cyber/DIYHOME1/pages" data-citation="true" target="_blank" rel="noopener" title="GitHub Pages configuration record for kanlerxz87-cyber/DIYHOME1">S14</a></td></tr>
-          <tr><th scope="row">Merge commit</th><td><span class="mono">e32d1e4b9556768f33c6bbd8e4f8ccab7129f800</span> <a class="src" href="https://api.github.com/repos/kanlerxz87-cyber/DIYHOME1/pages" data-citation="true" target="_blank" rel="noopener" title="GitHub Pages configuration record for kanlerxz87-cyber/DIYHOME1">S14</a></td></tr>
-          <tr><th scope="row">Merged at</th><td>2026-11-20T06:58:16Z UTC <a class="src" href="https://api.github.com/repos/kanlerxz87-cyber/DIYHOME1/pages" data-citation="true" target="_blank" rel="noopener" title="GitHub Pages configuration record for kanlerxz87-cyber/DIYHOME1">S14</a></td></tr>
+          <tr><th scope="row">Pull request</th><td><a href="https://github.com/kanlerxz87-cyber/DIYHOME1/pull/19" target="_blank" rel="noopener">#19 — https://github.com/kanlerxz87-cyber/DIYHOME1/pull/19</a> <a class="src" href="https://api.github.com/repos/kanlerxz87-cyber/DIYHOME1/pages" data-citation="true" target="_blank" rel="noopener" title="GitHub Pages configuration record for kanlerxz87-cyber/DIYHOME1">S14</a></td></tr>
+          <tr><th scope="row">Merge commit</th><td><span class="mono">c27383b7af63f5481fd6d0c7eccd1af9ec2b7402</span> <a class="src" href="https://api.github.com/repos/kanlerxz87-cyber/DIYHOME1/pages" data-citation="true" target="_blank" rel="noopener" title="GitHub Pages configuration record for kanlerxz87-cyber/DIYHOME1">S14</a></td></tr>
+          <tr><th scope="row">Merged at</th><td>2026-11-21T23:25:06Z UTC <a class="src" href="https://api.github.com/repos/kanlerxz87-cyber/DIYHOME1/pages" data-citation="true" target="_blank" rel="noopener" title="GitHub Pages configuration record for kanlerxz87-cyber/DIYHOME1">S14</a></td></tr>
           <tr><th scope="row">Published URL</th><td><a href="https://kanlerxz87-cyber.github.io/DIYHOME1/" target="_blank" rel="noopener">https://kanlerxz87-cyber.github.io/DIYHOME1/</a> <a class="src" href="https://api.github.com/repos/kanlerxz87-cyber/DIYHOME1/pages" data-citation="true" target="_blank" rel="noopener" title="GitHub Pages configuration record for kanlerxz87-cyber/DIYHOME1">S14</a></td></tr>
-          <tr><th scope="row">Pages build</th><td>built — Pages reported status 'built' (legacy, main:/) for commit e32d1e4b9556 at 2026-11-20T06:58:39Z; live pages (/DIYHOME1/, /products/comparisons/, /automation/, /sources/, /flagged/) fetched and confirmed <a class="src" href="https://api.github.com/repos/kanlerxz87-cyber/DIYHOME1/pages" data-citation="true" target="_blank" rel="noopener" title="GitHub Pages configuration record for kanlerxz87-cyber/DIYHOME1">S14</a></td></tr>
+          <tr><th scope="row">Pages build</th><td>built — Pages reported build status 'built' for commit c27383b7af63 at 2026-11-21T23:25:43Z (legacy, main:/); /sources/ and /flagged/ fetched live after deploy and confirmed (26 sources, Re-verified 2026-11-21 callout, 16 flags incl. F15/F16) <a class="src" href="https://api.github.com/repos/kanlerxz87-cyber/DIYHOME1/pages" data-citation="true" target="_blank" rel="noopener" title="GitHub Pages configuration record for kanlerxz87-cyber/DIYHOME1">S14</a></td></tr>
           <tr><th scope="row">Pages source</th><td><span class="mono">main:/</span> (legacy) <a class="src" href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site" data-citation="true" target="_blank" rel="noopener" title="Configuring a publishing source for your GitHub Pages site">S07</a></td></tr>
         </tbody>
       </table>
@@ -97,7 +105,7 @@
     <h2>Read next</h2>
     <ul>
       <li><a href="../sources/">Source register</a> &mdash; every source, SG-27..SG-30 passes, and 52 product spec rows</li>
-      <li><a href="../flagged/">Flagged for review</a> &mdash; 16 open items</li>
+      <li><a href="../flagged/">Flagged for review</a> &mdash; 21 open items</li>
       <li><a href="../automation/">Automation &amp; compliance gate</a> &mdash; CLI checks and policy gates</li>
       <li><a href="../about/">How we verify</a> &mdash; method, limits and the automation boundary</li>
       <li><a href="../disclosures/">Disclosures</a> &mdash; affiliate, privacy and data omissions</li>
@@ -118,7 +126,7 @@
     <div class="footer-legal">
       <p><strong>Affiliate disclosure:</strong> DIY Home Upgrades is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. As an Amazon Associate we earn from qualifying purchases. Every outbound product link to Amazon on this site is marked Sponsored and carries the tracking ID shopnow047c-20 (evidence citations in the source register link to bare official pages without affiliate tags).</p>
       <p>Prices, star ratings, review counts and availability are not displayed on this site. See <a href="../disclosures/">Disclosures</a> for why, with the policy sources.</p>
-      <p>Amazon and Amazon.com are trademarks of Amazon.com, Inc. or its affiliates. This site is not endorsed by Amazon. Built 21 November 2026 from <a href="../sources/">28 registered sources</a>.</p>
+      <p>Amazon and Amazon.com are trademarks of Amazon.com, Inc. or its affiliates. This site is not endorsed by Amazon. Built 21 November 2026 from <a href="../sources/">34 registered sources</a>.</p>
     </div>
   </div>
 </footer>

@@ -19,7 +19,8 @@ const guidesNote = readJson("data/guides.json").cadence_note;
 const flagged = readJson("data/flagged.json").items;
 const events = readJson("data/events.json");
 const release = readJson("data/release.json");
-const productSpecs = readJson("data/product-specs.json").products;
+const specMeta = readJson("data/product-specs.json");
+const productSpecs = specMeta.products;
 const parallelPasses = readJson("data/verified-sources.json").parallel_passes;
 const reverify = readJson("data/sources.json").reverification;
 
@@ -27,10 +28,15 @@ const TAG = site.associate_tag;
 const BASE = site.base_url;
 const CATS = site.categories;
 const SRC = Object.fromEntries(sourceList.map((s) => [s.id, s]));
+const SPEC_ROWS = productSpecs.reduce((n, sp) => n + sp.attributes.length, 0);
+const SPEC_BLANKS = productSpecs.reduce((n, sp) => n + sp.attributes.filter((a) => a.value === "").length, 0);
 
 const esc = (v) => String(v ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const prefix = (depth) => (depth === 0 ? "" : "../".repeat(depth));
 const tagged = (asin) => `https://www.amazon.com/dp/${asin}?tag=${TAG}`;
+const fmtLong = (iso) => new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+const specVerifiedDisplay = fmtLong(specMeta.verified_on);
+const specReverifiedDisplay = fmtLong(specMeta.reverified_on);
 const abs = (p) => BASE + p;
 const catOf = (slug) => CATS.find((c) => c.slug === slug);
 const productsIn = (slug) => products.filter((p) => p.category === slug);
@@ -263,6 +269,77 @@ function buyBlock(prod, depth) {
 </div>`;
 }
 
+/* ---- front-page helpers: shop cards lead with verified decided facts ---- */
+
+const SPEC_FIELD_SETS = [
+  ["Material & Handle Material", "Material & Finish", "Material & Divider Spec"],
+  ["Product Dimensions", "Item Dimensions & Rail Length", "Dimensions & 3 DIY Footprints"],
+  ["Item Weight", "Item Weight", "Item Weight & Per-Shelf Capacity"],
+  ["Mounting Type"],
+  ["Included Tools (Listing Bullets)", "Included Components"],
+  ["Date First Available"],
+  ["Catalog Breadcrumb"]
+];
+const SHORT_FIELD_LABEL = {
+  "Material & Handle Material": "Material", "Material & Finish": "Material", "Material & Divider Spec": "Material",
+  "Product Dimensions": "Size", "Item Dimensions & Rail Length": "Size", "Dimensions & 3 DIY Footprints": "Size",
+  "Item Weight": "Weight", "Item Weight & Per-Shelf Capacity": "Weight",
+  "Mounting Type": "Mounting",
+  "Included Tools (Listing Bullets)": "In the box", "Included Components": "In the box",
+  "Date First Available": "First listed",
+  "Catalog Breadcrumb": "Category path"
+};
+
+/* Three verified facts per product, pulled from the spec register rather than
+ * retyped, each carrying the same official source URL as its register row. */
+function decisionFacts(asin, max = 4) {
+  const spec = productSpecs.find((s) => s.observed_asin === asin);
+  if (!spec) return [];
+  const byField = Object.fromEntries(spec.attributes.map((a) => [a.field, a]));
+  const out = [];
+  const used = new Set();
+  for (const set of SPEC_FIELD_SETS) {
+    const attr = set.map((f) => byField[f]).find((a) => a && a.value && a.value !== "");
+    if (!attr || used.has(attr.field)) continue;
+    used.add(attr.field);
+    /* shop cards show the seller's spec only; audit asides stay on the product
+     * page and the flagged page, not in the middle of a buying card */
+    const value = String(attr.value).replace(/\s*\(Note:[^)]*\)\s*/g, "").trim();
+    /* keep the card honest about seller wording: these are the listing's words */
+    out.push({ label: SHORT_FIELD_LABEL[attr.field] || attr.field, value, url: attr.source_url, label_src: attr.source_label, field: attr.field });
+    if (out.length >= max) break;
+  }
+  return out;
+}
+
+function factList(prod, depth) {
+  const facts = decisionFacts(prod.asin_observed);
+  if (!facts.length) return "";
+  return `<dl class="facts facts-compact">${facts.map((f) => `<div>
+    <dt>${esc(f.label)}</dt>
+    <dd>${esc(f.value)}</dd>
+  </div>`).join("")}</dl>
+  <p class="link-note">Read from the <a class="src" href="${esc(facts[0].url)}" data-citation="true" target="_blank" rel="noopener" title="${esc(facts[0].label_src)}">official listing</a> on ${esc(prod.listing_verified_on || prod.confirmation_date)}. Seller's wording, not a test result.</p>`;
+}
+
+function shopCard(prod, depth = 0) {
+  const p = prefix(depth);
+  const cat = catOf(prod.category);
+  const facts = decisionFacts(prod.asin_observed);
+  return `<article class="card shop-card">
+  <p class="card-eyebrow"><span class="badge ok">Listing verified</span> <span class="link-note">${esc(cat.name)}</span></p>
+  <h3 class="card-title"><a href="${p}products/${prod.slug}/">${esc(prod.short_title)}</a></h3>
+  <p>${esc(prod.buyer_fit)}</p>
+  ${facts.length ? `<dl class="facts facts-compact">${facts.map((f) => `<div><dt>${esc(f.label)}</dt><dd>${esc(f.value)}</dd></div>`).join("")}</dl>` : ""}
+  <p class="link-note">ASIN <span class="mono">${esc(prod.asin_observed)}</span> &middot; ${prod.brand ? esc(prod.brand) : "brand not stated"} &middot; read ${esc(prod.listing_verified_on || prod.confirmation_date)} ${srcBadge(prod.confirmation_source, depth)}</p>
+  <div class="btn-row">
+    <a class="btn" href="${tagged(prod.asin_observed)}" data-sponsored="amazon" data-asin="${esc(prod.asin_observed)}" rel="sponsored nofollow noopener" target="_blank">Open on Amazon</a>
+    <a class="btn secondary" href="${p}products/${prod.slug}/">Full specs</a>
+  </div>
+  <p class="link-note">Sponsored, tag ${esc(TAG)}. No price is shown because Amazon allows price display only through its own served links or its API.</p>
+</article>`;
+}
+
 /* ------------------------------------------------------------------ pages */
 
 const pages = [];
@@ -273,44 +350,48 @@ const add = (file, html) => pages.push({ file, html });
 {
   const p = "";
   const lead = products[0];
+  const verifiedOn = products[0].listing_verified_on || products[0].confirmation_date;
   const body = `
-<section class="wrap hero">
+<section class="wrap hero hero-shop">
   <div class="hero-grid">
     <div>
-      <p class="kicker">Issue 01 &middot; ${esc(site.built_display)} &middot; Three verified products</p>
+      <p class="kicker">Issue 01 &middot; ${esc(site.issue_date_display)} &middot; Three verified products</p>
       <h1>Three upgrades that make a rented kitchen work harder</h1>
-      <p class="standfirst">A smoothing kit for the first peel-and-stick wall, a paper towel holder that does not need a drill, and an eight-tier pan rack for a cabinet that is already full. Each listing was opened and read on 20 November 2026, and its title, breadcrumb and merchant line were re-read on 21 November 2026.</p>
+      <p class="standfirst">A smoothing kit for the first peel-and-stick wall, a paper towel holder that does not need a drill, and an eight-tier pan rack for a cabinet that is already full. Each listing was opened and read on ${esc(specVerifiedDisplay)} before it went on this page, and opened again on ${esc(specReverifiedDisplay)} for the fields recorded in the specification register.</p>
       <div class="bylines">
-        <span>${products.length} products, each with a source link</span><span class="dot">&middot;</span>
+        <span>${products.length} products</span><span class="dot">&middot;</span>
         <span>${guideMeta.length} buying guides</span><span class="dot">&middot;</span>
-        <span>${flagged.length} items flagged for review</span><span class="dot">&middot;</span>
-        <span>no prices, ratings or review counts published</span>
+        <span>every fact one click from its source</span><span class="dot">&middot;</span>
+        <span>no prices or star ratings published</span>
       </div>
       <div class="btn-row" style="margin-top:22px">
-        <a class="btn" href="products/">See the three products</a>
+        <a class="btn" href="#the-shop">Compare the three</a>
         <a class="btn secondary" href="guides/">Start with a buying guide</a>
       </div>
     </div>
-    <aside class="hero-side">
-      <h2>The short list</h2>
-      <ol>
-        ${products.map((prod) => `<li><a href="products/${prod.slug}/">${esc(prod.short_title)}</a><br><span class="link-note">${esc(catOf(prod.category).name)} &middot; ASIN ${esc(prod.asin_observed)}</span></li>`).join("")}
-      </ol>
-      <p class="link-note" style="margin-top:14px">Everything outbound is marked <strong>Sponsored</strong>. Prices are absent by design, not by oversight: <a href="disclosures/">why</a>.</p>
+    <aside class="hero-side hero-lead">
+      <h2>Which one is your job?</h2>
+      ${products.map((prod) => `<div class="pick">
+        <p class="pick-when">${esc(prod.start_here)}</p>
+        <h3 class="card-title"><a href="products/${prod.slug}/">${esc(prod.short_title)}</a></h3>
+        <p class="link-note"><span class="mono">${esc(prod.asin_observed)}</span> &middot; read ${esc(verifiedOn)}</p>
+      </div>`).join("")}
+      <p class="link-note" style="margin-top:12px">These are three different jobs, not three rankings. Nothing here has been tested, so nothing here is called the best. <a href="products/comparisons/">Compare the specs side by side</a>.</p>
     </aside>
   </div>
 </section>
 
-<section class="block">
+<section class="block" id="the-shop">
   <div class="wrap">
     <div class="section-head">
       <div>
         <h2>The shop</h2>
-        <p>Three products, in the two categories this issue covers. Filter by category on the <a href="products/">products page</a>.</p>
+        <p>Three verified products in two categories. Each card carries the measurements you would otherwise have to hunt for in the listing's specification tables.</p>
       </div>
       <a class="more" href="products/">All products &rarr;</a>
     </div>
-    <div class="shelf">${products.map((prod) => productCard(prod, 0)).join("")}</div>
+    <div class="shelf">${products.map((prod) => shopCard(prod, 0)).join("")}</div>
+    <p class="link-note" style="margin-top:16px">Want the full register side by side? <a href="products/comparisons/">Compare every confirmed dimension, material and blank field &rarr;</a></p>
   </div>
 </section>
 
@@ -331,31 +412,31 @@ const add = (file, html) => pages.push({ file, html });
   <div class="wrap">
     <div class="section-head">
       <div>
-        <h2>How this page is checked</h2>
-        <p>Three rules, applied to every product here.</p>
+        <h2>Why you can check this page yourself</h2>
+        <p>Short version: nothing here is asserted without a link. The long version is in the footer.</p>
       </div>
       <a class="more" href="about/">The full method &rarr;</a>
     </div>
-    <div class="grid-2">
+    <div class="stat-grid">
+      <div class="stat"><span class="n">${SPEC_ROWS}</span><span class="l">product specification rows, each with its official listing link</span></div>
+      <div class="stat"><span class="n">${sourceList.length}</span><span class="l">registered sources, all read without sign-in</span></div>
+      <div class="stat"><span class="n">${flagged.length}</span><span class="l">items flagged for review, each with what would close it</span></div>
+      <div class="stat"><span class="n">0</span><span class="l">prices, ratings or review counts republished</span></div>
+    </div>
+    <div class="grid-2" style="margin-top:22px">
       <div class="card">
-        <h3 class="card-title">The listing, not a guess</h3>
-        <p>Each product was resolved from the link you supplied to a live Amazon listing. The title and category breadcrumb on this site are copied from that page, with the source ID recorded next to them.</p>
-        <p class="link-note">Example: ${srcBadge("S04", 0)} for the smoothing kit.</p>
+        <h3 class="card-title">Three rules, applied to every row</h3>
+        <ul class="rule-list">
+          <li><strong>Read it, do not infer it.</strong> Titles, dimensions and materials are copied from the listing's own specification table, with the date it was read. ${srcBadge("S04", 0)}</li>
+          <li><strong>Blank beats invented.</strong> A field the listing does not expose stays empty and is badged unverified, with a note saying what was checked. Two listings expose no UPC; two expose no first-available date.</li>
+          <li><strong>No experience claims.</strong> Nothing here has been bought or tested, so nothing here describes using a product. ${srcBadge("S03", 0)}</li>
+        </ul>
       </div>
       <div class="card">
-        <h3 class="card-title">Blank beats invented</h3>
-        <p>Where a value could not be read on an official source—such as intended ASINs, missing UPCs on two listings, or absent Date First Available rows—it stays blank and is badged unverified rather than guessed.</p>
-        <p class="link-note"><a href="flagged/">${flagged.length} items flagged, with sources</a></p>
-      </div>
-      <div class="card">
-        <h3 class="card-title">No performance claims</h3>
-        <p>Nothing here has been bought or tested, so nothing here claims an experience with a product. No star ratings, review counts, prices or commission percentages are republished.</p>
-        <p class="link-note">Reasons: ${srcBadge("S03", 0)} and ${srcBadge("S01", 0)}.</p>
-      </div>
-      <div class="card">
-        <h3 class="card-title">The numbers are not in yet</h3>
-        <p>Five events are instrumented. No analytics endpoint is deployed and no Associates report has been pulled, so the campaign ledger is empty and no conversion score or revenue forecast is presented.</p>
-        <p class="link-note"><a href="measurement/">What is measured</a> &middot; <a href="ledger/">The empty ledger</a></p>
+        <h3 class="card-title">What is deliberately missing</h3>
+        <p>No prices, star ratings, review counts or availability. Amazon only permits price and availability display through its own served links or the Creators/PA API, and its terms restrict republishing review content. ${srcBadge("S01", 0)}</p>
+        <p>No commission percentages and no revenue forecast: the public rate table gives a category band, not this account's payout. ${srcBadge("S29", 0)}</p>
+        <p class="link-note"><a href="products/comparisons/">See every confirmed value, and every blank, side by side &rarr;</a></p>
       </div>
     </div>
   </div>
@@ -363,10 +444,11 @@ const add = (file, html) => pages.push({ file, html });
 
 <section class="block">
   <div class="wrap">
-    <div class="section-head"><div><h2>What is not here yet</h2><p>Stated plainly, because a shop that hides its gaps is not trustworthy.</p></div></div>
+    <div class="section-head"><div><h2>Open items, in plain language</h2><p>Three things are not settled. None of them are simulated on this site.</p></div><a class="more" href="flagged/">All ${flagged.length} flagged items &rarr;</a></div>
     <div class="callout warn">
-      <p><strong>Three things are pending, all flagged:</strong> the supplied short links are not confirmed as enrolled Associates links; Search Console has no verification token; and the analytics collector has no host, so the five events stay in the visitor&rsquo;s browser. None of these are simulated on this site.</p>
-      <p><a href="flagged/">Read the flags, with source links &rarr;</a></p>
+      <p><strong>Affiliate tracking on the supplied short links is unconfirmed.</strong> All three resolve to the right product pages, and none carries the tag in its redirect &mdash; which Amazon's own help says is expected, because tracking happens in the shopping session. Only the Associates report can close it. ${srcBadge("S27", 0)}</p>
+      <p><strong>Search Console has no verification token</strong>, so the site cannot yet read the queries it ranks for. <strong>The analytics collector has no host</strong>, so the five defined events stay in the visitor's browser rather than being sent anywhere.</p>
+      <p><a href="flagged/">Read each one with its source link &rarr;</a></p>
     </div>
   </div>
 </section>
@@ -374,8 +456,8 @@ const add = (file, html) => pages.push({ file, html });
 <section class="block">
   <div class="wrap">
     <div class="callout">
-      <h3>Follow new DIY checklists without giving up your email (SG-30)</h3>
-      <p>Subscribe to our UTF-8 <a href="feed.xml">RSS 2.0 feed</a> in any feed reader, or compare dimensions side by side on the <a href="products/comparisons/">specification matrix</a>. Zero cookies, zero email tracking pixels, zero third-party requests.</p>
+      <h3>Follow new buying checklists without giving up your email (SG-30)</h3>
+      <p>Subscribe to the UTF-8 <a href="feed.xml">RSS 2.0 feed</a> in any reader, or put the three products side by side on the <a href="products/comparisons/">specification matrix</a>. No cookies, no email pixels, no third-party requests.</p>
     </div>
   </div>
 </section>`;
@@ -420,7 +502,7 @@ const add = (file, html) => pages.push({ file, html });
 <div class="wrap page-head">
   <p class="kicker">The shop &middot; ${products.length} products</p>
   <h1>Products, each with the listing it came from</h1>
-  <p class="standfirst">Every row resolves to a live Amazon listing that was opened on ${esc(site.built_display)}. The source column links to the official listing, so you can check any value yourself. Blank cells are blank on purpose.</p>
+  <p class="standfirst">Every row resolves to a live Amazon listing that was opened on ${esc(specVerifiedDisplay)}. The source column links to the official listing, so you can check any value yourself. Blank cells are blank on purpose.</p>
 </div>
 
 <div class="wrap">
@@ -441,7 +523,7 @@ const add = (file, html) => pages.push({ file, html });
 
   <div class="table-wrap">
     <table id="product-table">
-      <caption>Verified product register. Source column links to the official Amazon listing. Verification date ${esc(site.built_display)}.</caption>
+      <caption>Verified product register. Source column links to the official Amazon listing. Verification date ${esc(specVerifiedDisplay)}.</caption>
       <thead>
         <tr>
           <th scope="col">Product</th>
@@ -517,7 +599,7 @@ ${gs.length ? `<section class="block"><div class="wrap">
 </div></section>` : ""}
 <section class="block"><div class="wrap">
   <div class="section-head"><div><h2>What is not in this category page</h2></div></div>
-  <div class="callout warn"><p>No prices, no star ratings, no review counts, no &ldquo;best of&rdquo; ranking. ${items.length === 1 ? "There is one verified product" : `There are ${items.length} verified products`} in this category as of ${esc(site.built_display)}, which is not enough to rank anything. ${srcBadge("S01", 1)}</p></div>
+  <div class="callout warn"><p>No prices, no star ratings, no review counts, no &ldquo;best of&rdquo; ranking. ${items.length === 1 ? "There is one verified product" : `There are ${items.length} verified products`} in this category as of ${esc(specVerifiedDisplay)}, which is not enough to rank anything. ${srcBadge("S01", 1)}</p></div>
 </div></section>`;
 
   add(`products/${cat.slug}/index.html`, layout({
@@ -560,7 +642,7 @@ ${gs.length ? `<section class="block"><div class="wrap">
 <div class="wrap page-head">
   <p class="kicker">Side-by-side comparison &middot; ${productSpecs.length} verified listings</p>
   <h1>Compare dimensions, materials and mounting specs</h1>
-  <p class="standfirst">Line-by-line physical specifications read directly from each official Amazon product detail page on 20 November 2026. Titles, breadcrumbs and merchant lines were re-read on 21 November 2026; the Product Information table itself could not be re-read that day, which is stated as <a href="../../flagged/#F16">F16</a>. Any field omitted by the manufacturer table stays blank and marked unverified.</p>
+  <p class="standfirst">Line-by-line physical specifications read directly from each official Amazon product detail page on ${esc(specVerifiedDisplay)}, and partially re-checked on ${esc(specReverifiedDisplay)} — the per-product scope is in the register, with <a href="../../flagged/#F19">F19</a> for this pass and <a href="../../flagged/#F16">F16</a> for the pass that could not surface the tables. Any field omitted by the manufacturer table stays blank and marked unverified.</p>
 </div>
 <div class="wrap">
   <div class="table-wrap">
@@ -616,7 +698,7 @@ for (const prod of products) {
             <td><strong>${esc(attr.field)}</strong></td>
             <td>${attr.value !== "" ? esc(attr.value) : ""}</td>
             <td><span class="badge ${attr.status === "Verified" ? "ok" : "warn"}">${esc(attr.status)}</span></td>
-            <td>${extCiteLink(attr.source_url, attr.source_label)}</td>
+            <td>${extCiteLink(attr.source_url, attr.source_label)}${attr.audit_note ? `<br><span class="link-note">${esc(attr.audit_note)}</span>` : ""}</td>
           </tr>`).join("")}
         </tbody>
       </table>
@@ -740,7 +822,7 @@ ${gs.length ? `<section class="block"><div class="wrap">
   </div>
   <div class="table-wrap" style="margin-top:18px">
     <table>
-      <caption>Publishing cadence for this issue. All four published ${esc(site.built_display)}; later issues add one guide at a time.</caption>
+      <caption>Publishing cadence for this issue. All four published ${esc(site.issue_date_display)}; later issues add one guide at a time.</caption>
       <thead><tr><th scope="col">Week</th><th scope="col">Guide</th><th scope="col">Category</th><th scope="col">Reader intent</th><th scope="col">Published</th><th scope="col">Source</th></tr></thead>
       <tbody>
         ${guideMeta.map((g) => {
@@ -964,7 +1046,7 @@ ${relProds.length ? `<section class="block"><div class="wrap">
     <ul>
       <li><strong>A strip directly under the masthead</strong> on every page, above the content, marked <em>Sponsored</em>, with a link to this page.</li>
       <li><strong>Repeated in the footer</strong> of every page, in the affiliate paragraph.</li>
-      <li><strong>On the link itself</strong>: every outbound product link to Amazon is labelled <em>Sponsored</em> and carries <span class="mono">rel="sponsored nofollow noopener"</span> per Google&rsquo;s outbound link qualification guidance. ${srcBadge("S28", 1)}</li>
+      <li><strong>On the link itself</strong>: every outbound product link to Amazon is labelled <em>Sponsored</em> and carries <span class="mono">rel="sponsored nofollow noopener"</span> per Google&rsquo;s outbound link qualification guidance. ${srcBadge("S34", 1)}</li>
     </ul>
     <p>FTC guidance asks for a disclosure that is hard to miss, placed with the endorsement rather than only on an about page, in simple language such as &ldquo;advertisement&rdquo;, &ldquo;ad&rdquo; or &ldquo;sponsored&rdquo;. That is why the strip sits under the masthead rather than in a footer-only position, and why the word used is <em>Sponsored</em>. ${srcBadge("S03", 2)}</p>
     <p>Amazon&rsquo;s program terms also require Associates to satisfy applicable disclosure law and to disclose cookies, pixels and third-party data collection accurately. This site sets no cookies and makes no third-party requests, which is stated on the <a href="../measurement/">measurement page</a>. ${srcBadge("S01", 2)}</p>
@@ -980,8 +1062,8 @@ ${relProds.length ? `<section class="block"><div class="wrap">
         <caption>Omitted data and the rule that drives the omission.</caption>
         <thead><tr><th scope="col">Data</th><th scope="col">Status</th><th scope="col">Reason and source</th></tr></thead>
         <tbody>
-          <tr><td>Prices and availability</td><td>Not published</td><td>Only via Amazon-served links or Creators API (PA-API 5.0 deprecated) ${srcBadge("S01", 2)} ${srcBadge("S27", 1)}</td></tr>
-          <tr><td>Star ratings and customer reviews</td><td>Not published</td><td>Only via Creators API (PA-API 5.0 deprecated) ${srcBadge("S01", 2)} ${srcBadge("S27", 1)}</td></tr>
+          <tr><td>Prices and availability</td><td>Not published</td><td>Only via Amazon-served links or Creators API (PA-API 5.0 deprecated) ${srcBadge("S01", 2)} ${srcBadge("S33", 1)}</td></tr>
+          <tr><td>Star ratings and customer reviews</td><td>Not published</td><td>Only via Creators API (PA-API 5.0 deprecated) ${srcBadge("S01", 2)} ${srcBadge("S33", 1)}</td></tr>
           <tr><td>Price tracking or price alerts</td><td>Not built</td><td>Not permitted without agreement ${srcBadge("S01", 2)}</td></tr>
           <tr><td>Product photos and Amazon marks</td><td>Not used</td><td>Program content carries its own licence ${srcBadge("S01", 2)} ${srcBadge("S02", 2)}</td></tr>
           <tr><td>Commission rates and earnings</td><td>Not published</td><td>Account custom rate card requires sign-in ${srcBadge("S17", 1)}; public standard table cited only as category bounds ${srcBadge("S23", 1)}</td></tr>
@@ -1032,13 +1114,12 @@ ${relProds.length ? `<section class="block"><div class="wrap">
   }).join("");
 
   const sgRows = parallelPasses.map((sg) => {
-    const refUrl = sg.source_url.startsWith(BASE) ? SRC["S08"].url : sg.source_url;
     return `<tr id="${esc(sg.code)}">
       <td class="mono">${esc(sg.code)}</td>
       <td><strong>${esc(sg.area)}</strong></td>
       <td>${esc(sg.implementation)}</td>
       <td><span class="badge ${sg.status.startsWith("Done") ? "ok" : "warn"}">${esc(sg.status)}</span></td>
-      <td>${extCiteLink(refUrl, "Official reference")}${sg.code === "SG-28" ? ` &middot; <a href="../feed.xml">feed.xml</a>` : ""}</td>
+      <td>${extCiteLink(sg.source_url, "Official reference")}${sg.source_supports ? `<br><span class="link-note">${esc(sg.source_supports)}</span>` : ""}${sg.code === "SG-28" ? ` &middot; <a href="../feed.xml">feed.xml</a>` : ""}</td>
     </tr>`;
   }).join("");
 
@@ -1085,8 +1166,8 @@ ${relProds.length ? `<section class="block"><div class="wrap">
     </table>
   </div>
 
-  <h2 style="margin-top:34px">Consolidated 52-row product attribute verification table</h2>
-  <p class="prose">Every catalog attribute read from the three resolved Amazon detail pages on ${esc(site.built_display)}. Blank value cells represent unverified or gated attributes and are never inferred.</p>
+  <h2 style="margin-top:34px">Consolidated ${SPEC_ROWS}-row product attribute verification table</h2>
+  <p class="prose">Every catalog attribute read from the three resolved Amazon detail pages on ${esc(specVerifiedDisplay)} and partially re-checked on ${esc(specReverifiedDisplay)}. Per-product scope of the re-check is recorded in <a href="../data/product-specs.json">data/product-specs.json</a>. Blank value cells represent unverified or gated attributes and are never inferred.</p>
   <div class="table-wrap" style="margin-top:12px">
     <table>
       <caption>Line-by-line product specification checks across ASINs B08FKW9JRM, B0BSKQW2T2, and B08DY9HRWD.</caption>
@@ -1345,7 +1426,7 @@ ${relProds.length ? `<section class="block"><div class="wrap">
   <div class="callout">
     <h3>CLI verification commands</h3>
     <p><span class="mono">node scripts/build.mjs &amp;&amp; node scripts/validate.mjs</span> &middot; Rebuilds every page from <span class="mono">data/*.json</span> and enforces disclosures, <span class="mono">rel="sponsored nofollow"</span>, single affiliate tag, sitemap, and table-row citations.<br>
-    <span class="mono">python3 scripts/platform_engine.py audit</span> &middot; Audits all 52 product specification rows, ${sourceList.length} sources, and blank unverified fields.<br>
+    <span class="mono">python3 scripts/platform_engine.py audit</span> &middot; Audits all ${SPEC_ROWS} product specification rows, ${sourceList.length} sources and ${SPEC_BLANKS} blank unverified fields.<br>
     <span class="mono">python3 -m unittest discover -s tests -v</span> &middot; Runs automated compliance, Special Link, Creators API cache-TTL, and campaign-ledger tests.</p>
   </div>
 
@@ -1359,7 +1440,7 @@ ${relProds.length ? `<section class="block"><div class="wrap">
         <tr><td><strong>2. Special Link tagging &amp; short-link boundary</strong></td><td>Automated + Associates gate</td><td>Formats outbound product links as <span class="mono">dp/&lt;ASIN&gt;?tag=${esc(TAG)}</span> without cloaking; records supplied <span class="mono">link.amazon</span> URLs as unresolved rather than claiming invalidity (<a href="../flagged/#F01">F01</a>).</td><td><span class="badge warn">Enrolment pending</span></td><td>${srcBadge("S01", 1)} ${srcBadge("S02", 1)}</td></tr>
         <tr><td><strong>3. Above-fold &amp; footer disclosures</strong></td><td>Automated (<span class="mono">validate.mjs</span>)</td><td>Requires the masthead Sponsored disclosure strip above the fold and the footer affiliate disclosure on 100% of pages.</td><td><span class="badge ok">Passing</span></td><td>${srcBadge("S03", 1)} ${srcBadge("S02", 1)}</td></tr>
         <tr><td><strong>4. Line-by-line source &amp; blank-field audit</strong></td><td>Automated (<span class="mono">platform_engine.py</span>)</td><td>Requires an official <span class="mono">https://</span> citation on every table row and keeps unverified attributes blank.</td><td><span class="badge ok">Passing</span></td><td>${srcBadge("S03", 1)}</td></tr>
-        <tr><td><strong>5. Creators API price, rating &amp; image gate</strong></td><td>Policy gate (<span class="mono">creators_api_client.py</span>)</td><td>Blocks static prices, ratings, and hotlinked Amazon images; enforces &le;24h UTC-stamped cache TTL once Creators API credentials are added (PA-API 5.0 deprecated).</td><td><span class="badge warn">Gated (F07/F09)</span></td><td>${srcBadge("S01", 1)} ${srcBadge("S18", 1)} ${srcBadge("S27", 1)}</td></tr>
+        <tr><td><strong>5. Creators API price, rating &amp; image gate</strong></td><td>Policy gate (<span class="mono">creators_api_client.py</span>)</td><td>Blocks static prices, ratings, and hotlinked Amazon images; enforces &le;24h UTC-stamped cache TTL once Creators API credentials are added (PA-API 5.0 deprecated).</td><td><span class="badge warn">Gated (F07/F09)</span></td><td>${srcBadge("S01", 1)} ${srcBadge("S18", 1)} ${srcBadge("S33", 1)}</td></tr>
         <tr><td><strong>6. Agent user-agent &amp; crawl discipline</strong></td><td>Policy gate (<a href="../flagged/#F13">F13</a>)</td><td>Requires <span class="mono">Agent/[agent name]</span> user-agent identification and non-circumvention on any future automated Amazon fetches.</td><td><span class="badge warn">Documented</span></td><td>${srcBadge("S01", 1)}</td></tr>
         <tr><td><strong>7. Evidence-only campaign ledger</strong></td><td>Automated (<span class="mono">validate.mjs</span> + <span class="mono">ci.yml</span>)</td><td>Enforces empty ledger until authorized Associates reports exist; rejects fabricated conversion scores or revenue forecasts.</td><td><span class="badge ok">Passing</span></td><td>${srcBadge("S17", 1)} ${srcBadge("S23", 1)}</td></tr>
       </tbody>
@@ -1416,6 +1497,14 @@ ${relProds.length ? `<section class="block"><div class="wrap">
       <li>No search-volume or popularity claims for any guide title.</li>
     </ul>
 
+    <h2>What the 21 November 2026 pass changed</h2>
+    <ul>
+      <li><strong>Short-link tracking, re-examined.</strong> All three supplied links were fetched again and resolved to the same ASINs. None carries the tag in its redirect, and Amazon's own help topic says the tracking ID is not expected to appear there because the session is tagged instead. ${srcBadge("S27", 1)} That is why the flag is about the Associates report, not about the missing parameter.</li>
+      <li><strong>The ASIN definition is now first-party and public.</strong> Amazon defines the ASIN as its 10-digit item code and documents the link format used here. ${srcBadge("S28", 1)}</li>
+      <li><strong>Commission bands are public.</strong> Kitchen 4.50%, Home/Home Improvement/Tools 3.00%. ${srcBadge("S29", 1)} The band is not the payout, so no percentage is published and the ledger stays empty.</li>
+      <li><strong>Blanks now explain themselves.</strong> Every unverified field says what was checked and when &mdash; two listings expose no UPC, two expose no date first available.</li>
+    </ul>
+
     <h2>What is still blocked</h2>
     <ol>
       ${flagged.filter((f) => f.severity === "high" || f.severity === "medium").map((f) => `<li><strong>${f.id} ${esc(f.title)}</strong> &mdash; ${esc(f.needs)}</li>`).join("")}
@@ -1444,7 +1533,7 @@ ${relProds.length ? `<section class="block"><div class="wrap">
 
     <h2>Read next</h2>
     <ul>
-      <li><a href="../sources/">Source register</a> &mdash; every source, SG-27..SG-30 passes, and 52 product spec rows</li>
+      <li><a href="../sources/">Source register</a> &mdash; every source, SG-27..SG-30 passes, and ${SPEC_ROWS} product spec rows</li>
       <li><a href="../flagged/">Flagged for review</a> &mdash; ${flagged.length} open items</li>
       <li><a href="../automation/">Automation &amp; compliance gate</a> &mdash; CLI checks and policy gates</li>
       <li><a href="../about/">How we verify</a> &mdash; method, limits and the automation boundary</li>
@@ -1500,7 +1589,7 @@ ${relProds.length ? `<section class="block"><div class="wrap">
     { title: "How we verify", path: "about/", url: abs("about/"), kind: "Page", summary: "Method, verification levels, automation boundaries.", tags: ["method", "sources"] },
     { title: "Automation & compliance gate", path: "automation/", url: abs("automation/"), kind: "Page", summary: "CLI checks, Special Link gate, Creators API TTL and human gates.", tags: ["automation", "gate", "cli"] },
     { title: "Disclosures", path: "disclosures/", url: abs("disclosures/"), kind: "Page", summary: "Affiliate disclosure, link policy, privacy, withheld data.", tags: ["affiliate", "ftc", "privacy"] },
-    { title: "Source register", path: "sources/", url: abs("sources/"), kind: "Page", summary: "Every official source, SG-27..SG-30 passes, and 52 product spec rows.", tags: ["sources", "provenance", "SG-27"] },
+    { title: "Source register", path: "sources/", url: abs("sources/"), kind: "Page", summary: `Every official source, SG-27..SG-30 passes, and ${SPEC_ROWS} product spec rows.`, tags: ["sources", "provenance", "SG-27"] },
     { title: "Flagged for review", path: "flagged/", url: abs("flagged/"), kind: "Page", summary: "Unverified values, unreadable sources and withheld data.", tags: ["verification", "issues"] },
     { title: "Measurement", path: "measurement/", url: abs("measurement/"), kind: "Page", summary: "The five events, privacy rules and current status.", tags: ["analytics", "events"] },
     { title: "Ledger", path: "ledger/", url: abs("ledger/"), kind: "Page", summary: "Product-intent record and the empty campaign ledger.", tags: ["data", "ledger"] },

@@ -2,6 +2,8 @@
 
 A small Amazon-associate publication for DIY home upgrades: three verified products, four question-shaped buying guides, and a source register behind every claim.
 
+Last full re-verification: **21 November 2026** — all three supplied short links, all three listings, the public commission schedule and two Associates help topics were re-read on that date. See `EXECUTIVE_SUMMARY.md` §0 for what changed.
+
 **Live site:** https://kanlerxz87-cyber.github.io/DIYHOME1/
 **Tracking ID:** `shopnow047c-20` (used on every outbound product link; enrolment not verified — see F01)
 
@@ -12,7 +14,7 @@ A small Amazon-associate publication for DIY home upgrades: three verified produ
 | Path | What it is |
 |---|---|
 | `index.html`, `products/`, `guides/`, `about/`, `automation/`, `disclosures/`, `sources/`, `flagged/`, `measurement/`, `ledger/`, `summary/`, `search/` | The published site. Generated — do not hand-edit. |
-| `data/*.json`, `data/*.csv` | The only source of truth: products, 52-row product specs, 28 sources, guides, 16 flags, events, ledger schema |
+| `data/*.json`, `data/*.csv` | The only source of truth: products, 52-row product specs, 34 sources, guides, 21 flags, events, ledger schema |
 | `scripts/build.mjs` | Generates every page, `sitemap.xml`, `feed.xml`, `robots.txt`, `assets/js/config.js` |
 | `scripts/validate.mjs` | The gate: links, disclosure, sponsored attributes, tags, sitemap coverage, feed, privacy/XSS checks, data integrity |
 | `scripts/platform_engine.py`, `platform/*.py`, `tests/test_platform.py` | Compliance engine, Creators API policy wrapper, and automated unit tests |
@@ -41,6 +43,8 @@ No dependencies, no package install, Node 18+.
 - citation links (evidence, in the source register) are never used as call-to-action buttons, and never carry a tag;
 - no cloaking: no Amazon link routed through this site;
 - no third-party subresources;
+- the product-spec register's `submission_ids`, `guide_slug` and `category_slug` still resolve, and all 52 rows still carry an https source;
+- the 2026-11-20 snapshot register keeps its own `VS__` namespace and never cites this site as its own source;
 - every internal link and form action resolves;
 - every page appears in `sitemap.xml`, and every sitemap URL exists;
 - `sitemap.xml` and `feed.xml` are well-formed;
@@ -58,15 +62,19 @@ This repository preserves earlier parallel-session editions while indexing only 
 
 1. **Intended and observed are never merged.** `data/product-intents.csv` keeps `intended_asin` (blank — the supplied short links carry no ASIN) separate from `observed_asin` and `observed_redirect_target`.
 2. **Blank means "not obtained".** It never means zero. Prices, ratings, review counts, availability and commission rates are absent by design; `/flagged/` says why for each one, with the policy source.
+3. **Source IDs are namespaced.** `data/sources.json` is the canonical register and uses `S__`. The 2026-11-20 snapshot register in `data/verified-sources.json` uses `VS__`, because until 2026-11-21 the two files gave the same `S__` labels to different documents (flag F17). The validator fails the build if the namespaces ever collide.
 
 ## Flags
 
-14 items are published at `/flagged/` with severity, what would close each one, and a source link. The actionable ones all need an account this build did not have:
+19 items are published at `/flagged/` with severity, what would close each one, and a source link. The actionable ones all need an account this build did not have:
 
-- **F01** Associates tracking for the three supplied short links is unconfirmed.
+- **F01** Associates tracking for the three supplied short links is unconfirmed — though the 21 Nov pass established, from Amazon's own help page, that a missing `tag=` in the redirect is not the test.
 - **F04** No Search Console verification token.
 - **F05** No analytics endpoint deployed, so the five events stay in the visitor's browser.
-- **F10** Commission rate card requires a sign-in, so no rate or revenue figure is published.
+- **F10** Category commission bands are now verified from a public Amazon page; per-SKU payout and conversion still need a first-party report, so no percentage or revenue figure is published.
 - **F13** The verification fetches did not identify themselves as an automated agent under Amazon's Agent Terms.
+- **F17** Two source registers used the same `S__` labels for different documents; the snapshot register is now `VS__`.
+- **F18** The public spec register named the wrong submission sources and pointed at guides that do not exist; corrected and gated.
+- **F19** The 2026-11-21 re-check covered part of the 52-row register, not all of it.
 
 Nothing in this repository is presented as verified beyond what an official source supports on the date shown in the page.
