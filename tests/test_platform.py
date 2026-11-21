@@ -146,7 +146,7 @@ class TestFinalIntegrationEngine(unittest.TestCase):
         self.assertEqual(report["errors"], [])
         self.assertEqual(report["products_checked"], 3)
         self.assertEqual(report["attribute_rows_verified"], 52)
-        self.assertEqual(report["canonical_sources_count"], 27)
+        self.assertEqual(report["canonical_sources_count"], 28)
         self.assertEqual(report["parallel_passes_count"], 4)
 
     def test_guide_to_product_slug_alignment(self) -> None:

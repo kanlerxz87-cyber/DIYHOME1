@@ -12,7 +12,7 @@ A small Amazon-associate publication for DIY home upgrades: three verified produ
 | Path | What it is |
 |---|---|
 | `index.html`, `products/`, `guides/`, `about/`, `automation/`, `disclosures/`, `sources/`, `flagged/`, `measurement/`, `ledger/`, `summary/`, `search/` | The published site. Generated — do not hand-edit. |
-| `data/*.json`, `data/*.csv` | The only source of truth: products, 52-row product specs, 27 sources, guides, flags, events, ledger schema |
+| `data/*.json`, `data/*.csv` | The only source of truth: products, 52-row product specs, 28 sources, guides, 16 flags, events, ledger schema |
 | `scripts/build.mjs` | Generates every page, `sitemap.xml`, `feed.xml`, `robots.txt`, `assets/js/config.js` |
 | `scripts/validate.mjs` | The gate: links, disclosure, sponsored attributes, tags, sitemap coverage, feed, privacy/XSS checks, data integrity |
 | `scripts/platform_engine.py`, `platform/*.py`, `tests/test_platform.py` | Compliance engine, Creators API policy wrapper, and automated unit tests |

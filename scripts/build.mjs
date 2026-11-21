@@ -21,6 +21,7 @@ const events = readJson("data/events.json");
 const release = readJson("data/release.json");
 const productSpecs = readJson("data/product-specs.json").products;
 const parallelPasses = readJson("data/verified-sources.json").parallel_passes;
+const reverify = readJson("data/sources.json").reverification;
 
 const TAG = site.associate_tag;
 const BASE = site.base_url;
@@ -278,7 +279,7 @@ const add = (file, html) => pages.push({ file, html });
     <div>
       <p class="kicker">Issue 01 &middot; ${esc(site.built_display)} &middot; Three verified products</p>
       <h1>Three upgrades that make a rented kitchen work harder</h1>
-      <p class="standfirst">A smoothing kit for the first peel-and-stick wall, a paper towel holder that does not need a drill, and an eight-tier pan rack for a cabinet that is already full. Each listing was opened and read on ${esc(site.built_display)} before it went on this page.</p>
+      <p class="standfirst">A smoothing kit for the first peel-and-stick wall, a paper towel holder that does not need a drill, and an eight-tier pan rack for a cabinet that is already full. Each listing was opened and read on 20 November 2026, and its title, breadcrumb and merchant line were re-read on 21 November 2026.</p>
       <div class="bylines">
         <span>${products.length} products, each with a source link</span><span class="dot">&middot;</span>
         <span>${guideMeta.length} buying guides</span><span class="dot">&middot;</span>
@@ -559,7 +560,7 @@ ${gs.length ? `<section class="block"><div class="wrap">
 <div class="wrap page-head">
   <p class="kicker">Side-by-side comparison &middot; ${productSpecs.length} verified listings</p>
   <h1>Compare dimensions, materials and mounting specs</h1>
-  <p class="standfirst">Line-by-line physical specifications read directly from each official Amazon product detail page on ${esc(site.built_display)}. Any field omitted by the manufacturer table stays blank and marked unverified.</p>
+  <p class="standfirst">Line-by-line physical specifications read directly from each official Amazon product detail page on 20 November 2026. Titles, breadcrumbs and merchant lines were re-read on 21 November 2026; the Product Information table itself could not be re-read that day, which is stated as <a href="../../flagged/#F16">F16</a>. Any field omitted by the manufacturer table stays blank and marked unverified.</p>
 </div>
 <div class="wrap">
   <div class="table-wrap">
@@ -765,30 +766,30 @@ ${gs.length ? `<section class="block"><div class="wrap">
   <p class="prose">The four buyer-question titles supplied in the project brief are presented below strictly as <strong>working-title editorial hypotheses</strong>—never as claims about popularity, search volume, or product superiority. Because none of the submitted links resolved to a countertop appliance (<a href="../flagged/#F03">F03</a>), no unsubmitted appliance ASINs are invented here; full working checklists are also preserved in our <a href="../archive/practical-home/guides.html">archived Practical Home edition</a>.</p>
   <div class="table-wrap" style="margin-top:14px">
     <table>
-      <caption>Working-title editorial hypotheses for kitchen appliance comparisons. Every row cites official USDA food-safety guidance.</caption>
+      <caption>Working-title editorial hypotheses. Each row links the USDA FSIS page; the exact food-safety wording it supports is marked (safety), and every measurement prompt is labelled editorial rather than presented as a sourced claim.</caption>
       <thead><tr><th scope="col">Working title (editorial hypothesis)</th><th scope="col">Core buyer comparison checklist</th><th scope="col">Catalog status</th><th scope="col">Official reference</th></tr></thead>
       <tbody>
         <tr>
           <td><strong>Basket or oven-style air fryer: what should you compare?</strong></td>
-          <td>Compare single-layer cooking footprint, front door vs. drawer clearance, and heat-safe unloading space on the counter.</td>
+          <td>Format and footprint. USDA describes air fryers as &ldquo;essentially countertop convection ovens&rdquo; and notes that ovens are larger and hold more food <em>(safety/spec context)</em>. Counter depth and door-or-drawer swing are editorial measurement prompts.</td>
           <td><span class="badge warn">Working hypothesis (no ASIN submitted)</span></td>
           <td>${srcBadge("S25", 1, "USDA FSIS")}</td>
         </tr>
         <tr>
           <td><strong>A no-hype checklist for comparing air fryer capacity</strong></td>
-          <td>Size for weeknight single-layer portions rather than total liter volume; overcrowding restricts rapid air circulation.</td>
+          <td>Capacity per batch, not total litres. USDA: &ldquo;Overcrowding the appliance can prevent enough air circulation to properly cook the food&rdquo; <em>(safety)</em>.</td>
           <td><span class="badge warn">Working hypothesis (no ASIN submitted)</span></td>
           <td>${srcBadge("S25", 1, "USDA FSIS")}</td>
         </tr>
         <tr>
           <td><strong>How to assess cleanup and counter-space trade-offs</strong></td>
-          <td>Check rear/top ventilation clearance under upper cabinets and measure whether removable trays lie flat in your sink basin.</td>
+          <td>Cleanup. USDA advises cleaning and sanitising surfaces before and after food preparation <em>(safety)</em>. Sink-fit and counter-clearance checks are editorial prompts.</td>
           <td><span class="badge warn">Working hypothesis (no ASIN submitted)</span></td>
           <td>${srcBadge("S25", 1, "USDA FSIS")}</td>
         </tr>
         <tr>
           <td><strong>Questions to ask before buying a multi-function kitchen appliance</strong></td>
-          <td>Verify weekly-use modes in the manufacturer manual and confirm cabinet storage room for idle racks and accessories.</td>
+          <td>Instructions and modes. USDA advises following the manufacturer&rsquo;s instructions and checking safe internal temperature with a food thermometer <em>(safety)</em>. Which modes you would use weekly, and where the accessories live, are editorial questions.</td>
           <td><span class="badge warn">Working hypothesis (no ASIN submitted)</span></td>
           <td>${srcBadge("S25", 1, "USDA FSIS")}</td>
         </tr>
@@ -963,7 +964,7 @@ ${relProds.length ? `<section class="block"><div class="wrap">
     <ul>
       <li><strong>A strip directly under the masthead</strong> on every page, above the content, marked <em>Sponsored</em>, with a link to this page.</li>
       <li><strong>Repeated in the footer</strong> of every page, in the affiliate paragraph.</li>
-      <li><strong>On the link itself</strong>: every outbound product link to Amazon is labelled <em>Sponsored</em> and carries <span class="mono">rel="sponsored nofollow noopener"</span> per Google&rsquo;s outbound link qualification guidance. ${srcBadge("S27", 1)}</li>
+      <li><strong>On the link itself</strong>: every outbound product link to Amazon is labelled <em>Sponsored</em> and carries <span class="mono">rel="sponsored nofollow noopener"</span> per Google&rsquo;s outbound link qualification guidance. ${srcBadge("S28", 1)}</li>
     </ul>
     <p>FTC guidance asks for a disclosure that is hard to miss, placed with the endorsement rather than only on an about page, in simple language such as &ldquo;advertisement&rdquo;, &ldquo;ad&rdquo; or &ldquo;sponsored&rdquo;. That is why the strip sits under the masthead rather than in a footer-only position, and why the word used is <em>Sponsored</em>. ${srcBadge("S03", 2)}</p>
     <p>Amazon&rsquo;s program terms also require Associates to satisfy applicable disclosure law and to disclose cookies, pixels and third-party data collection accurately. This site sets no cookies and makes no third-party requests, which is stated on the <a href="../measurement/">measurement page</a>. ${srcBadge("S01", 2)}</p>
@@ -979,8 +980,8 @@ ${relProds.length ? `<section class="block"><div class="wrap">
         <caption>Omitted data and the rule that drives the omission.</caption>
         <thead><tr><th scope="col">Data</th><th scope="col">Status</th><th scope="col">Reason and source</th></tr></thead>
         <tbody>
-          <tr><td>Prices and availability</td><td>Not published</td><td>Only via Amazon-served links or Creators API (PA-API 5.0 deprecated) ${srcBadge("S01", 2)} ${srcBadge("S26", 1)}</td></tr>
-          <tr><td>Star ratings and customer reviews</td><td>Not published</td><td>Only via Creators API (PA-API 5.0 deprecated) ${srcBadge("S01", 2)} ${srcBadge("S26", 1)}</td></tr>
+          <tr><td>Prices and availability</td><td>Not published</td><td>Only via Amazon-served links or Creators API (PA-API 5.0 deprecated) ${srcBadge("S01", 2)} ${srcBadge("S27", 1)}</td></tr>
+          <tr><td>Star ratings and customer reviews</td><td>Not published</td><td>Only via Creators API (PA-API 5.0 deprecated) ${srcBadge("S01", 2)} ${srcBadge("S27", 1)}</td></tr>
           <tr><td>Price tracking or price alerts</td><td>Not built</td><td>Not permitted without agreement ${srcBadge("S01", 2)}</td></tr>
           <tr><td>Product photos and Amazon marks</td><td>Not used</td><td>Program content carries its own licence ${srcBadge("S01", 2)} ${srcBadge("S02", 2)}</td></tr>
           <tr><td>Commission rates and earnings</td><td>Not published</td><td>Account custom rate card requires sign-in ${srcBadge("S17", 1)}; public standard table cited only as category bounds ${srcBadge("S23", 1)}</td></tr>
@@ -1062,6 +1063,11 @@ ${relProds.length ? `<section class="block"><div class="wrap">
     <h3>Reading the badges</h3>
     <p><span class="badge ok">Read</span> means the page was retrieved and the quoted text was read on it. <span class="badge warn">Secondary</span> means the page is not first-party documentation and is used only to explain a gap. <span class="badge warn">No access</span> means the page exists but sits behind a sign-in wall, so nothing was cited from it.</p>
   </div>
+  ${reverify ? `<div class="callout">
+    <h3>Re-verified ${esc(reverify.date)}</h3>
+    <p>${esc(reverify.summary)}</p>
+    <p class="link-note">Corrected after re-reading: ${reverify.corrected.map((id) => `<a href="#${esc(id)}">${esc(id)}</a>`).join(", ")}. Added: ${reverify.added.map((id) => `<a href="#${esc(id)}">${esc(id)}</a>`).join(", ")}. Not re-checked this session: ${reverify.not_rechecked.join(", ")}.</p>
+  </div>` : ""}
   <div class="table-wrap">
     <table>
       <caption>${esc(readJson("data/sources.json").method)}</caption>
@@ -1339,7 +1345,7 @@ ${relProds.length ? `<section class="block"><div class="wrap">
   <div class="callout">
     <h3>CLI verification commands</h3>
     <p><span class="mono">node scripts/build.mjs &amp;&amp; node scripts/validate.mjs</span> &middot; Rebuilds every page from <span class="mono">data/*.json</span> and enforces disclosures, <span class="mono">rel="sponsored nofollow"</span>, single affiliate tag, sitemap, and table-row citations.<br>
-    <span class="mono">python3 scripts/platform_engine.py audit</span> &middot; Audits all 52 product specification rows, 25 sources, and blank unverified fields.<br>
+    <span class="mono">python3 scripts/platform_engine.py audit</span> &middot; Audits all 52 product specification rows, ${sourceList.length} sources, and blank unverified fields.<br>
     <span class="mono">python3 -m unittest discover -s tests -v</span> &middot; Runs automated compliance, Special Link, Creators API cache-TTL, and campaign-ledger tests.</p>
   </div>
 
@@ -1353,7 +1359,7 @@ ${relProds.length ? `<section class="block"><div class="wrap">
         <tr><td><strong>2. Special Link tagging &amp; short-link boundary</strong></td><td>Automated + Associates gate</td><td>Formats outbound product links as <span class="mono">dp/&lt;ASIN&gt;?tag=${esc(TAG)}</span> without cloaking; records supplied <span class="mono">link.amazon</span> URLs as unresolved rather than claiming invalidity (<a href="../flagged/#F01">F01</a>).</td><td><span class="badge warn">Enrolment pending</span></td><td>${srcBadge("S01", 1)} ${srcBadge("S02", 1)}</td></tr>
         <tr><td><strong>3. Above-fold &amp; footer disclosures</strong></td><td>Automated (<span class="mono">validate.mjs</span>)</td><td>Requires the masthead Sponsored disclosure strip above the fold and the footer affiliate disclosure on 100% of pages.</td><td><span class="badge ok">Passing</span></td><td>${srcBadge("S03", 1)} ${srcBadge("S02", 1)}</td></tr>
         <tr><td><strong>4. Line-by-line source &amp; blank-field audit</strong></td><td>Automated (<span class="mono">platform_engine.py</span>)</td><td>Requires an official <span class="mono">https://</span> citation on every table row and keeps unverified attributes blank.</td><td><span class="badge ok">Passing</span></td><td>${srcBadge("S03", 1)}</td></tr>
-        <tr><td><strong>5. Creators API price, rating &amp; image gate</strong></td><td>Policy gate (<span class="mono">creators_api_client.py</span>)</td><td>Blocks static prices, ratings, and hotlinked Amazon images; enforces &le;24h UTC-stamped cache TTL once Creators API credentials are added (PA-API 5.0 deprecated).</td><td><span class="badge warn">Gated (F07/F09)</span></td><td>${srcBadge("S01", 1)} ${srcBadge("S18", 1)} ${srcBadge("S26", 1)}</td></tr>
+        <tr><td><strong>5. Creators API price, rating &amp; image gate</strong></td><td>Policy gate (<span class="mono">creators_api_client.py</span>)</td><td>Blocks static prices, ratings, and hotlinked Amazon images; enforces &le;24h UTC-stamped cache TTL once Creators API credentials are added (PA-API 5.0 deprecated).</td><td><span class="badge warn">Gated (F07/F09)</span></td><td>${srcBadge("S01", 1)} ${srcBadge("S18", 1)} ${srcBadge("S27", 1)}</td></tr>
         <tr><td><strong>6. Agent user-agent &amp; crawl discipline</strong></td><td>Policy gate (<a href="../flagged/#F13">F13</a>)</td><td>Requires <span class="mono">Agent/[agent name]</span> user-agent identification and non-circumvention on any future automated Amazon fetches.</td><td><span class="badge warn">Documented</span></td><td>${srcBadge("S01", 1)}</td></tr>
         <tr><td><strong>7. Evidence-only campaign ledger</strong></td><td>Automated (<span class="mono">validate.mjs</span> + <span class="mono">ci.yml</span>)</td><td>Enforces empty ledger until authorized Associates reports exist; rejects fabricated conversion scores or revenue forecasts.</td><td><span class="badge ok">Passing</span></td><td>${srcBadge("S17", 1)} ${srcBadge("S23", 1)}</td></tr>
       </tbody>

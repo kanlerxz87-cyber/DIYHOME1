@@ -20,8 +20,11 @@ Publishing source: branch `main`, folder `/` (confirmed via `GET /repos/kanlerxz
 | Session ID | Branch | Role | Started (UTC) | Status |
 |---|---|---|---|---|
 | `S-2026-11-20-A` | `arena/eb4b2092-diyhome1` | Sole session: research, build, verify, integrate, publish | 2026-11-20 | active |
+| `S-2026-11-21-F` | `arena/f4d33765-diyhome1` | Re-verification (2026-11-21), analytics-server contract fix, integration + PR | 2026-11-21 | active |
 
 Single-session run. A later session may take unowned rows only, and must not edit `data/`, `scripts/`, `assets/js/config.js`, `sitemap.xml`, `feed.xml` or generated HTML without claiming the row first.
+
+Note (S-2026-11-21-F): this session works on the Arena-assigned branch `arena/f4d33765-diyhome1` rather than a `session-<id>/<task>` branch, per the Arena session instructions. File scopes below are still claimed exclusively by this session until marked done.
 
 ---
 
@@ -56,6 +59,9 @@ Single-session run. A later session may take unowned rows only, and must not edi
 | T09 | Executive summary (repo + site) | S-2026-11-20-A | `EXECUTIVE_SUMMARY.md`, `summary/index.html` | done |
 | T10 | Flagged for Review page | S-2026-11-20-A | `data/flagged.json`, `flagged/index.html` | needs review |
 | T11 | Integration: merge to `main`, PR, Pages deploy, record result | S-2026-11-20-A | `main` (merge only) | done |
+| T12 | Fresh line-by-line re-verification 2026-11-21 against official sources; correct register wording drift (S23 quotes, S24 supports, SG-27/SG-28/SG-29) | S-2026-11-21-F | `data/sources.json`, `data/verified-sources.json`, generated `sources/index.html` (via build) | done |
+| T13 | Align `analytics-server/server.mjs` to the canonical 5-event contract (`data/events.json` + `worker/collect.js` + `assets/js/site.js` payload shape); add smoke test | S-2026-11-21-F | `analytics-server/server.mjs`, `tests/test_analytics_server.py` | done |
+| T14 | Integration: rebuild, validate, python tests, live-site check, PR to `main`, merge, Pages confirm, record result | S-2026-11-21-F | `main` (merge only) + generated files via build | done |
 
 `needs review` = published on the Flagged for Review page and does **not** block the merge.
 
@@ -311,34 +317,92 @@ No pre-existing claims or site files were present. Work stays on the Arena-assig
 - **GitHub Pages Deployment:** Confirmed `status: "built"` for commit `e32d1e4b9556` at `2026-11-20T06:58:39Z` (`main:/`, HTTPS enforced).
 - **Live Verification:** Fetched and verified live public pages at `https://kanlerxz87-cyber.github.io/DIYHOME1/`, `/products/comparisons/`, `/automation/`, `/sources/`, and `/flagged/` — confirming above-the-fold and footer disclosures, `rel="sponsored nofollow noopener"` with tag `shopnow047c-20`, single `Site desk` masthead group (`SG-27`), 52-row product specification register (`niffgaff` verified via `S21`; absent `UPC` and `Date First Available` left blank and badged `Unverified`), 4 working-title countertop-appliance hypotheses, empty first-party campaign ledger, and zero broken links.
 
+### 2026-11-21 — S-2026-11-21-F — T12 re-verification + T13 analytics-server fix
+
+**T12 — re-read on 2026-11-21 (official sources, links in `data/sources.json`):**
+- S01 Program Policies (still *Updated April 14, 2026*): 2(b) tag clause, price/availability clause, 3(t)/3(v)/3(w)/3(y) — all match stored quotes verbatim. S03 FTC (Nov 2019) — all quotes match. S24 ASIN definition + `dp/ASIN/ref=nosim?tag=` format — confirmed. S23 Table 1 (Kitchen 4.50%, Home/Tools 3.00%) — confirmed; per-product rate still withheld (F10).
+- S04/S05/S06 listing titles + breadcrumbs match `data/products.json` verbatim. Live prices visible on all three listings; withheld per 2(b) (F07). No price value recorded in this repo.
+- S10 `https://link.amazon/B0hmGG4m2` still resolves to `B08FKW9JRM` with no `tag=` in the observed URL. F01 remains open (unresolved, not disproven). Short links are never claimed invalid.
+- Corrections (data-only, then rebuilt): S23 quotes replaced with verbatim Table 1 rows; S24 supports now uses Amazon's "10-digit code" wording; SG-27 nav labels corrected to the actual labels (Home, Products, Comparisons, Guides, Search, RSS); SG-28 now credits `scripts/build.mjs`/`validate.mjs`; SG-29 corrected to project-path `robots.txt` (F14); `code_note` added to `data/verified-sources.json` (canonical register is `data/sources.json` S01–S25). Rebuild changed only `sources/index.html`.
+- `retrieved` bumped to 2026-11-21 for S01, S03, S04, S05, S06, S08, S10, S23, S24 (the ones re-read today).
+
+**T13 — analytics-server contract fix (new irregularity, fixed):**
+- `analytics-server/server.mjs` accepted the archived Field & Fixture event names (`product_impression`, `outbound_affiliate_click`, `reader_capture_submit`) with `{event, page, meta}`. Live `assets/js/site.js` sends `{e, path, sid, …}` with the canonical five events — every live event would have been rejected (400). Rewrote the server to the canonical contract (same per-event allowlist + 2048-byte cap as `worker/collect.js`), `POST /collect` + `/api/events` alias, `GET /api/health`, `GET /api/summary`. Added `tests/test_analytics_server.py` (6 tests). Full suite 16/16. Endpoint still not deployed (F05 open); ledger still empty.
+
+**Checks:** `node scripts/build.mjs` (23 pages) + `node scripts/validate.mjs` (16/16; 288 Amazon links: 38 sponsored, 257 citations; single tag `shopnow047c-20`) + `python3 -m unittest discover -s tests` (16/16).
+
+### 2026-11-21 — S-2026-11-21-F — T14 integration result
+
+- **Pull Request:** [PR #15](https://github.com/kanlerxz87-cyber/DIYHOME1/pull/15) (`arena/f4d33765-diyhome1` → `main`)
+- **Merge Outcome:** `MERGED` at `2026-11-21T23:20:52Z` · Merge commit `cef3a9c2cd797e5fa242f4e70392e1ff55dfb3b6` (both CI workflows green: `build-and-validate`, `verify`).
+- **GitHub Pages Deployment:** Confirmed `status: "built"` for commit `cef3a9c2` (`main:/`, HTTPS enforced). Live `/sources/` fetched and confirmed showing `Retrieved 2026-11-21` for the re-read sources; live `/` confirmed with above-fold disclosure and tagged Sponsored links.
+- **Live site:** https://kanlerxz87-cyber.github.io/DIYHOME1/
+- Flagged items (F01, F04, F05, F10, F13, …) remain published at `/flagged/` and did not block the merge, per the board rules.
+
+--- (merged session claims — both preserved) ---
+
+Session claim: arena-67098650-diyhome1 — T01 link verification (data/products.json, data/product-intents.csv) + T10 flagged review + site build/completion — 2026-11-21
+
+---
+### 2026-11-21 — arena-67098650-diyhome1 — final verification session
+
+Claim: T01 (link verification + data/products.json + product-intents.csv) and T10 (flagged review) — scope limited to verification, build, publish; no new data invented.
+
+Verification performed (line by line, no inference, no hallucination):
+- Amazon product page fetches from this sandbox: HTTP 000 / connection blocked (Amazon requires JS/sign-in and is outside allowed hosts). Recorded in this log rather than repeating silently.
+- Product identity verified against prior session documented observations (COORDINATION.md 2026-11-20): B08FKW9JRM (Art3d), B0BSKQW2T2 (niffgaff — brand verified via S05 / S21; brand omitted from H1 per F11), B08DY9HRWD (ORDORA). All three distinct; short tokens not ASINs; duplicate B03QDuGdo recorded once + one audit row.
+- data/products.json: intended_asin = null for all three; observed_redirect_target present and separate; listing_url = clean /dp/<ASIN>; associates_link_verified = false; no price/rating/review_count/image/commission fields populated.
+- data/product-intents.csv: intended_asin blank; official_listing_url present; observed_redirect_target in separate column; confirmation_date 2026-11-20; source S04/S05/S06; duplicate row retained with note.
+- data/flagged.json: all 14 items present (F01 tracking, F02 duplicate, F03 air-fryer mismatch, F04 Search Console, F05 analytics endpoint, F06 ASIN sign-in wall, F07 withheld prices/ratings, F08 untested, F09 no imagery, F10 commission unverifiable, F11 brand omission from H1, F12 tracking enrolment, F13 agent user-agent missing, F14 robots.txt path).
+- Source register (data/sources.json): 25 sources; every product row links to official Amazon listing (S04/S05/S06), brand store (S21), and policy pages (S01, S03, S07) with citation attributes.
+- Spec tables (products/*/index.html): 17+ rows per product; caption states "Every row links to an official source"; "Intended ASIN" row blank with unverified badge and source link to ASIN guide; all verified values link to Amazon listing / brand store / technical details.
+- Product register (products/index.html): 3-row table; each row links source (S04/S05/S06) and sponsored CTA with tag shopnow047c-20 and rel="sponsored nofollow noopener"; tracking status links to F01.
+- Disclosure: present above fold (line 31, data-disclosure) and footer on every page; no price/availability/rating/review imagery; no "tested" language; no commission claims.
+- Build: node scripts/build.mjs → 23 pages + sitemap + feed + robots + config.js; node scripts/validate.mjs → 16 checks passed, 0 errors, 0 warnings; 288 Amazon links (38 sponsored, 257 citation); single tag; ledger empty; archive preserved with noindex + banner.
+- GitHub Pages: source branch main, path /, HTTPS enforced. Live verification previously confirmed at 2026-11-20 (main:e32d1e4, PR #13); current branch arena/67098650-diyhome1 adds only verification claim; PR to merge claim + final verification log.
+- Irregularities recorded (do not block merge): Amazon reach blocked from sandbox (F13 verification fetches did not identify as Agent/[name]); intended ASIN and Associates tracking remain unverified (F01); no Search Console token (F04); analytics endpoint not deployed (F05); commission rates unverifiable (F10); robots.txt inside project path not host root (F14).
+
+---
+
+## Session claim — 2026-11-21 — `S-2026-11-21-C`
+
+**Conflict note (logged, nothing discarded):** this session claimed its tasks at branch start against `706b8e2`. Two other sessions landed on `main` while it worked: `S-2026-11-21-F` (PR #15) and `arena-67098650-diyhome1` (final verification claim). Both sessions' claims and logs above are kept verbatim; this session's rows are renumbered T15–T17 to avoid reusing their T12–T14. Where two sessions corrected the same source (S23 Table 1 rows), the correction is identical — two independent reads of the same page produced the same verbatim rows. This session's later corrections (S01, S07, S08, S19, S25) and S26 addition post-date those merges and are recorded on `/sources/` with a dated re-verification note.
+
+| Session ID | Branch | Role | Started (UTC) | Status |
+|---|---|---|---|---|
+| `S-2026-11-21-C` | `arena/16905ff3-diyhome1` (base `706b8e2`, PR #14 merge) | Independent line-by-line re-verification, QA fixes, integration (PR + merge + Pages deploy check) | 2026-11-21 | done (PR #19 merged) |
+
+| ID | Task | Owner | File scope | Status |
+|---|---|---|---|---|
+| T15 | Re-verify every registered source against the live official page; record verbatim quote matches and any drift | `S-2026-11-21-C` | `data/sources.json`, `COORDINATION.md` | done |
+| T16 | Line-by-line QA of `data/*.json` product facts, flags and copy for contradictions or invented values | `S-2026-11-21-C` | `data/products.json`, `data/flagged.json`, `data/site.json`, site copy generated from them | done |
+| T17 | Integration: build + validate, PR from this branch to `main`, merge, confirm Pages deploy, record result | `S-2026-11-21-C` | `main` (merge only), `COORDINATION.md` | done |
+
+Rule observed: this session edits only `data/`, content and docs; all HTML is regenerated with `node scripts/build.mjs` and gated by `node scripts/validate.mjs`. No other session's claim is overwritten.
+
 ---
 
 ## Line-by-Line Audit, Verification & Remediation Session — `session-e70af6c4` (`arena/e70af6c4-diyhome1`)
 
-Started: `2026-11-21` UTC. Working on Arena-assigned branch `arena/e70af6c4-diyhome1` (base `706b8e2`). All prior tasks (`T01`–`T11`, `T-3e19-01`–`T-3e19-03`) are closed/merged; no active competing session claims exist.
+Started: `2026-11-21` UTC. Working on Arena-assigned branch `arena/e70af6c4-diyhome1` (base `706b8e2`).
+
+**Conflict resolution note (2026-11-21 UTC — nothing discarded):** While this session worked, `origin/main` advanced from `706b8e2` to `c27383b` via PR #15 (`S-2026-11-21-F`), PR #18, `arena-67098650-diyhome1`, and PR #19 (`S-2026-11-21-C`). Merged `origin/main` cleanly preserving 100% of all three sessions' work: kept `origin/main`'s `analytics-server/server.mjs` and `tests/test_analytics_server.py`, kept `S01`–`S26` verbatim quotes + `F15`/`F16` + all session logs verbatim, renumbered this session's two newly verified official sources to `S27` (Amazon Creators API PA-API 5 Deprecation Notice) and `S28` (Google Search Central `rel="sponsored"`), and regenerated all 23 pages via `node scripts/build.mjs`.
 
 | Task ID | Task Description | Status | Owning Session ID | File Scope |
 |---|---|---|---|---|
-| `T-e70a-01` | Independent line-by-line source & listing verification (official Amazon Associates policies, ASIN docs, FTC disclosures, live product listings & short-link redirect checks) | `done` | `session-e70af6c4` | `data/sources.json`, `data/products.json`, `data/product-specs.json`, `data/verified-sources.json`, `data/flagged.json`, `data/site.json`, `data/guides.json` |
-| `T-e70a-02` | Fix audit findings: `assets/js/site.js` DNT/GPC enforcement in `record()` and stored-XSS fix in local event table; fix guide→product mapping (`pot-pan-organizer-capacity` linking ORDORA instead of paper towel holder); align disclosure wording, `SG-27..SG-30` descriptions, `analytics-server/server.mjs` live-event support, and stale cross-file contradictions | `done` | `session-e70af6c4` | `assets/js/site.js`, `analytics-server/server.mjs`, `scripts/build.mjs`, `scripts/validate.mjs`, `scripts/content.mjs`, `tests/test_platform.py` |
-| `T-e70a-03` | Rebuild site, run full validation & unit tests, update `EXECUTIVE_SUMMARY.md` & `README.md`, open PR to `main`, merge, verify live GitHub Pages deployment, and record final outcome | `in progress` | `session-e70af6c4` | generated HTML/`sitemap.xml`/`feed.xml`/`robots.txt`/`assets/js/config.js`, `EXECUTIVE_SUMMARY.md`, `README.md`, `data/release.json`, `COORDINATION.md` |
+| `T-e70a-01` | Independent line-by-line source & listing verification (official Amazon Associates policies, Creators API deprecation `S27`, Google outbound link qualification `S28`, ASIN docs, FTC disclosures, USDA FSIS) | `done` | `session-e70af6c4` | `data/sources.json`, `data/products.json`, `data/product-specs.json`, `data/verified-sources.json`, `data/flagged.json`, `data/site.json`, `data/guides.json` |
+| `T-e70a-02` | Fix audit findings: `assets/js/site.js` DNT/GPC enforcement in `record()` and stored-XSS fix in local event table; fix guide→product mapping (`pot-pan-organizer-capacity` linking ORDORA instead of paper towel holder); fix broken `guide_slug` paths in `data/product-specs.json`; align disclosure wording & prose; add regression guards in `scripts/validate.mjs` and `tests/test_platform.py` | `done` | `session-e70af6c4` | `assets/js/site.js`, `scripts/build.mjs`, `scripts/validate.mjs`, `scripts/content.mjs`, `tests/test_platform.py` |
+| `T-e70a-03` | Reconcile `origin/main` (PRs #15/#18/#19), rebuild site, run full validation & 17 unit tests, update `EXECUTIVE_SUMMARY.md` & `README.md`, open PR to `main`, merge, verify live GitHub Pages deployment, and record final outcome | `in progress` | `session-e70af6c4` | generated HTML/`sitemap.xml`/`feed.xml`/`robots.txt`/`assets/js/config.js`, `EXECUTIVE_SUMMARY.md`, `README.md`, `data/release.json`, `COORDINATION.md` |
 
 ### Line-by-Line Verification & Remediation Log (`session-e70af6c4`, 2026-11-21 UTC)
-- **Official sources independently re-fetched & verified (`2026-11-21`):**
-  - Amazon Associates Program Policies (`S01`): `https://affiliate-program.amazon.com/help/operating/policies` (Updated April 14, 2026)
-  - Amazon Associates Operating Agreement (`S02`): `https://affiliate-program.amazon.com/help/operating/agreement` (Updated October 15, 2025; §5 Associate identification verified verbatim)
-  - Amazon Associates Simple Text Link & ASIN Definition (`S24`): `https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC`
-  - Amazon Standard Commission Income Statement (`S23`): `https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ` — corrected non-verbatim `"Pantry"` entry in `data/sources.json` to match exact current official Table 1 wording (`Physical Books, Kitchen, Automotive: 4.50%`; `Toys, Furniture, Home, Home Improvement, Lawn & Garden, Pets Products, Headphones, Beauty, Musical Instruments, Business & Industrial Supplies, Outdoors, Tools, Sports, Baby Products, Amazon Coins: 3.00%`)
-  - Amazon Creators API — PA-API 5 Deprecation Notice (added `S26`): `https://affiliate-program.amazon.com/creatorsapi/docs/en-us/paapiv5-deprecation` — updated `data/product-specs.json` price/availability gate rows, `disclosures/`, `automation/`, and `F07` to cite Creators API / PA-API 5 deprecation
-  - Google Search Central — Qualify Your Outbound Links (`rel="sponsored"`, added `S27`): `https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links`
-  - FTC *Disclosures 101* (`S03`): `https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers`
-  - USDA FSIS *Air Fryers and Food Safety* (`S25`): `https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/air-fryers-and-food-safety` (Last Updated Jun 24, 2024; replaced paraphrased quotes with exact verbatim quotes)
-- **Irregularities found and fixed in codebase:**
-  1. `assets/js/site.js` DNT/GPC bypass: `record()` previously persisted `disclosure_view`, `outbound_click`, `guide_read`, and `site_search` to `localStorage` even when Do Not Track or Global Privacy Control was enabled. Fixed by gating `record()` with `if (!trackingAllowed()) return null;` and enforced in `scripts/validate.mjs`.
-  2. `assets/js/site.js` stored self-XSS on `/measurement/`: `localEvents()` previously built table rows with `tr.innerHTML` containing unsanitized `row.query` from `/search/?q=...`. Fixed by constructing DOM `<td>` nodes with `.textContent` and enforced in `scripts/validate.mjs`.
-  3. Wrong product card on `/guides/pot-pan-organizer-capacity/`: previously displayed `P2` (paper towel holder) instead of `P3` (ORDORA 8-tier organizer); `/guides/questions-before-under-cabinet-upgrade/` showed only 1 kitchen-storage product. Added explicit `product_slugs` to `data/guides.json`, wired `productsForGuide()` in `scripts/build.mjs`, and enforced in `scripts/validate.mjs` and `tests/test_platform.py`.
-  4. Broken `guide_slug` paths in `data/product-specs.json` (`guides/peel-and-stick-tools.html`, etc.) updated to canonical live guide paths and verified in `scripts/validate.mjs`.
-  5. Cross-file factual contradictions resolved: `data/products.json` (`P2.listing_claims_note` no longer claims brand is left blank), `data/site.json` (`disclosure_long` distinguishes tagged outbound product links from bare evidence citations), `data/verified-sources.json` (`SG-27..SG-30` accurately describe `scripts/build.mjs`/`validate.mjs` and live nav labels), `data/flagged.json` (`F06` updated to reflect public `S24` vs gated `S16`), `scripts/build.mjs` (category pluralization & `about/` prose), `scripts/content.mjs` (ORDORA worked example aligned with 52-row spec table), and `analytics-server/server.mjs` (added `POST /collect` & `GET /summary` support for the canonical 5 live events while preserving `/api/events`).
-- **Pre-PR verification:** `node scripts/build.mjs` (23 pages + sitemap + feed + robots + config), `node scripts/validate.mjs` (18/18 checks, 0 errors, 0 warnings), `python3 platform/affiliate_platform.py` (registry, ledger, site audit), `python3 scripts/platform_engine.py audit` (52 attribute rows, 27 sources, 0 errors), `python3 -m unittest discover -s tests -v` (11/11 tests passing), and `analytics-server/server.mjs` live HTTP smoke test passing.
-
+- **Official sources independently fetched & verified (`2026-11-21`):**
+  - `S01` Amazon Associates Program Policies (`Updated April 14, 2026`), `S02` Operating Agreement (`Updated October 15, 2025`, §5 verified verbatim), `S03` FTC *Disclosures 101*, `S23` Standard Commission Income Statement, `S24` Associates Help ASIN definition (`GP38PJ6EUR6PFBEC`), `S25` USDA FSIS *Air Fryers and Food Safety* (`Last Updated: Jun 24, 2024`).
+  - Added `S27`: Amazon Creators API — PA-API 5 Deprecation Notice (`https://affiliate-program.amazon.com/creatorsapi/docs/en-us/paapiv5-deprecation`), updated `data/product-specs.json` live price/availability rows, `disclosures/`, `automation/`, and `F07`.
+  - Added `S28`: Google Search Central — Qualify Your Outbound Links (`https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links`), cited on `disclosures/`.
+- **Unique code & UX defects found and fixed:**
+  1. `assets/js/site.js` DNT/GPC bypass: `record()` previously persisted `disclosure_view`, `outbound_click`, `guide_read`, and `site_search` to `localStorage` even when Do Not Track or Global Privacy Control was set. Gated `record()` with `if (!trackingAllowed()) return null;` and enforced in `scripts/validate.mjs`.
+  2. `assets/js/site.js` stored self-XSS on `/measurement/`: `localEvents()` previously assigned `tr.innerHTML` with unsanitized `row.query` from `/search/?q=...`. Replaced with DOM `document.createElement("td")` + `.textContent` and enforced in `scripts/validate.mjs`.
+  3. Wrong product card on `/guides/pot-pan-organizer-capacity/`: previously displayed `P2` (paper towel holder) instead of `P3` (ORDORA 8-tier organizer); `/guides/questions-before-under-cabinet-upgrade/` showed only 1 kitchen-storage product. Added `product_slugs` to `data/guides.json`, wired `productsForGuide()` in `scripts/build.mjs`, and enforced in `scripts/validate.mjs` and `tests/test_platform.py`.
+  4. Broken `guide_slug` paths in `data/product-specs.json` updated to canonical live guide paths and enforced in `scripts/validate.mjs`.
+  5. Wording & accuracy alignment: `data/site.json` (`disclosure_long` distinguishes tagged outbound product links from bare evidence citations), `scripts/build.mjs` (category pluralization, `about/` prose aligned with 52-row spec register), and `scripts/content.mjs` (ORDORA worked example aligned with 52-row spec register).
 

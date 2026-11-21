@@ -201,28 +201,28 @@
     {
       "code": "SG-27",
       "area": "Navigation Labels & Single Desk Group",
-      "implementation": "Primary buyer navigation uses plain editorial labels (`Home`, `Products`, `Comparisons`, `Guides`, `Search`, `RSS`) while consolidating every operational and dashboard surface (`Executive summary`, `Source register`, `Product-intent & ledger`, `Flagged for review`, `Measurement & events`, `Automation & gate`, `How we verify`, `Disclosures`) inside one `Site desk` dropdown and repeating all links in the footer.",
+      "implementation": "Primary buyer navigation uses plain editorial labels (Home, Products, Comparisons, Guides, Search, RSS) while consolidating every operational/dashboard surface (Executive summary, Source register, Product-intent & ledger, Flagged for review, Measurement & events, Automation & gate, How we verify, Disclosures) inside one Site desk dropdown and repeating all links in the footer.",
       "status": "Done (Verified)",
       "source_url": "https://developers.google.com/search/docs/fundamentals/get-started-developers"
     },
     {
       "code": "SG-28",
       "area": "Shipped RSS 2.0 Feed (`feed.xml`)",
-      "implementation": "Valid UTF-8 RSS 2.0 feed (7 items: 4 buying guides + 3 checked listings) generated automatically by `scripts/build.mjs`, advertised via `<link rel=\"alternate\" type=\"application/rss+xml\">` in every page `<head>`, and validated by `scripts/validate.mjs`.",
+      "implementation": "Valid UTF-8 RSS 2.0 feed (7 items: 4 buying guides + 3 checked listings) generated automatically by scripts/build.mjs, advertised via <link rel=\"alternate\" type=\"application/rss+xml\"> in every page <head>, and validated by scripts/validate.mjs.",
       "status": "Done (Verified)",
       "source_url": "https://kanlerxz87-cyber.github.io/DIYHOME1/feed.xml"
     },
     {
       "code": "SG-29",
       "area": "Search Console & Indexing Readiness",
-      "implementation": "Single canonical host (`https://kanlerxz87-cyber.github.io/DIYHOME1/`), complete `sitemap.xml` (21 indexable URLs; archived editions excluded and marked `noindex`), advisory project-path `robots.txt` (`F14`), and explicit `Needs Review` handoff (`F04`) for owner Search Console verification token.",
+      "implementation": "Single canonical host (https://kanlerxz87-cyber.github.io/DIYHOME1/), complete sitemap.xml (21 indexable URLs; archived editions excluded and marked noindex), and robots.txt published at the project path (not the host root — see F14). Search Console property verification remains a Needs Review handoff for the site owner (F04); sitemap.xml and feed.xml are ready to submit once verified.",
       "status": "Needs Review (Owner Verification)",
       "source_url": "https://developers.google.com/search/docs/monitor-debug/search-console-start"
     },
     {
       "code": "SG-30",
       "area": "Privacy-Preserving Reader Capture",
-      "implementation": "Zero-PII RSS 2.0 subscription callout on the landing page plus browser-local measurement queue (`assets/js/site.js` honoring Do Not Track and Global Privacy Control) — collects zero email addresses, sets zero cookies, and makes zero third-party subresource requests.",
+      "implementation": "Zero-PII RSS 2.0 subscription callout on the landing page plus browser-local measurement queue (assets/js/site.js honoring Do Not Track and Global Privacy Control) — collects zero email addresses, sets zero cookies, and makes zero third-party subresource requests.",
       "status": "Done (Verified)",
       "source_url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers"
     }
@@ -338,5 +338,6 @@
       "source_label": "Search Console Setup Guide",
       "source_url": "https://developers.google.com/search/docs/monitor-debug/search-console-start"
     }
-  ]
+  ],
+  "code_note": "Canonical citation register is data/sources.json (S01-S28); site badges use those codes. Codes in this file (S01-S13+) are local to this file's parallel-pass history and must not be used as site citation badges."
 }
