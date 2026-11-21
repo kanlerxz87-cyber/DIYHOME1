@@ -44,7 +44,8 @@
       "S17",
       "S20",
       "S22"
-    ]
+    ],
+    "second_pass": "A later pass on the same day found that https://www.amazon.com/gp/product/<ASIN> does expose the Product Information table the desktop page did not render. Through that path, 11 fields of B08FKW9JRM and 10 fields of B0BSKQW2T2 were re-confirmed verbatim; B08DY9HRWD still served the reduced layout, so its model number, manufacturer part number, UPC, per-tier limit and included components, and the 'Ships from / Sold by' line for all three listings, are kept as recorded on 2026-11-20 and downgraded from Verified to Needs Review (F16). The register now reads 29 Verified / 13 Needs Review / 10 Unverified across 52 rows."
   },
   "sources": [
     {
@@ -68,14 +69,14 @@
         "ASINs may be stored indefinitely for use with the Program (IP License, 2(h))"
       ],
       "quotes": [
-        "you must include your Associates ID or \u201ctag\u201d (appearing as XXXXX-##, or such other format as we may designate) as a parameter in the URL of each link you place on your Site to an Amazon Site",
+        "you must include your Associates ID or “tag” (appearing as XXXXX-##, or such other format as we may designate) as a parameter in the URL of each link you place on your Site to an Amazon Site",
         "your Site may only show prices and availability if: (a) we serve the link in which that price and availability data are displayed, or (b) you obtain Product pricing and availability data via Creators API or PA API",
         "You will not display or otherwise use any of our customer reviews or star ratings, in part or in whole, on your Site unless you have obtained a link to that customer review or star rating through Creators API or PA API",
         "You will not cloak, hide, spoof, or otherwise obscure the URL of your Site containing Special Links (including by use of Redirecting Links)",
         "You will not use a link shortening service, button, hyperlink or other ad placement in a manner that makes it unclear that you are linking to an Amazon Site.",
         "Unless otherwise agreed by Amazon, your Site must not have price tracking and/or price alerting functionality.",
         "No Agent may access, use, or interact with Program Content unless, at all times, it identifies itself",
-        "In all HTTP/HTTPS requests, identify that the request is from an Agent and disclose the name of the Agent by including the following in the request's user agent string: \u201cAgent/[agent name]\u201d",
+        "In all HTTP/HTTPS requests, identify that the request is from an Agent and disclose the name of the Agent by including the following in the request's user agent string: “Agent/[agent name]”",
         "you may store individual Amazon Standard Identification Numbers (ASINs) for an indefinite period until the termination of this License"
       ]
     },
@@ -94,7 +95,7 @@
         "Amazon customers are not the Associate's customers"
       ],
       "quotes": [
-        "The links must properly use the special \u201ctagged\u201d link formats we provide and comply with this Agreement (\u201cSpecial Links\u201d).",
+        "The links must properly use the special “tagged” link formats we provide and comply with this Agreement (“Special Links”).",
         "you agree to this Agreement, including the Program Policies (defined in Section 12), which are incorporated by reference"
       ]
     },
@@ -117,13 +118,13 @@
       "quotes": [
         "Make sure people will see and understand the disclosure. Place it so it's hard to miss.",
         "Disclosures are likely to be missed if they appear only on an ABOUT ME or profile page, at the end of posts or videos, or anywhere that requires a person to click MORE.",
-        "So are terms like \u201cadvertisement,\u201d \u201cad,\u201d and \u201csponsored.\u201d",
+        "So are terms like “advertisement,” “ad,” and “sponsored.”",
         "You can't talk about your experience with a product you haven't tried."
       ]
     },
     {
       "id": "S04",
-      "title": "Amazon listing B08FKW9JRM \u2014 Art3d Smoothing Tool Kit for Peel and Stick Wallpaper",
+      "title": "Amazon listing B08FKW9JRM — Art3d Smoothing Tool Kit for Peel and Stick Wallpaper",
       "publisher": "Amazon.com, Inc.",
       "url": "https://www.amazon.com/dp/B08FKW9JRM",
       "page_date": "Live listing; re-read 2026-11-21 (content is dynamic)",
@@ -140,7 +141,7 @@
     },
     {
       "id": "S05",
-      "title": "Amazon listing B0BSKQW2T2 \u2014 Paper Towel Holder Under Cabinet, Self-Adhesive or Drilling, Matte Black",
+      "title": "Amazon listing B0BSKQW2T2 — Paper Towel Holder Under Cabinet, Self-Adhesive or Drilling, Matte Black",
       "publisher": "Amazon.com, Inc.",
       "url": "https://www.amazon.com/dp/B0BSKQW2T2",
       "page_date": "Live listing; re-read 2026-11-21 (content is dynamic)",
@@ -157,7 +158,7 @@
     },
     {
       "id": "S06",
-      "title": "Amazon listing B08DY9HRWD \u2014 ORDORA Pots and Pans Organizer Under Cabinet 16.6\", 8-Tier Adjustable Rack",
+      "title": "Amazon listing B08DY9HRWD — ORDORA Pots and Pans Organizer Under Cabinet 16.6\", 8-Tier Adjustable Rack",
       "publisher": "Amazon.com, Inc.",
       "url": "https://www.amazon.com/dp/B08DY9HRWD",
       "page_date": "Live listing; re-read 2026-11-21 (content is dynamic)",
@@ -290,7 +291,7 @@
         "Supports the conclusion that the link.amazon path tokens are not ASINs"
       ],
       "quotes": [
-        "Result of fetch on 2026-11-20: error \u2014 'Failed to fetch page'"
+        "Result of fetch on 2026-11-20: error — 'Failed to fetch page'"
       ]
     },
     {
@@ -464,7 +465,7 @@
     },
     {
       "id": "S24",
-      "title": "Amazon Associates Help \u2014 Create Simple Text Links & ASIN Definition",
+      "title": "Amazon Associates Help — Create Simple Text Links & ASIN Definition",
       "publisher": "Amazon.com, Inc. (Amazon Associates Central)",
       "url": "https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC",
       "page_date": "Live public help topic; retrieved 2026-11-20",
@@ -551,7 +552,7 @@
     },
     {
       "id": "S29",
-      "title": "Privacy and Security \u2014 business guidance",
+      "title": "Privacy and Security — business guidance",
       "publisher": "U.S. Federal Trade Commission",
       "url": "https://www.ftc.gov/business-guidance/privacy-security",
       "page_date": "Live agency guidance; retrieved 2026-11-21",

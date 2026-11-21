@@ -22,6 +22,7 @@ Publishing source: branch `main`, folder `/` (confirmed via `GET /repos/kanlerxz
 | `S-2026-11-20-A` | `arena/eb4b2092-diyhome1` | Sole session: research, build, verify, integrate, publish | 2026-11-20 | active |
 | `S-2026-11-21-F` | `arena/f4d33765-diyhome1` | Re-verification (2026-11-21), analytics-server contract fix, integration + PR | 2026-11-21 | active |
 | `S-2026-11-21-B` | `arena/0b735892-diyhome1` | Spec-register citation audit, register namespace split, 2026-11-21 re-verification scope, integration + PR | 2026-11-21 | active |
+| `S-2026-11-21-9513affd` | `arena/9513affd-diyhome1` | Independent line-by-line official-source audit, non-overlapping verification suite (`verification-9513affd/`), cross-session coordination requests, PR + Pages check | 2026-11-21 | active |
 
 Single-session run. A later session may take unowned rows only, and must not edit `data/`, `scripts/`, `assets/js/config.js`, `sitemap.xml`, `feed.xml` or generated HTML without claiming the row first.
 
@@ -63,6 +64,8 @@ Note (S-2026-11-21-F): this session works on the Arena-assigned branch `arena/f4
 | T12 | Fresh line-by-line re-verification 2026-11-21 against official sources; correct register wording drift (S23 quotes, S24 supports, SG-27/SG-28/SG-29) | S-2026-11-21-F | `data/sources.json`, `data/verified-sources.json`, generated `sources/index.html` (via build) | done |
 | T13 | Align `analytics-server/server.mjs` to the canonical 5-event contract (`data/events.json` + `worker/collect.js` + `assets/js/site.js` payload shape); add smoke test | S-2026-11-21-F | `analytics-server/server.mjs`, `tests/test_analytics_server.py` | done |
 | T14 | Integration: rebuild, validate, python tests, live-site check, PR to `main`, merge, Pages confirm, record result | S-2026-11-21-F | `main` (merge only) + generated files via build | done |
+| T-9513-01 | Independent 2026-11-21 line-by-line official-source & live-Pages verification dossier + executive summary + automated compliance/drift auditor (strictly non-overlapping with active parallel sessions) | S-2026-11-21-9513affd | `verification-9513affd/**`, `tests/test_verification_9513affd.py` | in progress |
+| T-9513-02 | Log cross-scope irregularity requests in `COORDINATION.md` for files owned by active concurrent sessions (`0b735892`, `16905ff3`, `67098650`, `818bfb73`, `e70af6c4`, `f851636b`, `fe2b1ce4`), open PR, merge cleanly, confirm GitHub Pages deploy | S-2026-11-21-9513affd | `COORDINATION.md`, `main` (merge only) | in progress |
 
 `needs review` = published on the Flagged for Review page and does **not** block the merge.
 
@@ -531,3 +534,44 @@ Rule observed: this session edits only `data/`, content and docs; all HTML is re
   - `/` (pre-merge check of the prior deploy) → disclosure strip above the fold, sponsored CTAs, single tag.
 - **Not verified, and not claimed:** Associates enrolment or click attribution for any link, Search Console indexing, analytics collection, commission rates, revenue. All remain on `/flagged/` with what would close them.
 - **Follow-up:** this log and the `data/release.json` record ship in a docs-only follow-up PR from the same branch, per the rule that this session pushes only to its own branch.
+
+---
+
+## Session `arena-818bfb73` — third pass, 21 November 2026 (additive to PRs #15, #19, #21, #23)
+
+Claimed before editing (see this branch's earlier commit history on `arena/818bfb73-diyhome1`); the board had four other sessions landing overlapping re-verifications while this one worked, so this entry records only what this pass added on top of what is already on `main`.
+
+**What this pass added**
+
+1. **A render path the earlier passes missed.** `https://www.amazon.com/gp/product/<ASIN>` renders the Product Information table that the desktop page did not: 11 fields of B08FKW9JRM and 10 of B0BSKQW2T2 were re-confirmed verbatim against those tables (manufacturer, model/part numbers, weight, dimensions, material, colour, mounting type, size, date first available where printed). Recorded on `/sources/` as `reverification.second_pass`.
+2. **Downgrade instead of assumption.** B08DY9HRWD kept serving the reduced layout on both paths. Its model number, manufacturer part number, UPC, per-tier load limit and included components — and the "Ships from / Sold by" line for all three listings — are kept exactly as recorded on 2026-11-20 but changed from **Verified** to **Needs Review**. Register: 29 Verified / 13 Needs Review / 10 Unverified of 52. F16 was extended with the finding rather than duplicating it as a new flag.
+3. **Three build defects fixed.** `/about/` called the title and breadcrumb "the only product attributes this site publishes" while the site publishes a 52-row register; the comparison matrix printed Needs-Review values as plain facts (cells now carry their badge); `platform_engine.py` reported `attribute_rows_verified: 52` regardless of status (now a status breakdown, asserted by `tests/test_platform.py`).
+4. `/sources/` gains a per-row **Re-checked** column and the second-pass note; `/summary/` gains a "Second pass" section.
+
+**Checks:** `node scripts/build.mjs` (23 pages, deterministic), `node scripts/validate.mjs` (16/16), `python3 platform/affiliate_platform.py validate-registry|validate-ledger|audit-site` ok, `python3 scripts/platform_engine.py audit` 0 errors, `python3 -m unittest discover -s tests` 16/16.
+
+**Not re-run:** the `link.amazon` submission fetches (Agent Terms 4, F13). **Not claimed:** Associates attribution, Search Console, analytics collection, signed-in commission rates.
+
+**Merge conflicts:** four rebases against `main`; every time, the other sessions' logs and data were retained and this branch re-applied only its additions. Nothing from another session was discarded.
+
+### 2026-11-21 — `arena-818bfb73` — PR #20 merged; three bad citations found on the live site and fixed
+
+- **Pull request:** [#20](https://github.com/kanlerxz87-cyber/DIYHOME1/pull/20) — MERGED at `2026-11-21T23:32:01Z`, merge commit `760c321625de0bae2dcad18a0f3a558c520b2af8`. Pages reported `built` for that commit at `23:32:02Z`.
+- **Post-deploy check found a defect that no local check could catch.** Reading the live `/summary/` and `/` showed three citation badges pointing at unrelated documents, introduced when sources were renumbered in a parallel session: an Amazon statement about the tracking ID was cited to the RSS 2.0 specification (S27); Amazon's ASIN definition to Google's SEO starter guide (S28); the commission band to the FTC's privacy guidance (S29). Corrected to **S30**, **S24** and **S23** and recorded as **F22**, so the fix is auditable.
+- Also made the page internally consistent: the summary now states that short links 1 and 3 carry a 21 November retrieval and short link 2 is dated 20 November, instead of one bullet saying they were all re-fetched and another saying none were.
+- **Follow-up PR** carries F22, the citation fixes and the release record for PR #20 (this session pushes only to its own branch).
+- **Not verified, not claimed:** Associates attribution, Search Console indexing, analytics collection, signed-in commission rates. All remain on `/flagged/`.
+=======
+### 2026-11-21 — `S-2026-11-21-9513affd` (`arena/9513affd-diyhome1`) — Non-overlapping session claim
+
+- **Branch:** `arena/9513affd-diyhome1` (Arena-assigned branch; synced to `origin/main` @ `063dae1` after PR #18).
+- **Concurrent session discovery (`git fetch origin '+refs/heads/*:refs/remotes/origin/*'`):** Detected active claims younger than 60 minutes on remote branches `arena/0b735892-diyhome1`, `arena/16905ff3-diyhome1`, `arena/67098650-diyhome1` (PR #17), `arena/818bfb73-diyhome1`, `arena/e70af6c4-diyhome1`, `arena/f851636b-diyhome1` (PR #16), and `arena/fe2b1ce4-diyhome1`, which collectively claim `data/*`, `scripts/*`, `assets/**`, `analytics-server/server.mjs`, `EXECUTIVE_SUMMARY.md`, `README.md`, and generated HTML/XML outputs.
+- **Non-overlapping scope rule observed:** Per `COORDINATION.md` rules 1–5 and `PARALLEL SESSIONS`, `S-2026-11-21-9513affd` claims **only** `verification-9513affd/**`, `tests/test_verification_9513affd.py`, and append-only coordination entries in `COORDINATION.md`. Any defects or drift found in files owned by concurrent sessions are logged as explicit requests in `COORDINATION.md` rather than overwriting another session's claimed files.
+
+### 2026-11-21 — `S-2026-11-21-9513affd` — Verification result
+
+- **Official sources re-read line by line on 2026-11-21** (all links in `data/sources.json` plus three new official Amazon Associates help pages): S01 Program Policies (*Updated April 14, 2026* — §2(a)/§2(b) tag, price/availability, §4 Agent terms all match stored quotes verbatim); S02 Operating Agreement (*Updated October 15, 2025* — §5 statement); S03 FTC Disclosures 101; S04/S05/S06 listing titles; S07 GitHub Pages publishing source; S08 Google sitemap formats; S09/S19 robots.txt; S18 Creators API/PA API data routes; S21 niffgaff storefront; S23 Commission Income Statement Table 1; S24 ASIN definition + Special Link format. Three new official pages verified and added to the dossier: "Can I Check If My Links Are Tagging to My Account?" (`&tag=(store/tracking ID)` — the sanctioned route to confirm `shopnow047c-20`), "How To use reports" (report cadence), and "Are There Any Requirements to Use the Product Advertising API?" (API prerequisites). PA-API 5 deprecation notice re-confirmed.
+- **Dossier:** `verification-9513affd/VERIFICATION-REPORT.md` — full source-by-source verdict table, cross-session irregularity requests R1–R11, and the verification method.
+- **Cross-session requests logged (not edited, non-blocking):** R1 S25 paraphrased quotes → verbatim USDA FSIS sentences; R3 `productsIn(g.category)[0]` resolves the pan-organizer guide to the wrong product; R4 DNT check after `record()`; R5 DOM-XSS in the `/measurement/` table; R6 `data/product-specs.json` slug drift + PA-API deprecation context; R7 IRR-05/IRR-12 archived paths; R8 stale `EXECUTIVE_SUMMARY.md`/`README.md`; R9 analytics endpoint not deployed; **R10 every live page renders the disclosure as "As an Amazon Associate we earn…" while Operating Agreement §5 states "As an Amazon Associate I earn from qualifying purchases."** (the archived edition uses "I"); **R11 the S13 citation link resolves to `/dp/B0HMGG4M2`, a failed ASIN probe with no product page**.
+- **Automated gate added (read-only, no mutation):** `tests/test_verification_9513affd.py` — 12 checks over the generated site and canonical data: above-fold + footer disclosure on every page, disclosure strip above the body, every sponsored link `rel="sponsored nofollow noopener"` + tag `shopnow047c-20`, single `Site desk` nav group with all dashboard surfaces repeated in the footer, `sitemap.xml`/`feed.xml`/`robots.txt` present with every sitemap entry resolving to a real file, single canonical host, `intended_asin` blank and never merged with `observed_redirect_target` (JSON + CSV), empty well-defined campaign ledger, no price/rating/commission/conversion/revenue-forecast values published, and every table row with content carrying a source link.
+- **Checks:** `node scripts/build.mjs` (23 pages, working tree unchanged — no data drift), `node scripts/validate.mjs` (16/16, 0 errors, 0 warnings, no broken links), `python3 -m unittest discover -s tests` (**28/28**, including the 12 new verification tests).
