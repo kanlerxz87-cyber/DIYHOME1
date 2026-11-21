@@ -38,8 +38,8 @@ A static, multi-page affiliate publication built from `data/*.json`, published b
 | `/about/` | Method, definition of "verified", automation boundaries |
 | `/automation/` | 7-stage automation & compliance gate CLI (`validate.mjs`, `platform_engine.py`, `creators_api_client.py`) |
 | `/disclosures/` | Affiliate disclosure, link policy, privacy, withheld data |
-| `/sources/` | Register of 29 official sources, a dated re-verification record + `SG-27..SG-30` parallel passes + 52-row product spec verification ledger |
-| `/flagged/` | 18 flagged items with severity, what would close each one, and official sources on every row |
+| `/sources/` | Register of 32 official sources, a dated re-verification record + `SG-27..SG-30` parallel passes + 52-row product spec verification ledger |
+| `/flagged/` | 21 flagged items with severity, what would close each one, and official sources on every row |
 | `/measurement/` | Five defined events, privacy rules, honest status, local event viewer |
 | `/ledger/` | 4-row Product-intent confirmation record (strictly separate from observed redirects) + empty campaign ledger |
 | `/summary/` | This summary, on the site (all dashboard surfaces grouped under `Site desk` in top nav & repeated in footer) |
@@ -107,7 +107,7 @@ Amazon's current terms add **Agent Terms**: automated software interacting with 
 
 ---
 
-## 5. Flagged for review (16 items)
+## 5. Flagged for review (19 items)
 
 High: **F01** — short links not confirmed as enrolled/tracked.
 Medium: **F03** air-fryer working titles have no matching products; **F04** no Search Console token; **F05** no analytics endpoint, so events stay local; **F10** commission rates unverifiable; **F13** verification fetches did not identify as an agent.
@@ -160,7 +160,7 @@ A second, independent pass re-opened every source that carries a quote and compa
 | S25 USDA FSIS air-fryer guidance (updated 24 Jun 2024) | Live page | Both quotes were paraphrases; replaced with the exact sentences |
 | S26 Google robots.txt creation guide (new) | Live page | Added for the robots.txt location rule cited by F14 |
 
-Not re-checked in this pass, and labelled as such on the site: S11, S13, S15, S16, S17, S20, S22. The build, the validator (16 check groups), the 10 unit tests and `platform_engine.py audit` all pass after these edits.
+Not re-checked in this pass, and labelled as such on the site: S11, S13, S15, S16, S17, S20, S22. The build, the validator and `platform_engine.py audit` all passed after those edits (16 check groups and 10 unit tests at the time of that pass; the later merge brings the tree to 19 check groups and 16 tests).
 
 ## 8. Parallel sessions and the merged publication
 
@@ -179,6 +179,10 @@ The site builds and passes every check. Three things need account access the bui
 Nothing on this site is presented as verified beyond what an official source supports on the date shown. Where that could not be established, the value is blank and the gap is named.
 
 ---
+
+<!-- Two sessions published a 2026-11-21 revision. Both records are kept: section 10 is the earlier
+     S-2026-11-21-F pass (analytics-server fix, register wording), section 11 is the later
+     S-2026-11-21-B pass (spec-register citations, VS namespaces, re-verification scope). -->
 
 ## 10. Addendum — 2026-11-21 re-verification (S-2026-11-21-F, branch `arena/f4d33765-diyhome1`)
 
@@ -203,3 +207,29 @@ A fresh line-by-line re-read of the official sources, one day after the original
 - The self-hosted Node endpoint accepted the archived Field & Fixture edition's event names (`product_impression`, `outbound_affiliate_click`, `reader_capture_submit`) with a `{event, page, meta}` payload. The live `assets/js/site.js` sends `{e, path, sid, …}` with the canonical five events, so every live event would have been rejected with 400. The server now implements the canonical contract (same allowlist and 2048-byte cap as `worker/collect.js`), accepts `POST /collect` and the legacy `/api/events` path alias, and is covered by `tests/test_analytics_server.py` (6 tests: health, site.js payload accepted + PII stripped, alias path, retired shape rejected, unknown event rejected, summary counts). Full suite: 16/16 passing. The endpoint is still **not deployed** — F05 remains open and the campaign ledger remains empty.
 
 **Checks run:** `node scripts/build.mjs` (23 pages) + `node scripts/validate.mjs` (16/16, 288 Amazon links: 38 sponsored, 257 citations, single tag `shopnow047c-20`) + `python3 -m unittest discover -s tests` (16/16). Rebuild changed only `sources/index.html`, as expected.
+
+---
+
+## 11. Revision, 21 November 2026 — audit and correction pass
+
+Session `S-2026-11-21-B` (branch `arena/0b735892-diyhome1`). This pass changed metadata, citations and build gates. No published attribute value changed, and no blank field was filled.
+
+**Re-read on 2026-11-21.** All three listings were opened again.
+- `B08FKW9JRM`: the full Technical Details and Additional Information tables — manufacturer, part number, model number, item weight, product dimensions, material, handle material, ASIN, Date First Available and breadcrumb. Unchanged.
+- `B0BSKQW2T2`: title, brand, material and finish, mounting type, and the 12.2-inch rail length stated in the listing's "About this Item" block. Unchanged.
+- `B08DY9HRWD`: title and brand. Unchanged.
+
+Every other row keeps its 2026-11-20 date rather than being re-dated. The per-product scope is recorded in `data/product-specs.json` and published as flag F19; F16 records the same gap from a different sandbox.
+
+**Corrected, each now gated by `scripts/validate.mjs`:**
+- `data/product-specs.json` named `S01`, `S02`/`S03` and `S04` as the submission sources for the three products. The submitted links are `S10`, `S11` and `S12`. Corrected (F18).
+- The same file pointed at three guides that have never existed (`guides/peel-and-stick-tools.html`, `guides/adhesive-vs-drilled-mounts.html`, `guides/cabinet-pan-rack-fit.html`) and at two category slugs absent from `data/site.json`. Corrected (F18).
+- `data/verified-sources.json` reused the canonical register's `S__` labels for 24 different documents, so `S01` meant one page in one file and another page in the other. It now uses `VS01`–`VS24` and states that it is a 2026-11-20 snapshot (F17).
+- `SG-27`–`SG-30` described navigation labels, a build script (`scripts/build.py`) and a root `robots.txt` that do not match this edition. Each row now describes what actually ships, names what its source supports, and cites a document that supports that specific claim.
+- The parallel-pass table silently substituted a sitemap document for `SG-28`'s self-referential citation. That substitution is removed; a self-citation now fails the build.
+
+**Sources added on 2026-11-21, each read before citing:** `S27` RSS 2.0 Specification (RSS Advisory Board), `S28` SEO Starter Guide (Google Search Central), `S29` Privacy and Security (U.S. FTC). `S26` was already taken by the robots.txt guide added in the S-2026-11-21-F/`arena/16905ff3` pass, so these three follow it rather than displacing it.
+
+**Verification:** `node scripts/build.mjs` → 23 pages; `node scripts/validate.mjs` → 19 check groups, 0 errors, 0 warnings; `python3 -m unittest discover -s tests` → 16 tests pass (10 pre-existing + 6 analytics-server tests added by S-2026-11-21-F). The new gates were tested by deliberately breaking a submission ID, a guide slug and an SG citation: all three failed, then passed once the data was restored.
+
+**Not claimed:** Associates enrolment for any link, click attribution, Search Console indexing, analytics collection, commission rates or revenue. F01–F16 stand unchanged; F17–F19 are the new findings.

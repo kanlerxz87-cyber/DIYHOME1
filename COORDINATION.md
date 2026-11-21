@@ -21,6 +21,7 @@ Publishing source: branch `main`, folder `/` (confirmed via `GET /repos/kanlerxz
 |---|---|---|---|---|
 | `S-2026-11-20-A` | `arena/eb4b2092-diyhome1` | Sole session: research, build, verify, integrate, publish | 2026-11-20 | active |
 | `S-2026-11-21-F` | `arena/f4d33765-diyhome1` | Re-verification (2026-11-21), analytics-server contract fix, integration + PR | 2026-11-21 | active |
+| `S-2026-11-21-B` | `arena/0b735892-diyhome1` | Spec-register citation audit, register namespace split, 2026-11-21 re-verification scope, integration + PR | 2026-11-21 | active |
 
 Single-session run. A later session may take unowned rows only, and must not edit `data/`, `scripts/`, `assets/js/config.js`, `sitemap.xml`, `feed.xml` or generated HTML without claiming the row first.
 
@@ -319,24 +320,32 @@ No pre-existing claims or site files were present. Work stays on the Arena-assig
 
 ---
 
-## Session `S-2026-11-21-B` — branch `arena/fe2b1ce4-diyhome1` (claim, 2026-11-21T23:22Z)
+## Session `S-2026-11-21-G` — branch `arena/fe2b1ce4-diyhome1` (claim 2026-11-21T23:22Z; renamed from a provisional `…-B` label because `arena/0b735892-diyhome1` had already registered `S-2026-11-21-B`)
 
 Base: `706b8e2` (main, after PR #14). Single active session on this branch; no competing claims found in the table above.
 
 | Task ID | Task | Owner | File scope | Status |
 |---|---|---|---|---|
-| `T-B01` | Fresh live re-verification of the 3 supplied `link.amazon` short links + 3 resolved ASIN listings on 2026-11-21; record today's observed titles, redirect targets, and whether `tag=` is present in the observed redirect | `S-2026-11-21-B` | `data/products.json`, `data/product-intents.csv`, `data/product-specs.json` | in progress |
-| `T-B02` | Re-check the 6 spec fields previously left blank (`UPC/GTIN` ×2, `Date First Available` ×2) against today's listing "Product information" table; fill only if present, else keep blank + badged | `S-2026-11-21-B` | `data/product-specs.json` | in progress |
-| `T-B03` | Update F10 (commission schedule) — the public Standard Commission Income Statement is now readable without sign-in; record the verified category rates verbatim and keep SKU-level payout unverified | `S-2026-11-21-B` | `data/flagged.json`, `data/sources.json` | in progress |
-| `T-B04` | Landing page: lead with products (verified decision facts on each card), move the verification apparatus below the shop into one compact band so the front page reads as a publication, not an audit | `S-2026-11-21-B` | `scripts/build.mjs`, `assets/css/site.css` | in progress |
-| `T-B05` | Executive summary + release notes refresh (2026-11-21 re-verification, what changed, what is still blocked) | `S-2026-11-21-B` | `EXECUTIVE_SUMMARY.md`, `data/release.json`, `README.md` | in progress |
-| `T-B06` | Rebuild, run both gates (node + python), open PR, merge, confirm GitHub Pages deploy, record result here | `S-2026-11-21-B` | `main` (merge only) | in progress |
+| `T-B01` | Fresh live re-verification of the 3 supplied `link.amazon` short links + 3 resolved ASIN listings on 2026-11-21; record today's observed titles, redirect targets, and whether `tag=` is present in the observed redirect | `S-2026-11-21-G` | `data/products.json`, `data/product-intents.csv`, `data/product-specs.json` | in progress |
+| `T-B02` | Re-check the 6 spec fields previously left blank (`UPC/GTIN` ×2, `Date First Available` ×2) against today's listing "Product information" table; fill only if present, else keep blank + badged | `S-2026-11-21-G` | `data/product-specs.json` | in progress |
+| `T-B03` | Update F10 (commission schedule) — the public Standard Commission Income Statement is now readable without sign-in; record the verified category rates verbatim and keep SKU-level payout unverified | `S-2026-11-21-G` | `data/flagged.json`, `data/sources.json` | in progress |
+| `T-B04` | Landing page: lead with products (verified decision facts on each card), move the verification apparatus below the shop into one compact band so the front page reads as a publication, not an audit | `S-2026-11-21-G` | `scripts/build.mjs`, `assets/css/site.css` | in progress |
+| `T-B05` | Executive summary + release notes refresh (2026-11-21 re-verification, what changed, what is still blocked) | `S-2026-11-21-G` | `EXECUTIVE_SUMMARY.md`, `data/release.json`, `README.md` | in progress |
+| `T-B06` | Rebuild, run both gates (node + python), open PR, merge, confirm GitHub Pages deploy, record result here | `S-2026-11-21-G` | `main` (merge only) | in progress |
 
 Scope note: this session edits only the files listed above. It does not touch `scripts/content.mjs`, `scripts/validate.mjs`, `worker/**`, `platform/**`, or the archived editions.
 
 ---
 
 ### Log entries from other parallel sessions (preserved verbatim)
+### Merge resolution — 2026-11-21, `S-2026-11-21-G`
+
+`origin/main` advanced through PRs #15 and #18 (`S-2026-11-21-F`) while this session worked. The two sessions had overlapping scope in `data/sources.json` and `data/verified-sources.json`. Neither record was discarded:
+
+- `data/sources.json` auto-merged: S-2026-11-21-F's `retrieved` date updates (S01, S03, S04, S05, S06, S08, S10, S23, S24 → 2026-11-21) are kept, and this session's additions sit after them (its first new source was numbered S26, which later collided with a robots.txt source added by `S-2026-11-21-C`; it was renumbered S27–S29 without displacing theirs). 29 sources total.
+- `data/verified-sources.json`: S-2026-11-21-F's corrected SG-27/SG-28/SG-29 wording and its `code_note` were kept in substance. Because this session renamed the register's codes to `VS01`–`VS24` (F17), the `code_note` was folded into `register_note`, which carries the same point plus the new prefix. The SG rows kept this session's version, which states the same facts as theirs and adds each source's `source_supports` line.
+- `sources/index.html` is generated; it was rebuilt from the merged data rather than hand-merged.
+- Both documentation records are kept below. S-2026-11-21-F merged first (PR #15, 23:20Z); this session's record follows it.
 
 ### 2026-11-21 — S-2026-11-21-F — T12 re-verification + T13 analytics-server fix
 
@@ -359,6 +368,66 @@ Scope note: this session edits only the files listed above. It does not touch `s
 - **GitHub Pages Deployment:** Confirmed `status: "built"` for commit `cef3a9c2` (`main:/`, HTTPS enforced). Live `/sources/` fetched and confirmed showing `Retrieved 2026-11-21` for the re-read sources; live `/` confirmed with above-fold disclosure and tagged Sponsored links.
 - **Live site:** https://kanlerxz87-cyber.github.io/DIYHOME1/
 - Flagged items (F01, F04, F05, F10, F13, …) remain published at `/flagged/` and did not block the merge, per the board rules.
+
+---
+
+---
+
+## Session `S-2026-11-21-B` (`arena/0b735892-diyhome1`) — audit & correction pass
+
+Branch: `arena/0b735892-diyhome1` (Arena-assigned; branched from `main` @ `706b8e2`). Read this board first; no other session had an unexpired claim, so the three rows below are taken over/created by this session. Claim committed and pushed before any edit, per rule 1.
+
+| ID | Task | Owner | File scope | Status |
+|---|---|---|---|---|
+| `U01` | Re-verify the 52 product-specification rows against the live official listings on 2026-11-21; repair stale `guide_slug` / `category_slug` metadata in the public spec register | `S-2026-11-21-B` | `data/product-specs.json` | done |
+| `U02` | Correct the SG-27..SG-30 register so each implementation description matches what actually ships, and each row cites a source that supports its own claim | `S-2026-11-21-B` | `data/verified-sources.json`, `data/sources.json`, `data/flagged.json` | done |
+| `U03` | Integration: rebuild, validate, test, PR to `main`, merge, confirm Pages deploy, record result | `S-2026-11-21-B` | `COORDINATION.md`, `EXECUTIVE_SUMMARY.md`, generated `*.html`, `sitemap.xml`, `feed.xml` | in progress |
+
+Non-overlap note: no other row in this board is live; the prior integration session (`session-3e199a4b`) closed its rows as `done`. This session edits no archived edition and deletes nothing.
+
+### Findings that triggered `U01`/`U02` (before any change)
+
+- `data/product-specs.json` publishes three `guide_slug` values that resolve to **no page in the repository** (`guides/peel-and-stick-tools.html`, `guides/adhesive-vs-drilled-mounts.html`, `guides/cabinet-pan-rack-fit.html`). The live guides use different slugs. Not linked from any page, so no broken link ships — but the file is downloadable from `/sources/`, so a reader would be misled.
+- The same file publishes `category_slug` values (`wall-and-backsplash`, `under-cabinet-fixtures`, `cabinet-and-cookware-storage`) that do not exist in `data/site.json`, whose live categories are `wallpaper-tools` and `kitchen-storage`.
+- `SG-28` records the feed as generated by `scripts/build.py` and checked by `scripts/check.py` / `release-review/check_release.py`. Those are the **archived** Practical Home scripts. The live feed is generated by `scripts/build.mjs` and checked by `scripts/validate.mjs`.
+- `SG-27` records primary nav labels `Shop` / `Categories` / `Buying guides` / `Comparisons` / `RSS`. The shipped labels are `Home` / `Products` / `Comparisons` / `Guides` / `Search` / `RSS`.
+- `SG-29` records a "root `robots.txt`". The file is published at `/DIYHOME1/robots.txt`, which is not the host root a crawler reads — this is already flag F14, but the SG row asserted otherwise.
+- `SG-28`'s "official reference" is this site's own `feed.xml`; `SG-30`'s is an FTC disclosure guide about endorsements. Neither supports the specific implementation claim in its row. These are citation-to-claim mismatches, not evidence of wrongdoing.
+
+### 2026-11-21 — S-2026-11-21-B — U01/U02 verification log
+
+**What was re-read today, and from where.** All three official listings were fetched again on 2026-11-21 and read line by line:
+
+| ASIN | Page | Fields re-read | Result |
+|---|---|---|---|
+| B08FKW9JRM | https://www.amazon.com/dp/B08FKW9JRM | Full Technical Details + Additional Information (manufacturer, part number, model number, weight, dimensions, material, handle material, ASIN, Date First Available, breadcrumb) | Unchanged |
+| B0BSKQW2T2 | https://www.amazon.com/dp/B0BSKQW2T2 | Title, brand, material/finish, mounting type, 12.2-inch rail length | Unchanged |
+| B08DY9HRWD | https://www.amazon.com/dp/B08DY9HRWD | Title, brand | Unchanged |
+
+Rows not re-read keep their 2026-11-20 date. The scope is recorded per product in `data/product-specs.json` and published as F19 (F16 is the same gap seen from a different sandbox).
+
+**Corrections made (each now enforced by `scripts/validate.mjs`):**
+1. `submission_ids` in `data/product-specs.json` were `S01`, `S02`/`S03`, `S04`; the submitted links are `S10`, `S11`, `S12`. Fixed (F18).
+2. Three `guide_slug` values pointed at guides that do not exist and two `category_slug` values were absent from `data/site.json`. Fixed (F18).
+3. `data/verified-sources.json` gave the same `S__` labels to different documents than `data/sources.json` — all 24 shared labels differed. Renamed to `VS01`–`VS24` with a snapshot note (F17).
+4. `SG-27`..`SG-30` implementation text described a different build (nav labels, `scripts/build.py`, a root `robots.txt`). Rewritten to match the shipped site, each with a source that supports its own claim.
+5. `SG-28`'s self-referential citation was being silently replaced with a sitemap document in the build. Substitution removed; self-citation now fails.
+
+**Sources added after reading them on 2026-11-21:** `S27` https://www.rssboard.org/rss-specification · `S28` https://developers.google.com/search/docs/fundamentals/seo-starter-guide · `S29` https://www.ftc.gov/business-guidance/privacy-security · (`S26` belongs to the robots.txt guide added by `S-2026-11-21-C`.)
+
+**Verification performed:** `node scripts/build.mjs` → 23 pages. `node scripts/validate.mjs` → 19 check groups, 0 errors. `python3 -m unittest discover -s tests` → 16/16 (10 platform tests + 6 analytics-server tests from S-2026-11-21-F). Negative tests: a wrong `submission_ids`, a dead `guide_slug` and a self-citing SG row each failed the build, then passed after restore.
+
+**Irregularities logged:** F18 (wrong submission sources and dead slugs in the public register), F19 (partial re-read on 2026-11-21), F17 (two source registers shared one ID namespace). None blocks publication; all three are on `/flagged/`.
+
+### Merge note — `S-2026-11-21-B`, second sync
+
+`origin/main` advanced again through the `arena-67098650-diyhome1` verification claim while this session was merging. That log is kept verbatim below. Two things differ between that sandbox and this one, and both are recorded rather than reconciled away:
+
+1. It reports Amazon page fetches as blocked (HTTP 000). In this session the same three listing URLs **were** reachable through the page-fetch tool, and the fields listed in the U01 log above were read on them on 2026-11-21. Neither observation is withdrawn.
+2. Its counts describe the tree it saw: 14 flags, 25 sources, 16 validator checks. After all merges the live tree has **19 flags** (F15–F19 added by three sessions), **29 sources** (S26–S29 added) and **19 validator checks**. Its verification statements remain true of the pages it inspected.
+
+
+---
 
 --- (merged session claims — both preserved) ---
 
@@ -385,18 +454,80 @@ Verification performed (line by line, no inference, no hallucination):
 
 ---
 
+### Merge note — `S-2026-11-21-B`, third sync (PR #19, `S-2026-11-21-C`)
+
+`origin/main` advanced a third time while this session waited on CI: `arena/16905ff3-diyhome1` merged PR #19 with its own re-verification, five verbatim quote corrections (S01, S07, S08, S23, S25), a new `S26` (Google robots.txt guide) and new flags F15/F16. Resolved without discarding any of it:
+
+- **Quote corrections kept.** Its corrected S01, S07, S08, S23 and S25 quote strings are in `data/sources.json` as merged; this session had not touched those strings.
+- **Source numbering.** Its `S26` (robots.txt) keeps the number. This session's three additions were renumbered to **S27** (RSS 2.0 spec), **S28** (Google SEO starter guide) and **S29** (FTC privacy guidance). The duplicate `S26` created by the automatic merge was removed.
+- **Flag numbering.** Its F15 (non-verbatim quotes) and F16 (Product Information tables unavailable in its fetch) keep their numbers. This session's three items became **F17** (registers sharing S-numbers), **F18** (spec-register submission sources and dead slugs) and **F19** (re-read scope of this pass). F19 states that in this sandbox the B08FKW9JRM table did surface and was re-read, and points at F16 as the other sandbox's observation; both are true of their own fetches.
+- **Build copy.** Its hardcoded "re-read on 21 November" sentences were replaced with data-driven dates, and the comparison page now links both F19 and F16 rather than asserting a single sandbox's outcome.
+- **Generated pages** were rebuilt from the merged data rather than hand-merged.
+
+After resolution: 23 pages, **19 validator check groups, 0 errors**, **16/16 tests**, 19 flags, 29 sources.
+
 ## Session claim — 2026-11-21 — `S-2026-11-21-C`
 
 **Conflict note (logged, nothing discarded):** this session claimed its tasks at branch start against `706b8e2`. Two other sessions landed on `main` while it worked: `S-2026-11-21-F` (PR #15) and `arena-67098650-diyhome1` (final verification claim). Both sessions' claims and logs above are kept verbatim; this session's rows are renumbered T15–T17 to avoid reusing their T12–T14. Where two sessions corrected the same source (S23 Table 1 rows), the correction is identical — two independent reads of the same page produced the same verbatim rows. This session's later corrections (S01, S07, S08, S19, S25) and S26 addition post-date those merges and are recorded on `/sources/` with a dated re-verification note.
 
 | Session ID | Branch | Role | Started (UTC) | Status |
 |---|---|---|---|---|
-| `S-2026-11-21-C` | `arena/16905ff3-diyhome1` (base `706b8e2`, PR #14 merge) | Independent line-by-line re-verification, QA fixes, integration (PR + merge + Pages deploy check) | 2026-11-21 | in progress |
+| `S-2026-11-21-C` | `arena/16905ff3-diyhome1` (base `706b8e2`, PR #14 merge) | Independent line-by-line re-verification, QA fixes, integration (PR + merge + Pages deploy check) | 2026-11-21 | done |
 
 | ID | Task | Owner | File scope | Status |
 |---|---|---|---|---|
-| T15 | Re-verify every registered source against the live official page; record verbatim quote matches and any drift | `S-2026-11-21-C` | `data/sources.json`, `COORDINATION.md` | in progress |
-| T16 | Line-by-line QA of `data/*.json` product facts, flags and copy for contradictions or invented values | `S-2026-11-21-C` | `data/products.json`, `data/flagged.json`, `data/site.json`, site copy generated from them | in progress |
-| T17 | Integration: build + validate, PR from this branch to `main`, merge, confirm Pages deploy, record result | `S-2026-11-21-C` | `main` (merge only), `COORDINATION.md` | in progress |
+| T15 | Re-verify every registered source against the live official page; record verbatim quote matches and any drift | `S-2026-11-21-C` | `data/sources.json`, `COORDINATION.md` | done |
+| T16 | Line-by-line QA of `data/*.json` product facts, flags and copy for contradictions or invented values | `S-2026-11-21-C` | `data/products.json`, `data/flagged.json`, `data/site.json`, site copy generated from them | done |
+| T17 | Integration: build + validate, PR from this branch to `main`, merge, confirm Pages deploy, record result | `S-2026-11-21-C` | `main` (merge only), `COORDINATION.md` | done |
 
 Rule observed: this session edits only `data/`, content and docs; all HTML is regenerated with `node scripts/build.mjs` and gated by `node scripts/validate.mjs`. No other session's claim is overwritten.
+
+---
+
+## 2026-11-21 — `S-2026-11-21-C` — T15 re-verification (closing log)
+
+**Method.** Every source carrying a quote was fetched again on 2026-11-21 and the quoted string compared against the page text. Pages read in full or in the relevant sections: Amazon Program Policies (all 11 chunks, sections 2(b), 3(b), 3(t), 3(v), 3(w), 3(y), IP License 2(h), Agent Terms), Operating Agreement, Standard Commission Income Statement Table 1, Associates ASIN/text-link help, FTC *Disclosures 101*, USDA FSIS air-fryer page, Google sitemap / robots.txt intro / robots.txt creation / Search Console ownership docs, GitHub Pages publishing docs, the three `/dp/` listings, the niffgaff storefront, `link.amazon/B0hmGG4m2`, `link.amazon/B0hpD2JGQ`, and the two short-link product targets.
+
+**Quote corrections (now verbatim):**
+
+| Source | Problem found | Fix |
+|---|---|---|
+| S01 | agent user-agent sentence elided with "…" | full sentence from the Agent Terms |
+| S07 | parenthetical truncated | restored "(if your plan or organization allows it)." |
+| S08 | a section heading was filed as a quote | "Google accepts RSS 2.0 and Atom 1.0 feeds." |
+| S19 | quote only existed in a related-content card | replaced with body text on the page |
+| S23 | two paraphrased rows; "Pantry" wrongly placed in 3.00% | exact Table 1 rows (independently corrected the same way by `S-2026-11-21-F`) |
+| S25 | two paraphrased sentences; page date missing | exact sentences + "Last Updated: Jun 24, 2024" |
+
+**Source added:** S26 — Google, *Create and Submit a robots.txt File*: "The robots.txt file must be located at the root of the site host to which it applies… It cannot be placed in a subdirectory". This is the source F14 was missing. Register: 25 → 26.
+
+**Dates:** `retrieved` set to 2026-11-21 for the sources actually opened today (S01–S10 except S11, S12, S14, S18, S19, S21, S23–S26). S11, S13, S15, S16, S17, S20, S22 are listed on `/sources/` as not re-checked.
+
+**Verification links used:** [Program Policies](https://affiliate-program.amazon.com/help/operating/policies) · [Operating Agreement](https://affiliate-program.amazon.com/help/operating/agreement) · [Standard Commission Income Statement](https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ) · [ASIN / text links](https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC) · [FTC Disclosures 101](https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers) · [USDA FSIS air fryers](https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/air-fryers-and-food-safety) · [Google sitemaps](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap) · [Google robots.txt intro](https://developers.google.com/search/docs/crawling-indexing/robots/intro) · [Google robots.txt creation](https://developers.google.com/crawling/docs/robots-txt/create-robots-txt) · [Search Console ownership](https://support.google.com/webmasters/answer/9008080) · [GitHub Pages publishing](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site) · [B08FKW9JRM](https://www.amazon.com/dp/B08FKW9JRM) · [B0BSKQW2T2](https://www.amazon.com/dp/B0BSKQW2T2) · [B08DY9HRWD](https://www.amazon.com/dp/B08DY9HRWD) · [niffgaff store](https://www.amazon.com/stores/niffgaff/page/531DB5A2-A3D9-4D02-8477-9A9F32ABB8D8)
+
+**Re-confirmed unchanged:** listing titles, breadcrumbs and merchant lines for all three ASINs; the three ORDORA dimension strings; "Visit the niffgaff Store"; no `tag=` parameter on the observed short-link redirects (F01 stays open, not disproven); the duplicate submission (F02); live prices visible but not recorded anywhere.
+
+**Could not re-confirm (recorded as F16, not hidden):** the Amazon Product Information / Technical Details tables did not render in this session's text fetch, so UPC, model number, item weight, material and Date First Available rows were left exactly as published, still linking to the same official listing.
+
+## 2026-11-21 — `S-2026-11-21-C` — T16 QA fixes (closing log)
+
+- `data/products.json` P2 `listing_claims_note` said the brand was "left blank" while the field said `niffgaff`; rewritten to state the brand came from the listing's Product Information field and the official store link (S05, S21).
+- `/guides/` hypothesis table: all four rows cited USDA for claims USDA does not make (door swing, sink fit, storage room). Each row now marks the food-safety wording USDA actually supports and labels every measurement prompt as editorial.
+- Build date moved to 2026-11-21; the home standfirst and comparison standfirst now distinguish the 20 November spec read from the 21 November re-check.
+- F15 (quote corrections) and F16 (Product Information tables not re-readable) added; flags 14 → 16.
+- Every table row on every published page was checked for at least one link: 0 rows without a link.
+
+## 2026-11-21 — `S-2026-11-21-C` — T17 integration result
+
+- **Pull request:** [PR #19](https://github.com/kanlerxz87-cyber/DIYHOME1/pull/19) — `arena/16905ff3-diyhome1` → `main`.
+- **Rebases:** twice, to absorb `S-2026-11-21-F` (PR #15) and `arena-67098650-diyhome1`. `COORDINATION.md` conflicts resolved by keeping the other sessions' text verbatim; nothing discarded. Rebase note posted on the PR.
+- **CI before merge:** `build-and-validate` pass (8s) and `verify` pass (4s) on head `cd80b98`.
+- **Merge:** `gh pr merge 19 --merge`; state `MERGED` at 2026-11-21T23:25:06Z; merge commit `c27383b7af63f5481fd6d0c7eccd1af9ec2b7402`.
+- **Pages:** `pages` status moved `building` → `built`; `pages/builds` reports `status: built` for commit `c27383b7af63…` at 2026-11-21T23:25:43Z (legacy, `main:/`).
+- **Live verification after deploy** (cache-busted fetches):
+  - `/sources/` → title "Source register — 26 official sources"; "Re-verified 2026-11-21" callout with the corrected/additional IDs; S01 now shows the full agent sentence; S26 present.
+  - `/flagged/` → "Open items · 16 flagged"; F15 and F16 render with their source links; F14 now cites S26.
+  - `/guides/` → hypothesis table renders the revised, source-scoped rows.
+  - `/` (pre-merge check of the prior deploy) → disclosure strip above the fold, sponsored CTAs, single tag.
+- **Not verified, and not claimed:** Associates enrolment or click attribution for any link, Search Console indexing, analytics collection, commission rates, revenue. All remain on `/flagged/` with what would close them.
+- **Follow-up:** this log and the `data/release.json` record ship in a docs-only follow-up PR from the same branch, per the rule that this session pushes only to its own branch.

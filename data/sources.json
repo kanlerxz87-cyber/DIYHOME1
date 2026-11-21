@@ -1,6 +1,6 @@
 {
   "generated": "2026-11-21",
-  "method": "Each source below was retrieved and read in this session unless marked otherwise. 'verified' means the text quoted in the site was read on that page. 'secondary' means the page is not first-party documentation and is used only to explain a flagged gap. 'unavailable' means the source exists but could not be retrieved without credentials. Re-verified 2026-11-21 (session S-2026-11-21-B): the three supplied short links, the three resolved listings, the public commission schedule (S29) and two Associates help topics (S27 tracking-ID-in-URL, S28 simple text link / ASIN definition) were read again that day.",
+  "method": "Each source below was retrieved and read in this session unless marked otherwise. 'verified' means the text quoted in the site was read on that page. 'secondary' means the page is not first-party documentation and is used only to explain a flagged gap. 'unavailable' means the source exists but could not be retrieved without credentials. Additional sources S30-S32 were read on 2026-11-21 by session S-2026-11-21-G: Amazon's help topics on why the tracking ID does not appear in the URL after click-through (S30) and on the simple text-link format plus the ASIN definition (S31), and the public Standard Commission Income Statement table (S32).",
   "reverification": {
     "date": "2026-11-21",
     "session": "S-2026-11-21-C",
@@ -514,6 +514,61 @@
     },
     {
       "id": "S27",
+      "title": "RSS 2.0 Specification (current version 2.0.11)",
+      "publisher": "RSS Advisory Board",
+      "url": "https://www.rssboard.org/rss-specification",
+      "page_date": "Version 2.0.11, published 30 March 2009",
+      "retrieved": "2026-11-21",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Defines the required <channel> elements (title, link, description) and the XML requirement that feed.xml is checked against",
+        "Defines RSS as an XML dialect, which is why the feed is parsed rather than eyeballed"
+      ],
+      "quotes": [
+        "At the top level, a RSS document is a <rss> element, with a mandatory attribute called version, that specifies the version of RSS that the document conforms to.",
+        "RSS is a dialect of XML. All RSS files must conform to the XML 1.0 specification, as published on the World Wide Web Consortium (W3C) website.",
+        "Here's a list of the required channel elements, each with a brief description, an example, and where available, a pointer to a more complete description."
+      ]
+    },
+    {
+      "id": "S28",
+      "title": "Search Engine Optimization (SEO) Starter Guide",
+      "publisher": "Google Search Central",
+      "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide",
+      "page_date": "Live documentation; retrieved 2026-11-21",
+      "retrieved": "2026-11-21",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Recommends organizing a site logically so search engines and users can understand how pages relate",
+        "Explains that URL words can appear as breadcrumbs in search results"
+      ],
+      "quotes": [
+        "When you're setting up or redoing your site, it can be good to organize it in a logical way because it can help search engines and users understand how your pages relate to the rest of your site.",
+        "Google learns breadcrumbs automatically based on the words in the URL, but you can also influence them with structured data if you like a technical challenge."
+      ]
+    },
+    {
+      "id": "S29",
+      "title": "Privacy and Security \u2014 business guidance",
+      "publisher": "U.S. Federal Trade Commission",
+      "url": "https://www.ftc.gov/business-guidance/privacy-security",
+      "page_date": "Live agency guidance; retrieved 2026-11-21",
+      "retrieved": "2026-11-21",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "States that collecting only the data you need and being clear about data practices are the baseline for handling consumer data",
+        "Supports the site rule that reader capture asks for no email address and sets no cookie"
+      ],
+      "quotes": [
+        "Having a sound security plan in place to collect only what you need, keep it safe, and dispose of it securely can help you meet your legal obligations to protect that sensitive data.",
+        "Consumers care about the privacy of their personal information and savvy businesses understand the importance of being clear about what you do with their data."
+      ]
+    },
+    {
+      "id": "S30",
       "title": "Why doesn't my tracking ID appear in your URL after a visitor clicks through to Amazon from my Web site?",
       "publisher": "Amazon.com, Inc. (Amazon Associates Central)",
       "url": "https://affiliate-program.amazon.com/help/node/topic/GFZ6X2S7P8EVNGN2",
@@ -531,7 +586,7 @@
       ]
     },
     {
-      "id": "S28",
+      "id": "S31",
       "title": "How do I build a simple text link to a specific item on Amazon?",
       "publisher": "Amazon.com, Inc. (Amazon Associates Central)",
       "url": "https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC",
@@ -551,7 +606,7 @@
       ]
     },
     {
-      "id": "S29",
+      "id": "S32",
       "title": "Associates Program Standard Commission Income Statement (public rate table)",
       "publisher": "Amazon.com, Inc. (Amazon Associates Central)",
       "url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ",
