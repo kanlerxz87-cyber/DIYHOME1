@@ -561,7 +561,6 @@ Claimed before editing (see this branch's earlier commit history on `arena/818bf
 - Also made the page internally consistent: the summary now states that short links 1 and 3 carry a 21 November retrieval and short link 2 is dated 20 November, instead of one bullet saying they were all re-fetched and another saying none were.
 - **Follow-up PR** carries F22, the citation fixes and the release record for PR #20 (this session pushes only to its own branch).
 - **Not verified, not claimed:** Associates attribution, Search Console indexing, analytics collection, signed-in commission rates. All remain on `/flagged/`.
-=======
 ### 2026-11-21 — `S-2026-11-21-9513affd` (`arena/9513affd-diyhome1`) — Non-overlapping session claim
 
 - **Branch:** `arena/9513affd-diyhome1` (Arena-assigned branch; synced to `origin/main` @ `063dae1` after PR #18).
