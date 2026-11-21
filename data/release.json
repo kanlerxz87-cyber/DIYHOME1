@@ -1,10 +1,10 @@
 {
-  "pr_url": "https://github.com/kanlerxz87-cyber/DIYHOME1/pull/20",
-  "pr_number": "20",
-  "merge_commit": "760c321625de0bae2dcad18a0f3a558c520b2af8",
-  "merged_at": "2026-11-21T23:32:01Z",
+  "pr_url": "https://github.com/kanlerxz87-cyber/DIYHOME1/pull/24",
+  "pr_number": "24",
+  "merge_commit": "f345767436e26ff3466510945d75be87b24a8841",
+  "merged_at": "2026-11-21T23:39:13Z",
   "pages_url": "https://kanlerxz87-cyber.github.io/DIYHOME1/",
-  "pages_status": "built \u2014 Pages reported status 'built' for commit 760c321625de at 2026-11-21T23:32:02Z (legacy, main:/); live /sources/ and /summary/ fetched and confirmed",
+  "pages_status": "built \u2014 Pages reported status 'built' for commit f345767436e2 at 2026-11-21T23:39:33Z (legacy, main:/); live /, /guides/pot-pan-organizer-capacity/, /sources/, and /disclosures/ fetched and confirmed",
   "pages_build_type": "legacy",
   "pages_source": "main:/",
   "notes": "Filled in by the integration session after the merge. Empty fields are genuinely unknown, not zero."
