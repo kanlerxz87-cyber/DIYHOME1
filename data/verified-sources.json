@@ -348,5 +348,5 @@
       "source_url": "https://developers.google.com/search/docs/monitor-debug/search-console-start"
     }
   ],
-  "register_note": "Snapshot register from the 2026-11-20 verification pass. Entries here use the VS__ prefix and deliberately do not share identifiers with data/sources.json (S__), which is the canonical citation register rendered on /sources/ — site badges use those S__ codes, never VS__ ones. Until 2026-11-21 both files used S__ for different documents, so the same label meant two different pages (flag F17). Sources added on 2026-11-21 (S26-S28) are recorded only in data/sources.json."
+  "register_note": "Snapshot register from the 2026-11-20 verification pass. Entries here use the VS__ prefix and deliberately do not share identifiers with data/sources.json (S__), which is the canonical citation register rendered on /sources/ — site badges use those S__ codes, never VS__ ones. Until 2026-11-21 both files used S__ for different documents, so the same label meant two different pages (flag F17). Sources added to the canonical register on 2026-11-21 (S27-S29, after S26 was taken by the robots.txt document) are recorded only in data/sources.json."
 }

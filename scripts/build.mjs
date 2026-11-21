@@ -22,6 +22,7 @@ const release = readJson("data/release.json");
 const specMeta = readJson("data/product-specs.json");
 const productSpecs = specMeta.products;
 const parallelPasses = readJson("data/verified-sources.json").parallel_passes;
+const reverify = readJson("data/sources.json").reverification;
 
 const TAG = site.associate_tag;
 const BASE = site.base_url;
@@ -557,7 +558,7 @@ ${gs.length ? `<section class="block"><div class="wrap">
 <div class="wrap page-head">
   <p class="kicker">Side-by-side comparison &middot; ${productSpecs.length} verified listings</p>
   <h1>Compare dimensions, materials and mounting specs</h1>
-  <p class="standfirst">Line-by-line physical specifications read directly from each official Amazon product detail page on ${esc(specVerifiedDisplay)}, and partially re-checked on ${esc(specReverifiedDisplay)}. Any field omitted by the manufacturer table stays blank and marked unverified.</p>
+  <p class="standfirst">Line-by-line physical specifications read directly from each official Amazon product detail page on ${esc(specVerifiedDisplay)}, and partially re-checked on ${esc(specReverifiedDisplay)} — the per-product scope is in the register, with <a href="../../flagged/#F19">F19</a> for this pass and <a href="../../flagged/#F16">F16</a> for the pass that could not surface the tables. Any field omitted by the manufacturer table stays blank and marked unverified.</p>
 </div>
 <div class="wrap">
   <div class="table-wrap">
@@ -760,30 +761,30 @@ ${gs.length ? `<section class="block"><div class="wrap">
   <p class="prose">The four buyer-question titles supplied in the project brief are presented below strictly as <strong>working-title editorial hypotheses</strong>—never as claims about popularity, search volume, or product superiority. Because none of the submitted links resolved to a countertop appliance (<a href="../flagged/#F03">F03</a>), no unsubmitted appliance ASINs are invented here; full working checklists are also preserved in our <a href="../archive/practical-home/guides.html">archived Practical Home edition</a>.</p>
   <div class="table-wrap" style="margin-top:14px">
     <table>
-      <caption>Working-title editorial hypotheses for kitchen appliance comparisons. Every row cites official USDA food-safety guidance.</caption>
+      <caption>Working-title editorial hypotheses. Each row links the USDA FSIS page; the exact food-safety wording it supports is marked (safety), and every measurement prompt is labelled editorial rather than presented as a sourced claim.</caption>
       <thead><tr><th scope="col">Working title (editorial hypothesis)</th><th scope="col">Core buyer comparison checklist</th><th scope="col">Catalog status</th><th scope="col">Official reference</th></tr></thead>
       <tbody>
         <tr>
           <td><strong>Basket or oven-style air fryer: what should you compare?</strong></td>
-          <td>Compare single-layer cooking footprint, front door vs. drawer clearance, and heat-safe unloading space on the counter.</td>
+          <td>Format and footprint. USDA describes air fryers as &ldquo;essentially countertop convection ovens&rdquo; and notes that ovens are larger and hold more food <em>(safety/spec context)</em>. Counter depth and door-or-drawer swing are editorial measurement prompts.</td>
           <td><span class="badge warn">Working hypothesis (no ASIN submitted)</span></td>
           <td>${srcBadge("S25", 1, "USDA FSIS")}</td>
         </tr>
         <tr>
           <td><strong>A no-hype checklist for comparing air fryer capacity</strong></td>
-          <td>Size for weeknight single-layer portions rather than total liter volume; overcrowding restricts rapid air circulation.</td>
+          <td>Capacity per batch, not total litres. USDA: &ldquo;Overcrowding the appliance can prevent enough air circulation to properly cook the food&rdquo; <em>(safety)</em>.</td>
           <td><span class="badge warn">Working hypothesis (no ASIN submitted)</span></td>
           <td>${srcBadge("S25", 1, "USDA FSIS")}</td>
         </tr>
         <tr>
           <td><strong>How to assess cleanup and counter-space trade-offs</strong></td>
-          <td>Check rear/top ventilation clearance under upper cabinets and measure whether removable trays lie flat in your sink basin.</td>
+          <td>Cleanup. USDA advises cleaning and sanitising surfaces before and after food preparation <em>(safety)</em>. Sink-fit and counter-clearance checks are editorial prompts.</td>
           <td><span class="badge warn">Working hypothesis (no ASIN submitted)</span></td>
           <td>${srcBadge("S25", 1, "USDA FSIS")}</td>
         </tr>
         <tr>
           <td><strong>Questions to ask before buying a multi-function kitchen appliance</strong></td>
-          <td>Verify weekly-use modes in the manufacturer manual and confirm cabinet storage room for idle racks and accessories.</td>
+          <td>Instructions and modes. USDA advises following the manufacturer&rsquo;s instructions and checking safe internal temperature with a food thermometer <em>(safety)</em>. Which modes you would use weekly, and where the accessories live, are editorial questions.</td>
           <td><span class="badge warn">Working hypothesis (no ASIN submitted)</span></td>
           <td>${srcBadge("S25", 1, "USDA FSIS")}</td>
         </tr>
@@ -1056,6 +1057,11 @@ ${prod ? `<section class="block"><div class="wrap">
     <h3>Reading the badges</h3>
     <p><span class="badge ok">Read</span> means the page was retrieved and the quoted text was read on it. <span class="badge warn">Secondary</span> means the page is not first-party documentation and is used only to explain a gap. <span class="badge warn">No access</span> means the page exists but sits behind a sign-in wall, so nothing was cited from it.</p>
   </div>
+  ${reverify ? `<div class="callout">
+    <h3>Re-verified ${esc(reverify.date)}</h3>
+    <p>${esc(reverify.summary)}</p>
+    <p class="link-note">Corrected after re-reading: ${reverify.corrected.map((id) => `<a href="#${esc(id)}">${esc(id)}</a>`).join(", ")}. Added: ${reverify.added.map((id) => `<a href="#${esc(id)}">${esc(id)}</a>`).join(", ")}. Not re-checked this session: ${reverify.not_rechecked.join(", ")}.</p>
+  </div>` : ""}
   <div class="table-wrap">
     <table>
       <caption>${esc(readJson("data/sources.json").method)}</caption>
@@ -1334,7 +1340,7 @@ ${prod ? `<section class="block"><div class="wrap">
   <div class="callout">
     <h3>CLI verification commands</h3>
     <p><span class="mono">node scripts/build.mjs &amp;&amp; node scripts/validate.mjs</span> &middot; Rebuilds every page from <span class="mono">data/*.json</span> and enforces disclosures, <span class="mono">rel="sponsored nofollow"</span>, single affiliate tag, sitemap, and table-row citations.<br>
-    <span class="mono">python3 scripts/platform_engine.py audit</span> &middot; Audits all 52 product specification rows, 25 sources, and blank unverified fields.<br>
+    <span class="mono">python3 scripts/platform_engine.py audit</span> &middot; Audits all 52 product specification rows, ${sourceList.length} sources, and blank unverified fields.<br>
     <span class="mono">python3 -m unittest discover -s tests -v</span> &middot; Runs automated compliance, Special Link, Creators API cache-TTL, and campaign-ledger tests.</p>
   </div>
 

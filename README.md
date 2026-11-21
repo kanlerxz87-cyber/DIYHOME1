@@ -63,12 +63,15 @@ This repository has two editions, and only one is indexed:
 
 ## Flags
 
-17 items are published at `/flagged/` with severity, what would close each one, and a source link. The actionable ones all need an account this build did not have:
+19 items are published at `/flagged/` with severity, what would close each one, and a source link. The actionable ones all need an account this build did not have:
 
 - **F01** Associates tracking for the three supplied short links is unconfirmed.
 - **F04** No Search Console verification token.
 - **F05** No analytics endpoint deployed, so the five events stay in the visitor's browser.
 - **F10** Commission rate card requires a sign-in, so no rate or revenue figure is published.
 - **F13** The verification fetches did not identify themselves as an automated agent under Amazon's Agent Terms.
+- **F17** Two source registers used the same `S__` labels for different documents; the snapshot register is now `VS__`.
+- **F18** The public spec register named the wrong submission sources and pointed at guides that do not exist; corrected and gated.
+- **F19** The 2026-11-21 re-check covered part of the 52-row register, not all of it.
 
 Nothing in this repository is presented as verified beyond what an official source supports on the date shown in the page.
