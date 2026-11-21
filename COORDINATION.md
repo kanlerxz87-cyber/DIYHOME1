@@ -370,12 +370,62 @@ Verification performed (line by line, no inference, no hallucination):
 
 | Session ID | Branch | Role | Started (UTC) | Status |
 |---|---|---|---|---|
-| `S-2026-11-21-C` | `arena/16905ff3-diyhome1` (base `706b8e2`, PR #14 merge) | Independent line-by-line re-verification, QA fixes, integration (PR + merge + Pages deploy check) | 2026-11-21 | in progress |
+| `S-2026-11-21-C` | `arena/16905ff3-diyhome1` (base `706b8e2`, PR #14 merge) | Independent line-by-line re-verification, QA fixes, integration (PR + merge + Pages deploy check) | 2026-11-21 | done |
 
 | ID | Task | Owner | File scope | Status |
 |---|---|---|---|---|
-| T15 | Re-verify every registered source against the live official page; record verbatim quote matches and any drift | `S-2026-11-21-C` | `data/sources.json`, `COORDINATION.md` | in progress |
-| T16 | Line-by-line QA of `data/*.json` product facts, flags and copy for contradictions or invented values | `S-2026-11-21-C` | `data/products.json`, `data/flagged.json`, `data/site.json`, site copy generated from them | in progress |
-| T17 | Integration: build + validate, PR from this branch to `main`, merge, confirm Pages deploy, record result | `S-2026-11-21-C` | `main` (merge only), `COORDINATION.md` | in progress |
+| T15 | Re-verify every registered source against the live official page; record verbatim quote matches and any drift | `S-2026-11-21-C` | `data/sources.json`, `COORDINATION.md` | done |
+| T16 | Line-by-line QA of `data/*.json` product facts, flags and copy for contradictions or invented values | `S-2026-11-21-C` | `data/products.json`, `data/flagged.json`, `data/site.json`, site copy generated from them | done |
+| T17 | Integration: build + validate, PR from this branch to `main`, merge, confirm Pages deploy, record result | `S-2026-11-21-C` | `main` (merge only), `COORDINATION.md` | done |
 
 Rule observed: this session edits only `data/`, content and docs; all HTML is regenerated with `node scripts/build.mjs` and gated by `node scripts/validate.mjs`. No other session's claim is overwritten.
+
+---
+
+## 2026-11-21 — `S-2026-11-21-C` — T15 re-verification (closing log)
+
+**Method.** Every source carrying a quote was fetched again on 2026-11-21 and the quoted string compared against the page text. Pages read in full or in the relevant sections: Amazon Program Policies (all 11 chunks, sections 2(b), 3(b), 3(t), 3(v), 3(w), 3(y), IP License 2(h), Agent Terms), Operating Agreement, Standard Commission Income Statement Table 1, Associates ASIN/text-link help, FTC *Disclosures 101*, USDA FSIS air-fryer page, Google sitemap / robots.txt intro / robots.txt creation / Search Console ownership docs, GitHub Pages publishing docs, the three `/dp/` listings, the niffgaff storefront, `link.amazon/B0hmGG4m2`, `link.amazon/B0hpD2JGQ`, and the two short-link product targets.
+
+**Quote corrections (now verbatim):**
+
+| Source | Problem found | Fix |
+|---|---|---|
+| S01 | agent user-agent sentence elided with "…" | full sentence from the Agent Terms |
+| S07 | parenthetical truncated | restored "(if your plan or organization allows it)." |
+| S08 | a section heading was filed as a quote | "Google accepts RSS 2.0 and Atom 1.0 feeds." |
+| S19 | quote only existed in a related-content card | replaced with body text on the page |
+| S23 | two paraphrased rows; "Pantry" wrongly placed in 3.00% | exact Table 1 rows (independently corrected the same way by `S-2026-11-21-F`) |
+| S25 | two paraphrased sentences; page date missing | exact sentences + "Last Updated: Jun 24, 2024" |
+
+**Source added:** S26 — Google, *Create and Submit a robots.txt File*: "The robots.txt file must be located at the root of the site host to which it applies… It cannot be placed in a subdirectory". This is the source F14 was missing. Register: 25 → 26.
+
+**Dates:** `retrieved` set to 2026-11-21 for the sources actually opened today (S01–S10 except S11, S12, S14, S18, S19, S21, S23–S26). S11, S13, S15, S16, S17, S20, S22 are listed on `/sources/` as not re-checked.
+
+**Verification links used:** [Program Policies](https://affiliate-program.amazon.com/help/operating/policies) · [Operating Agreement](https://affiliate-program.amazon.com/help/operating/agreement) · [Standard Commission Income Statement](https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ) · [ASIN / text links](https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC) · [FTC Disclosures 101](https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers) · [USDA FSIS air fryers](https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/air-fryers-and-food-safety) · [Google sitemaps](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap) · [Google robots.txt intro](https://developers.google.com/search/docs/crawling-indexing/robots/intro) · [Google robots.txt creation](https://developers.google.com/crawling/docs/robots-txt/create-robots-txt) · [Search Console ownership](https://support.google.com/webmasters/answer/9008080) · [GitHub Pages publishing](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site) · [B08FKW9JRM](https://www.amazon.com/dp/B08FKW9JRM) · [B0BSKQW2T2](https://www.amazon.com/dp/B0BSKQW2T2) · [B08DY9HRWD](https://www.amazon.com/dp/B08DY9HRWD) · [niffgaff store](https://www.amazon.com/stores/niffgaff/page/531DB5A2-A3D9-4D02-8477-9A9F32ABB8D8)
+
+**Re-confirmed unchanged:** listing titles, breadcrumbs and merchant lines for all three ASINs; the three ORDORA dimension strings; "Visit the niffgaff Store"; no `tag=` parameter on the observed short-link redirects (F01 stays open, not disproven); the duplicate submission (F02); live prices visible but not recorded anywhere.
+
+**Could not re-confirm (recorded as F16, not hidden):** the Amazon Product Information / Technical Details tables did not render in this session's text fetch, so UPC, model number, item weight, material and Date First Available rows were left exactly as published, still linking to the same official listing.
+
+## 2026-11-21 — `S-2026-11-21-C` — T16 QA fixes (closing log)
+
+- `data/products.json` P2 `listing_claims_note` said the brand was "left blank" while the field said `niffgaff`; rewritten to state the brand came from the listing's Product Information field and the official store link (S05, S21).
+- `/guides/` hypothesis table: all four rows cited USDA for claims USDA does not make (door swing, sink fit, storage room). Each row now marks the food-safety wording USDA actually supports and labels every measurement prompt as editorial.
+- Build date moved to 2026-11-21; the home standfirst and comparison standfirst now distinguish the 20 November spec read from the 21 November re-check.
+- F15 (quote corrections) and F16 (Product Information tables not re-readable) added; flags 14 → 16.
+- Every table row on every published page was checked for at least one link: 0 rows without a link.
+
+## 2026-11-21 — `S-2026-11-21-C` — T17 integration result
+
+- **Pull request:** [PR #19](https://github.com/kanlerxz87-cyber/DIYHOME1/pull/19) — `arena/16905ff3-diyhome1` → `main`.
+- **Rebases:** twice, to absorb `S-2026-11-21-F` (PR #15) and `arena-67098650-diyhome1`. `COORDINATION.md` conflicts resolved by keeping the other sessions' text verbatim; nothing discarded. Rebase note posted on the PR.
+- **CI before merge:** `build-and-validate` pass (8s) and `verify` pass (4s) on head `cd80b98`.
+- **Merge:** `gh pr merge 19 --merge`; state `MERGED` at 2026-11-21T23:25:06Z; merge commit `c27383b7af63f5481fd6d0c7eccd1af9ec2b7402`.
+- **Pages:** `pages` status moved `building` → `built`; `pages/builds` reports `status: built` for commit `c27383b7af63…` at 2026-11-21T23:25:43Z (legacy, `main:/`).
+- **Live verification after deploy** (cache-busted fetches):
+  - `/sources/` → title "Source register — 26 official sources"; "Re-verified 2026-11-21" callout with the corrected/additional IDs; S01 now shows the full agent sentence; S26 present.
+  - `/flagged/` → "Open items · 16 flagged"; F15 and F16 render with their source links; F14 now cites S26.
+  - `/guides/` → hypothesis table renders the revised, source-scoped rows.
+  - `/` (pre-merge check of the prior deploy) → disclosure strip above the fold, sponsored CTAs, single tag.
+- **Not verified, and not claimed:** Associates enrolment or click attribution for any link, Search Console indexing, analytics collection, commission rates, revenue. All remain on `/flagged/` with what would close them.
+- **Follow-up:** this log and the `data/release.json` record ship in a docs-only follow-up PR from the same branch, per the rule that this session pushes only to its own branch.
