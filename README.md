@@ -40,6 +40,8 @@ No dependencies, no package install, Node 18+.
 - citation links (evidence, in the source register) are never used as call-to-action buttons, and never carry a tag;
 - no cloaking: no Amazon link routed through this site;
 - no third-party subresources;
+- the product-spec register's `submission_ids`, `guide_slug` and `category_slug` still resolve, and all 52 rows still carry an https source;
+- the 2026-11-20 snapshot register keeps its own `VS__` namespace and never cites this site as its own source;
 - every internal link and form action resolves;
 - every page appears in `sitemap.xml`, and every sitemap URL exists;
 - `sitemap.xml` and `feed.xml` are well-formed;
@@ -57,10 +59,11 @@ This repository has two editions, and only one is indexed:
 
 1. **Intended and observed are never merged.** `data/product-intents.csv` keeps `intended_asin` (blank — the supplied short links carry no ASIN) separate from `observed_asin` and `observed_redirect_target`.
 2. **Blank means "not obtained".** It never means zero. Prices, ratings, review counts, availability and commission rates are absent by design; `/flagged/` says why for each one, with the policy source.
+3. **Source IDs are namespaced.** `data/sources.json` is the canonical register and uses `S__`. The 2026-11-20 snapshot register in `data/verified-sources.json` uses `VS__`, because until 2026-11-21 the two files gave the same `S__` labels to different documents (flag F17). The validator fails the build if the namespaces ever collide.
 
 ## Flags
 
-14 items are published at `/flagged/` with severity, what would close each one, and a source link. The actionable ones all need an account this build did not have:
+17 items are published at `/flagged/` with severity, what would close each one, and a source link. The actionable ones all need an account this build did not have:
 
 - **F01** Associates tracking for the three supplied short links is unconfirmed.
 - **F04** No Search Console verification token.

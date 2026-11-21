@@ -319,8 +319,8 @@ Branch: `arena/0b735892-diyhome1` (Arena-assigned; branched from `main` @ `706b8
 
 | ID | Task | Owner | File scope | Status |
 |---|---|---|---|---|
-| `U01` | Re-verify the 52 product-specification rows against the live official listings on 2026-11-21; repair stale `guide_slug` / `category_slug` metadata in the public spec register | `S-2026-11-21-B` | `data/product-specs.json` | in progress |
-| `U02` | Correct the SG-27..SG-30 register so each implementation description matches what actually ships, and each row cites a source that supports its own claim | `S-2026-11-21-B`` | `data/verified-sources.json`, `data/sources.json` | in progress |
+| `U01` | Re-verify the 52 product-specification rows against the live official listings on 2026-11-21; repair stale `guide_slug` / `category_slug` metadata in the public spec register | `S-2026-11-21-B` | `data/product-specs.json` | done |
+| `U02` | Correct the SG-27..SG-30 register so each implementation description matches what actually ships, and each row cites a source that supports its own claim | `S-2026-11-21-B` | `data/verified-sources.json`, `data/sources.json`, `data/flagged.json` | done |
 | `U03` | Integration: rebuild, validate, test, PR to `main`, merge, confirm Pages deploy, record result | `S-2026-11-21-B` | `COORDINATION.md`, `EXECUTIVE_SUMMARY.md`, generated `*.html`, `sitemap.xml`, `feed.xml` | in progress |
 
 Non-overlap note: no other row in this board is live; the prior integration session (`session-3e199a4b`) closed its rows as `done`. This session edits no archived edition and deletes nothing.
@@ -333,3 +333,28 @@ Non-overlap note: no other row in this board is live; the prior integration sess
 - `SG-27` records primary nav labels `Shop` / `Categories` / `Buying guides` / `Comparisons` / `RSS`. The shipped labels are `Home` / `Products` / `Comparisons` / `Guides` / `Search` / `RSS`.
 - `SG-29` records a "root `robots.txt`". The file is published at `/DIYHOME1/robots.txt`, which is not the host root a crawler reads — this is already flag F14, but the SG row asserted otherwise.
 - `SG-28`'s "official reference" is this site's own `feed.xml`; `SG-30`'s is an FTC disclosure guide about endorsements. Neither supports the specific implementation claim in its row. These are citation-to-claim mismatches, not evidence of wrongdoing.
+
+### 2026-11-21 — S-2026-11-21-B — U01/U02 verification log
+
+**What was re-read today, and from where.** All three official listings were fetched again on 2026-11-21 and read line by line:
+
+| ASIN | Page | Fields re-read | Result |
+|---|---|---|---|
+| B08FKW9JRM | https://www.amazon.com/dp/B08FKW9JRM | Full Technical Details + Additional Information (manufacturer, part number, model number, weight, dimensions, material, handle material, ASIN, Date First Available, breadcrumb) | Unchanged |
+| B0BSKQW2T2 | https://www.amazon.com/dp/B0BSKQW2T2 | Title, brand, material/finish, mounting type, 12.2-inch rail length | Unchanged |
+| B08DY9HRWD | https://www.amazon.com/dp/B08DY9HRWD | Title, brand | Unchanged |
+
+Rows not re-read keep their 2026-11-20 date. The scope is recorded per product in `data/product-specs.json` and published as F16.
+
+**Corrections made (each now enforced by `scripts/validate.mjs`):**
+1. `submission_ids` in `data/product-specs.json` were `S01`, `S02`/`S03`, `S04`; the submitted links are `S10`, `S11`, `S12`. Fixed (F15).
+2. Three `guide_slug` values pointed at guides that do not exist and two `category_slug` values were absent from `data/site.json`. Fixed (F15).
+3. `data/verified-sources.json` gave the same `S__` labels to different documents than `data/sources.json` — all 24 shared labels differed. Renamed to `VS01`–`VS24` with a snapshot note (F17).
+4. `SG-27`..`SG-30` implementation text described a different build (nav labels, `scripts/build.py`, a root `robots.txt`). Rewritten to match the shipped site, each with a source that supports its own claim.
+5. `SG-28`'s self-referential citation was being silently replaced with a sitemap document in the build. Substitution removed; self-citation now fails.
+
+**Sources added after reading them on 2026-11-21:** `S26` https://www.rssboard.org/rss-specification · `S27` https://developers.google.com/search/docs/fundamentals/seo-starter-guide · `S28` https://www.ftc.gov/business-guidance/privacy-security
+
+**Verification performed:** `node scripts/build.mjs` → 23 pages. `node scripts/validate.mjs` → 19 check groups, 0 errors. `python3 -m unittest discover -s tests` → 10/10. Negative tests: a wrong `submission_ids`, a dead `guide_slug` and a self-citing SG row each failed the build, then passed after restore.
+
+**Irregularities logged:** F15 (wrong submission sources and dead slugs in the public register), F16 (partial re-read on 2026-11-21), F17 (two source registers shared one ID namespace). None blocks publication; all three are on `/flagged/`.

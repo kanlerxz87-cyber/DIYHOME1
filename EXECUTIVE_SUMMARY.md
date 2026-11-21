@@ -20,8 +20,8 @@ A static, multi-page affiliate publication built from `data/*.json`, published b
 | `/about/` | Method, definition of "verified", automation boundaries |
 | `/automation/` | 7-stage automation & compliance gate CLI (`validate.mjs`, `platform_engine.py`, `creators_api_client.py`) |
 | `/disclosures/` | Affiliate disclosure, link policy, privacy, withheld data |
-| `/sources/` | Register of 25 official sources + `SG-27..SG-30` parallel passes + 52-row product spec verification ledger |
-| `/flagged/` | 14 flagged items with severity, what would close each one, and official sources on every row |
+| `/sources/` | Register of 28 official sources + `SG-27..SG-30` parallel passes + 52-row product spec verification ledger |
+| `/flagged/` | 17 flagged items with severity, what would close each one, and official sources on every row |
 | `/measurement/` | Five defined events, privacy rules, honest status, local event viewer |
 | `/ledger/` | 4-row Product-intent confirmation record (strictly separate from observed redirects) + empty campaign ledger |
 | `/summary/` | This summary, on the site (all dashboard surfaces grouped under `Site desk` in top nav & repeated in footer) |
@@ -89,7 +89,7 @@ Amazon's current terms add **Agent Terms**: automated software interacting with 
 
 ---
 
-## 5. Flagged for review (14 items)
+## 5. Flagged for review (17 items)
 
 High: **F01** — short links not confirmed as enrolled/tracked.
 Medium: **F03** air-fryer working titles have no matching products; **F04** no Search Console token; **F05** no analytics endpoint, so events stay local; **F10** commission rates unverifiable; **F13** verification fetches did not identify as an agent.
@@ -136,3 +136,29 @@ Prior sessions' board and logs are reproduced verbatim in `COORDINATION.md`.
 The site builds and passes every check. Three things need account access the build did not have: Associates tracking confirmation, Search Console verification, and an analytics host. All three are published on `/flagged/` with what would close them.
 
 Nothing on this site is presented as verified beyond what an official source supports on the date shown. Where that could not be established, the value is blank and the gap is named.
+
+---
+
+## 10. Revision, 21 November 2026 — audit and correction pass
+
+Session `S-2026-11-21-B` (branch `arena/0b735892-diyhome1`). This pass changed metadata, citations and build gates. No published attribute value changed, and no blank field was filled.
+
+**Re-read on 2026-11-21.** All three listings were opened again.
+- `B08FKW9JRM`: the full Technical Details and Additional Information tables — manufacturer, part number, model number, item weight, product dimensions, material, handle material, ASIN, Date First Available and breadcrumb. Unchanged.
+- `B0BSKQW2T2`: title, brand, material and finish, mounting type, and the 12.2-inch rail length stated in the listing's "About this Item" block. Unchanged.
+- `B08DY9HRWD`: title and brand. Unchanged.
+
+Every other row keeps its 2026-11-20 date rather than being re-dated. The per-product scope is recorded in `data/product-specs.json` and published as flag F16.
+
+**Corrected, each now gated by `scripts/validate.mjs`:**
+- `data/product-specs.json` named `S01`, `S02`/`S03` and `S04` as the submission sources for the three products. The submitted links are `S10`, `S11` and `S12`. Corrected (F15).
+- The same file pointed at three guides that have never existed (`guides/peel-and-stick-tools.html`, `guides/adhesive-vs-drilled-mounts.html`, `guides/cabinet-pan-rack-fit.html`) and at two category slugs absent from `data/site.json`. Corrected (F15).
+- `data/verified-sources.json` reused the canonical register's `S__` labels for 24 different documents, so `S01` meant one page in one file and another page in the other. It now uses `VS01`–`VS24` and states that it is a 2026-11-20 snapshot (F17).
+- `SG-27`–`SG-30` described navigation labels, a build script (`scripts/build.py`) and a root `robots.txt` that do not match this edition. Each row now describes what actually ships, names what its source supports, and cites a document that supports that specific claim.
+- The parallel-pass table silently substituted a sitemap document for `SG-28`'s self-referential citation. That substitution is removed; a self-citation now fails the build.
+
+**Sources added on 2026-11-21, each read before citing:** `S26` RSS 2.0 Specification (RSS Advisory Board), `S27` SEO Starter Guide (Google Search Central), `S28` Privacy and Security (U.S. FTC).
+
+**Verification:** `node scripts/build.mjs` → 23 pages; `node scripts/validate.mjs` → 19 check groups, 0 errors, 0 warnings; `python3 -m unittest discover -s tests` → 10 tests pass. The new gates were tested by deliberately breaking a submission ID, a guide slug and an SG citation: all three failed, then passed once the data was restored.
+
+**Not claimed:** Associates enrolment for any link, click attribution, Search Console indexing, analytics collection, commission rates or revenue. F01–F14 stand unchanged; F15–F17 are the new findings.

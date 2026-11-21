@@ -198,6 +198,50 @@
       "needs": "Submit the sitemap in Search Console (F04) and check the robots.txt report there. A custom domain, or the user/organisation Pages site at the host root, would make robots.txt authoritative.",
       "action": "The search page and the 404 page carry a noindex meta tag instead, which Google documents as the actual mechanism. robots.txt is still published, with a comment saying exactly this.",
       "status": "needs review"
+    },
+    {
+      "id": "F15",
+      "severity": "low",
+      "title": "The public product-spec register named the wrong submission sources and three guides that do not exist",
+      "what": "Until 2026-11-21, data/product-specs.json recorded submission_ids S01, S02/S03 and S04 for the three products. Those IDs are the Program Policies, the Operating Agreement, FTC guidance and the Art3d listing — not the submitted links, which are S10, S11 and S12. The same file carried guide_slug values for guides/peel-and-stick-tools.html, guides/adhesive-vs-drilled-mounts.html and guides/cabinet-pan-rack-fit.html, none of which has ever been published, and category_slug values that do not exist in data/site.json. The file is downloadable from /sources/.",
+      "why_it_matters": "A reader, or an automated consumer of the register, would attribute the owner's submitted links to the wrong documents and follow guide paths that 404.",
+      "sources": [
+        "S10",
+        "S11",
+        "S12"
+      ],
+      "needs": "Nothing further for these labels; they are corrected. Whether the submitted links are enrolled Special Links is still open (F01).",
+      "action": "Corrected to S10/S11/S12, the three live guide paths and the two live category slugs on 2026-11-21. scripts/validate.mjs now fails the build if any of them drift again.",
+      "status": "needs review"
+    },
+    {
+      "id": "F16",
+      "severity": "info",
+      "title": "The 2026-11-21 re-check re-read part of the 52-row register, not all of it",
+      "what": "On 2026-11-21 all three listings were opened again. For B08FKW9JRM the full technical details table was re-read. For B0BSKQW2T2 the title, brand, material, mounting type and 12.2-inch rail length were re-read. For B08DY9HRWD the title and brand were re-read. No value changed and no blank was filled.",
+      "why_it_matters": "So the register does not claim a complete second read. Rows that were not re-read keep their 2026-11-20 date.",
+      "sources": [
+        "S04",
+        "S05",
+        "S06"
+      ],
+      "needs": "A later pass can re-read the technical tables for B0BSKQW2T2 and B08DY9HRWD and record it in each product's reverification block.",
+      "action": "data/product-specs.json records per product which fields were re-read, which were not, and that nothing changed.",
+      "status": "needs review"
+    },
+    {
+      "id": "F17",
+      "severity": "medium",
+      "title": "Two public source registers used the same S-numbers for different documents",
+      "what": "data/sources.json (S01-S25) and data/verified-sources.json (S01-S24) both labelled their entries Sxx, but all 24 shared labels pointed at different pages: S01 was the Program Policies in one file and the Operating Agreement in the other, and every other shared label differed too. Both files are linked from /sources/. A third numbering, S01-S04 for the four supplied links, also appeared in two audit notes in the second register.",
+      "why_it_matters": "A citation such as \"S02\" could not be resolved without knowing which file the writer meant, which defeats the point of a register.",
+      "sources": [
+        "S01",
+        "S02"
+      ],
+      "needs": "Nothing blocking; data/sources.json is the canonical register and is the one rendered on /sources/.",
+      "action": "The second register now uses VS01-VS24 and states that it is a 2026-11-20 snapshot. Its audit notes name the submitted links directly instead of reusing S-numbers. scripts/validate.mjs now fails if a VS entry collides with an S id or a parallel pass cites this site as its own source.",
+      "status": "needs review"
     }
   ]
 }

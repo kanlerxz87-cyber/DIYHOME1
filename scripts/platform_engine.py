@@ -124,9 +124,31 @@ def audit_verified_datasets(root: Path) -> dict:
 
     attr_count = 0
     blank_unverified = 0
+    site_doc = json.loads((root / "data/site.json").read_text(encoding="utf-8"))
+    guides_doc = json.loads((root / "data/guides.json").read_text(encoding="utf-8"))
+    cat_slugs = {c["slug"] for c in site_doc["categories"]}
+    guide_slugs = {g["slug"] for g in guides_doc["guides"]}
+    prod_by_asin = {p["asin_observed"]: p for p in products_doc["products"]}
+
     for prod in specs_doc["products"]:
         if not is_valid_asin(prod["observed_asin"]):
             errors.append(f"Invalid observed_asin {prod['observed_asin']!r}")
+            continue
+        match = prod_by_asin.get(prod["observed_asin"])
+        if match is None:
+            errors.append(f"{prod['observed_asin']}: no matching product in data/products.json")
+        elif sorted(prod.get("submission_ids", [])) != sorted(match["submitted_links"]):
+            errors.append(
+                f"{prod['observed_asin']}: submission_ids {prod.get('submission_ids')} "
+                f"do not match products.json {match['submitted_links']}"
+            )
+        if prod.get("category_slug") not in cat_slugs:
+            errors.append(f"{prod['observed_asin']}: unknown category_slug {prod.get('category_slug')!r}")
+        guide_slug = str(prod.get("guide_slug", "")).removeprefix("guides/").rstrip("/")
+        if guide_slug not in guide_slugs:
+            errors.append(f"{prod['observed_asin']}: guide_slug {prod.get('guide_slug')!r} is not a published guide")
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(prod.get("reverified_on", ""))):
+            errors.append(f"{prod['observed_asin']}: missing reverified_on date")
         for attr in prod["attributes"]:
             attr_count += 1
             u = urlsplit(attr.get("source_url", ""))
@@ -141,10 +163,21 @@ def audit_verified_datasets(root: Path) -> dict:
         u = urlsplit(s.get("url", ""))
         if u.scheme != "https" or not u.netloc:
             errors.append(f"Source {s.get('id')}: invalid https url")
+    canonical_ids = {s.get("id") for s in sources_doc["sources"]}
+    snapshot_ids = [s.get("code") for s in vsources_doc["sources"]]
+    for sid in snapshot_ids:
+        if not re.fullmatch(r"VS\d{2}", str(sid)):
+            errors.append(f"Snapshot source {sid!r} must use the VS__ prefix, not the canonical S__ ids")
+        if sid in canonical_ids:
+            errors.append(f"Snapshot source {sid!r} collides with a canonical source id")
     for sg in vsources_doc["parallel_passes"]:
         u = urlsplit(sg.get("source_url", ""))
         if u.scheme != "https" or not u.netloc:
             errors.append(f"Pass {sg.get('code')}: invalid https source_url")
+        if sg.get("source_url", "").startswith("https://kanlerxz87-cyber.github.io/"):
+            errors.append(f"Pass {sg.get('code')}: cites this site as its own official source")
+        if not sg.get("source_supports"):
+            errors.append(f"Pass {sg.get('code')}: does not state what its source supports")
 
     errors.extend(validate_csv_campaign_ledger(root / "data/campaign-ledger.csv"))
 
@@ -153,6 +186,7 @@ def audit_verified_datasets(root: Path) -> dict:
         "attribute_rows_verified": attr_count,
         "blank_unverified_fields": blank_unverified,
         "canonical_sources_count": len(sources_doc["sources"]),
+        "snapshot_sources_count": len(snapshot_ids),
         "parallel_passes_count": len(vsources_doc["parallel_passes"]),
         "errors": errors,
     }

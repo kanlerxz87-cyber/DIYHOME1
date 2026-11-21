@@ -37,7 +37,7 @@
 <main id="main">
 <div class="wrap breadcrumb"><a href="../">Home</a><span aria-hidden="true">/</span><span aria-current="page">Executive summary</span></div>
 <div class="wrap page-head">
-  <p class="kicker">Executive summary &middot; 20 November 2026</p>
+  <p class="kicker">Executive summary &middot; 21 November 2026</p>
   <h1>What this build contains, and what it proved</h1>
   <p class="standfirst">One page for the reader who will not read the site: what was verified, what was refused, what is still blocked, and where every claim traces to.</p>
 </div>
@@ -45,8 +45,8 @@
   <div class="stat-grid">
     <div class="stat"><span class="n">3</span><span class="l">Products, each resolved from a supplied link to a live listing</span></div>
     <div class="stat"><span class="n">4</span><span class="l">Question-shaped guides, one per week of the issue</span></div>
-    <div class="stat"><span class="n">25</span><span class="l">Registered sources, 22 read, 3 not readable</span></div>
-    <div class="stat"><span class="n">14</span><span class="l">Items flagged for review (11 actionable, 3 withheld by design)</span></div>
+    <div class="stat"><span class="n">28</span><span class="l">Registered sources, 25 read, 3 not readable</span></div>
+    <div class="stat"><span class="n">17</span><span class="l">Items flagged for review (13 actionable, 4 withheld by design)</span></div>
   </div>
 
   <div class="prose">
@@ -70,7 +70,7 @@
 
     <h2>What is still blocked</h2>
     <ol>
-      <li><strong>F01 The three submitted short links are not confirmed as enrolled Associates Special Links</strong> &mdash; Sign-in to Associates Central, open SiteStripe, build one link per product, confirm the destination and confirm the click in the tracking report before adding more products.</li><li><strong>F03 The air-fryer working titles in the brief have no matching products</strong> &mdash; Either submit air-fryer products, or accept the replacement guide set.</li><li><strong>F04 Search Console is not verified: no verification token was available</strong> &mdash; Add the property in Search Console, copy the HTML tag, paste it into data/site.json as search_console_token, rerun the build.</li><li><strong>F05 The analytics endpoint is not deployed, so the five events stay in the browser</strong> &mdash; Deploy worker/collect.js, then set the endpoint in data/site.json and rebuild, or paste it into assets/js/config.js at runtime.</li><li><strong>F10 Commission rates could not be verified, so no commission percentages or revenue forecasts appear</strong> &mdash; Read the rate card inside Associates Central and record it with a date, then it can be shown as a dated fact.</li><li><strong>F13 The verification fetches did not identify themselves as an automated agent</strong> &mdash; Any automated refresh must set a user agent of the form Agent/diyhome-verifier and must not work around blocks. If Amazon asks an agent to stop, it stops.</li>
+      <li><strong>F01 The three submitted short links are not confirmed as enrolled Associates Special Links</strong> &mdash; Sign-in to Associates Central, open SiteStripe, build one link per product, confirm the destination and confirm the click in the tracking report before adding more products.</li><li><strong>F03 The air-fryer working titles in the brief have no matching products</strong> &mdash; Either submit air-fryer products, or accept the replacement guide set.</li><li><strong>F04 Search Console is not verified: no verification token was available</strong> &mdash; Add the property in Search Console, copy the HTML tag, paste it into data/site.json as search_console_token, rerun the build.</li><li><strong>F05 The analytics endpoint is not deployed, so the five events stay in the browser</strong> &mdash; Deploy worker/collect.js, then set the endpoint in data/site.json and rebuild, or paste it into assets/js/config.js at runtime.</li><li><strong>F10 Commission rates could not be verified, so no commission percentages or revenue forecasts appear</strong> &mdash; Read the rate card inside Associates Central and record it with a date, then it can be shown as a dated fact.</li><li><strong>F13 The verification fetches did not identify themselves as an automated agent</strong> &mdash; Any automated refresh must set a user agent of the form Agent/diyhome-verifier and must not work around blocks. If Amazon asks an agent to stop, it stops.</li><li><strong>F17 Two public source registers used the same S-numbers for different documents</strong> &mdash; Nothing blocking; data/sources.json is the canonical register and is the one rendered on /sources/.</li>
     </ol>
 
     <h2>How the site is built</h2>
@@ -97,7 +97,7 @@
     <h2>Read next</h2>
     <ul>
       <li><a href="../sources/">Source register</a> &mdash; every source, SG-27..SG-30 passes, and 52 product spec rows</li>
-      <li><a href="../flagged/">Flagged for review</a> &mdash; 14 open items</li>
+      <li><a href="../flagged/">Flagged for review</a> &mdash; 17 open items</li>
       <li><a href="../automation/">Automation &amp; compliance gate</a> &mdash; CLI checks and policy gates</li>
       <li><a href="../about/">How we verify</a> &mdash; method, limits and the automation boundary</li>
       <li><a href="../disclosures/">Disclosures</a> &mdash; affiliate, privacy and data omissions</li>
@@ -118,7 +118,7 @@
     <div class="footer-legal">
       <p><strong>Affiliate disclosure:</strong> DIY Home Upgrades is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. As an Amazon Associate we earn from qualifying purchases. Every outbound link to Amazon on this site is a sponsored affiliate link and carries the tracking ID shopnow047c-20.</p>
       <p>Prices, star ratings, review counts and availability are not displayed on this site. See <a href="../disclosures/">Disclosures</a> for why, with the policy sources.</p>
-      <p>Amazon and Amazon.com are trademarks of Amazon.com, Inc. or its affiliates. This site is not endorsed by Amazon. Built 20 November 2026 from <a href="../sources/">25 registered sources</a>.</p>
+      <p>Amazon and Amazon.com are trademarks of Amazon.com, Inc. or its affiliates. This site is not endorsed by Amazon. Built 21 November 2026 from <a href="../sources/">28 registered sources</a>.</p>
     </div>
   </div>
 </footer>

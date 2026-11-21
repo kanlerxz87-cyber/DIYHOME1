@@ -4,16 +4,18 @@
   "policy_note": "Observed product metadata below was verified line by line from official Amazon product detail pages on 2026-11-20. Observed redirect targets do NOT establish operator product-intent or affiliate attribution. Any field not explicitly present in the official product information table is left blank (\"\") and flagged Unverified. Dynamic retail prices and review counts are omitted from static shop cards and gated behind authorized PA-API 5.0 / Creators API integration.",
   "products": [
     {
-      "submission_ids": ["S01"],
+      "submission_ids": [
+        "S10"
+      ],
       "submitted_short_url": "https://link.amazon/B0hmGG4m2",
       "short_token": "B0hmGG4m2",
       "observed_asin": "B08FKW9JRM",
       "observed_dp_url": "https://www.amazon.com/dp/B08FKW9JRM",
       "observed_redirect_query_note": "sprefix=diy+home+upgrades, btn_type=ss (social/mobile share token; no tag= parameter present)",
       "candidate_special_link_template": "https://www.amazon.com/dp/B08FKW9JRM?tag=shopnow047c-20",
-      "category_slug": "wall-and-backsplash",
-      "category_name": "Wall Treatments & Backsplash Prep",
-      "guide_slug": "guides/peel-and-stick-tools.html",
+      "category_slug": "wallpaper-tools",
+      "category_name": "Wallpaper & surface prep",
+      "guide_slug": "guides/wallpaper-smoothing-kit-what-to-compare/",
       "short_name": "Art3d Peel-and-Stick Wallpaper & Vinyl Backsplash Smoothing Tool Kit",
       "buyer_use_case": "Surface smoothing, bubble removal, layout measuring, and edge trimming for peel-and-stick wallpaper, contact paper, and vinyl backsplash tile.",
       "attributes": [
@@ -136,19 +138,47 @@
           "source_label": "Amazon PA-API 5.0 Requirements",
           "source_url": "https://affiliate-program.amazon.com/help/node/topic/GVJ2BJP35457CLML"
         }
-      ]
+      ],
+      "reverified_on": "2026-11-21",
+      "reverification": {
+        "method": "Single unauthenticated fetch of the official Amazon detail page; only the fields this site publishes were re-read.",
+        "source_url": "https://www.amazon.com/dp/B08FKW9JRM",
+        "confirmed_fields": [
+          "Observed ASIN",
+          "Official Listing Title",
+          "Manufacturer",
+          "Part Number",
+          "Item Weight",
+          "Product Dimensions",
+          "Material & Handle Material",
+          "Catalog Breadcrumb",
+          "Date First Available"
+        ],
+        "partially_confirmed": [],
+        "not_reread": [
+          "Brand",
+          "Fulfillment & Seller",
+          "UPC / GTIN",
+          "Included Tools (Listing Bullets)",
+          "Standard Commission Schedule Reference",
+          "Live PA-API Price & Availability"
+        ],
+        "changes": "None. No published value changed on 2026-11-21; blank fields stayed blank."
+      }
     },
     {
-      "submission_ids": ["S02", "S03"],
+      "submission_ids": [
+        "S11"
+      ],
       "submitted_short_url": "https://link.amazon/B03QDuGdo",
       "short_token": "B03QDuGdo",
       "observed_asin": "B0BSKQW2T2",
       "observed_dp_url": "https://www.amazon.com/dp/B0BSKQW2T2",
       "observed_redirect_query_note": "sprefix=diy+home+upgrades, btn_type=ss, th=1 (submitted twice as S02 and S03; no tag= parameter present)",
       "candidate_special_link_template": "https://www.amazon.com/dp/B0BSKQW2T2?tag=shopnow047c-20",
-      "category_slug": "under-cabinet-fixtures",
-      "category_name": "Under-Cabinet Hardware & Space-Savers",
-      "guide_slug": "guides/adhesive-vs-drilled-mounts.html",
+      "category_slug": "kitchen-storage",
+      "category_name": "Under-cabinet kitchen storage",
+      "guide_slug": "guides/paper-towel-holder-fit-checklist/",
       "short_name": "niffgaff 12.2-Inch Matte Black Aluminum Under-Cabinet Paper Towel Holder",
       "buyer_use_case": "Reclaiming kitchen counter space by mounting rolls horizontally or vertically under cabinets or on smooth walls via adhesive pad or screws.",
       "attributes": [
@@ -271,19 +301,47 @@
           "source_label": "Amazon PA-API 5.0 Requirements",
           "source_url": "https://affiliate-program.amazon.com/help/node/topic/GVJ2BJP35457CLML"
         }
-      ]
+      ],
+      "reverified_on": "2026-11-21",
+      "reverification": {
+        "method": "Single unauthenticated fetch of the official Amazon detail page; only the fields this site publishes were re-read.",
+        "source_url": "https://www.amazon.com/dp/B0BSKQW2T2",
+        "confirmed_fields": [
+          "Observed ASIN",
+          "Official Listing Title",
+          "Brand",
+          "Material & Finish",
+          "Mounting Type"
+        ],
+        "partially_confirmed": [
+          "Item Dimensions & Rail Length — the 12.2-inch rail length is stated in the listing's \"About this Item\" block; the 2.56-inch depth was not re-read"
+        ],
+        "not_reread": [
+          "Manufacturer",
+          "Model Number",
+          "Manufacturer Part Number",
+          "Item Weight",
+          "UPC / GTIN",
+          "Date First Available",
+          "Standard Commission Schedule Reference",
+          "Live PA-API Price & Availability"
+        ],
+        "changes": "None. No published value changed on 2026-11-21; blank fields stayed blank."
+      }
     },
     {
-      "submission_ids": ["S04"],
+      "submission_ids": [
+        "S12"
+      ],
       "submitted_short_url": "https://link.amazon/B0hpD2JGQ",
       "short_token": "B0hpD2JGQ",
       "observed_asin": "B08DY9HRWD",
       "observed_dp_url": "https://www.amazon.com/dp/B08DY9HRWD",
       "observed_redirect_query_note": "sprefix=diy+home+upgrades, btn_type=ss, th=1 (no tag= parameter present)",
       "candidate_special_link_template": "https://www.amazon.com/dp/B08DY9HRWD?tag=shopnow047c-20",
-      "category_slug": "cabinet-and-cookware-storage",
-      "category_name": "Cabinet & Cookware Organization",
-      "guide_slug": "guides/cabinet-pan-rack-fit.html",
+      "category_slug": "kitchen-storage",
+      "category_name": "Under-cabinet kitchen storage",
+      "guide_slug": "guides/pot-pan-organizer-capacity/",
       "short_name": "ORDORA 8-Tier Adjustable Under-Cabinet Pots & Pans Organizer (16.61\"H)",
       "buyer_use_case": "Vertical or horizontal cabinet cookware organization with 3 tool-free slot configurations and 5.0mm anti-slip dividers.",
       "attributes": [
@@ -413,7 +471,37 @@
           "source_label": "Amazon PA-API 5.0 Requirements",
           "source_url": "https://affiliate-program.amazon.com/help/node/topic/GVJ2BJP35457CLML"
         }
-      ]
+      ],
+      "reverified_on": "2026-11-21",
+      "reverification": {
+        "method": "Single unauthenticated fetch of the official Amazon detail page; only the fields this site publishes were re-read.",
+        "source_url": "https://www.amazon.com/dp/B08DY9HRWD",
+        "confirmed_fields": [
+          "Observed ASIN",
+          "Official Listing Title",
+          "Brand"
+        ],
+        "partially_confirmed": [],
+        "not_reread": [
+          "Manufacturer",
+          "Fulfillment & Seller",
+          "Model Number & Style",
+          "Manufacturer Part Number",
+          "UPC / GTIN",
+          "Catalog Breadcrumb",
+          "Material & Divider Spec",
+          "Dimensions & 3 DIY Footprints",
+          "Item Weight & Per-Shelf Capacity",
+          "Cookware Size Guidance",
+          "Included Components",
+          "Date First Available",
+          "Standard Commission Schedule Reference",
+          "Live PA-API Price & Availability"
+        ],
+        "changes": "None. No published value changed on 2026-11-21; blank fields stayed blank."
+      }
     }
-  ]
+  ],
+  "reverified_on": "2026-11-21",
+  "reverification_note": "The 52 rows were first read on 2026-11-20. On 2026-11-21 each of the three listings was fetched again; only the fields recorded per product under 'reverification' were re-read. Fields not re-read keep their 2026-11-20 verification and are not re-dated. No value changed, and every blank field stayed blank."
 }
