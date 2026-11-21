@@ -19,10 +19,10 @@ const LOG_FILE = path.resolve(
 
 export const ALLOWED_EVENTS = new Set([
   "page_view",
-  "guide_read",
-  "product_impression",
-  "outbound_affiliate_click",
-  "reader_capture_submit"
+  "disclosure_view",
+  "outbound_click",
+  "site_search",
+  "guide_read"
 ]);
 
 function sendJson(res, status, payload) {
