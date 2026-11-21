@@ -310,3 +310,13 @@ No pre-existing claims or site files were present. Work stays on the Arena-assig
 - **Merge Outcome:** `MERGED` at `2026-11-20T06:58:16Z` · Merge commit `e32d1e4b9556768f33c6bbd8e4f8ccab7129f800` (both `build-and-validate` and `verify` CI workflows green).
 - **GitHub Pages Deployment:** Confirmed `status: "built"` for commit `e32d1e4b9556` at `2026-11-20T06:58:39Z` (`main:/`, HTTPS enforced).
 - **Live Verification:** Fetched and verified live public pages at `https://kanlerxz87-cyber.github.io/DIYHOME1/`, `/products/comparisons/`, `/automation/`, `/sources/`, and `/flagged/` — confirming above-the-fold and footer disclosures, `rel="sponsored nofollow noopener"` with tag `shopnow047c-20`, single `Site desk` masthead group (`SG-27`), 52-row product specification register (`niffgaff` verified via `S21`; absent `UPC` and `Date First Available` left blank and badged `Unverified`), 4 working-title countertop-appliance hypotheses, empty first-party campaign ledger, and zero broken links.
+
+---
+
+## Session f851636b — re-verification & integration pass (2026-11-21)
+
+| Task ID | Task | Owner | File scope | Status |
+|---|---|---|---|---|
+| T-f851-01 | Line-by-line re-verification of products, sources, disclosures, measurement, ledger against official sources; fix analytics-server event-name drift; rebuild, validate, PR to main, confirm Pages | f851636b | `COORDINATION.md`, `EXECUTIVE_SUMMARY.md`, `analytics-server/server.mjs`, generated HTML via `node scripts/build.mjs` only | in progress |
+
+Claimed 2026-11-21 by session `f851636b` on branch `arena/f851636b-diyhome1` (branched from `706b8e2`, PR #14 merge). Scope is non-overlapping: no other session has claimed these files. Shared outputs changed only via `data/*.json` + rebuild, never by hand-editing generated HTML.
