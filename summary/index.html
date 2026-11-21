@@ -46,7 +46,7 @@
     <div class="stat"><span class="n">3</span><span class="l">Products, each resolved from a supplied link to a live listing</span></div>
     <div class="stat"><span class="n">4</span><span class="l">Question-shaped guides, one per week of the issue</span></div>
     <div class="stat"><span class="n">32</span><span class="l">Registered sources, 29 read, 3 not readable</span></div>
-    <div class="stat"><span class="n">21</span><span class="l">Items flagged for review (16 actionable, 5 withheld by design)</span></div>
+    <div class="stat"><span class="n">22</span><span class="l">Items flagged for review (17 actionable, 5 withheld by design)</span></div>
   </div>
 
   <div class="prose">
@@ -56,7 +56,7 @@
       <li><strong>The Product Information tables were reachable after all.</strong> F16 recorded that Amazon did not render them on 21 November. That was true of the desktop page; <span class="mono">/gp/product/&lt;ASIN&gt;</span> does render them. 11 fields of B08FKW9JRM and 10 of B0BSKQW2T2 were re-confirmed verbatim against those tables.</li>
       <li><strong>What still could not be confirmed was downgraded, not kept.</strong> B08DY9HRWD kept serving the reduced layout, so its model number, manufacturer part number, UPC, per-tier limit and included components, plus the &ldquo;Ships from / Sold by&rdquo; line for all three listings, are kept exactly as recorded on 20 November and badged <em>Needs Review</em>. The register reads 29 Verified / 13 Needs Review / 10 Unverified across 52 rows. No value was re-typed or inferred.</li>
       <li><strong>Three build defects fixed.</strong> &ldquo;How we verify&rdquo; described the listing title and breadcrumb as the only published product attributes, contradicting the 52-row register; the comparison matrix printed Needs-Review values as plain facts; the audit engine labelled all 52 rows &ldquo;verified&rdquo; regardless of status. All three now report what is actually true.</li>
-      <li><strong>Not re-run:</strong> the <span class="mono">link.amazon</span> submission fetches. A second unattended automated request against an Amazon page is the conduct Agent Terms 4 makes disclosable (<a class="src" href="https://affiliate-program.amazon.com/help/operating/policies" data-citation="true" target="_blank" rel="noopener" title="Amazon Associates Program Policies">S01</a>, F13); the 20 November observation stands as dated.</li>
+      <li><strong>Not re-run by this pass:</strong> the <span class="mono">link.amazon</span> submission fetches. A further unattended automated request against an Amazon page is the conduct Agent Terms 4 makes disclosable (<a class="src" href="https://affiliate-program.amazon.com/help/operating/policies" data-citation="true" target="_blank" rel="noopener" title="Amazon Associates Program Policies">S01</a>, F13). The register shows the truth per link: short links 1 and 3 carry a 21 November retrieval, short link 2 is dated 20 November, so all three observations are dated rather than presented as fresh.</li>
     </ul>
 
     <h2>What was verified</h2>
@@ -79,9 +79,9 @@
 
     <h2>What the 21 November 2026 pass changed</h2>
     <ul>
-      <li><strong>Short-link tracking, re-examined.</strong> All three supplied links were fetched again and resolved to the same ASINs. None carries the tag in its redirect, and Amazon's own help topic says the tracking ID is not expected to appear there because the session is tagged instead. <a class="src" href="https://www.rssboard.org/rss-specification" data-citation="true" target="_blank" rel="noopener" title="RSS 2.0 Specification (current version 2.0.11)">S27</a> That is why the flag is about the Associates report, not about the missing parameter.</li>
-      <li><strong>The ASIN definition is now first-party and public.</strong> Amazon defines the ASIN as its 10-digit item code and documents the link format used here. <a class="src" href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide" data-citation="true" target="_blank" rel="noopener" title="Search Engine Optimization (SEO) Starter Guide">S28</a></li>
-      <li><strong>Commission bands are public.</strong> Kitchen 4.50%, Home/Home Improvement/Tools 3.00%. <a class="src" href="https://www.ftc.gov/business-guidance/privacy-security" data-citation="true" target="_blank" rel="noopener" title="Privacy and Security — business guidance">S29</a> The band is not the payout, so no percentage is published and the ledger stays empty.</li>
+      <li><strong>Short-link tracking, re-examined.</strong> All three supplied links were fetched again and resolved to the same ASINs. None carries the tag in its redirect, and Amazon's own help topic says the tracking ID is not expected to appear there because the session is tagged instead. <a class="src" href="https://affiliate-program.amazon.com/help/node/topic/GFZ6X2S7P8EVNGN2" data-citation="true" target="_blank" rel="noopener" title="Why doesn't my tracking ID appear in your URL after a visitor clicks through to Amazon from my Web site?">S30</a> That is why the flag is about the Associates report, not about the missing parameter.</li>
+      <li><strong>The ASIN definition is now first-party and public.</strong> Amazon defines the ASIN as its 10-digit item code and documents the link format used here. <a class="src" href="https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC" data-citation="true" target="_blank" rel="noopener" title="Amazon Associates Help — Create Simple Text Links &amp; ASIN Definition">S24</a></li>
+      <li><strong>Commission bands are public.</strong> Kitchen 4.50%, Home/Home Improvement/Tools 3.00%. <a class="src" href="https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ" data-citation="true" target="_blank" rel="noopener" title="Associates Program Standard Commission Income Statement">S23</a> The band is not the payout, so no percentage is published and the ledger stays empty.</li>
       <li><strong>Blanks now explain themselves.</strong> Every unverified field says what was checked and when &mdash; two listings expose no UPC, two expose no date first available.</li>
     </ul>
 
@@ -101,11 +101,11 @@
       <table>
         <caption>Only fields that are actually known are shown. Blank means not recorded, never zero.</caption>
         <tbody>
-          <tr><th scope="row">Pull request</th><td><a href="https://github.com/kanlerxz87-cyber/DIYHOME1/pull/19" target="_blank" rel="noopener">#19 — https://github.com/kanlerxz87-cyber/DIYHOME1/pull/19</a> <a class="src" href="https://api.github.com/repos/kanlerxz87-cyber/DIYHOME1/pages" data-citation="true" target="_blank" rel="noopener" title="GitHub Pages configuration record for kanlerxz87-cyber/DIYHOME1">S14</a></td></tr>
-          <tr><th scope="row">Merge commit</th><td><span class="mono">c27383b7af63f5481fd6d0c7eccd1af9ec2b7402</span> <a class="src" href="https://api.github.com/repos/kanlerxz87-cyber/DIYHOME1/pages" data-citation="true" target="_blank" rel="noopener" title="GitHub Pages configuration record for kanlerxz87-cyber/DIYHOME1">S14</a></td></tr>
-          <tr><th scope="row">Merged at</th><td>2026-11-21T23:25:06Z UTC <a class="src" href="https://api.github.com/repos/kanlerxz87-cyber/DIYHOME1/pages" data-citation="true" target="_blank" rel="noopener" title="GitHub Pages configuration record for kanlerxz87-cyber/DIYHOME1">S14</a></td></tr>
+          <tr><th scope="row">Pull request</th><td><a href="https://github.com/kanlerxz87-cyber/DIYHOME1/pull/20" target="_blank" rel="noopener">#20 — https://github.com/kanlerxz87-cyber/DIYHOME1/pull/20</a> <a class="src" href="https://api.github.com/repos/kanlerxz87-cyber/DIYHOME1/pages" data-citation="true" target="_blank" rel="noopener" title="GitHub Pages configuration record for kanlerxz87-cyber/DIYHOME1">S14</a></td></tr>
+          <tr><th scope="row">Merge commit</th><td><span class="mono">760c321625de0bae2dcad18a0f3a558c520b2af8</span> <a class="src" href="https://api.github.com/repos/kanlerxz87-cyber/DIYHOME1/pages" data-citation="true" target="_blank" rel="noopener" title="GitHub Pages configuration record for kanlerxz87-cyber/DIYHOME1">S14</a></td></tr>
+          <tr><th scope="row">Merged at</th><td>2026-11-21T23:32:01Z UTC <a class="src" href="https://api.github.com/repos/kanlerxz87-cyber/DIYHOME1/pages" data-citation="true" target="_blank" rel="noopener" title="GitHub Pages configuration record for kanlerxz87-cyber/DIYHOME1">S14</a></td></tr>
           <tr><th scope="row">Published URL</th><td><a href="https://kanlerxz87-cyber.github.io/DIYHOME1/" target="_blank" rel="noopener">https://kanlerxz87-cyber.github.io/DIYHOME1/</a> <a class="src" href="https://api.github.com/repos/kanlerxz87-cyber/DIYHOME1/pages" data-citation="true" target="_blank" rel="noopener" title="GitHub Pages configuration record for kanlerxz87-cyber/DIYHOME1">S14</a></td></tr>
-          <tr><th scope="row">Pages build</th><td>built — Pages reported build status 'built' for commit c27383b7af63 at 2026-11-21T23:25:43Z (legacy, main:/); /sources/ and /flagged/ fetched live after deploy and confirmed (26 sources, Re-verified 2026-11-21 callout, 16 flags incl. F15/F16) <a class="src" href="https://api.github.com/repos/kanlerxz87-cyber/DIYHOME1/pages" data-citation="true" target="_blank" rel="noopener" title="GitHub Pages configuration record for kanlerxz87-cyber/DIYHOME1">S14</a></td></tr>
+          <tr><th scope="row">Pages build</th><td>built — Pages reported status 'built' for commit 760c321625de at 2026-11-21T23:32:02Z (legacy, main:/); live /sources/ and /summary/ fetched and confirmed <a class="src" href="https://api.github.com/repos/kanlerxz87-cyber/DIYHOME1/pages" data-citation="true" target="_blank" rel="noopener" title="GitHub Pages configuration record for kanlerxz87-cyber/DIYHOME1">S14</a></td></tr>
           <tr><th scope="row">Pages source</th><td><span class="mono">main:/</span> (legacy) <a class="src" href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site" data-citation="true" target="_blank" rel="noopener" title="Configuring a publishing source for your GitHub Pages site">S07</a></td></tr>
         </tbody>
       </table>
@@ -114,7 +114,7 @@
     <h2>Read next</h2>
     <ul>
       <li><a href="../sources/">Source register</a> &mdash; every source, SG-27..SG-30 passes, and 52 product spec rows</li>
-      <li><a href="../flagged/">Flagged for review</a> &mdash; 21 open items</li>
+      <li><a href="../flagged/">Flagged for review</a> &mdash; 22 open items</li>
       <li><a href="../automation/">Automation &amp; compliance gate</a> &mdash; CLI checks and policy gates</li>
       <li><a href="../about/">How we verify</a> &mdash; method, limits and the automation boundary</li>
       <li><a href="../disclosures/">Disclosures</a> &mdash; affiliate, privacy and data omissions</li>
