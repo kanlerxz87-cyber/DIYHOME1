@@ -20,8 +20,11 @@ Publishing source: branch `main`, folder `/` (confirmed via `GET /repos/kanlerxz
 | Session ID | Branch | Role | Started (UTC) | Status |
 |---|---|---|---|---|
 | `S-2026-11-20-A` | `arena/eb4b2092-diyhome1` | Sole session: research, build, verify, integrate, publish | 2026-11-20 | active |
+| `S-2026-11-21-F` | `arena/f4d33765-diyhome1` | Re-verification (2026-11-21), analytics-server contract fix, integration + PR | 2026-11-21 | active |
 
 Single-session run. A later session may take unowned rows only, and must not edit `data/`, `scripts/`, `assets/js/config.js`, `sitemap.xml`, `feed.xml` or generated HTML without claiming the row first.
+
+Note (S-2026-11-21-F): this session works on the Arena-assigned branch `arena/f4d33765-diyhome1` rather than a `session-<id>/<task>` branch, per the Arena session instructions. File scopes below are still claimed exclusively by this session until marked done.
 
 ---
 
@@ -56,6 +59,9 @@ Single-session run. A later session may take unowned rows only, and must not edi
 | T09 | Executive summary (repo + site) | S-2026-11-20-A | `EXECUTIVE_SUMMARY.md`, `summary/index.html` | done |
 | T10 | Flagged for Review page | S-2026-11-20-A | `data/flagged.json`, `flagged/index.html` | needs review |
 | T11 | Integration: merge to `main`, PR, Pages deploy, record result | S-2026-11-20-A | `main` (merge only) | done |
+| T12 | Fresh line-by-line re-verification 2026-11-21 against official sources; correct register wording drift (S23 quotes, S24 supports, SG-27/SG-28/SG-29) | S-2026-11-21-F | `data/sources.json`, `data/verified-sources.json`, generated `sources/index.html` (via build) | done |
+| T13 | Align `analytics-server/server.mjs` to the canonical 5-event contract (`data/events.json` + `worker/collect.js` + `assets/js/site.js` payload shape); add smoke test | S-2026-11-21-F | `analytics-server/server.mjs`, `tests/test_analytics_server.py` | done |
+| T14 | Integration: rebuild, validate, python tests, live-site check, PR to `main`, merge, Pages confirm, record result | S-2026-11-21-F | `main` (merge only) + generated files via build | done |
 
 `needs review` = published on the Flagged for Review page and does **not** block the merge.
 
@@ -327,3 +333,70 @@ Base: `706b8e2` (main, after PR #14). Single active session on this branch; no c
 | `T-B06` | Rebuild, run both gates (node + python), open PR, merge, confirm GitHub Pages deploy, record result here | `S-2026-11-21-B` | `main` (merge only) | in progress |
 
 Scope note: this session edits only the files listed above. It does not touch `scripts/content.mjs`, `scripts/validate.mjs`, `worker/**`, `platform/**`, or the archived editions.
+
+---
+
+### Log entries from other parallel sessions (preserved verbatim)
+
+### 2026-11-21 — S-2026-11-21-F — T12 re-verification + T13 analytics-server fix
+
+**T12 — re-read on 2026-11-21 (official sources, links in `data/sources.json`):**
+- S01 Program Policies (still *Updated April 14, 2026*): 2(b) tag clause, price/availability clause, 3(t)/3(v)/3(w)/3(y) — all match stored quotes verbatim. S03 FTC (Nov 2019) — all quotes match. S24 ASIN definition + `dp/ASIN/ref=nosim?tag=` format — confirmed. S23 Table 1 (Kitchen 4.50%, Home/Tools 3.00%) — confirmed; per-product rate still withheld (F10).
+- S04/S05/S06 listing titles + breadcrumbs match `data/products.json` verbatim. Live prices visible on all three listings; withheld per 2(b) (F07). No price value recorded in this repo.
+- S10 `https://link.amazon/B0hmGG4m2` still resolves to `B08FKW9JRM` with no `tag=` in the observed URL. F01 remains open (unresolved, not disproven). Short links are never claimed invalid.
+- Corrections (data-only, then rebuilt): S23 quotes replaced with verbatim Table 1 rows; S24 supports now uses Amazon's "10-digit code" wording; SG-27 nav labels corrected to the actual labels (Home, Products, Comparisons, Guides, Search, RSS); SG-28 now credits `scripts/build.mjs`/`validate.mjs`; SG-29 corrected to project-path `robots.txt` (F14); `code_note` added to `data/verified-sources.json` (canonical register is `data/sources.json` S01–S25). Rebuild changed only `sources/index.html`.
+- `retrieved` bumped to 2026-11-21 for S01, S03, S04, S05, S06, S08, S10, S23, S24 (the ones re-read today).
+
+**T13 — analytics-server contract fix (new irregularity, fixed):**
+- `analytics-server/server.mjs` accepted the archived Field & Fixture event names (`product_impression`, `outbound_affiliate_click`, `reader_capture_submit`) with `{event, page, meta}`. Live `assets/js/site.js` sends `{e, path, sid, …}` with the canonical five events — every live event would have been rejected (400). Rewrote the server to the canonical contract (same per-event allowlist + 2048-byte cap as `worker/collect.js`), `POST /collect` + `/api/events` alias, `GET /api/health`, `GET /api/summary`. Added `tests/test_analytics_server.py` (6 tests). Full suite 16/16. Endpoint still not deployed (F05 open); ledger still empty.
+
+**Checks:** `node scripts/build.mjs` (23 pages) + `node scripts/validate.mjs` (16/16; 288 Amazon links: 38 sponsored, 257 citations; single tag `shopnow047c-20`) + `python3 -m unittest discover -s tests` (16/16).
+
+### 2026-11-21 — S-2026-11-21-F — T14 integration result
+
+- **Pull Request:** [PR #15](https://github.com/kanlerxz87-cyber/DIYHOME1/pull/15) (`arena/f4d33765-diyhome1` → `main`)
+- **Merge Outcome:** `MERGED` at `2026-11-21T23:20:52Z` · Merge commit `cef3a9c2cd797e5fa242f4e70392e1ff55dfb3b6` (both CI workflows green: `build-and-validate`, `verify`).
+- **GitHub Pages Deployment:** Confirmed `status: "built"` for commit `cef3a9c2` (`main:/`, HTTPS enforced). Live `/sources/` fetched and confirmed showing `Retrieved 2026-11-21` for the re-read sources; live `/` confirmed with above-fold disclosure and tagged Sponsored links.
+- **Live site:** https://kanlerxz87-cyber.github.io/DIYHOME1/
+- Flagged items (F01, F04, F05, F10, F13, …) remain published at `/flagged/` and did not block the merge, per the board rules.
+
+--- (merged session claims — both preserved) ---
+
+Session claim: arena-67098650-diyhome1 — T01 link verification (data/products.json, data/product-intents.csv) + T10 flagged review + site build/completion — 2026-11-21
+
+---
+### 2026-11-21 — arena-67098650-diyhome1 — final verification session
+
+Claim: T01 (link verification + data/products.json + product-intents.csv) and T10 (flagged review) — scope limited to verification, build, publish; no new data invented.
+
+Verification performed (line by line, no inference, no hallucination):
+- Amazon product page fetches from this sandbox: HTTP 000 / connection blocked (Amazon requires JS/sign-in and is outside allowed hosts). Recorded in this log rather than repeating silently.
+- Product identity verified against prior session documented observations (COORDINATION.md 2026-11-20): B08FKW9JRM (Art3d), B0BSKQW2T2 (niffgaff — brand verified via S05 / S21; brand omitted from H1 per F11), B08DY9HRWD (ORDORA). All three distinct; short tokens not ASINs; duplicate B03QDuGdo recorded once + one audit row.
+- data/products.json: intended_asin = null for all three; observed_redirect_target present and separate; listing_url = clean /dp/<ASIN>; associates_link_verified = false; no price/rating/review_count/image/commission fields populated.
+- data/product-intents.csv: intended_asin blank; official_listing_url present; observed_redirect_target in separate column; confirmation_date 2026-11-20; source S04/S05/S06; duplicate row retained with note.
+- data/flagged.json: all 14 items present (F01 tracking, F02 duplicate, F03 air-fryer mismatch, F04 Search Console, F05 analytics endpoint, F06 ASIN sign-in wall, F07 withheld prices/ratings, F08 untested, F09 no imagery, F10 commission unverifiable, F11 brand omission from H1, F12 tracking enrolment, F13 agent user-agent missing, F14 robots.txt path).
+- Source register (data/sources.json): 25 sources; every product row links to official Amazon listing (S04/S05/S06), brand store (S21), and policy pages (S01, S03, S07) with citation attributes.
+- Spec tables (products/*/index.html): 17+ rows per product; caption states "Every row links to an official source"; "Intended ASIN" row blank with unverified badge and source link to ASIN guide; all verified values link to Amazon listing / brand store / technical details.
+- Product register (products/index.html): 3-row table; each row links source (S04/S05/S06) and sponsored CTA with tag shopnow047c-20 and rel="sponsored nofollow noopener"; tracking status links to F01.
+- Disclosure: present above fold (line 31, data-disclosure) and footer on every page; no price/availability/rating/review imagery; no "tested" language; no commission claims.
+- Build: node scripts/build.mjs → 23 pages + sitemap + feed + robots + config.js; node scripts/validate.mjs → 16 checks passed, 0 errors, 0 warnings; 288 Amazon links (38 sponsored, 257 citation); single tag; ledger empty; archive preserved with noindex + banner.
+- GitHub Pages: source branch main, path /, HTTPS enforced. Live verification previously confirmed at 2026-11-20 (main:e32d1e4, PR #13); current branch arena/67098650-diyhome1 adds only verification claim; PR to merge claim + final verification log.
+- Irregularities recorded (do not block merge): Amazon reach blocked from sandbox (F13 verification fetches did not identify as Agent/[name]); intended ASIN and Associates tracking remain unverified (F01); no Search Console token (F04); analytics endpoint not deployed (F05); commission rates unverifiable (F10); robots.txt inside project path not host root (F14).
+
+---
+
+## Session claim — 2026-11-21 — `S-2026-11-21-C`
+
+**Conflict note (logged, nothing discarded):** this session claimed its tasks at branch start against `706b8e2`. Two other sessions landed on `main` while it worked: `S-2026-11-21-F` (PR #15) and `arena-67098650-diyhome1` (final verification claim). Both sessions' claims and logs above are kept verbatim; this session's rows are renumbered T15–T17 to avoid reusing their T12–T14. Where two sessions corrected the same source (S23 Table 1 rows), the correction is identical — two independent reads of the same page produced the same verbatim rows. This session's later corrections (S01, S07, S08, S19, S25) and S26 addition post-date those merges and are recorded on `/sources/` with a dated re-verification note.
+
+| Session ID | Branch | Role | Started (UTC) | Status |
+|---|---|---|---|---|
+| `S-2026-11-21-C` | `arena/16905ff3-diyhome1` (base `706b8e2`, PR #14 merge) | Independent line-by-line re-verification, QA fixes, integration (PR + merge + Pages deploy check) | 2026-11-21 | in progress |
+
+| ID | Task | Owner | File scope | Status |
+|---|---|---|---|---|
+| T15 | Re-verify every registered source against the live official page; record verbatim quote matches and any drift | `S-2026-11-21-C` | `data/sources.json`, `COORDINATION.md` | in progress |
+| T16 | Line-by-line QA of `data/*.json` product facts, flags and copy for contradictions or invented values | `S-2026-11-21-C` | `data/products.json`, `data/flagged.json`, `data/site.json`, site copy generated from them | in progress |
+| T17 | Integration: build + validate, PR from this branch to `main`, merge, confirm Pages deploy, record result | `S-2026-11-21-C` | `main` (merge only), `COORDINATION.md` | in progress |
+
+Rule observed: this session edits only `data/`, content and docs; all HTML is regenerated with `node scripts/build.mjs` and gated by `node scripts/validate.mjs`. No other session's claim is overwritten.
