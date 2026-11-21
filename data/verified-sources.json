@@ -228,7 +228,7 @@
     {
       "code": "SG-30",
       "area": "Privacy-Preserving Reader Capture",
-      "implementation": "Reader capture is a public RSS 2.0 subscribe callout plus a checklist that runs in the visitor's own browser. No email address is requested, no cookie is set, and scripts/validate.mjs fails the build if any third-party subresource, script, image or stylesheet is added.",
+      "implementation": "Reader capture is a public RSS 2.0 subscribe callout plus a browser-local event queue (assets/js/site.js strictly honoring Do Not Track and Global Privacy Control). No email address is requested, no cookie is set, and scripts/validate.mjs fails the build if any third-party subresource, script, image or stylesheet is added.",
       "source_url": "https://www.ftc.gov/business-guidance/privacy-security",
       "source_supports": "FTC business guidance treats collecting only what you need and being clear about data practices as the baseline.",
       "verified_on": "2026-11-21",
@@ -348,5 +348,5 @@
       "source_url": "https://developers.google.com/search/docs/monitor-debug/search-console-start"
     }
   ],
-  "register_note": "Snapshot register from the 2026-11-20 verification pass. Entries here use the VS__ prefix and deliberately do not share identifiers with data/sources.json (S__), which is the canonical citation register rendered on /sources/ — site badges use those S__ codes, never VS__ ones. Until 2026-11-21 both files used S__ for different documents, so the same label meant two different pages (flag F17). Sources added to the canonical register on 2026-11-21 (S27-S29, after S26 was taken by the robots.txt document) are recorded only in data/sources.json."
+  "register_note": "Snapshot register from the 2026-11-20 verification pass. Entries here use the VS__ prefix and deliberately do not share identifiers with data/sources.json (S__), which is the canonical citation register rendered on /sources/ — site badges use those S__ codes, never VS__ ones. Until 2026-11-21 both files used S__ for different documents, so the same label meant two different pages (flag F17). Sources added to the canonical register on 2026-11-21 (S26-S34) are recorded only in data/sources.json."
 }

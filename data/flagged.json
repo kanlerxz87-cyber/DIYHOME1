@@ -76,9 +76,9 @@
     {
       "id": "F06",
       "severity": "low",
-      "title": "Amazon's own ASIN definition could not be read without signing in",
-      "what": "Seller Central help page 200220550 redirected to sign-in, while public Amazon Associates Help topic GP38PJ6EUR6PFBEC (S24) confirms ASIN is Amazon's 10-character item code. Intended ASINs for the submitted short links remain unconfirmed by the account owner.",
-      "why_it_matters": "The site states that an ASIN is a checkable identifier, which should rest on Amazon's own documentation.",
+      "title": "Seller Central ASIN help page requires sign-in, and operator intended ASINs remain unconfirmed",
+      "what": "Seller Central help page 200220550 (S16) redirected to sign-in. Public first-party Amazon Associates Help topic GP38PJ6EUR6PFBEC (S24, re-verified 2026-11-21) does confirm ASIN is Amazon's 10-character item code, but the account owner's intended ASINs for the submitted short links remain unconfirmed.",
+      "why_it_matters": "An observed redirect ASIN cannot be merged into the intended ASIN field without operator confirmation, and sign-in-gated Seller Central pages cannot be cited as read.",
       "sources": [
         "S24",
         "S15",
@@ -86,21 +86,22 @@
         "S13",
         "S04"
       ],
-      "needs": "Paste the ASIN wording from Seller Central help once signed in, or link an accessible Amazon page that defines it.",
-      "action": "The claim is marked as observed plus secondary, not as official documentation.",
+      "needs": "Confirm intended ASINs for each submitted link in data/product-intents.csv after reviewing Associates Central; optionally verify Seller Central help 200220550 while signed in.",
+      "action": "Public first-party Associates Help topic S24 is cited for the ASIN definition, S16 remains marked unavailable, and intended_asin stays null/blank until operator confirmation.",
       "status": "needs review"
     },
     {
       "id": "F07",
       "severity": "info",
       "title": "Prices, star ratings, review counts and availability are observed but deliberately not published",
-      "what": "Those values were visible on the listings during verification. Amazon's Program Policies only allow showing prices and availability if Amazon serves the link containing that data or the data comes from the Creators API or PA API, and only allow customer reviews and star ratings if obtained through those APIs.",
+      "what": "Those values were visible on the listings during verification. Amazon's Program Policies only allow showing prices and availability if Amazon serves the link containing that data or the data comes from the Creators API (PA-API 5.0 is deprecated per S33), and only allow customer reviews and star ratings if obtained through authorized APIs.",
       "why_it_matters": "Republishing them without those routes would breach the terms this site is required to follow, and a scraped price is stale the moment it is written.",
       "sources": [
         "S01",
-        "S18"
+        "S18",
+        "S33"
       ],
-      "needs": "Creators API or PA API credentials, if price and rating display is wanted at all.",
+      "needs": "Creators API credentials, if live price and rating display is wanted at all.",
       "action": "Table columns for price, rating and availability are left out rather than filled with a stale number. No price tracking or price alerts exist anywhere on this site.",
       "status": "needs review"
     },

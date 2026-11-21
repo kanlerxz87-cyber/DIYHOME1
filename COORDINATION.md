@@ -561,7 +561,9 @@ Claimed before editing (see this branch's earlier commit history on `arena/818bf
 - Also made the page internally consistent: the summary now states that short links 1 and 3 carry a 21 November retrieval and short link 2 is dated 20 November, instead of one bullet saying they were all re-fetched and another saying none were.
 - **Follow-up PR** carries F22, the citation fixes and the release record for PR #20 (this session pushes only to its own branch).
 - **Not verified, not claimed:** Associates attribution, Search Console indexing, analytics collection, signed-in commission rates. All remain on `/flagged/`.
-=======
+
+---
+
 ### 2026-11-21 — `S-2026-11-21-9513affd` (`arena/9513affd-diyhome1`) — Non-overlapping session claim
 
 - **Branch:** `arena/9513affd-diyhome1` (Arena-assigned branch; synced to `origin/main` @ `063dae1` after PR #18).
@@ -588,3 +590,28 @@ Claimed before editing (see this branch's earlier commit history on `arena/818bf
 - **Status:** T-9513-01 and T-9513-02 marked `done`.
 - **Post-merge coordination record (PR #29):** the release-record commit was merged via [PR #29](https://github.com/kanlerxz87-cyber/DIYHOME1/pull/29) (`MERGED`, merge commit `191341d`, both CI workflows `pass`). **Transparency note:** while merging that record, PR #28 (session `arena/fe2b1ce4-diyhome1`, "fix(summary): correct the 21 Nov citation badges and stop understating the link re-fetch") was also merged to `main` at `2026-11-21T23:36:07Z` (merge commit `c150c9b`) — that PR belonged to a concurrent session and was open with green checks; it is recorded here so the merge is auditable. No files from that session were modified or discarded by this session.
 - **Final live state (2026-11-21, after PR #29):** GitHub Pages `status: "built"` for `main`; live fetches confirmed the dossier at `/verification-9513affd/VERIFICATION-REPORT.md`, the homepage, and `/flagged/` (19 open items, each with official source links). Final checks on the merged state: `node scripts/build.mjs` (23 pages, deterministic), `node scripts/validate.mjs` (16/16, no broken links), `python3 -m unittest discover -s tests` (**28/28**).
+
+---
+
+## Line-by-Line Audit, Verification & Remediation Session — `session-e70af6c4` (`arena/e70af6c4-diyhome1`)
+
+Started: `2026-11-21` UTC. Working on Arena-assigned branch `arena/e70af6c4-diyhome1` (base `706b8e2`).
+
+**Conflict resolution note (2026-11-21 UTC — nothing discarded):** Reconciled `origin/main` through `952efed` (PRs #15, #18–#30), preserving 100% of every parallel session's work: `S01`–`S32`, `F01`–`F22`, shop-first front page, `VS01`–`VS24` namespace split, `SESSION_NOTES.md`, `verification-9513affd/VERIFICATION-REPORT.md`, `tests/test_verification_9513affd.py`, `analytics-server/server.mjs` + `tests/test_analytics_server.py`, and all session logs verbatim. Renumbered this session's two newly verified official sources to `S33` (Amazon Creators API PA-API 5 Deprecation Notice) and `S34` (Google Search Central `rel="sponsored"`), resolving cross-session requests R1, R3, R4, R5, R6, and R8 logged by `S-2026-11-21-9513affd`, and regenerated all 23 pages via `node scripts/build.mjs`.
+
+| Task ID | Task Description | Status | Owning Session ID | File Scope |
+|---|---|---|---|---|
+| `T-e70a-01` | Independent line-by-line source & listing verification (official Amazon Associates policies, Creators API deprecation `S33`, Google outbound link qualification `S34`, ASIN docs, FTC disclosures, USDA FSIS) | `done` | `session-e70af6c4` | `data/sources.json`, `data/products.json`, `data/product-specs.json`, `data/verified-sources.json`, `data/flagged.json`, `data/site.json`, `data/guides.json` |
+| `T-e70a-02` | Fix audit findings (resolving R1, R3, R4, R5, R6, R8): `assets/js/site.js` DNT/GPC enforcement in `record()` and stored-XSS fix in local event table; fix guide→product mapping (`pot-pan-organizer-capacity` linking ORDORA instead of paper towel holder); align disclosure wording & prose; add regression guards in `scripts/validate.mjs` and `tests/test_platform.py` | `done` | `session-e70af6c4` | `assets/js/site.js`, `scripts/build.mjs`, `scripts/validate.mjs`, `scripts/content.mjs`, `tests/test_platform.py` |
+| `T-e70a-03` | Reconcile `origin/main` (PRs #15–#30), rebuild site, run full validation & 29 unit tests, update `EXECUTIVE_SUMMARY.md` & `README.md`, open PR #24 to `main`, merge, verify live GitHub Pages deployment, and record final outcome | `in progress` | `session-e70af6c4` | generated HTML/`sitemap.xml`/`feed.xml`/`robots.txt`/`assets/js/config.js`, `EXECUTIVE_SUMMARY.md`, `README.md`, `data/release.json`, `COORDINATION.md` |
+
+### Line-by-Line Verification & Remediation Log (`session-e70af6c4`, 2026-11-21 UTC)
+- **Official sources independently fetched & verified (`2026-11-21`):**
+  - `S01` Amazon Associates Program Policies (`Updated April 14, 2026`), `S02` Operating Agreement (`Updated October 15, 2025`, §5 verified verbatim), `S03` FTC *Disclosures 101*, `S23` Standard Commission Income Statement, `S24` Associates Help ASIN definition (`GP38PJ6EUR6PFBEC`), `S25` USDA FSIS *Air Fryers and Food Safety* (`Last Updated: Jun 24, 2024`).
+  - Added `S33`: Amazon Creators API — PA-API 5 Deprecation Notice (`https://affiliate-program.amazon.com/creatorsapi/docs/en-us/paapiv5-deprecation`), cited on `disclosures/`, `automation/`, and `F07`.
+  - Added `S34`: Google Search Central — Qualify Your Outbound Links (`https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links`), cited on `disclosures/`.
+- **Unique code & UX defects found and fixed (closing R3, R4, R5, R6, R8 from `S-2026-11-21-9513affd`):**
+  1. `assets/js/site.js` DNT/GPC bypass (R4): `record()` previously persisted `disclosure_view`, `outbound_click`, `guide_read`, and `site_search` to `localStorage` even when Do Not Track or Global Privacy Control was set. Gated `record()` with `if (!trackingAllowed()) return null;` and enforced in `scripts/validate.mjs`.
+  2. `assets/js/site.js` stored self-XSS on `/measurement/` (R5): `localEvents()` previously assigned `tr.innerHTML` with unsanitized `row.query` from `/search/?q=...`. Replaced with DOM `document.createElement("td")` + `.textContent` and enforced in `scripts/validate.mjs`.
+  3. Wrong product card on `/guides/pot-pan-organizer-capacity/` (R3): previously displayed `P2` (paper towel holder) instead of `P3` (ORDORA 8-tier organizer); `/guides/questions-before-under-cabinet-upgrade/` showed only 1 kitchen-storage product. Added `product_slugs` to `data/guides.json`, wired `productsForGuide()` in `scripts/build.mjs`, and enforced in `scripts/validate.mjs` and `tests/test_platform.py`.
+  4. Wording & accuracy alignment: `data/site.json` (`disclosure_long` distinguishes tagged outbound product links from bare evidence citations), `scripts/build.mjs` (category pluralization), and `scripts/content.mjs` (ORDORA worked example aligned with 52-row spec register).
