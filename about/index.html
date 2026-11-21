@@ -46,7 +46,7 @@
     <h2>The five steps</h2>
     <ol>
       <li><strong>Resolve the link.</strong> Each supplied link is fetched once, and the final URL and page title are recorded. The redirect target is stored in its own field, never merged with the intended ASIN.</li>
-      <li><strong>Read the listing.</strong> The listing title, category breadcrumb, and explicitly stated Product Information / Technical Details fields (such as brand, model number, dimensions, weight, and UPC when present) are copied verbatim, with the retrieval date.</li>
+      <li><strong>Read the listing.</strong> The listing title, category breadcrumb and the fields in the official Product Information table are copied verbatim into the specification register, each with the date it was read. Nothing is re-typed from memory: a field the official table does not print stays blank, and a field a later read cannot see is downgraded to Needs Review and recorded as F16.</li>
       <li><strong>Record the source.</strong> Every row carries an ID that maps to a URL in the <a href="../sources/">source register</a>.</li>
       <li><strong>Refuse the rest.</strong> Prices, star ratings, review counts, availability, commission rates and images are not published, because this site has no sanctioned route to them.</li>
       <li><strong>Flag the gap.</strong> Anything unverified is written up at <a href="../flagged/">Flagged for review</a> with what it needs.</li>

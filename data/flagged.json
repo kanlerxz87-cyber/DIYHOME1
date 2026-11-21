@@ -251,7 +251,7 @@
       "id": "F18",
       "severity": "low",
       "title": "The public product-spec register named the wrong submission sources and three guides that do not exist",
-      "what": "Until 2026-11-21, data/product-specs.json recorded submission_ids S01, S02/S03 and S04 for the three products. Those IDs are the Program Policies, the Operating Agreement, FTC guidance and the Art3d listing \u2014 not the submitted links, which are S10, S11 and S12. The same file carried guide_slug values for guides/peel-and-stick-tools.html, guides/adhesive-vs-drilled-mounts.html and guides/cabinet-pan-rack-fit.html, none of which has ever been published, and category_slug values that do not exist in data/site.json. The file is downloadable from /sources/.",
+      "what": "Until 2026-11-21, data/product-specs.json recorded submission_ids S01, S02/S03 and S04 for the three products. Those IDs are the Program Policies, the Operating Agreement, FTC guidance and the Art3d listing — not the submitted links, which are S10, S11 and S12. The same file carried guide_slug values for guides/peel-and-stick-tools.html, guides/adhesive-vs-drilled-mounts.html and guides/cabinet-pan-rack-fit.html, none of which has ever been published, and category_slug values that do not exist in data/site.json. The file is downloadable from /sources/.",
       "why_it_matters": "A reader, or an automated consumer of the register, would attribute the owner's submitted links to the wrong documents and follow guide paths that 404.",
       "sources": [
         "S10",
@@ -305,6 +305,20 @@
       "action": "No price, rating, review count or availability figure appears on the site. The observation is kept as a dated audit record with this explanation.",
       "status": "needs review",
       "updated": "2026-11-21"
+    },
+    {
+      "id": "F22",
+      "severity": "low",
+      "title": "Three citations pointed to the wrong documents and have been corrected",
+      "what": "While sources were renumbered during a parallel session on 2026-11-21, three badges on the home page and the executive summary ended up pointing at unrelated pages: an Amazon statement about where the tracking ID appears was cited to the RSS 2.0 specification (S27), Amazon's ASIN definition was cited to Google's SEO starter guide (S28), and the commission-rate band was cited to the FTC's privacy guidance (S29). The correct documents are S30 (Amazon: why the tracking ID does not appear in the URL), S24 (Amazon: simple text links and the ASIN definition) and S23 (Amazon: Standard Commission Income Statement). All three badges now point at the right document.",
+      "why_it_matters": "A citation that resolves to an unrelated page is worse than no citation: it looks like evidence while proving nothing, and a reader who follows it learns the sentence is unsupported.",
+      "sources": [
+        "S30",
+        "S24",
+        "S23"
+      ],
+      "needs": "Nothing outstanding. Recorded so the correction is auditable rather than silent. A citation-integrity check that asserts each badge's source topic matches the sentence it supports would stop this recurring when sources are renumbered.",
+      "action": "Corrected in scripts/build.mjs on 2026-11-21; the rebuilt pages cite S30, S24 and S23 respectively."
     }
   ]
 }

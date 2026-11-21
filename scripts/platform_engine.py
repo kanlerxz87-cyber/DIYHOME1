@@ -124,6 +124,7 @@ def audit_verified_datasets(root: Path) -> dict:
 
     attr_count = 0
     blank_unverified = 0
+    by_status = {}
     site_doc = json.loads((root / "data/site.json").read_text(encoding="utf-8"))
     guides_doc = json.loads((root / "data/guides.json").read_text(encoding="utf-8"))
     cat_slugs = {c["slug"] for c in site_doc["categories"]}
@@ -151,6 +152,8 @@ def audit_verified_datasets(root: Path) -> dict:
             errors.append(f"{prod['observed_asin']}: missing reverified_on date")
         for attr in prod["attributes"]:
             attr_count += 1
+            st = attr.get("status", "unknown")
+            by_status[st] = by_status.get(st, 0) + 1
             u = urlsplit(attr.get("source_url", ""))
             if u.scheme != "https" or not u.netloc:
                 errors.append(f"{prod['observed_asin']} · {attr.get('field')}: missing https source_url")
@@ -183,7 +186,8 @@ def audit_verified_datasets(root: Path) -> dict:
 
     return {
         "products_checked": len(products_doc["products"]),
-        "attribute_rows_verified": attr_count,
+        "attribute_rows_checked": attr_count,
+        "attribute_rows_by_status": dict(sorted(by_status.items())),
         "blank_unverified_fields": blank_unverified,
         "canonical_sources_count": len(sources_doc["sources"]),
         "snapshot_sources_count": len(snapshot_ids),

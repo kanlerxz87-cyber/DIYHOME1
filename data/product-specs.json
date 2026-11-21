@@ -56,9 +56,9 @@
         },
         {
           "field": "Fulfillment & Seller",
-          "value": "Ships from Amazon \u00b7 Sold by Art3d\u00ae",
-          "status": "Verified",
-          "source_label": "Amazon Buy Box Merchant Info",
+          "value": "Ships from Amazon · Sold by Art3d®",
+          "status": "Needs Review",
+          "source_label": "Amazon Buy Box Merchant Info — not restated in the 2026-11-21 render",
           "source_url": "https://www.amazon.com/dp/B08FKW9JRM"
         },
         {
@@ -86,7 +86,7 @@
         },
         {
           "field": "Catalog Breadcrumb",
-          "value": "Tools & Home Improvement \u203a Paint, Wall Treatments & Supplies \u203a Wallpaper & Wallpapering Supplies \u203a Wallpaper Tools",
+          "value": "Tools & Home Improvement › Paint, Wall Treatments & Supplies › Wallpaper & Wallpapering Supplies › Wallpaper Tools",
           "status": "Verified",
           "source_label": "Amazon Category Breadcrumb",
           "source_url": "https://www.amazon.com/dp/B08FKW9JRM"
@@ -114,7 +114,7 @@
         },
         {
           "field": "Included Tools (Listing Bullets)",
-          "value": "Large smoothing tool, blue squeegee, utility knife, replacement blades, measuring tape (Note: Technical Details lists Item Package Quantity: 3 \u2014 flagged for review)",
+          "value": "Large smoothing tool, blue squeegee, utility knife, replacement blades, measuring tape (Note: Technical Details lists Item Package Quantity: 3 — flagged for review)",
           "status": "Needs Review",
           "source_label": "Amazon Official Listing",
           "source_url": "https://www.amazon.com/dp/B08FKW9JRM"
@@ -223,9 +223,9 @@
         },
         {
           "field": "Fulfillment & Seller",
-          "value": "Ships from Amazon \u00b7 Sold by YH Urban",
-          "status": "Verified",
-          "source_label": "Amazon Buy Box Merchant Info",
+          "value": "Ships from Amazon · Sold by YH Urban",
+          "status": "Needs Review",
+          "source_label": "Amazon Buy Box Merchant Info — not restated in the 2026-11-21 render",
           "source_url": "https://www.amazon.com/dp/B0BSKQW2T2"
         },
         {
@@ -253,14 +253,14 @@
         },
         {
           "field": "Catalog Breadcrumb",
-          "value": "Home & Kitchen \u203a Kitchen & Dining \u203a Storage & Organization \u203a Racks & Holders \u203a Paper Towel Holders",
+          "value": "Home & Kitchen › Kitchen & Dining › Storage & Organization › Racks & Holders › Paper Towel Holders",
           "status": "Verified",
           "source_label": "Amazon Category Breadcrumb",
           "source_url": "https://www.amazon.com/dp/B0BSKQW2T2"
         },
         {
           "field": "Material & Finish",
-          "value": "Aluminum \u00b7 Matte Black (also offered in Gold and White variations)",
+          "value": "Aluminum · Matte Black (also offered in Gold and White variations)",
           "status": "Verified",
           "source_label": "Amazon Product Information",
           "source_url": "https://www.amazon.com/dp/B0BSKQW2T2"
@@ -324,7 +324,7 @@
           "Mounting Type"
         ],
         "partially_confirmed": [
-          "Item Dimensions & Rail Length \u2014 the 12.2-inch rail length is stated in the listing's \"About this Item\" block; the 2.56-inch depth was not re-read"
+          "Item Dimensions & Rail Length — the 12.2-inch rail length is stated in the listing's \"About this Item\" block; the 2.56-inch depth was not re-read"
         ],
         "not_reread": [
           "Manufacturer",
@@ -392,42 +392,42 @@
         },
         {
           "field": "Fulfillment & Seller",
-          "value": "Ships from Amazon \u00b7 Sold by ORDORA Official",
-          "status": "Verified",
-          "source_label": "Amazon Buy Box Merchant Info",
+          "value": "Ships from Amazon · Sold by ORDORA Official",
+          "status": "Needs Review",
+          "source_label": "Amazon Buy Box Merchant Info — not restated in the 2026-11-21 render",
           "source_url": "https://www.amazon.com/dp/B08DY9HRWD"
         },
         {
           "field": "Model Number & Style",
-          "value": "ODR8Tier \u00b7 Style M-16.61\"H-LightDuty",
-          "status": "Verified",
-          "source_label": "Amazon Item Details",
+          "value": "ODR8Tier · Style M-16.61\"H-LightDuty",
+          "status": "Needs Review",
+          "source_label": "Amazon Item Details — not restated in the 2026-11-21 render",
           "source_url": "https://www.amazon.com/dp/B08DY9HRWD"
         },
         {
           "field": "Manufacturer Part Number",
           "value": "8 Tier Pot and Pan Rack Organizer",
-          "status": "Verified",
-          "source_label": "Amazon Item Details",
+          "status": "Needs Review",
+          "source_label": "Amazon Item Details — not restated in the 2026-11-21 render",
           "source_url": "https://www.amazon.com/dp/B08DY9HRWD"
         },
         {
           "field": "UPC / GTIN",
           "value": "655100721821",
-          "status": "Verified",
-          "source_label": "Amazon Item Details",
+          "status": "Needs Review",
+          "source_label": "Amazon Item Details — not restated in the 2026-11-21 render",
           "source_url": "https://www.amazon.com/dp/B08DY9HRWD"
         },
         {
           "field": "Catalog Breadcrumb",
-          "value": "Home & Kitchen \u203a Kitchen & Dining \u203a Storage & Organization \u203a Racks & Holders \u203a Pot Racks",
+          "value": "Home & Kitchen › Kitchen & Dining › Storage & Organization › Racks & Holders › Pot Racks",
           "status": "Verified",
           "source_label": "Amazon Category Breadcrumb",
           "source_url": "https://www.amazon.com/dp/B08DY9HRWD"
         },
         {
           "field": "Material & Divider Spec",
-          "value": "Iron \u00b7 Black (5.0mm plastic-dipped anti-slip M-shaped dividers)",
+          "value": "Iron · Black (5.0mm plastic-dipped anti-slip M-shaped dividers)",
           "status": "Verified",
           "source_label": "Amazon Materials & A+ Details",
           "source_url": "https://www.amazon.com/dp/B08DY9HRWD"
@@ -441,14 +441,14 @@
         },
         {
           "field": "Item Weight & Per-Shelf Capacity",
-          "value": "3.3 pounds item weight \u00b7 10 pounds per-tier weight limit",
-          "status": "Verified",
-          "source_label": "Amazon Features & Measurements",
+          "value": "3.3 pounds item weight · 10 pounds per-tier weight limit",
+          "status": "Needs Review",
+          "source_label": "Amazon Features & Measurements — not restated in the 2026-11-21 render",
           "source_url": "https://www.amazon.com/dp/B08DY9HRWD"
         },
         {
           "field": "Cookware Size Guidance",
-          "value": "Title says 'Fits Lightweight Cookware Up to 11\"'; bullet #4 says 'up to 12 inches' (min >2.4\"). Newer heavy-duty model B0BYYTQMTR (20.8\", 120 lbs) noted on listing \u2014 flagged for review",
+          "value": "Title says 'Fits Lightweight Cookware Up to 11\"'; bullet #4 says 'up to 12 inches' (min >2.4\"). Newer heavy-duty model B0BYYTQMTR (20.8\", 120 lbs) noted on listing — flagged for review",
           "status": "Needs Review",
           "source_label": "Amazon Official Listing",
           "source_url": "https://www.amazon.com/dp/B08DY9HRWD"
@@ -456,8 +456,8 @@
         {
           "field": "Included Components",
           "value": "Higher Support x1, Shorter Support x1, M-shaped Divider x6, Main Frame (Large x1, Small x1), Instructions",
-          "status": "Verified",
-          "source_label": "Amazon Item Details",
+          "status": "Needs Review",
+          "source_label": "Amazon Item Details — not restated in the 2026-11-21 render",
           "source_url": "https://www.amazon.com/dp/B08DY9HRWD"
         },
         {

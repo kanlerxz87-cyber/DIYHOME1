@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Flagged for review — 21 open items | DIY Home Upgrades</title>
+<title>Flagged for review — 22 open items | DIY Home Upgrades</title>
 <meta name="description" content="Every unverified value, unreadable source and withheld data point on this site, with the source that explains it and what would close it.">
 <link rel="canonical" href="https://kanlerxz87-cyber.github.io/DIYHOME1/flagged/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:site_name" content="DIY Home Upgrades">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Flagged for review — 21 open items | DIY Home Upgrades">
+<meta property="og:title" content="Flagged for review — 22 open items | DIY Home Upgrades">
 <meta property="og:description" content="Every unverified value, unreadable source and withheld data point on this site, with the source that explains it and what would close it.">
 <meta property="og:url" content="https://kanlerxz87-cyber.github.io/DIYHOME1/flagged/">
 <meta name="twitter:card" content="summary">
@@ -37,7 +37,7 @@
 <main id="main">
 <div class="wrap breadcrumb"><a href="../">Home</a><span aria-hidden="true">/</span><span aria-current="page">Flagged for review</span></div>
 <div class="wrap page-head">
-  <p class="kicker">Open items &middot; 21 flagged</p>
+  <p class="kicker">Open items &middot; 22 flagged</p>
   <h1>Flagged for review</h1>
   <p class="standfirst">Everything this build could not confirm, could not access, or chose not to publish, with the source that explains it and what would close it. None of these block the site: they are published so they can be reviewed after the fact.</p>
 </div>
@@ -45,7 +45,7 @@
   <div class="stat-grid">
     <div class="stat"><span class="n">1</span><span class="l">High severity</span></div>
     <div class="stat"><span class="n">6</span><span class="l">Medium</span></div>
-    <div class="stat"><span class="n">9</span><span class="l">Low</span></div>
+    <div class="stat"><span class="n">10</span><span class="l">Low</span></div>
     <div class="stat"><span class="n">5</span><span class="l">Withheld by design</span></div>
   </div>
   <div class="table-wrap">
@@ -149,6 +149,12 @@
           <td><strong>Landing-page flag counts were hardcoded and could drift from data/flagged.json</strong><br><span class="link-note">The front page and the summary page printed fixed numbers of flagged items and specification rows. Those numbers matched on 2026-11-21 but would silently go stale the next time an item was added or closed.</span></td>
           <td><span class="link-note">Nothing further; fixed in the same build by deriving the counts from data/*.json.</span></td>
           <td><a class="src" href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site" data-citation="true" target="_blank" rel="noopener" title="Configuring a publishing source for your GitHub Pages site">S07</a></td>
+        </tr><tr id="F22" style="scroll-margin-top:80px">
+          <td class="mono">F22</td>
+          <td><span class="badge low">low</span></td>
+          <td><strong>Three citations pointed to the wrong documents and have been corrected</strong><br><span class="link-note">While sources were renumbered during a parallel session on 2026-11-21, three badges on the home page and the executive summary ended up pointing at unrelated pages: an Amazon statement about where the tracking ID appears was cited to the RSS 2.0 specification (S27), Amazon's ASIN definition was cited to Google's SEO starter guide (S28), and the commission-rate band was cited to the FTC's privacy guidance (S29). The correct documents are S30 (Amazon: why the tracking ID does not appear in the URL), S24 (Amazon: simple text links and the ASIN definition) and S23 (Amazon: Standard Commission Income Statement). All three badges now point at the right document.</span></td>
+          <td><span class="link-note">Nothing outstanding. Recorded so the correction is auditable rather than silent. A citation-integrity check that asserts each badge's source topic matches the sentence it supports would stop this recurring when sources are renumbered.</span></td>
+          <td><a class="src" href="https://affiliate-program.amazon.com/help/node/topic/GFZ6X2S7P8EVNGN2" data-citation="true" target="_blank" rel="noopener" title="Why doesn't my tracking ID appear in your URL after a visitor clicks through to Amazon from my Web site?">S30</a> <a class="src" href="https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC" data-citation="true" target="_blank" rel="noopener" title="Amazon Associates Help — Create Simple Text Links &amp; ASIN Definition">S24</a> <a class="src" href="https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ" data-citation="true" target="_blank" rel="noopener" title="Associates Program Standard Commission Income Statement">S23</a></td>
         </tr><tr id="F07" style="scroll-margin-top:80px">
           <td class="mono">F07</td>
           <td><span class="badge info">withheld</span></td>
@@ -299,6 +305,13 @@
       <p><strong>What this build did.</strong> Every count on the generated pages is now computed from the data files at build time.</p>
       <p class="link-note"><strong>Recorded status:</strong> needs review</p>
       <p class="link-note">Sources: <a class="src" href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site" data-citation="true" target="_blank" rel="noopener" title="Configuring a publishing source for your GitHub Pages site">S07</a></p>
+    </article><article class="card" style="scroll-margin-top:80px">
+      <p><span class="badge low">low</span> <span class="mono link-note">F22</span></p>
+      <h3 class="card-title">Three citations pointed to the wrong documents and have been corrected</h3>
+      <p><strong>Why it matters.</strong> A citation that resolves to an unrelated page is worse than no citation: it looks like evidence while proving nothing, and a reader who follows it learns the sentence is unsupported.</p>
+      <p><strong>What this build did.</strong> Corrected in scripts/build.mjs on 2026-11-21; the rebuilt pages cite S30, S24 and S23 respectively.</p>
+      <p class="link-note"><strong>Recorded status:</strong> </p>
+      <p class="link-note">Sources: <a class="src" href="https://affiliate-program.amazon.com/help/node/topic/GFZ6X2S7P8EVNGN2" data-citation="true" target="_blank" rel="noopener" title="Why doesn't my tracking ID appear in your URL after a visitor clicks through to Amazon from my Web site?">S30</a> <a class="src" href="https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC" data-citation="true" target="_blank" rel="noopener" title="Amazon Associates Help — Create Simple Text Links &amp; ASIN Definition">S24</a> <a class="src" href="https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ" data-citation="true" target="_blank" rel="noopener" title="Associates Program Standard Commission Income Statement">S23</a></p>
     </article><article class="card" style="scroll-margin-top:80px">
       <p><span class="badge info">withheld</span> <span class="mono link-note">F07</span></p>
       <h3 class="card-title">Prices, star ratings, review counts and availability are observed but deliberately not published</h3>

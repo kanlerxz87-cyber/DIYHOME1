@@ -6,6 +6,7 @@ Last full re-verification: **21 November 2026** — all three supplied short lin
 
 **Live site:** https://kanlerxz87-cyber.github.io/DIYHOME1/
 **Tracking ID:** `shopnow047c-20` (used on every outbound product link; enrolment not verified — see F01)
+**Last independent pass:** 21 November 2026 — `/gp/product/<ASIN>` renders the Product Information tables the desktop page did not, so 21 of 25 table fields were re-confirmed; the six ORDORA fields that still did not render are badged *Needs Review* under F16. See `EXECUTIVE_SUMMARY.md` and the **Re-checked** column on `/sources/`.
 
 ---
 
