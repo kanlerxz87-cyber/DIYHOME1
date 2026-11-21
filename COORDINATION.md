@@ -310,3 +310,16 @@ No pre-existing claims or site files were present. Work stays on the Arena-assig
 - **Merge Outcome:** `MERGED` at `2026-11-20T06:58:16Z` · Merge commit `e32d1e4b9556768f33c6bbd8e4f8ccab7129f800` (both `build-and-validate` and `verify` CI workflows green).
 - **GitHub Pages Deployment:** Confirmed `status: "built"` for commit `e32d1e4b9556` at `2026-11-20T06:58:39Z` (`main:/`, HTTPS enforced).
 - **Live Verification:** Fetched and verified live public pages at `https://kanlerxz87-cyber.github.io/DIYHOME1/`, `/products/comparisons/`, `/automation/`, `/sources/`, and `/flagged/` — confirming above-the-fold and footer disclosures, `rel="sponsored nofollow noopener"` with tag `shopnow047c-20`, single `Site desk` masthead group (`SG-27`), 52-row product specification register (`niffgaff` verified via `S21`; absent `UPC` and `Date First Available` left blank and badged `Unverified`), 4 working-title countertop-appliance hypotheses, empty first-party campaign ledger, and zero broken links.
+
+---
+
+## Line-by-Line Audit, Verification & Remediation Session — `session-e70af6c4` (`arena/e70af6c4-diyhome1`)
+
+Started: `2026-11-21` UTC. Working on Arena-assigned branch `arena/e70af6c4-diyhome1` (base `706b8e2`). All prior tasks (`T01`–`T11`, `T-3e19-01`–`T-3e19-03`) are closed/merged; no active competing session claims exist.
+
+| Task ID | Task Description | Status | Owning Session ID | File Scope |
+|---|---|---|---|---|
+| `T-e70a-01` | Independent line-by-line source & listing verification (official Amazon Associates policies, ASIN docs, FTC disclosures, live product listings & short-link redirect checks) | `in progress` | `session-e70af6c4` | `data/sources.json`, `data/products.json`, `data/product-specs.json`, `data/verified-sources.json`, `data/flagged.json`, `data/site.json`, `data/guides.json` |
+| `T-e70a-02` | Fix audit findings: `assets/js/site.js` DNT/GPC enforcement in `record()` and stored-XSS fix in local event table; fix guide→product mapping (`pot-pan-organizer-capacity` linking ORDORA instead of paper towel holder); align disclosure wording, `SG-27..SG-30` descriptions, `analytics-server/server.mjs` live-event support, and stale cross-file contradictions | `in progress` | `session-e70af6c4` | `assets/js/site.js`, `analytics-server/server.mjs`, `scripts/build.mjs`, `scripts/validate.mjs`, `scripts/content.mjs`, `tests/test_platform.py` |
+| `T-e70a-03` | Rebuild site, run full validation & unit tests, update `EXECUTIVE_SUMMARY.md` & `README.md`, open PR to `main`, merge, verify live GitHub Pages deployment, and record final outcome | `in progress` | `session-e70af6c4` | generated HTML/`sitemap.xml`/`feed.xml`/`robots.txt`/`assets/js/config.js`, `EXECUTIVE_SUMMARY.md`, `README.md`, `data/release.json`, `COORDINATION.md` |
+
