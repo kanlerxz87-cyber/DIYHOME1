@@ -361,3 +361,21 @@ Verification performed (line by line, no inference, no hallucination):
 - Build: node scripts/build.mjs → 23 pages + sitemap + feed + robots + config.js; node scripts/validate.mjs → 16 checks passed, 0 errors, 0 warnings; 288 Amazon links (38 sponsored, 257 citation); single tag; ledger empty; archive preserved with noindex + banner.
 - GitHub Pages: source branch main, path /, HTTPS enforced. Live verification previously confirmed at 2026-11-20 (main:e32d1e4, PR #13); current branch arena/67098650-diyhome1 adds only verification claim; PR to merge claim + final verification log.
 - Irregularities recorded (do not block merge): Amazon reach blocked from sandbox (F13 verification fetches did not identify as Agent/[name]); intended ASIN and Associates tracking remain unverified (F01); no Search Console token (F04); analytics endpoint not deployed (F05); commission rates unverifiable (F10); robots.txt inside project path not host root (F14).
+
+---
+
+## Session claim — 2026-11-21 — `S-2026-11-21-C`
+
+**Conflict note (logged, nothing discarded):** this session claimed its tasks at branch start against `706b8e2`. Two other sessions landed on `main` while it worked: `S-2026-11-21-F` (PR #15) and `arena-67098650-diyhome1` (final verification claim). Both sessions' claims and logs above are kept verbatim; this session's rows are renumbered T15–T17 to avoid reusing their T12–T14. Where two sessions corrected the same source (S23 Table 1 rows), the correction is identical — two independent reads of the same page produced the same verbatim rows. This session's later corrections (S01, S07, S08, S19, S25) and S26 addition post-date those merges and are recorded on `/sources/` with a dated re-verification note.
+
+| Session ID | Branch | Role | Started (UTC) | Status |
+|---|---|---|---|---|
+| `S-2026-11-21-C` | `arena/16905ff3-diyhome1` (base `706b8e2`, PR #14 merge) | Independent line-by-line re-verification, QA fixes, integration (PR + merge + Pages deploy check) | 2026-11-21 | in progress |
+
+| ID | Task | Owner | File scope | Status |
+|---|---|---|---|---|
+| T15 | Re-verify every registered source against the live official page; record verbatim quote matches and any drift | `S-2026-11-21-C` | `data/sources.json`, `COORDINATION.md` | in progress |
+| T16 | Line-by-line QA of `data/*.json` product facts, flags and copy for contradictions or invented values | `S-2026-11-21-C` | `data/products.json`, `data/flagged.json`, `data/site.json`, site copy generated from them | in progress |
+| T17 | Integration: build + validate, PR from this branch to `main`, merge, confirm Pages deploy, record result | `S-2026-11-21-C` | `main` (merge only), `COORDINATION.md` | in progress |
+
+Rule observed: this session edits only `data/`, content and docs; all HTML is regenerated with `node scripts/build.mjs` and gated by `node scripts/validate.mjs`. No other session's claim is overwritten.

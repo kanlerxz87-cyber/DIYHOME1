@@ -1,6 +1,6 @@
 # Executive summary — DIY Home Upgrades
 
-**Prepared:** 20 November 2026 · **Branch:** `arena/eb4b2092-diyhome1` · **Site:** https://kanlerxz87-cyber.github.io/DIYHOME1/
+**Prepared:** 20 November 2026 · **Re-verified and updated:** 21 November 2026 (session `S-2026-11-21-C`, branch `arena/16905ff3-diyhome1`) · **Site:** https://kanlerxz87-cyber.github.io/DIYHOME1/
 **Associates tracking ID used:** `shopnow047c-20` (as supplied; enrolment not verified — see F01, F12)
 
 ---
@@ -15,13 +15,13 @@ A static, multi-page affiliate publication built from `data/*.json`, published b
 | `/products/` | Filterable product register, one row per product, each row linking to its official listing |
 | `/products/wallpaper-tools/`, `/products/kitchen-storage/` | Category pages |
 | `/products/comparisons/` | Side-by-side physical specification comparison matrix across all three products |
-| `/products/<slug>/` ×3 | Product pages with a full verification record + 17-row line-by-line official specification table |
+| `/products/<slug>/` ×3 | Product pages with a full verification record + a 52-row line-by-line specification register (17 / 17 / 18 rows) |
 | `/guides/` + 4 guide pages | Question-shaped DIY buying guides + the 4 working-title countertop-appliance editorial hypotheses |
 | `/about/` | Method, definition of "verified", automation boundaries |
 | `/automation/` | 7-stage automation & compliance gate CLI (`validate.mjs`, `platform_engine.py`, `creators_api_client.py`) |
 | `/disclosures/` | Affiliate disclosure, link policy, privacy, withheld data |
-| `/sources/` | Register of 25 official sources + `SG-27..SG-30` parallel passes + 52-row product spec verification ledger |
-| `/flagged/` | 14 flagged items with severity, what would close each one, and official sources on every row |
+| `/sources/` | Register of 26 official sources, a dated re-verification record + `SG-27..SG-30` parallel passes + 52-row product spec verification ledger |
+| `/flagged/` | 16 flagged items with severity, what would close each one, and official sources on every row |
 | `/measurement/` | Five defined events, privacy rules, honest status, local event viewer |
 | `/ledger/` | 4-row Product-intent confirmation record (strictly separate from observed redirects) + empty campaign ledger |
 | `/summary/` | This summary, on the site (all dashboard surfaces grouped under `Site desk` in top nav & repeated in footer) |
@@ -89,11 +89,11 @@ Amazon's current terms add **Agent Terms**: automated software interacting with 
 
 ---
 
-## 5. Flagged for review (14 items)
+## 5. Flagged for review (16 items)
 
 High: **F01** — short links not confirmed as enrolled/tracked.
 Medium: **F03** air-fryer working titles have no matching products; **F04** no Search Console token; **F05** no analytics endpoint, so events stay local; **F10** commission rates unverifiable; **F13** verification fetches did not identify as an agent.
-Low: **F02** duplicate link supplied; **F14** robots.txt sits inside the project path, not at the host root; **F06** Amazon's ASIN definition is behind a sign-in; **F11** one listing has no brand in its title; **F12** tracking ID enrolment unconfirmed.
+Low: **F02** duplicate link supplied; **F14** robots.txt sits inside the project path, not at the host root (source added 21 Nov: S26); **F06** Amazon's ASIN definition is behind a sign-in; **F11** one listing has no brand in its title; **F12** tracking ID enrolment unconfirmed; **F15** five source quotes were not verbatim and have been corrected; **F16** the Product Information tables could not be re-read on 21 Nov.
 Info (withheld by design): **F07** prices/ratings/reviews observed but not published; **F08** nothing tested; **F09** no Amazon imagery.
 
 Full detail, with the source links and what would close each item: `/flagged/` on the site, `data/flagged.json` in the repo.
@@ -120,6 +120,29 @@ No cookies. No third-party requests. Session ID in `sessionStorage` only. Referr
 No endpoint is configured, so no event leaves the browser; events are visible in the local viewer on `/measurement/` and can be exported. A Cloudflare Worker collector is included at `worker/collect.js`. Until it is deployed and a first-party report exists, the campaign ledger has zero rows — and the validator fails the build if a row appears without one.
 
 ---
+
+## 7a. Verification performed on 21 November 2026
+
+A second, independent pass re-opened every source that carries a quote and compared the quoted strings with the live page text. Results:
+
+| Source | Checked against | Result |
+|---|---|---|
+| S01 Amazon Program Policies (updated 14 Apr 2026) | Live page, Participation Requirements 2(b), 3(b), 3(t), 3(v), 3(w), 3(y); IP License 2(h); Agent Terms | All nine quotes match after one correction: an elided "..." was replaced with the full sentence |
+| S02 Operating Agreement (updated 15 Oct 2025) | Live page, sections 1 and preamble | Matches |
+| S03 FTC *Disclosures 101* (November 2019) | Live page | Matches |
+| S04 / S05 / S06 product listings | `/dp/B08FKW9JRM`, `/dp/B0BSKQW2T2`, `/dp/B08DY9HRWD` | Titles, breadcrumbs, merchant lines, the three ORDORA dimension strings and the "niffgaff" store link all re-confirmed; Product Information tables did not render, so those rows are unchanged and disclosed as F16 |
+| S07 GitHub Pages publishing docs | Live page | Matches after restoring a truncated parenthetical |
+| S08 Google sitemap docs | Live page | One quote was a section heading; replaced with the sentence "Google accepts RSS 2.0 and Atom 1.0 feeds." |
+| S09 Search Console ownership | Live page | Matches |
+| S10 / S12 submitted short links | Live resolves to B08FKW9JRM and B08DY9HRWD | Re-confirmed; no `tag=` parameter appears, so enrolment remains unconfirmed (F01) |
+| S19 robots.txt introduction | Live page | One quote appeared only in a related-content card; replaced with body text |
+| S21 niffgaff storefront | Live listing link and store page | "Visit the niffgaff Store" re-confirmed on the listing |
+| S23 Standard Commission Income Statement | Live public Table 1 | Both quotes were paraphrases; replaced with the exact rows. The earlier paraphrase wrongly put Pantry in the 3.00% row |
+| S24 Associates help, ASIN definition | Live page | Matches |
+| S25 USDA FSIS air-fryer guidance (updated 24 Jun 2024) | Live page | Both quotes were paraphrases; replaced with the exact sentences |
+| S26 Google robots.txt creation guide (new) | Live page | Added for the robots.txt location rule cited by F14 |
+
+Not re-checked in this pass, and labelled as such on the site: S11, S13, S15, S16, S17, S20, S22. The build, the validator (16 check groups), the 10 unit tests and `platform_engine.py audit` all pass after these edits.
 
 ## 8. Parallel sessions and the merged publication
 
@@ -156,7 +179,7 @@ A fresh line-by-line re-read of the official sources, one day after the original
 - SG-27 described navigation labels that do not exist (`Shop`, `Categories`, …); now lists the actual labels (Home, Products, Comparisons, Guides, Search, RSS).
 - SG-28 credited `scripts/build.py`/`check.py` (archived edition); the live feed is built by `scripts/build.mjs` and checked by `scripts/validate.mjs`.
 - SG-29 claimed a "root `robots.txt`"; corrected to the project-path reality already recorded as F14.
-- Added a `code_note` to `data/verified-sources.json`: its S-codes are local to that file; the canonical citation register is `data/sources.json` (S01–S25).
+- Added a `code_note` to `data/verified-sources.json`: its S-codes are local to that file; the canonical citation register is `data/sources.json` (S01–S26).
 
 **Fixed (broken integration, `analytics-server/server.mjs`):**
 - The self-hosted Node endpoint accepted the archived Field & Fixture edition's event names (`product_impression`, `outbound_affiliate_click`, `reader_capture_submit`) with a `{event, page, meta}` payload. The live `assets/js/site.js` sends `{e, path, sid, …}` with the canonical five events, so every live event would have been rejected with 400. The server now implements the canonical contract (same allowlist and 2048-byte cap as `worker/collect.js`), accepts `POST /collect` and the legacy `/api/events` path alias, and is covered by `tests/test_analytics_server.py` (6 tests: health, site.js payload accepted + PII stripped, alias path, retired shape rejected, unknown event rejected, summary counts). Full suite: 16/16 passing. The endpoint is still **not deployed** — F05 remains open and the campaign ledger remains empty.
