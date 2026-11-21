@@ -20,8 +20,11 @@ Publishing source: branch `main`, folder `/` (confirmed via `GET /repos/kanlerxz
 | Session ID | Branch | Role | Started (UTC) | Status |
 |---|---|---|---|---|
 | `S-2026-11-20-A` | `arena/eb4b2092-diyhome1` | Sole session: research, build, verify, integrate, publish | 2026-11-20 | active |
+| `S-2026-11-21-F` | `arena/f4d33765-diyhome1` | Re-verification (2026-11-21), analytics-server contract fix, integration + PR | 2026-11-21 | active |
 
 Single-session run. A later session may take unowned rows only, and must not edit `data/`, `scripts/`, `assets/js/config.js`, `sitemap.xml`, `feed.xml` or generated HTML without claiming the row first.
+
+Note (S-2026-11-21-F): this session works on the Arena-assigned branch `arena/f4d33765-diyhome1` rather than a `session-<id>/<task>` branch, per the Arena session instructions. File scopes below are still claimed exclusively by this session until marked done.
 
 ---
 
@@ -56,6 +59,9 @@ Single-session run. A later session may take unowned rows only, and must not edi
 | T09 | Executive summary (repo + site) | S-2026-11-20-A | `EXECUTIVE_SUMMARY.md`, `summary/index.html` | done |
 | T10 | Flagged for Review page | S-2026-11-20-A | `data/flagged.json`, `flagged/index.html` | needs review |
 | T11 | Integration: merge to `main`, PR, Pages deploy, record result | S-2026-11-20-A | `main` (merge only) | done |
+| T12 | Fresh line-by-line re-verification 2026-11-21 against official sources; correct register wording drift (S23 quotes, S24 supports, SG-28/SG-29) | S-2026-11-21-F | `data/sources.json`, `data/verified-sources.json`, generated `sources/index.html` (via build) | in progress |
+| T13 | Align `analytics-server/server.mjs` to the canonical 5-event contract (`data/events.json` + `worker/collect.js` + `assets/js/site.js` payload shape); add smoke test | S-2026-11-21-F | `analytics-server/server.mjs`, `tests/test_analytics_server.py` | in progress |
+| T14 | Integration: rebuild, validate, python tests, live-site check, PR to `main`, merge, Pages confirm, record result | S-2026-11-21-F | `main` (merge only) + generated files via build | in progress |
 
 `needs review` = published on the Flagged for Review page and does **not** block the merge.
 
