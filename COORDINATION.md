@@ -594,7 +594,6 @@ Claimed before editing (see this branch's earlier commit history on `arena/818bf
 
 ---
 
-<<<<<<< HEAD
 ---
 
 ## Completion record — session `S-2026-11-21-G` (`arena/fe2b1ce4-diyhome1`)
@@ -616,7 +615,9 @@ Claimed before editing (see this branch's earlier commit history on `arena/818bf
 **Merge conflicts and how they were resolved (nothing discarded):** `main` advanced four times during this session (PRs #15–#22, #26, #30). Each merge kept both sides — main's register numbering wins, this branch's additions re-added as S30–S32 and F20–F21; `COORDINATION.md` keeps every session's log; generated HTML regenerated from data. The session label was renamed `…-B` → `…-G` because the registry already used `…-B`.
 
 **Irregularities flagged, not hidden:** F01/F12 tracking and enrolment unconfirmed (Associates report required); F04 no Search Console token; F05 no analytics host; F13 automated fetches did not identify as an agent; F17–F19, F22 carried over from parallel sessions. None of these block publication; all are on `/flagged/` with sources.
-=======
+
+---
+
 ## Line-by-Line Audit, Verification & Remediation Session — `session-e70af6c4` (`arena/e70af6c4-diyhome1`)
 
 Started: `2026-11-21` UTC. Working on Arena-assigned branch `arena/e70af6c4-diyhome1` (base `706b8e2`).
@@ -639,4 +640,3 @@ Started: `2026-11-21` UTC. Working on Arena-assigned branch `arena/e70af6c4-diyh
   2. `assets/js/site.js` stored self-XSS on `/measurement/` (R5): `localEvents()` previously assigned `tr.innerHTML` with unsanitized `row.query` from `/search/?q=...`. Replaced with DOM `document.createElement("td")` + `.textContent` and enforced in `scripts/validate.mjs`.
   3. Wrong product card on `/guides/pot-pan-organizer-capacity/` (R3): previously displayed `P2` (paper towel holder) instead of `P3` (ORDORA 8-tier organizer); `/guides/questions-before-under-cabinet-upgrade/` showed only 1 kitchen-storage product. Added `product_slugs` to `data/guides.json`, wired `productsForGuide()` in `scripts/build.mjs`, and enforced in `scripts/validate.mjs` and `tests/test_platform.py`.
   4. Wording & accuracy alignment: `data/site.json` (`disclosure_long` distinguishes tagged outbound product links from bare evidence citations), `scripts/build.mjs` (category pluralization), and `scripts/content.mjs` (ORDORA worked example aligned with 52-row spec register).
->>>>>>> origin/main
