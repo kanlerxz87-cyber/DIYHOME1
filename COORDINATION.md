@@ -395,6 +395,39 @@ Rows not re-read keep their 2026-11-20 date. The scope is recorded per product i
 
 **Sources added after reading them on 2026-11-21:** `S26` https://www.rssboard.org/rss-specification · `S27` https://developers.google.com/search/docs/fundamentals/seo-starter-guide · `S28` https://www.ftc.gov/business-guidance/privacy-security
 
-**Verification performed:** `node scripts/build.mjs` → 23 pages. `node scripts/validate.mjs` → 19 check groups, 0 errors. `python3 -m unittest discover -s tests` → 10/10. Negative tests: a wrong `submission_ids`, a dead `guide_slug` and a self-citing SG row each failed the build, then passed after restore.
+**Verification performed:** `node scripts/build.mjs` → 23 pages. `node scripts/validate.mjs` → 19 check groups, 0 errors. `python3 -m unittest discover -s tests` → 16/16 (10 platform tests + 6 analytics-server tests from S-2026-11-21-F). Negative tests: a wrong `submission_ids`, a dead `guide_slug` and a self-citing SG row each failed the build, then passed after restore.
 
 **Irregularities logged:** F15 (wrong submission sources and dead slugs in the public register), F16 (partial re-read on 2026-11-21), F17 (two source registers shared one ID namespace). None blocks publication; all three are on `/flagged/`.
+
+### Merge note — `S-2026-11-21-B`, second sync
+
+`origin/main` advanced again through the `arena-67098650-diyhome1` verification claim while this session was merging. That log is kept verbatim below. Two things differ between that sandbox and this one, and both are recorded rather than reconciled away:
+
+1. It reports Amazon page fetches as blocked (HTTP 000). In this session the same three listing URLs **were** reachable through the page-fetch tool, and the fields listed in the U01 log above were read on them on 2026-11-21. Neither observation is withdrawn.
+2. Its counts describe the tree it saw: 14 flags, 25 sources, 16 validator checks. After both merges the live tree has **17 flags** (F15–F17 added), **28 sources** (S26–S28 added) and **19 validator checks**. Its verification statements remain true of the pages it inspected.
+
+
+---
+
+--- (merged session claims — both preserved) ---
+
+Session claim: arena-67098650-diyhome1 — T01 link verification (data/products.json, data/product-intents.csv) + T10 flagged review + site build/completion — 2026-11-21
+
+---
+### 2026-11-21 — arena-67098650-diyhome1 — final verification session
+
+Claim: T01 (link verification + data/products.json + product-intents.csv) and T10 (flagged review) — scope limited to verification, build, publish; no new data invented.
+
+Verification performed (line by line, no inference, no hallucination):
+- Amazon product page fetches from this sandbox: HTTP 000 / connection blocked (Amazon requires JS/sign-in and is outside allowed hosts). Recorded in this log rather than repeating silently.
+- Product identity verified against prior session documented observations (COORDINATION.md 2026-11-20): B08FKW9JRM (Art3d), B0BSKQW2T2 (niffgaff — brand verified via S05 / S21; brand omitted from H1 per F11), B08DY9HRWD (ORDORA). All three distinct; short tokens not ASINs; duplicate B03QDuGdo recorded once + one audit row.
+- data/products.json: intended_asin = null for all three; observed_redirect_target present and separate; listing_url = clean /dp/<ASIN>; associates_link_verified = false; no price/rating/review_count/image/commission fields populated.
+- data/product-intents.csv: intended_asin blank; official_listing_url present; observed_redirect_target in separate column; confirmation_date 2026-11-20; source S04/S05/S06; duplicate row retained with note.
+- data/flagged.json: all 14 items present (F01 tracking, F02 duplicate, F03 air-fryer mismatch, F04 Search Console, F05 analytics endpoint, F06 ASIN sign-in wall, F07 withheld prices/ratings, F08 untested, F09 no imagery, F10 commission unverifiable, F11 brand omission from H1, F12 tracking enrolment, F13 agent user-agent missing, F14 robots.txt path).
+- Source register (data/sources.json): 25 sources; every product row links to official Amazon listing (S04/S05/S06), brand store (S21), and policy pages (S01, S03, S07) with citation attributes.
+- Spec tables (products/*/index.html): 17+ rows per product; caption states "Every row links to an official source"; "Intended ASIN" row blank with unverified badge and source link to ASIN guide; all verified values link to Amazon listing / brand store / technical details.
+- Product register (products/index.html): 3-row table; each row links source (S04/S05/S06) and sponsored CTA with tag shopnow047c-20 and rel="sponsored nofollow noopener"; tracking status links to F01.
+- Disclosure: present above fold (line 31, data-disclosure) and footer on every page; no price/availability/rating/review imagery; no "tested" language; no commission claims.
+- Build: node scripts/build.mjs → 23 pages + sitemap + feed + robots + config.js; node scripts/validate.mjs → 16 checks passed, 0 errors, 0 warnings; 288 Amazon links (38 sponsored, 257 citation); single tag; ledger empty; archive preserved with noindex + banner.
+- GitHub Pages: source branch main, path /, HTTPS enforced. Live verification previously confirmed at 2026-11-20 (main:e32d1e4, PR #13); current branch arena/67098650-diyhome1 adds only verification claim; PR to merge claim + final verification log.
+- Irregularities recorded (do not block merge): Amazon reach blocked from sandbox (F13 verification fetches did not identify as Agent/[name]); intended ASIN and Associates tracking remain unverified (F01); no Search Console token (F04); analytics endpoint not deployed (F05); commission rates unverifiable (F10); robots.txt inside project path not host root (F14).
