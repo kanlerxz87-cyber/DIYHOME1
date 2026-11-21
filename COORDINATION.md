@@ -22,6 +22,7 @@ Publishing source: branch `main`, folder `/` (confirmed via `GET /repos/kanlerxz
 | `S-2026-11-20-A` | `arena/eb4b2092-diyhome1` | Sole session: research, build, verify, integrate, publish | 2026-11-20 | active |
 | `S-2026-11-21-F` | `arena/f4d33765-diyhome1` | Re-verification (2026-11-21), analytics-server contract fix, integration + PR | 2026-11-21 | active |
 | `S-2026-11-21-B` | `arena/0b735892-diyhome1` | Spec-register citation audit, register namespace split, 2026-11-21 re-verification scope, integration + PR | 2026-11-21 | active |
+| `S-2026-11-21-9513affd` | `arena/9513affd-diyhome1` | Independent line-by-line official-source audit, non-overlapping verification suite (`verification-9513affd/`), cross-session coordination requests, PR + Pages check | 2026-11-21 | active |
 
 Single-session run. A later session may take unowned rows only, and must not edit `data/`, `scripts/`, `assets/js/config.js`, `sitemap.xml`, `feed.xml` or generated HTML without claiming the row first.
 
@@ -63,6 +64,8 @@ Note (S-2026-11-21-F): this session works on the Arena-assigned branch `arena/f4
 | T12 | Fresh line-by-line re-verification 2026-11-21 against official sources; correct register wording drift (S23 quotes, S24 supports, SG-27/SG-28/SG-29) | S-2026-11-21-F | `data/sources.json`, `data/verified-sources.json`, generated `sources/index.html` (via build) | done |
 | T13 | Align `analytics-server/server.mjs` to the canonical 5-event contract (`data/events.json` + `worker/collect.js` + `assets/js/site.js` payload shape); add smoke test | S-2026-11-21-F | `analytics-server/server.mjs`, `tests/test_analytics_server.py` | done |
 | T14 | Integration: rebuild, validate, python tests, live-site check, PR to `main`, merge, Pages confirm, record result | S-2026-11-21-F | `main` (merge only) + generated files via build | done |
+| T-9513-01 | Independent 2026-11-21 line-by-line official-source & live-Pages verification dossier + executive summary + automated compliance/drift auditor (strictly non-overlapping with active parallel sessions) | S-2026-11-21-9513affd | `verification-9513affd/**`, `tests/test_verification_9513affd.py` | in progress |
+| T-9513-02 | Log cross-scope irregularity requests in `COORDINATION.md` for files owned by active concurrent sessions (`0b735892`, `16905ff3`, `67098650`, `818bfb73`, `e70af6c4`, `f851636b`, `fe2b1ce4`), open PR, merge cleanly, confirm GitHub Pages deploy | S-2026-11-21-9513affd | `COORDINATION.md`, `main` (merge only) | in progress |
 
 `needs review` = published on the Flagged for Review page and does **not** block the merge.
 
@@ -558,3 +561,9 @@ Claimed before editing (see this branch's earlier commit history on `arena/818bf
 - Also made the page internally consistent: the summary now states that short links 1 and 3 carry a 21 November retrieval and short link 2 is dated 20 November, instead of one bullet saying they were all re-fetched and another saying none were.
 - **Follow-up PR** carries F22, the citation fixes and the release record for PR #20 (this session pushes only to its own branch).
 - **Not verified, not claimed:** Associates attribution, Search Console indexing, analytics collection, signed-in commission rates. All remain on `/flagged/`.
+=======
+### 2026-11-21 — `S-2026-11-21-9513affd` (`arena/9513affd-diyhome1`) — Non-overlapping session claim
+
+- **Branch:** `arena/9513affd-diyhome1` (Arena-assigned branch; synced to `origin/main` @ `063dae1` after PR #18).
+- **Concurrent session discovery (`git fetch origin '+refs/heads/*:refs/remotes/origin/*'`):** Detected active claims younger than 60 minutes on remote branches `arena/0b735892-diyhome1`, `arena/16905ff3-diyhome1`, `arena/67098650-diyhome1` (PR #17), `arena/818bfb73-diyhome1`, `arena/e70af6c4-diyhome1`, `arena/f851636b-diyhome1` (PR #16), and `arena/fe2b1ce4-diyhome1`, which collectively claim `data/*`, `scripts/*`, `assets/**`, `analytics-server/server.mjs`, `EXECUTIVE_SUMMARY.md`, `README.md`, and generated HTML/XML outputs.
+- **Non-overlapping scope rule observed:** Per `COORDINATION.md` rules 1–5 and `PARALLEL SESSIONS`, `S-2026-11-21-9513affd` claims **only** `verification-9513affd/**`, `tests/test_verification_9513affd.py`, and append-only coordination entries in `COORDINATION.md`. Any defects or drift found in files owned by concurrent sessions are logged as explicit requests in `COORDINATION.md` rather than overwriting another session's claimed files.
