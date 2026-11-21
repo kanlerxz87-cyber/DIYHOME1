@@ -550,3 +550,11 @@ Claimed before editing (see this branch's earlier commit history on `arena/818bf
 **Not re-run:** the `link.amazon` submission fetches (Agent Terms 4, F13). **Not claimed:** Associates attribution, Search Console, analytics collection, signed-in commission rates.
 
 **Merge conflicts:** four rebases against `main`; every time, the other sessions' logs and data were retained and this branch re-applied only its additions. Nothing from another session was discarded.
+
+### 2026-11-21 — `arena-818bfb73` — PR #20 merged; three bad citations found on the live site and fixed
+
+- **Pull request:** [#20](https://github.com/kanlerxz87-cyber/DIYHOME1/pull/20) — MERGED at `2026-11-21T23:32:01Z`, merge commit `760c321625de0bae2dcad18a0f3a558c520b2af8`. Pages reported `built` for that commit at `23:32:02Z`.
+- **Post-deploy check found a defect that no local check could catch.** Reading the live `/summary/` and `/` showed three citation badges pointing at unrelated documents, introduced when sources were renumbered in a parallel session: an Amazon statement about the tracking ID was cited to the RSS 2.0 specification (S27); Amazon's ASIN definition to Google's SEO starter guide (S28); the commission band to the FTC's privacy guidance (S29). Corrected to **S30**, **S24** and **S23** and recorded as **F22**, so the fix is auditable.
+- Also made the page internally consistent: the summary now states that short links 1 and 3 carry a 21 November retrieval and short link 2 is dated 20 November, instead of one bullet saying they were all re-fetched and another saying none were.
+- **Follow-up PR** carries F22, the citation fixes and the release record for PR #20 (this session pushes only to its own branch).
+- **Not verified, not claimed:** Associates attribution, Search Console indexing, analytics collection, signed-in commission rates. All remain on `/flagged/`.
