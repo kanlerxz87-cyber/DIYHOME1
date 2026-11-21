@@ -1,6 +1,6 @@
 {
-  "generated": "2026-11-20",
-  "method": "Each source below was retrieved and read in this session unless marked otherwise. 'verified' means the text quoted in the site was read on that page. 'secondary' means the page is not first-party documentation and is used only to explain a flagged gap. 'unavailable' means the source exists but could not be retrieved without credentials.",
+  "generated": "2026-11-21",
+  "method": "Each source below was retrieved and read in this session unless marked otherwise. 'verified' means the text quoted in the site was read on that page. 'secondary' means the page is not first-party documentation and is used only to explain a flagged gap. 'unavailable' means the source exists but could not be retrieved without credentials. Additional sources S30-S32 were read on 2026-11-21 by session S-2026-11-21-G: Amazon's help topics on why the tracking ID does not appear in the URL after click-through (S30) and on the simple text-link format plus the ASIN definition (S31), and the public Standard Commission Income Statement table (S32).",
   "reverification": {
     "date": "2026-11-21",
     "session": "S-2026-11-21-C",
@@ -68,14 +68,14 @@
         "ASINs may be stored indefinitely for use with the Program (IP License, 2(h))"
       ],
       "quotes": [
-        "you must include your Associates ID or “tag” (appearing as XXXXX-##, or such other format as we may designate) as a parameter in the URL of each link you place on your Site to an Amazon Site",
+        "you must include your Associates ID or \u201ctag\u201d (appearing as XXXXX-##, or such other format as we may designate) as a parameter in the URL of each link you place on your Site to an Amazon Site",
         "your Site may only show prices and availability if: (a) we serve the link in which that price and availability data are displayed, or (b) you obtain Product pricing and availability data via Creators API or PA API",
         "You will not display or otherwise use any of our customer reviews or star ratings, in part or in whole, on your Site unless you have obtained a link to that customer review or star rating through Creators API or PA API",
         "You will not cloak, hide, spoof, or otherwise obscure the URL of your Site containing Special Links (including by use of Redirecting Links)",
         "You will not use a link shortening service, button, hyperlink or other ad placement in a manner that makes it unclear that you are linking to an Amazon Site.",
         "Unless otherwise agreed by Amazon, your Site must not have price tracking and/or price alerting functionality.",
         "No Agent may access, use, or interact with Program Content unless, at all times, it identifies itself",
-        "In all HTTP/HTTPS requests, identify that the request is from an Agent and disclose the name of the Agent by including the following in the request's user agent string: “Agent/[agent name]”",
+        "In all HTTP/HTTPS requests, identify that the request is from an Agent and disclose the name of the Agent by including the following in the request's user agent string: \u201cAgent/[agent name]\u201d",
         "you may store individual Amazon Standard Identification Numbers (ASINs) for an indefinite period until the termination of this License"
       ]
     },
@@ -94,7 +94,7 @@
         "Amazon customers are not the Associate's customers"
       ],
       "quotes": [
-        "The links must properly use the special “tagged” link formats we provide and comply with this Agreement (“Special Links”).",
+        "The links must properly use the special \u201ctagged\u201d link formats we provide and comply with this Agreement (\u201cSpecial Links\u201d).",
         "you agree to this Agreement, including the Program Policies (defined in Section 12), which are incorporated by reference"
       ]
     },
@@ -117,13 +117,13 @@
       "quotes": [
         "Make sure people will see and understand the disclosure. Place it so it's hard to miss.",
         "Disclosures are likely to be missed if they appear only on an ABOUT ME or profile page, at the end of posts or videos, or anywhere that requires a person to click MORE.",
-        "So are terms like “advertisement,” “ad,” and “sponsored.”",
+        "So are terms like \u201cadvertisement,\u201d \u201cad,\u201d and \u201csponsored.\u201d",
         "You can't talk about your experience with a product you haven't tried."
       ]
     },
     {
       "id": "S04",
-      "title": "Amazon listing B08FKW9JRM — Art3d Smoothing Tool Kit for Peel and Stick Wallpaper",
+      "title": "Amazon listing B08FKW9JRM \u2014 Art3d Smoothing Tool Kit for Peel and Stick Wallpaper",
       "publisher": "Amazon.com, Inc.",
       "url": "https://www.amazon.com/dp/B08FKW9JRM",
       "page_date": "Live listing; re-read 2026-11-21 (content is dynamic)",
@@ -140,7 +140,7 @@
     },
     {
       "id": "S05",
-      "title": "Amazon listing B0BSKQW2T2 — Paper Towel Holder Under Cabinet, Self-Adhesive or Drilling, Matte Black",
+      "title": "Amazon listing B0BSKQW2T2 \u2014 Paper Towel Holder Under Cabinet, Self-Adhesive or Drilling, Matte Black",
       "publisher": "Amazon.com, Inc.",
       "url": "https://www.amazon.com/dp/B0BSKQW2T2",
       "page_date": "Live listing; re-read 2026-11-21 (content is dynamic)",
@@ -157,7 +157,7 @@
     },
     {
       "id": "S06",
-      "title": "Amazon listing B08DY9HRWD — ORDORA Pots and Pans Organizer Under Cabinet 16.6\", 8-Tier Adjustable Rack",
+      "title": "Amazon listing B08DY9HRWD \u2014 ORDORA Pots and Pans Organizer Under Cabinet 16.6\", 8-Tier Adjustable Rack",
       "publisher": "Amazon.com, Inc.",
       "url": "https://www.amazon.com/dp/B08DY9HRWD",
       "page_date": "Live listing; re-read 2026-11-21 (content is dynamic)",
@@ -290,7 +290,7 @@
         "Supports the conclusion that the link.amazon path tokens are not ASINs"
       ],
       "quotes": [
-        "Result of fetch on 2026-11-20: error — 'Failed to fetch page'"
+        "Result of fetch on 2026-11-20: error \u2014 'Failed to fetch page'"
       ]
     },
     {
@@ -464,7 +464,7 @@
     },
     {
       "id": "S24",
-      "title": "Amazon Associates Help — Create Simple Text Links & ASIN Definition",
+      "title": "Amazon Associates Help \u2014 Create Simple Text Links & ASIN Definition",
       "publisher": "Amazon.com, Inc. (Amazon Associates Central)",
       "url": "https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC",
       "page_date": "Live public help topic; retrieved 2026-11-20",
@@ -551,7 +551,7 @@
     },
     {
       "id": "S29",
-      "title": "Privacy and Security — business guidance",
+      "title": "Privacy and Security \u2014 business guidance",
       "publisher": "U.S. Federal Trade Commission",
       "url": "https://www.ftc.gov/business-guidance/privacy-security",
       "page_date": "Live agency guidance; retrieved 2026-11-21",
@@ -565,6 +565,63 @@
       "quotes": [
         "Having a sound security plan in place to collect only what you need, keep it safe, and dispose of it securely can help you meet your legal obligations to protect that sensitive data.",
         "Consumers care about the privacy of their personal information and savvy businesses understand the importance of being clear about what you do with their data."
+      ]
+    },
+    {
+      "id": "S30",
+      "title": "Why doesn't my tracking ID appear in your URL after a visitor clicks through to Amazon from my Web site?",
+      "publisher": "Amazon.com, Inc. (Amazon Associates Central)",
+      "url": "https://affiliate-program.amazon.com/help/node/topic/GFZ6X2S7P8EVNGN2",
+      "page_date": "Live public help topic; retrieved 2026-11-21",
+      "retrieved": "2026-11-21",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Amazon states it is not necessary for the tracking ID to appear in the URL after the click-through, because the shopping session is tagged for attribution",
+        "This means the absence of a tag= parameter in an observed redirect is NOT by itself evidence that a link is untracked",
+        "It does not confirm attribution for the specific supplied short links; that still requires an Associates report"
+      ],
+      "quotes": [
+        "We understand your concern, but rest assured that it is not necessary for your unique ID to appear in order for us to track sales made after the initial clickthrough. The individual shopping session will be tagged in a way that allows us to track the items purchased and credit you with the appropriate commission."
+      ]
+    },
+    {
+      "id": "S31",
+      "title": "How do I build a simple text link to a specific item on Amazon?",
+      "publisher": "Amazon.com, Inc. (Amazon Associates Central)",
+      "url": "https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC",
+      "page_date": "Live public help topic; retrieved 2026-11-21",
+      "retrieved": "2026-11-21",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Amazon's own documented simple text-link format is /dp/ASIN with the Associates tag supplied as a URL parameter",
+        "Amazon defines ASIN as the 10-digit code used to denote specific products",
+        "This is the format used for every outbound product link built by this site"
+      ],
+      "quotes": [
+        "http://www.amazon.com/dp/ASIN/ref=nosim?tag=YOURASSOCIATEID",
+        "ASIN: ASIN is the 10-digit code that Amazon uses to denote specific products. It is short for \"Amazon.com Standard Item Number.\" Every item in our catalog has a unique ASIN.",
+        "YOURASSOCIATEID: YOURASSOCIATEID is the unique ID that is used to identify your Associates account, automatically generated when you apply for the Associates Programme."
+      ]
+    },
+    {
+      "id": "S32",
+      "title": "Associates Program Standard Commission Income Statement (public rate table)",
+      "publisher": "Amazon.com, Inc. (Amazon Associates Central)",
+      "url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ",
+      "page_date": "Live public schedule; re-read 2026-11-21",
+      "retrieved": "2026-11-21",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Marketplace category rate bands readable without sign-in: Kitchen 4.50%; Home, Home Improvement, Tools 3.00%",
+        "The supplied products sit in Tools & Home Improvement (B08FKW9JRM) and Home & Kitchen > Kitchen & Dining (B0BSKQW2T2, B08DY9HRWD)",
+        "Which band a specific SKU earns is still unverified: it requires a first-party Associates earnings report"
+      ],
+      "quotes": [
+        "Physical Books, Kitchen, Automotive | 4.50%",
+        "Toys, Furniture, Home, Home Improvement, Lawn & Garden, Pets Products, Headphones, Beauty, Musical Instruments, Business & Industrial Supplies, Outdoors, Tools, Sports, Baby Products, Amazon Coins | 3.00%"
       ]
     }
   ]

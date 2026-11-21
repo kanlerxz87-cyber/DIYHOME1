@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-20",
+  "generated": "2026-11-21",
   "legend": "Severity high = could cost commission income or breach program terms. medium = a required step cannot be completed without account access or a user action. low = inconsistency worth fixing. info = deliberately withheld data, not an error.",
   "items": [
     {
@@ -250,7 +250,7 @@
       "id": "F18",
       "severity": "low",
       "title": "The public product-spec register named the wrong submission sources and three guides that do not exist",
-      "what": "Until 2026-11-21, data/product-specs.json recorded submission_ids S01, S02/S03 and S04 for the three products. Those IDs are the Program Policies, the Operating Agreement, FTC guidance and the Art3d listing — not the submitted links, which are S10, S11 and S12. The same file carried guide_slug values for guides/peel-and-stick-tools.html, guides/adhesive-vs-drilled-mounts.html and guides/cabinet-pan-rack-fit.html, none of which has ever been published, and category_slug values that do not exist in data/site.json. The file is downloadable from /sources/.",
+      "what": "Until 2026-11-21, data/product-specs.json recorded submission_ids S01, S02/S03 and S04 for the three products. Those IDs are the Program Policies, the Operating Agreement, FTC guidance and the Art3d listing \u2014 not the submitted links, which are S10, S11 and S12. The same file carried guide_slug values for guides/peel-and-stick-tools.html, guides/adhesive-vs-drilled-mounts.html and guides/cabinet-pan-rack-fit.html, none of which has ever been published, and category_slug values that do not exist in data/site.json. The file is downloadable from /sources/.",
       "why_it_matters": "A reader, or an automated consumer of the register, would attribute the owner's submitted links to the wrong documents and follow guide paths that 404.",
       "sources": [
         "S10",
@@ -275,6 +275,35 @@
       "needs": "A later pass can re-read the technical tables for B0BSKQW2T2 and B08DY9HRWD and record it in each product's reverification block; F16 records the same gap from the other session's route.",
       "action": "data/product-specs.json records, per product, which fields were re-read, which were not, and that nothing changed. Rows not re-read keep their 2026-11-20 date.",
       "status": "needs review"
+    },
+    {
+      "id": "F20",
+      "severity": "low",
+      "title": "Landing-page flag counts were hardcoded and could drift from data/flagged.json",
+      "what": "The front page and the summary page printed fixed numbers of flagged items and specification rows. Those numbers matched on 2026-11-21 but would silently go stale the next time an item was added or closed.",
+      "why_it_matters": "A published count that does not match the register behind it is a factual error on a page whose whole argument is that counts are checkable.",
+      "sources": [
+        "S07"
+      ],
+      "needs": "Nothing further; fixed in the same build by deriving the counts from data/*.json.",
+      "action": "Every count on the generated pages is now computed from the data files at build time.",
+      "status": "needs review",
+      "updated": "2026-11-21"
+    },
+    {
+      "id": "F21",
+      "severity": "info",
+      "title": "Dynamic listing values observed on 2026-11-21 are recorded for audit but deliberately not published",
+      "what": "The three listings displayed a price, star rating, review count and 'bought in past month' line when read on 2026-11-21. Those observations are stored in data/products.json for provenance and are not rendered on any page.",
+      "why_it_matters": "Amazon permits price and availability display only through Amazon-served links or the Creators/PA API, and its terms restrict republishing review content without API access.",
+      "sources": [
+        "S01",
+        "S03"
+      ],
+      "needs": "Creators API credentials, or an Amazon-served link, before any price or rating can appear on the site.",
+      "action": "No price, rating, review count or availability figure appears on the site. The observation is kept as a dated audit record with this explanation.",
+      "status": "needs review",
+      "updated": "2026-11-21"
     }
   ]
 }

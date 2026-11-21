@@ -318,7 +318,27 @@ No pre-existing claims or site files were present. Work stays on the Arena-assig
 - **GitHub Pages Deployment:** Confirmed `status: "built"` for commit `e32d1e4b9556` at `2026-11-20T06:58:39Z` (`main:/`, HTTPS enforced).
 - **Live Verification:** Fetched and verified live public pages at `https://kanlerxz87-cyber.github.io/DIYHOME1/`, `/products/comparisons/`, `/automation/`, `/sources/`, and `/flagged/` — confirming above-the-fold and footer disclosures, `rel="sponsored nofollow noopener"` with tag `shopnow047c-20`, single `Site desk` masthead group (`SG-27`), 52-row product specification register (`niffgaff` verified via `S21`; absent `UPC` and `Date First Available` left blank and badged `Unverified`), 4 working-title countertop-appliance hypotheses, empty first-party campaign ledger, and zero broken links.
 
-### Merge resolution — 2026-11-21, `S-2026-11-21-B`
+---
+
+## Session `S-2026-11-21-G` — branch `arena/fe2b1ce4-diyhome1` (claim 2026-11-21T23:22Z; renamed from a provisional `…-B` label because `arena/0b735892-diyhome1` had already registered `S-2026-11-21-B`)
+
+Base: `706b8e2` (main, after PR #14). Single active session on this branch; no competing claims found in the table above.
+
+| Task ID | Task | Owner | File scope | Status |
+|---|---|---|---|---|
+| `T-B01` | Fresh live re-verification of the 3 supplied `link.amazon` short links + 3 resolved ASIN listings on 2026-11-21; record today's observed titles, redirect targets, and whether `tag=` is present in the observed redirect | `S-2026-11-21-G` | `data/products.json`, `data/product-intents.csv`, `data/product-specs.json` | in progress |
+| `T-B02` | Re-check the 6 spec fields previously left blank (`UPC/GTIN` ×2, `Date First Available` ×2) against today's listing "Product information" table; fill only if present, else keep blank + badged | `S-2026-11-21-G` | `data/product-specs.json` | in progress |
+| `T-B03` | Update F10 (commission schedule) — the public Standard Commission Income Statement is now readable without sign-in; record the verified category rates verbatim and keep SKU-level payout unverified | `S-2026-11-21-G` | `data/flagged.json`, `data/sources.json` | in progress |
+| `T-B04` | Landing page: lead with products (verified decision facts on each card), move the verification apparatus below the shop into one compact band so the front page reads as a publication, not an audit | `S-2026-11-21-G` | `scripts/build.mjs`, `assets/css/site.css` | in progress |
+| `T-B05` | Executive summary + release notes refresh (2026-11-21 re-verification, what changed, what is still blocked) | `S-2026-11-21-G` | `EXECUTIVE_SUMMARY.md`, `data/release.json`, `README.md` | in progress |
+| `T-B06` | Rebuild, run both gates (node + python), open PR, merge, confirm GitHub Pages deploy, record result here | `S-2026-11-21-G` | `main` (merge only) | in progress |
+
+Scope note: this session edits only the files listed above. It does not touch `scripts/content.mjs`, `scripts/validate.mjs`, `worker/**`, `platform/**`, or the archived editions.
+
+---
+
+### Log entries from other parallel sessions (preserved verbatim)
+### Merge resolution — 2026-11-21, `S-2026-11-21-G`
 
 `origin/main` advanced through PRs #15 and #18 (`S-2026-11-21-F`) while this session worked. The two sessions had overlapping scope in `data/sources.json` and `data/verified-sources.json`. Neither record was discarded:
 

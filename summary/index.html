@@ -45,8 +45,8 @@
   <div class="stat-grid">
     <div class="stat"><span class="n">3</span><span class="l">Products, each resolved from a supplied link to a live listing</span></div>
     <div class="stat"><span class="n">4</span><span class="l">Question-shaped guides, one per week of the issue</span></div>
-    <div class="stat"><span class="n">29</span><span class="l">Registered sources, 26 read, 3 not readable</span></div>
-    <div class="stat"><span class="n">19</span><span class="l">Items flagged for review (15 actionable, 4 withheld by design)</span></div>
+    <div class="stat"><span class="n">32</span><span class="l">Registered sources, 29 read, 3 not readable</span></div>
+    <div class="stat"><span class="n">21</span><span class="l">Items flagged for review (16 actionable, 5 withheld by design)</span></div>
   </div>
 
   <div class="prose">
@@ -66,6 +66,14 @@
       <li>No hands-on experience claims, because nothing was bought or used.</li>
       <li>No inferred catalog values: where <span class="mono">UPC</span> or <span class="mono">Date First Available</span> is absent from an official listing table, the cell stays blank and badged unverified.</li>
       <li>No search-volume or popularity claims for any guide title.</li>
+    </ul>
+
+    <h2>What the 21 November 2026 pass changed</h2>
+    <ul>
+      <li><strong>Short-link tracking, re-examined.</strong> All three supplied links were fetched again and resolved to the same ASINs. None carries the tag in its redirect, and Amazon's own help topic says the tracking ID is not expected to appear there because the session is tagged instead. <a class="src" href="https://www.rssboard.org/rss-specification" data-citation="true" target="_blank" rel="noopener" title="RSS 2.0 Specification (current version 2.0.11)">S27</a> That is why the flag is about the Associates report, not about the missing parameter.</li>
+      <li><strong>The ASIN definition is now first-party and public.</strong> Amazon defines the ASIN as its 10-digit item code and documents the link format used here. <a class="src" href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide" data-citation="true" target="_blank" rel="noopener" title="Search Engine Optimization (SEO) Starter Guide">S28</a></li>
+      <li><strong>Commission bands are public.</strong> Kitchen 4.50%, Home/Home Improvement/Tools 3.00%. <a class="src" href="https://www.ftc.gov/business-guidance/privacy-security" data-citation="true" target="_blank" rel="noopener" title="Privacy and Security — business guidance">S29</a> The band is not the payout, so no percentage is published and the ledger stays empty.</li>
+      <li><strong>Blanks now explain themselves.</strong> Every unverified field says what was checked and when &mdash; two listings expose no UPC, two expose no date first available.</li>
     </ul>
 
     <h2>What is still blocked</h2>
@@ -97,7 +105,7 @@
     <h2>Read next</h2>
     <ul>
       <li><a href="../sources/">Source register</a> &mdash; every source, SG-27..SG-30 passes, and 52 product spec rows</li>
-      <li><a href="../flagged/">Flagged for review</a> &mdash; 19 open items</li>
+      <li><a href="../flagged/">Flagged for review</a> &mdash; 21 open items</li>
       <li><a href="../automation/">Automation &amp; compliance gate</a> &mdash; CLI checks and policy gates</li>
       <li><a href="../about/">How we verify</a> &mdash; method, limits and the automation boundary</li>
       <li><a href="../disclosures/">Disclosures</a> &mdash; affiliate, privacy and data omissions</li>
@@ -118,7 +126,7 @@
     <div class="footer-legal">
       <p><strong>Affiliate disclosure:</strong> DIY Home Upgrades is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. As an Amazon Associate we earn from qualifying purchases. Every outbound link to Amazon on this site is a sponsored affiliate link and carries the tracking ID shopnow047c-20.</p>
       <p>Prices, star ratings, review counts and availability are not displayed on this site. See <a href="../disclosures/">Disclosures</a> for why, with the policy sources.</p>
-      <p>Amazon and Amazon.com are trademarks of Amazon.com, Inc. or its affiliates. This site is not endorsed by Amazon. Built 21 November 2026 from <a href="../sources/">29 registered sources</a>.</p>
+      <p>Amazon and Amazon.com are trademarks of Amazon.com, Inc. or its affiliates. This site is not endorsed by Amazon. Built 21 November 2026 from <a href="../sources/">32 registered sources</a>.</p>
     </div>
   </div>
 </footer>

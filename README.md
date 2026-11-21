@@ -2,6 +2,8 @@
 
 A small Amazon-associate publication for DIY home upgrades: three verified products, four question-shaped buying guides, and a source register behind every claim.
 
+Last full re-verification: **21 November 2026** — all three supplied short links, all three listings, the public commission schedule and two Associates help topics were re-read on that date. See `EXECUTIVE_SUMMARY.md` §0 for what changed.
+
 **Live site:** https://kanlerxz87-cyber.github.io/DIYHOME1/
 **Tracking ID:** `shopnow047c-20` (used on every outbound product link; enrolment not verified — see F01)
 
@@ -65,10 +67,10 @@ This repository has two editions, and only one is indexed:
 
 19 items are published at `/flagged/` with severity, what would close each one, and a source link. The actionable ones all need an account this build did not have:
 
-- **F01** Associates tracking for the three supplied short links is unconfirmed.
+- **F01** Associates tracking for the three supplied short links is unconfirmed — though the 21 Nov pass established, from Amazon's own help page, that a missing `tag=` in the redirect is not the test.
 - **F04** No Search Console verification token.
 - **F05** No analytics endpoint deployed, so the five events stay in the visitor's browser.
-- **F10** Commission rate card requires a sign-in, so no rate or revenue figure is published.
+- **F10** Category commission bands are now verified from a public Amazon page; per-SKU payout and conversion still need a first-party report, so no percentage or revenue figure is published.
 - **F13** The verification fetches did not identify themselves as an automated agent under Amazon's Agent Terms.
 - **F17** Two source registers used the same `S__` labels for different documents; the snapshot register is now `VS__`.
 - **F18** The public spec register named the wrong submission sources and pointed at guides that do not exist; corrected and gated.

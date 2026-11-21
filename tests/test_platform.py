@@ -146,9 +146,18 @@ class TestFinalIntegrationEngine(unittest.TestCase):
         self.assertEqual(report["errors"], [])
         self.assertEqual(report["products_checked"], 3)
         self.assertEqual(report["attribute_rows_verified"], 52)
-        self.assertEqual(report["canonical_sources_count"], 29)
         self.assertEqual(report["snapshot_sources_count"], 24)
         self.assertEqual(report["parallel_passes_count"], 4)
+        # The source register grows as sources are read; assert that the audit
+        # counted every registered source rather than pinning a stale number.
+        sources = json.loads((REPO_ROOT / "data" / "sources.json").read_text(encoding="utf-8"))
+        self.assertEqual(report["canonical_sources_count"], len(sources["sources"]))
+        self.assertGreaterEqual(report["canonical_sources_count"], 25)
+        # Every source must carry a resolvable https URL and an id.
+        ids = [s["id"] for s in sources["sources"]]
+        self.assertEqual(len(ids), len(set(ids)), "duplicate source id in data/sources.json")
+        for s in sources["sources"]:
+            self.assertTrue(s["url"].startswith("https://"), f"source {s['id']} is not https")
 
 
 if __name__ == "__main__":
