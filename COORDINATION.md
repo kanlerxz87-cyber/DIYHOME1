@@ -61,7 +61,7 @@ Note (S-2026-11-21-F): this session works on the Arena-assigned branch `arena/f4
 | T11 | Integration: merge to `main`, PR, Pages deploy, record result | S-2026-11-20-A | `main` (merge only) | done |
 | T12 | Fresh line-by-line re-verification 2026-11-21 against official sources; correct register wording drift (S23 quotes, S24 supports, SG-27/SG-28/SG-29) | S-2026-11-21-F | `data/sources.json`, `data/verified-sources.json`, generated `sources/index.html` (via build) | done |
 | T13 | Align `analytics-server/server.mjs` to the canonical 5-event contract (`data/events.json` + `worker/collect.js` + `assets/js/site.js` payload shape); add smoke test | S-2026-11-21-F | `analytics-server/server.mjs`, `tests/test_analytics_server.py` | done |
-| T14 | Integration: rebuild, validate, python tests, live-site check, PR to `main`, merge, Pages confirm, record result | S-2026-11-21-F | `main` (merge only) + generated files via build | in progress |
+| T14 | Integration: rebuild, validate, python tests, live-site check, PR to `main`, merge, Pages confirm, record result | S-2026-11-21-F | `main` (merge only) + generated files via build | done |
 
 `needs review` = published on the Flagged for Review page and does **not** block the merge.
 
@@ -330,3 +330,11 @@ No pre-existing claims or site files were present. Work stays on the Arena-assig
 - `analytics-server/server.mjs` accepted the archived Field & Fixture event names (`product_impression`, `outbound_affiliate_click`, `reader_capture_submit`) with `{event, page, meta}`. Live `assets/js/site.js` sends `{e, path, sid, …}` with the canonical five events — every live event would have been rejected (400). Rewrote the server to the canonical contract (same per-event allowlist + 2048-byte cap as `worker/collect.js`), `POST /collect` + `/api/events` alias, `GET /api/health`, `GET /api/summary`. Added `tests/test_analytics_server.py` (6 tests). Full suite 16/16. Endpoint still not deployed (F05 open); ledger still empty.
 
 **Checks:** `node scripts/build.mjs` (23 pages) + `node scripts/validate.mjs` (16/16; 288 Amazon links: 38 sponsored, 257 citations; single tag `shopnow047c-20`) + `python3 -m unittest discover -s tests` (16/16).
+
+### 2026-11-21 — S-2026-11-21-F — T14 integration result
+
+- **Pull Request:** [PR #15](https://github.com/kanlerxz87-cyber/DIYHOME1/pull/15) (`arena/f4d33765-diyhome1` → `main`)
+- **Merge Outcome:** `MERGED` at `2026-11-21T23:20:52Z` · Merge commit `cef3a9c2cd797e5fa242f4e70392e1ff55dfb3b6` (both CI workflows green: `build-and-validate`, `verify`).
+- **GitHub Pages Deployment:** Confirmed `status: "built"` for commit `cef3a9c2` (`main:/`, HTTPS enforced). Live `/sources/` fetched and confirmed showing `Retrieved 2026-11-21` for the re-read sources; live `/` confirmed with above-fold disclosure and tagged Sponsored links.
+- **Live site:** https://kanlerxz87-cyber.github.io/DIYHOME1/
+- Flagged items (F01, F04, F05, F10, F13, …) remain published at `/flagged/` and did not block the merge, per the board rules.
