@@ -558,3 +558,13 @@ Claimed before editing (see this branch's earlier commit history on `arena/818bf
 - Also made the page internally consistent: the summary now states that short links 1 and 3 carry a 21 November retrieval and short link 2 is dated 20 November, instead of one bullet saying they were all re-fetched and another saying none were.
 - **Follow-up PR** carries F22, the citation fixes and the release record for PR #20 (this session pushes only to its own branch).
 - **Not verified, not claimed:** Associates attribution, Search Console indexing, analytics collection, signed-in commission rates. All remain on `/flagged/`.
+
+### 2026-11-21 — `arena-818bfb73` — follow-up PR #26 merged; deployment confirmed
+
+- **Pull request:** [#26](https://github.com/kanlerxz87-cyber/DIYHOME1/pull/26) — MERGED at `2026-11-21T23:33:57Z`, merge commit `96cb28d328e3f22b520317acfff10b92ea33b7d5`. Both CI workflows green before merge (`build-and-validate`, `verify`).
+- **GitHub Pages:** `status: built` for commit `96cb28d` (`main:/`, legacy, HTTPS enforced).
+- **Live verification after deploy** (public fetches with a cache-busting parameter):
+  - `/summary/` — cites **S30** (<https://affiliate-program.amazon.com/help/node/topic/GFZ6X2S7P8EVNGN2>), **S24** (<https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC>) and **S23** (<https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ>) for the sentences they actually support; "Second pass, 21 November 2026" section present; release record shows PR #20 / `760c321` / Pages built; 22 flagged items.
+  - `/sources/` — 32 sources, new **Re-checked** column populated per source (e.g. S04/S05/S06 read 2026-11-21, S11 dated 2026-11-20 with no re-check).
+  - `/` — the tracking badge now resolves to S30 and the commission badge to S23; F22 appears on `/flagged/`.
+- **Board status:** all tasks claimed by this session are closed for the work it controlled. Anything requiring account access (Associates enrolment/attribution F01 & F12, Search Console F04, analytics host F05, signed-in rate card F10) is published on `/flagged/` with the link that would close it, and does not block publication.

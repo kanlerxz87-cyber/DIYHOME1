@@ -7,5 +7,9 @@
   "pages_status": "built \u2014 Pages reported status 'built' for commit 760c321625de at 2026-11-21T23:32:02Z (legacy, main:/); live /sources/ and /summary/ fetched and confirmed",
   "pages_build_type": "legacy",
   "pages_source": "main:/",
-  "notes": "Filled in by the integration session after the merge. Empty fields are genuinely unknown, not zero."
+  "notes": "Filled in by the integration session after the merge. Empty fields are genuinely unknown, not zero.",
+  "follow_up_pr": "https://github.com/kanlerxz87-cyber/DIYHOME1/pull/26",
+  "follow_up_merge_commit": "96cb28d328e3f22b520317acfff10b92ea33b7d5",
+  "follow_up_merged_at": "2026-11-21T23:33:57Z",
+  "follow_up_pages_status": "built \u2014 Pages reported status 'built' for commit 96cb28d; live /summary/ re-fetched and confirmed citing S30, S24 and S23 with 22 flags"
 }
