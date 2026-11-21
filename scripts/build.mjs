@@ -33,6 +33,12 @@ const tagged = (asin) => `https://www.amazon.com/dp/${asin}?tag=${TAG}`;
 const abs = (p) => BASE + p;
 const catOf = (slug) => CATS.find((c) => c.slug === slug);
 const productsIn = (slug) => products.filter((p) => p.category === slug);
+const productsForGuide = (g) => {
+  if (Array.isArray(g.product_slugs) && g.product_slugs.length) {
+    return g.product_slugs.map((slug) => products.find((p) => p.slug === slug)).filter(Boolean);
+  }
+  return productsIn(g.category);
+};
 const guidesIn = (slug) => guideMeta.filter((g) => g.category === slug);
 
 function srcBadge(id, depth, label) {
@@ -510,7 +516,7 @@ ${gs.length ? `<section class="block"><div class="wrap">
 </div></section>` : ""}
 <section class="block"><div class="wrap">
   <div class="section-head"><div><h2>What is not in this category page</h2></div></div>
-  <div class="callout warn"><p>No prices, no star ratings, no review counts, no &ldquo;best of&rdquo; ranking. There is one verified product in this category as of ${esc(site.built_display)}${items.length > 1 ? ` (${items.length} here)` : ""}, which is not enough to rank anything. ${srcBadge("S01", 1)}</p></div>
+  <div class="callout warn"><p>No prices, no star ratings, no review counts, no &ldquo;best of&rdquo; ranking. ${items.length === 1 ? "There is one verified product" : `There are ${items.length} verified products`} in this category as of ${esc(site.built_display)}, which is not enough to rank anything. ${srcBadge("S01", 1)}</p></div>
 </div></section>`;
 
   add(`products/${cat.slug}/index.html`, layout({
@@ -737,14 +743,17 @@ ${gs.length ? `<section class="block"><div class="wrap">
       <thead><tr><th scope="col">Week</th><th scope="col">Guide</th><th scope="col">Category</th><th scope="col">Reader intent</th><th scope="col">Published</th><th scope="col">Source</th></tr></thead>
       <tbody>
         ${guideMeta.map((g) => {
-          const relProd = productsIn(g.category)[0];
+          const relProds = productsForGuide(g);
+          const badges = relProds.length
+            ? [...new Set(relProds.map((rp) => rp.confirmation_source))].map((id) => srcBadge(id, 1)).join(" ")
+            : srcBadge("S01", 1);
           return `<tr>
           <td class="num">${g.week}</td>
           <td><a href="${g.slug}/"><strong>${esc(g.title)}</strong></a></td>
           <td><a href="../products/${g.category}/">${esc(catOf(g.category).name)}</a></td>
           <td>${esc(g.intent)}</td>
           <td>${esc(g.published)}</td>
-          <td>${relProd ? srcBadge(relProd.confirmation_source, 1) : srcBadge("S01", 1)}</td>
+          <td>${badges}</td>
         </tr>`;
         }).join("")}
       </tbody>
@@ -806,7 +815,7 @@ ${gs.length ? `<section class="block"><div class="wrap">
 for (const g of guideMeta) {
   const copy = guideCopy[g.slug];
   const cat = catOf(g.category);
-  const prod = productsIn(g.category)[0];
+  const relProds = productsForGuide(g);
   const others = guideMeta.filter((x) => x.slug !== g.slug).slice(0, 3);
   const body = `
 <div class="wrap page-head">
@@ -829,9 +838,9 @@ for (const g of guideMeta) {
     <p>${esc(g.next_step)}</p>
   </div>
 </section>
-${prod ? `<section class="block"><div class="wrap">
-  <div class="section-head"><div><h2>The product this guide relates to</h2><p>One verified listing in this category. Not a recommendation, a reference point.</p></div></div>
-  <div class="shelf">${productCard(prod, 2)}</div>
+${relProds.length ? `<section class="block"><div class="wrap">
+  <div class="section-head"><div><h2>${relProds.length === 1 ? "The product this guide relates to" : "Products this guide relates to"}</h2><p>${relProds.length === 1 ? "One verified listing in this category. Not a recommendation, a reference point." : `${relProds.length} verified listings in this category. Not a ranking, a set of reference points.`}</p></div></div>
+  <div class="shelf">${relProds.map((rp) => productCard(rp, 2)).join("")}</div>
 </div></section>` : ""}
 <section class="block"><div class="wrap">
   <div class="section-head"><div><h2>More guides</h2></div><a class="more" href="../../guides/">All guides &rarr;</a></div>
@@ -879,15 +888,15 @@ ${prod ? `<section class="block"><div class="wrap">
     <h2>The five steps</h2>
     <ol>
       <li><strong>Resolve the link.</strong> Each supplied link is fetched once, and the final URL and page title are recorded. The redirect target is stored in its own field, never merged with the intended ASIN.</li>
-      <li><strong>Read the listing.</strong> The listing title and category breadcrumb are copied verbatim, with the retrieval date. Those are the only product attributes this site publishes.</li>
+      <li><strong>Read the listing.</strong> The listing title, category breadcrumb, and explicitly stated Product Information / Technical Details fields (such as brand, model number, dimensions, weight, and UPC when present) are copied verbatim, with the retrieval date.</li>
       <li><strong>Record the source.</strong> Every row carries an ID that maps to a URL in the <a href="../sources/">source register</a>.</li>
       <li><strong>Refuse the rest.</strong> Prices, star ratings, review counts, availability, commission rates and images are not published, because this site has no sanctioned route to them.</li>
       <li><strong>Flag the gap.</strong> Anything unverified is written up at <a href="../flagged/">Flagged for review</a> with what it needs.</li>
     </ol>
 
     <h2>What &ldquo;verified&rdquo; means here, and what it does not</h2>
-    <p><strong>Verified</strong> means: on the date shown, a fetch returned a live listing page whose title and breadcrumb matched what is published here. That is all it means. It does not mean the product is good, that the price is what you will pay, or that the listing will still exist next month.</p>
-    <p><strong>Not verified</strong> means the value is blank, or the sentence says so explicitly. Inference is not used to fill a gap. If a brand does not appear in a listing title, the brand column stays empty.</p>
+    <p><strong>Verified</strong> means: on the date shown, a fetch returned a live listing page whose title, breadcrumb, and Product Information fields matched what is published here. That is all it means. It does not mean the product is good, that the price is what you will pay, or that the listing will still exist next month.</p>
+    <p><strong>Not verified</strong> means the value is blank, or the sentence says so explicitly. Inference is not used to fill a gap. Where a UPC or Date First Available is absent from an official listing table, that cell stays blank and badged unverified.</p>
 
     <h2>Why the shop has no prices or star ratings</h2>
     <p>Amazon&rsquo;s Associates Program Policies allow a site to show prices and availability only if Amazon serves the link containing that data, or if the data comes from the Creators API or PA API. Customer reviews and star ratings are restricted the same way. This site has neither an API licence nor an Amazon-served widget, so those numbers are omitted. ${srcBadge("S01", 2)}</p>
@@ -954,13 +963,13 @@ ${prod ? `<section class="block"><div class="wrap">
     <ul>
       <li><strong>A strip directly under the masthead</strong> on every page, above the content, marked <em>Sponsored</em>, with a link to this page.</li>
       <li><strong>Repeated in the footer</strong> of every page, in the affiliate paragraph.</li>
-      <li><strong>On the link itself</strong>: every outbound Amazon link is labelled <em>Sponsored</em> and carries <span class="mono">rel="sponsored nofollow noopener"</span>.</li>
+      <li><strong>On the link itself</strong>: every outbound product link to Amazon is labelled <em>Sponsored</em> and carries <span class="mono">rel="sponsored nofollow noopener"</span> per Google&rsquo;s outbound link qualification guidance. ${srcBadge("S27", 1)}</li>
     </ul>
     <p>FTC guidance asks for a disclosure that is hard to miss, placed with the endorsement rather than only on an about page, in simple language such as &ldquo;advertisement&rdquo;, &ldquo;ad&rdquo; or &ldquo;sponsored&rdquo;. That is why the strip sits under the masthead rather than in a footer-only position, and why the word used is <em>Sponsored</em>. ${srcBadge("S03", 2)}</p>
     <p>Amazon&rsquo;s program terms also require Associates to satisfy applicable disclosure law and to disclose cookies, pixels and third-party data collection accurately. This site sets no cookies and makes no third-party requests, which is stated on the <a href="../measurement/">measurement page</a>. ${srcBadge("S01", 2)}</p>
 
     <h2>How links are built</h2>
-    <p>Outbound links go to <span class="mono">https://www.amazon.com/dp/&lt;ASIN&gt;?tag=${esc(TAG)}</span>. Amazon&rsquo;s Participation Requirements require the Associates tag to appear as a parameter in the link URL. ${srcBadge("S01", 2)}</p>
+    <p>Outbound product links go to <span class="mono">https://www.amazon.com/dp/&lt;ASIN&gt;?tag=${esc(TAG)}</span>. Amazon&rsquo;s Participation Requirements require the Associates tag to appear as a parameter in the link URL. ${srcBadge("S01", 2)} ${srcBadge("S24", 1)}</p>
     <p>No redirector, cloaker or link shortener sits in front of these links, and clicks are not intercepted: a click is recorded and the browser navigates straight to Amazon. Amazon&rsquo;s policies prohibit obscuring the URL containing Special Links, and prohibit shortening links in a way that makes it unclear you are linking to an Amazon Site. ${srcBadge("S01", 2)}</p>
     <p>The three short links supplied by the site owner are published only as provenance records on the product pages and in the <a href="../ledger/">ledger</a>, labelled as unvalidated. They are not used as the call to action. The reasons are on <a href="../flagged/#F01">F01</a>.</p>
 
@@ -970,8 +979,8 @@ ${prod ? `<section class="block"><div class="wrap">
         <caption>Omitted data and the rule that drives the omission.</caption>
         <thead><tr><th scope="col">Data</th><th scope="col">Status</th><th scope="col">Reason and source</th></tr></thead>
         <tbody>
-          <tr><td>Prices and availability</td><td>Not published</td><td>Only via Amazon-served links or Creators/PA API ${srcBadge("S01", 2)}</td></tr>
-          <tr><td>Star ratings and customer reviews</td><td>Not published</td><td>Only via Creators/PA API ${srcBadge("S01", 2)}</td></tr>
+          <tr><td>Prices and availability</td><td>Not published</td><td>Only via Amazon-served links or Creators API (PA-API 5.0 deprecated) ${srcBadge("S01", 2)} ${srcBadge("S26", 1)}</td></tr>
+          <tr><td>Star ratings and customer reviews</td><td>Not published</td><td>Only via Creators API (PA-API 5.0 deprecated) ${srcBadge("S01", 2)} ${srcBadge("S26", 1)}</td></tr>
           <tr><td>Price tracking or price alerts</td><td>Not built</td><td>Not permitted without agreement ${srcBadge("S01", 2)}</td></tr>
           <tr><td>Product photos and Amazon marks</td><td>Not used</td><td>Program content carries its own licence ${srcBadge("S01", 2)} ${srcBadge("S02", 2)}</td></tr>
           <tr><td>Commission rates and earnings</td><td>Not published</td><td>Account custom rate card requires sign-in ${srcBadge("S17", 1)}; public standard table cited only as category bounds ${srcBadge("S23", 1)}</td></tr>
@@ -1083,7 +1092,6 @@ ${prod ? `<section class="block"><div class="wrap">
 </div>`;
 
   add("sources/index.html", layout({
-    twelve: 0,
     title: `Source register — ${sourceList.length} official sources | ${site.name}`,
     description: "Every source behind this site: Amazon Associates policies and operating agreement, FTC disclosure guidance, Google and GitHub documentation, and the live Amazon listings.",
     depth: 1,
@@ -1204,7 +1212,7 @@ ${prod ? `<section class="block"><div class="wrap">
 
   <h2 style="margin-top:30px">To turn collection on</h2>
   <ol class="prose" style="max-width:72ch">
-    <li>Deploy the collector in <a href="../worker/collect.js">worker/collect.js</a> (Cloudflare Worker) or any endpoint that accepts the JSON contract above.</li>
+    <li>Deploy either the Cloudflare Worker collector in <a href="../worker/collect.js">worker/collect.js</a> or the self-hosted Node.js collector in <a href="../analytics-server/server.mjs">analytics-server/server.mjs</a> (both accept <span class="mono">POST /collect</span> with the JSON contract above).</li>
     <li>Put that URL in <span class="mono">data/site.json</span> under <span class="mono">analytics.endpoint</span>, then run <span class="mono">node scripts/build.mjs</span>. The value is written into <span class="mono">assets/js/config.js</span> at build time.</li>
     <li>Reload the site: events are sent with <span class="mono">navigator.sendBeacon</span>, so they survive the outbound click.</li>
     <li>Add a dated row to the <a href="../ledger/">campaign ledger</a> once a first-party report exists. Until then the ledger stays empty.</li>
@@ -1345,7 +1353,7 @@ ${prod ? `<section class="block"><div class="wrap">
         <tr><td><strong>2. Special Link tagging &amp; short-link boundary</strong></td><td>Automated + Associates gate</td><td>Formats outbound product links as <span class="mono">dp/&lt;ASIN&gt;?tag=${esc(TAG)}</span> without cloaking; records supplied <span class="mono">link.amazon</span> URLs as unresolved rather than claiming invalidity (<a href="../flagged/#F01">F01</a>).</td><td><span class="badge warn">Enrolment pending</span></td><td>${srcBadge("S01", 1)} ${srcBadge("S02", 1)}</td></tr>
         <tr><td><strong>3. Above-fold &amp; footer disclosures</strong></td><td>Automated (<span class="mono">validate.mjs</span>)</td><td>Requires the masthead Sponsored disclosure strip above the fold and the footer affiliate disclosure on 100% of pages.</td><td><span class="badge ok">Passing</span></td><td>${srcBadge("S03", 1)} ${srcBadge("S02", 1)}</td></tr>
         <tr><td><strong>4. Line-by-line source &amp; blank-field audit</strong></td><td>Automated (<span class="mono">platform_engine.py</span>)</td><td>Requires an official <span class="mono">https://</span> citation on every table row and keeps unverified attributes blank.</td><td><span class="badge ok">Passing</span></td><td>${srcBadge("S03", 1)}</td></tr>
-        <tr><td><strong>5. Creators API price, rating &amp; image gate</strong></td><td>Policy gate (<span class="mono">creators_api_client.py</span>)</td><td>Blocks static prices, ratings, and hotlinked Amazon images; enforces &le;24h UTC-stamped cache TTL once Creators API credentials are added.</td><td><span class="badge warn">Gated (F07/F09)</span></td><td>${srcBadge("S01", 1)} ${srcBadge("S18", 1)}</td></tr>
+        <tr><td><strong>5. Creators API price, rating &amp; image gate</strong></td><td>Policy gate (<span class="mono">creators_api_client.py</span>)</td><td>Blocks static prices, ratings, and hotlinked Amazon images; enforces &le;24h UTC-stamped cache TTL once Creators API credentials are added (PA-API 5.0 deprecated).</td><td><span class="badge warn">Gated (F07/F09)</span></td><td>${srcBadge("S01", 1)} ${srcBadge("S18", 1)} ${srcBadge("S26", 1)}</td></tr>
         <tr><td><strong>6. Agent user-agent &amp; crawl discipline</strong></td><td>Policy gate (<a href="../flagged/#F13">F13</a>)</td><td>Requires <span class="mono">Agent/[agent name]</span> user-agent identification and non-circumvention on any future automated Amazon fetches.</td><td><span class="badge warn">Documented</span></td><td>${srcBadge("S01", 1)}</td></tr>
         <tr><td><strong>7. Evidence-only campaign ledger</strong></td><td>Automated (<span class="mono">validate.mjs</span> + <span class="mono">ci.yml</span>)</td><td>Enforces empty ledger until authorized Associates reports exist; rejects fabricated conversion scores or revenue forecasts.</td><td><span class="badge ok">Passing</span></td><td>${srcBadge("S17", 1)} ${srcBadge("S23", 1)}</td></tr>
       </tbody>

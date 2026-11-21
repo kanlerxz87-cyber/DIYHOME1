@@ -271,10 +271,44 @@ for (const p of products) {
 ok("Products checked", String(products.length));
 
 for (const g of guideMeta) {
-  if (!fs.existsSync(path.join(ROOT, "guides", g.slug, "index.html"))) err(`guide page not built: ${g.slug}`);
+  const guideHtmlPath = path.join(ROOT, "guides", g.slug, "index.html");
+  if (!fs.existsSync(guideHtmlPath)) err(`guide page not built: ${g.slug}`);
   if (!/[?]$/.test(g.title)) err(`guide title is not question-shaped: ${g.title}`);
+  if (!Array.isArray(g.product_slugs) || !g.product_slugs.length) {
+    err(`guide ${g.slug}: missing product_slugs mapping`);
+  } else {
+    const guideHtml = fs.existsSync(guideHtmlPath) ? fs.readFileSync(guideHtmlPath, "utf8") : "";
+    for (const ps of g.product_slugs) {
+      if (!prodSlugs.has(ps)) err(`guide ${g.slug}: product_slugs cites unknown product ${ps}`);
+      if (guideHtml && !guideHtml.includes(`products/${ps}/`)) {
+        err(`guide ${g.slug}: built HTML does not link to assigned product ${ps}`);
+      }
+    }
+  }
 }
 ok("Guides checked", String(guideMeta.length));
+
+/* product-specs.json guide_slug links must resolve */
+const productSpecs = readJson("data/product-specs.json").products;
+for (const spec of productSpecs) {
+  if (spec.guide_slug) {
+    const target = spec.guide_slug.endsWith("/")
+      ? path.join(ROOT, spec.guide_slug, "index.html")
+      : path.join(ROOT, spec.guide_slug);
+    if (!fs.existsSync(target)) err(`product-specs.json (${spec.observed_asin}): broken guide_slug ${spec.guide_slug}`);
+  }
+}
+ok("Product spec guide references checked", String(productSpecs.length));
+
+/* privacy and XSS regression checks on assets/js/site.js */
+const siteJs = fs.readFileSync(path.join(ROOT, "assets/js/site.js"), "utf8");
+if (!/function record\([^)]*\)\s*\{\s*if\s*\(!trackingAllowed\(\)\)\s*return\s+null;/.test(siteJs)) {
+  err("assets/js/site.js: record() must enforce trackingAllowed() so DNT/GPC records nothing");
+}
+if (/tr\.innerHTML\s*=/.test(siteJs)) {
+  err("assets/js/site.js: localEvents() must not assign tr.innerHTML (prevents XSS via stored query)");
+}
+ok("Client script privacy & XSS guards checked");
 
 const fIds = new Set();
 for (const f of flagged) {

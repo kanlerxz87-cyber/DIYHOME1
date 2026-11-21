@@ -46,15 +46,15 @@
     <h2>The five steps</h2>
     <ol>
       <li><strong>Resolve the link.</strong> Each supplied link is fetched once, and the final URL and page title are recorded. The redirect target is stored in its own field, never merged with the intended ASIN.</li>
-      <li><strong>Read the listing.</strong> The listing title and category breadcrumb are copied verbatim, with the retrieval date. Those are the only product attributes this site publishes.</li>
+      <li><strong>Read the listing.</strong> The listing title, category breadcrumb, and explicitly stated Product Information / Technical Details fields (such as brand, model number, dimensions, weight, and UPC when present) are copied verbatim, with the retrieval date.</li>
       <li><strong>Record the source.</strong> Every row carries an ID that maps to a URL in the <a href="../sources/">source register</a>.</li>
       <li><strong>Refuse the rest.</strong> Prices, star ratings, review counts, availability, commission rates and images are not published, because this site has no sanctioned route to them.</li>
       <li><strong>Flag the gap.</strong> Anything unverified is written up at <a href="../flagged/">Flagged for review</a> with what it needs.</li>
     </ol>
 
     <h2>What &ldquo;verified&rdquo; means here, and what it does not</h2>
-    <p><strong>Verified</strong> means: on the date shown, a fetch returned a live listing page whose title and breadcrumb matched what is published here. That is all it means. It does not mean the product is good, that the price is what you will pay, or that the listing will still exist next month.</p>
-    <p><strong>Not verified</strong> means the value is blank, or the sentence says so explicitly. Inference is not used to fill a gap. If a brand does not appear in a listing title, the brand column stays empty.</p>
+    <p><strong>Verified</strong> means: on the date shown, a fetch returned a live listing page whose title, breadcrumb, and Product Information fields matched what is published here. That is all it means. It does not mean the product is good, that the price is what you will pay, or that the listing will still exist next month.</p>
+    <p><strong>Not verified</strong> means the value is blank, or the sentence says so explicitly. Inference is not used to fill a gap. Where a UPC or Date First Available is absent from an official listing table, that cell stays blank and badged unverified.</p>
 
     <h2>Why the shop has no prices or star ratings</h2>
     <p>Amazon&rsquo;s Associates Program Policies allow a site to show prices and availability only if Amazon serves the link containing that data, or if the data comes from the Creators API or PA API. Customer reviews and star ratings are restricted the same way. This site has neither an API licence nor an Amazon-served widget, so those numbers are omitted. <a class="src" href="https://affiliate-program.amazon.com/help/operating/policies" data-citation="true" target="_blank" rel="noopener" title="Amazon Associates Program Policies">S01</a></p>
@@ -100,9 +100,9 @@
       <nav class="footer-nav" aria-label="Site sections and data"><div><h2>Shop</h2><ul><li><a href="../products/">All products</a></li><li><a href="../products/wallpaper-tools/">Wallpaper & surface prep</a></li><li><a href="../products/kitchen-storage/">Under-cabinet storage</a></li><li><a href="../products/comparisons/">Side-by-side comparisons</a></li><li><a href="../guides/">Guides</a></li><li><a href="../search/">Search</a></li></ul></div><div><h2>Verification</h2><ul><li><a href="../sources/">Source register</a></li><li><a href="../flagged/">Flagged for review</a></li><li><a href="../automation/">Automation & compliance gate</a></li><li><a href="../about/">How we verify</a></li><li><a href="../disclosures/">Disclosures</a></li></ul></div><div><h2>Data & Editions</h2><ul><li><a href="../summary/">Executive summary</a></li><li><a href="../ledger/">Product-intent & campaign ledger</a></li><li><a href="../measurement/">Measurement & events</a></li><li><a href="../archive/practical-home/">Practical Home edition (archived)</a></li><li><a href="../archive/field-and-fixture/">Field & Fixture edition (archived)</a></li><li><a href="../sitemap.xml">sitemap.xml</a></li><li><a href="../feed.xml">feed.xml</a></li></ul></div></nav>
     </div>
     <div class="footer-legal">
-      <p><strong>Affiliate disclosure:</strong> DIY Home Upgrades is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. As an Amazon Associate we earn from qualifying purchases. Every outbound link to Amazon on this site is a sponsored affiliate link and carries the tracking ID shopnow047c-20.</p>
+      <p><strong>Affiliate disclosure:</strong> DIY Home Upgrades is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. As an Amazon Associate we earn from qualifying purchases. Every outbound product link to Amazon on this site is marked Sponsored and carries the tracking ID shopnow047c-20 (evidence citations in the source register link to bare official pages without affiliate tags).</p>
       <p>Prices, star ratings, review counts and availability are not displayed on this site. See <a href="../disclosures/">Disclosures</a> for why, with the policy sources.</p>
-      <p>Amazon and Amazon.com are trademarks of Amazon.com, Inc. or its affiliates. This site is not endorsed by Amazon. Built 20 November 2026 from <a href="../sources/">25 registered sources</a>.</p>
+      <p>Amazon and Amazon.com are trademarks of Amazon.com, Inc. or its affiliates. This site is not endorsed by Amazon. Built 21 November 2026 from <a href="../sources/">27 registered sources</a>.</p>
     </div>
   </div>
 </footer>

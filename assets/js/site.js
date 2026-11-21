@@ -70,6 +70,7 @@
   /* ---------- the five events ---------- */
 
   function record(name, payload) {
+    if (!trackingAllowed()) return null;
     var row = {
       e: name,
       ts: new Date().toISOString(),
@@ -323,10 +324,18 @@
         ["asin", "slug", "query", "result_count", "referrer_class", "position", "depth"].forEach(function (k) {
           if (row[k] !== undefined && row[k] !== "") detail.push(k + ": " + row[k]);
         });
-        tr.innerHTML = "<td class=\"mono\">" + (row.ts || "").replace("T", " ").slice(0, 19) +
-          "</td><td class=\"mono\">" + row.e +
-          "</td><td class=\"mono\">" + (row.path || "") +
-          "</td><td>" + (detail.join(" \u00b7 ") || "\u2014") + "</td>";
+        var cells = [
+          { text: String(row.ts || "").replace("T", " ").slice(0, 19), mono: true },
+          { text: String(row.e || ""), mono: true },
+          { text: String(row.path || ""), mono: true },
+          { text: detail.join(" \u00b7 ") || "\u2014", mono: false }
+        ];
+        cells.forEach(function (c) {
+          var td = document.createElement("td");
+          if (c.mono) td.className = "mono";
+          td.textContent = c.text;
+          tr.appendChild(td);
+        });
         body.appendChild(tr);
       });
       table.appendChild(head);

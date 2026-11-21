@@ -106,7 +106,7 @@
 
   <h2 style="margin-top:30px">To turn collection on</h2>
   <ol class="prose" style="max-width:72ch">
-    <li>Deploy the collector in <a href="../worker/collect.js">worker/collect.js</a> (Cloudflare Worker) or any endpoint that accepts the JSON contract above.</li>
+    <li>Deploy either the Cloudflare Worker collector in <a href="../worker/collect.js">worker/collect.js</a> or the self-hosted Node.js collector in <a href="../analytics-server/server.mjs">analytics-server/server.mjs</a> (both accept <span class="mono">POST /collect</span> with the JSON contract above).</li>
     <li>Put that URL in <span class="mono">data/site.json</span> under <span class="mono">analytics.endpoint</span>, then run <span class="mono">node scripts/build.mjs</span>. The value is written into <span class="mono">assets/js/config.js</span> at build time.</li>
     <li>Reload the site: events are sent with <span class="mono">navigator.sendBeacon</span>, so they survive the outbound click.</li>
     <li>Add a dated row to the <a href="../ledger/">campaign ledger</a> once a first-party report exists. Until then the ledger stays empty.</li>
@@ -148,9 +148,9 @@
       <nav class="footer-nav" aria-label="Site sections and data"><div><h2>Shop</h2><ul><li><a href="../products/">All products</a></li><li><a href="../products/wallpaper-tools/">Wallpaper & surface prep</a></li><li><a href="../products/kitchen-storage/">Under-cabinet storage</a></li><li><a href="../products/comparisons/">Side-by-side comparisons</a></li><li><a href="../guides/">Guides</a></li><li><a href="../search/">Search</a></li></ul></div><div><h2>Verification</h2><ul><li><a href="../sources/">Source register</a></li><li><a href="../flagged/">Flagged for review</a></li><li><a href="../automation/">Automation & compliance gate</a></li><li><a href="../about/">How we verify</a></li><li><a href="../disclosures/">Disclosures</a></li></ul></div><div><h2>Data & Editions</h2><ul><li><a href="../summary/">Executive summary</a></li><li><a href="../ledger/">Product-intent & campaign ledger</a></li><li><a href="../measurement/">Measurement & events</a></li><li><a href="../archive/practical-home/">Practical Home edition (archived)</a></li><li><a href="../archive/field-and-fixture/">Field & Fixture edition (archived)</a></li><li><a href="../sitemap.xml">sitemap.xml</a></li><li><a href="../feed.xml">feed.xml</a></li></ul></div></nav>
     </div>
     <div class="footer-legal">
-      <p><strong>Affiliate disclosure:</strong> DIY Home Upgrades is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. As an Amazon Associate we earn from qualifying purchases. Every outbound link to Amazon on this site is a sponsored affiliate link and carries the tracking ID shopnow047c-20.</p>
+      <p><strong>Affiliate disclosure:</strong> DIY Home Upgrades is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. As an Amazon Associate we earn from qualifying purchases. Every outbound product link to Amazon on this site is marked Sponsored and carries the tracking ID shopnow047c-20 (evidence citations in the source register link to bare official pages without affiliate tags).</p>
       <p>Prices, star ratings, review counts and availability are not displayed on this site. See <a href="../disclosures/">Disclosures</a> for why, with the policy sources.</p>
-      <p>Amazon and Amazon.com are trademarks of Amazon.com, Inc. or its affiliates. This site is not endorsed by Amazon. Built 20 November 2026 from <a href="../sources/">25 registered sources</a>.</p>
+      <p>Amazon and Amazon.com are trademarks of Amazon.com, Inc. or its affiliates. This site is not endorsed by Amazon. Built 21 November 2026 from <a href="../sources/">27 registered sources</a>.</p>
     </div>
   </div>
 </footer>

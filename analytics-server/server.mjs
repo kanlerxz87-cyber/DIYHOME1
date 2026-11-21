@@ -19,10 +19,21 @@ const LOG_FILE = path.resolve(
 
 export const ALLOWED_EVENTS = new Set([
   "page_view",
+  "disclosure_view",
+  "outbound_click",
+  "site_search",
   "guide_read",
   "product_impression",
   "outbound_affiliate_click",
   "reader_capture_submit"
+]);
+
+export const CANONICAL_EVENTS = new Set([
+  "page_view",
+  "disclosure_view",
+  "outbound_click",
+  "site_search",
+  "guide_read"
 ]);
 
 function sendJson(res, status, payload) {
@@ -34,6 +45,50 @@ function sendJson(res, status, payload) {
     "Access-Control-Allow-Headers": "Content-Type"
   });
   res.end(body);
+}
+
+export function validateCanonicalPayload(data) {
+  if (!data || typeof data !== "object" || Array.isArray(data)) {
+    return { ok: false, error: "Payload must be a JSON object." };
+  }
+  const e = typeof data.e === "string" ? data.e.slice(0, 32) : "";
+  if (!CANONICAL_EVENTS.has(e)) {
+    return {
+      ok: false,
+      error: `Invalid event. Allowed: ${Array.from(CANONICAL_EVENTS).join(", ")}`
+    };
+  }
+  const eventPath = typeof data.path === "string" ? data.path.slice(0, 200) : "";
+  if (!eventPath) {
+    return { ok: false, error: "Field 'path' must be a non-empty path string." };
+  }
+  const record = {
+    e,
+    event: e,
+    ts: typeof data.ts === "string" ? data.ts.slice(0, 32) : new Date().toISOString(),
+    path: eventPath,
+    sid: typeof data.sid === "string" ? data.sid.slice(0, 64) : null,
+    site: typeof data.site === "string" ? data.site.slice(0, 32) : "diyhome1"
+  };
+  if (e === "page_view" && typeof data.referrer_class === "string") {
+    record.referrer_class = data.referrer_class.slice(0, 16);
+  }
+  if (e === "outbound_click") {
+    record.asin = typeof data.asin === "string" ? data.asin.slice(0, 16) : null;
+    record.link_kind = typeof data.link_kind === "string" ? data.link_kind.slice(0, 16) : "product";
+  }
+  if (e === "site_search") {
+    record.query = typeof data.query === "string" ? data.query.slice(0, 120) : "";
+    record.result_count = Number.isFinite(data.result_count) ? data.result_count : null;
+  }
+  if (e === "guide_read") {
+    record.slug = typeof data.slug === "string" ? data.slug.slice(0, 80) : null;
+    record.depth = typeof data.depth === "string" ? data.depth.slice(0, 8) : "60";
+  }
+  if (e === "disclosure_view") {
+    record.position = typeof data.position === "string" ? data.position.slice(0, 16) : "masthead";
+  }
+  return { ok: true, record };
 }
 
 export function validateEventPayload(data) {
@@ -89,7 +144,7 @@ export function createServer() {
       return;
     }
 
-    if (req.method === "GET" && req.url === "/api/summary") {
+    if (req.method === "GET" && (req.url === "/api/summary" || req.url === "/summary")) {
       const counts = Object.fromEntries(
         Array.from(ALLOWED_EVENTS).map((name) => [name, 0])
       );
@@ -101,8 +156,9 @@ export function createServer() {
         for (const line of lines) {
           try {
             const parsed = JSON.parse(line);
-            if (parsed.event && Object.hasOwn(counts, parsed.event)) {
-              counts[parsed.event] += 1;
+            const evName = parsed.event || parsed.e;
+            if (evName && Object.hasOwn(counts, evName)) {
+              counts[evName] += 1;
             }
           } catch {
             // Skip malformed lines
@@ -113,7 +169,8 @@ export function createServer() {
       return;
     }
 
-    if (req.method === "POST" && req.url === "/api/events") {
+    if (req.method === "POST" && (req.url === "/api/events" || req.url === "/collect")) {
+      const isCanonical = req.url === "/collect";
       let body = "";
       req.on("data", (chunk) => {
         body += chunk;
@@ -124,13 +181,24 @@ export function createServer() {
       req.on("end", () => {
         try {
           const parsed = JSON.parse(body);
-          const result = validateEventPayload(parsed);
+          const result = isCanonical
+            ? validateCanonicalPayload(parsed)
+            : validateEventPayload(parsed);
           if (!result.ok) {
             sendJson(res, 400, { error: result.error });
             return;
           }
           fs.appendFileSync(LOG_FILE, JSON.stringify(result.record) + "\n", "utf8");
-          sendJson(res, 202, { accepted: true, event: result.record.event });
+          if (isCanonical) {
+            res.writeHead(204, {
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+              "Access-Control-Allow-Headers": "Content-Type"
+            });
+            res.end();
+          } else {
+            sendJson(res, 202, { accepted: true, event: result.record.event });
+          }
         } catch {
           sendJson(res, 400, { error: "Invalid JSON payload." });
         }

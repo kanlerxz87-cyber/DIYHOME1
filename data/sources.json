@@ -404,8 +404,8 @@
       "title": "Associates Program Standard Commission Income Statement",
       "publisher": "Amazon.com, Inc. (Amazon Associates Central)",
       "url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ",
-      "page_date": "Live public schedule; retrieved 2026-11-20",
-      "retrieved": "2026-11-20",
+      "page_date": "Live public schedule; re-verified 2026-11-21",
+      "retrieved": "2026-11-21",
       "type": "primary",
       "verified": true,
       "supports": [
@@ -413,8 +413,8 @@
         "Exact SKU-level payout assignment between Kitchen (4.50%) and Home (3.00%) remains unverified until first-party Associates earnings reports exist"
       ],
       "quotes": [
-        "Kitchen: 4.50%",
-        "Home, Furniture, Lawn & Garden, Pets Products, Pantry, Home Improvement, Tools: 3.00%"
+        "Physical Books, Kitchen, Automotive | 4.50%",
+        "Toys, Furniture, Home, Home Improvement, Lawn & Garden, Pets Products, Headphones, Beauty, Musical Instruments, Business & Industrial Supplies, Outdoors, Tools, Sports, Baby Products, Amazon Coins | 3.00%"
       ]
     },
     {
@@ -422,15 +422,16 @@
       "title": "Amazon Associates Help \u2014 Create Simple Text Links & ASIN Definition",
       "publisher": "Amazon.com, Inc. (Amazon Associates Central)",
       "url": "https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC",
-      "page_date": "Live public help topic; retrieved 2026-11-20",
-      "retrieved": "2026-11-20",
+      "page_date": "Live public help topic; re-verified 2026-11-21",
+      "retrieved": "2026-11-21",
       "type": "primary",
       "verified": true,
       "supports": [
-        "Public first-party Amazon Associates definition of ASIN as a 10-character Amazon Standard Item Number"
+        "Public first-party Amazon Associates definition of ASIN as a 10-character Amazon Standard Item Number",
+        "Documents simple text link format using /dp/ASIN and ?tag=YOURASSOCIATEID"
       ],
       "quotes": [
-        "ASIN is the 10-digit code that Amazon uses to denote specific products. It is short for 'Amazon.com Standard Item Number.'"
+        "ASIN is the 10-digit code that Amazon uses to denote specific products. It is short for \"Amazon.com Standard Item Number.\" Every item in our catalog has a unique ASIN."
       ]
     },
     {
@@ -438,16 +439,51 @@
       "title": "Air Fryers and Food Safety",
       "publisher": "USDA Food Safety and Inspection Service (FSIS)",
       "url": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/air-fryers-and-food-safety",
-      "page_date": "Live agency guidance; retrieved 2026-11-20",
-      "retrieved": "2026-11-20",
+      "page_date": "Last Updated: Jun 24, 2024 (re-verified 2026-11-21)",
+      "retrieved": "2026-11-21",
       "type": "primary",
       "verified": true,
       "supports": [
-        "Advises against overcrowding air fryer baskets (which restricts rapid air circulation) and checking internal food temperature with a food thermometer"
+        "Advises against overcrowding or overfilling air fryer baskets (which restricts air circulation and causes uneven cooking) and checking safe minimum internal temperature with a food thermometer"
       ],
       "quotes": [
-        "Avoid overcrowding the air fryer basket",
-        "Always use a food thermometer to check the internal temperature"
+        "Overcrowding the appliance can prevent enough air circulation to properly cook the food.",
+        "Be sure not to overfill the air frying basket to avoid uneven cooking and undercooking.",
+        "Always check that food has reached a safe minimum internal temperature with a food thermometer."
+      ]
+    },
+    {
+      "id": "S26",
+      "title": "PA-API 5 Deprecation Notice (Creators API Documentation)",
+      "publisher": "Amazon.com, Inc. (Amazon Associates Central)",
+      "url": "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/paapiv5-deprecation",
+      "page_date": "Live documentation; retrieved 2026-11-21",
+      "retrieved": "2026-11-21",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Amazon Product Advertising API 5.0 (PA-API 5) has been deprecated and replaced by the Creators API",
+        "New and existing affiliate catalog integrations must use the Creators API rather than PA-API 5"
+      ],
+      "quotes": [
+        "The Amazon Product Advertising API 5.0 (PA-API 5) has been deprecated and is being replaced by the Creators API. New and existing integrations should move to the Creators API to continue accessing Amazon's product catalog."
+      ]
+    },
+    {
+      "id": "S27",
+      "title": "Qualify Your Outbound Links to Google (rel=\"sponsored\")",
+      "publisher": "Google (Search Central documentation)",
+      "url": "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links",
+      "page_date": "Last updated 2025-12-10 UTC (retrieved 2026-11-21)",
+      "retrieved": "2026-11-21",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Paid placements and affiliate links should be qualified with rel=\"sponsored\" (and may combine multiple rel values such as rel=\"sponsored nofollow\")"
+      ],
+      "quotes": [
+        "Mark links that are advertisements or paid placements (commonly called paid links) with the sponsored value.",
+        "You may specify multiple rel values as a space- or comma-separated list."
       ]
     }
   ]

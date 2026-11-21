@@ -11,9 +11,9 @@
       "observed_dp_url": "https://www.amazon.com/dp/B08FKW9JRM",
       "observed_redirect_query_note": "sprefix=diy+home+upgrades, btn_type=ss (social/mobile share token; no tag= parameter present)",
       "candidate_special_link_template": "https://www.amazon.com/dp/B08FKW9JRM?tag=shopnow047c-20",
-      "category_slug": "wall-and-backsplash",
-      "category_name": "Wall Treatments & Backsplash Prep",
-      "guide_slug": "guides/peel-and-stick-tools.html",
+      "category_slug": "wallpaper-tools",
+      "category_name": "Wallpaper & surface prep",
+      "guide_slug": "guides/wallpaper-smoothing-kit-what-to-compare/",
       "short_name": "Art3d Peel-and-Stick Wallpaper & Vinyl Backsplash Smoothing Tool Kit",
       "buyer_use_case": "Surface smoothing, bubble removal, layout measuring, and edge trimming for peel-and-stick wallpaper, contact paper, and vinyl backsplash tile.",
       "attributes": [
@@ -130,11 +130,11 @@
           "source_url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ"
         },
         {
-          "field": "Live PA-API Price & Availability",
+          "field": "Live Creators API Price & Availability (PA-API 5.0 deprecated)",
           "value": "",
           "status": "Unverified",
-          "source_label": "Amazon PA-API 5.0 Requirements",
-          "source_url": "https://affiliate-program.amazon.com/help/node/topic/GVJ2BJP35457CLML"
+          "source_label": "Amazon Creators API — PA-API 5 Deprecation Notice",
+          "source_url": "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/paapiv5-deprecation"
         }
       ]
     },
@@ -146,9 +146,9 @@
       "observed_dp_url": "https://www.amazon.com/dp/B0BSKQW2T2",
       "observed_redirect_query_note": "sprefix=diy+home+upgrades, btn_type=ss, th=1 (submitted twice as S02 and S03; no tag= parameter present)",
       "candidate_special_link_template": "https://www.amazon.com/dp/B0BSKQW2T2?tag=shopnow047c-20",
-      "category_slug": "under-cabinet-fixtures",
-      "category_name": "Under-Cabinet Hardware & Space-Savers",
-      "guide_slug": "guides/adhesive-vs-drilled-mounts.html",
+      "category_slug": "kitchen-storage",
+      "category_name": "Under-cabinet kitchen storage",
+      "guide_slug": "guides/paper-towel-holder-fit-checklist/",
       "short_name": "niffgaff 12.2-Inch Matte Black Aluminum Under-Cabinet Paper Towel Holder",
       "buyer_use_case": "Reclaiming kitchen counter space by mounting rolls horizontally or vertically under cabinets or on smooth walls via adhesive pad or screws.",
       "attributes": [
@@ -265,11 +265,11 @@
           "source_url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ"
         },
         {
-          "field": "Live PA-API Price & Availability",
+          "field": "Live Creators API Price & Availability (PA-API 5.0 deprecated)",
           "value": "",
           "status": "Unverified",
-          "source_label": "Amazon PA-API 5.0 Requirements",
-          "source_url": "https://affiliate-program.amazon.com/help/node/topic/GVJ2BJP35457CLML"
+          "source_label": "Amazon Creators API — PA-API 5 Deprecation Notice",
+          "source_url": "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/paapiv5-deprecation"
         }
       ]
     },
@@ -281,9 +281,9 @@
       "observed_dp_url": "https://www.amazon.com/dp/B08DY9HRWD",
       "observed_redirect_query_note": "sprefix=diy+home+upgrades, btn_type=ss, th=1 (no tag= parameter present)",
       "candidate_special_link_template": "https://www.amazon.com/dp/B08DY9HRWD?tag=shopnow047c-20",
-      "category_slug": "cabinet-and-cookware-storage",
-      "category_name": "Cabinet & Cookware Organization",
-      "guide_slug": "guides/cabinet-pan-rack-fit.html",
+      "category_slug": "kitchen-storage",
+      "category_name": "Under-cabinet kitchen storage",
+      "guide_slug": "guides/pot-pan-organizer-capacity/",
       "short_name": "ORDORA 8-Tier Adjustable Under-Cabinet Pots & Pans Organizer (16.61\"H)",
       "buyer_use_case": "Vertical or horizontal cabinet cookware organization with 3 tool-free slot configurations and 5.0mm anti-slip dividers.",
       "attributes": [
@@ -407,11 +407,11 @@
           "source_url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ"
         },
         {
-          "field": "Live PA-API Price & Availability",
+          "field": "Live Creators API Price & Availability (PA-API 5.0 deprecated)",
           "value": "",
           "status": "Unverified",
-          "source_label": "Amazon PA-API 5.0 Requirements",
-          "source_url": "https://affiliate-program.amazon.com/help/node/topic/GVJ2BJP35457CLML"
+          "source_label": "Amazon Creators API — PA-API 5 Deprecation Notice",
+          "source_url": "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/paapiv5-deprecation"
         }
       ]
     }
