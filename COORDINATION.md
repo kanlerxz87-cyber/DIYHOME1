@@ -20,8 +20,11 @@ Publishing source: branch `main`, folder `/` (confirmed via `GET /repos/kanlerxz
 | Session ID | Branch | Role | Started (UTC) | Status |
 |---|---|---|---|---|
 | `S-2026-11-20-A` | `arena/eb4b2092-diyhome1` | Sole session: research, build, verify, integrate, publish | 2026-11-20 | active |
+| `S-2026-11-21-F` | `arena/f4d33765-diyhome1` | Re-verification (2026-11-21), analytics-server contract fix, integration + PR | 2026-11-21 | active |
 
 Single-session run. A later session may take unowned rows only, and must not edit `data/`, `scripts/`, `assets/js/config.js`, `sitemap.xml`, `feed.xml` or generated HTML without claiming the row first.
+
+Note (S-2026-11-21-F): this session works on the Arena-assigned branch `arena/f4d33765-diyhome1` rather than a `session-<id>/<task>` branch, per the Arena session instructions. File scopes below are still claimed exclusively by this session until marked done.
 
 ---
 
@@ -56,6 +59,9 @@ Single-session run. A later session may take unowned rows only, and must not edi
 | T09 | Executive summary (repo + site) | S-2026-11-20-A | `EXECUTIVE_SUMMARY.md`, `summary/index.html` | done |
 | T10 | Flagged for Review page | S-2026-11-20-A | `data/flagged.json`, `flagged/index.html` | needs review |
 | T11 | Integration: merge to `main`, PR, Pages deploy, record result | S-2026-11-20-A | `main` (merge only) | done |
+| T12 | Fresh line-by-line re-verification 2026-11-21 against official sources; correct register wording drift (S23 quotes, S24 supports, SG-27/SG-28/SG-29) | S-2026-11-21-F | `data/sources.json`, `data/verified-sources.json`, generated `sources/index.html` (via build) | done |
+| T13 | Align `analytics-server/server.mjs` to the canonical 5-event contract (`data/events.json` + `worker/collect.js` + `assets/js/site.js` payload shape); add smoke test | S-2026-11-21-F | `analytics-server/server.mjs`, `tests/test_analytics_server.py` | done |
+| T14 | Integration: rebuild, validate, python tests, live-site check, PR to `main`, merge, Pages confirm, record result | S-2026-11-21-F | `main` (merge only) + generated files via build | in progress |
 
 `needs review` = published on the Flagged for Review page and does **not** block the merge.
 
@@ -311,6 +317,7 @@ No pre-existing claims or site files were present. Work stays on the Arena-assig
 - **GitHub Pages Deployment:** Confirmed `status: "built"` for commit `e32d1e4b9556` at `2026-11-20T06:58:39Z` (`main:/`, HTTPS enforced).
 - **Live Verification:** Fetched and verified live public pages at `https://kanlerxz87-cyber.github.io/DIYHOME1/`, `/products/comparisons/`, `/automation/`, `/sources/`, and `/flagged/` — confirming above-the-fold and footer disclosures, `rel="sponsored nofollow noopener"` with tag `shopnow047c-20`, single `Site desk` masthead group (`SG-27`), 52-row product specification register (`niffgaff` verified via `S21`; absent `UPC` and `Date First Available` left blank and badged `Unverified`), 4 working-title countertop-appliance hypotheses, empty first-party campaign ledger, and zero broken links.
 
+<<<<<<< HEAD
 ---
 
 ## Session f851636b — re-verification & integration pass (2026-11-21)
@@ -320,3 +327,18 @@ No pre-existing claims or site files were present. Work stays on the Arena-assig
 | T-f851-01 | Line-by-line re-verification of products, sources, disclosures, measurement, ledger against official sources; fix analytics-server event-name drift; rebuild, validate, PR to main, confirm Pages | f851636b | `COORDINATION.md`, `EXECUTIVE_SUMMARY.md`, `analytics-server/server.mjs`, generated HTML via `node scripts/build.mjs` only | in progress |
 
 Claimed 2026-11-21 by session `f851636b` on branch `arena/f851636b-diyhome1` (branched from `706b8e2`, PR #14 merge). Scope is non-overlapping: no other session has claimed these files. Shared outputs changed only via `data/*.json` + rebuild, never by hand-editing generated HTML.
+=======
+### 2026-11-21 — S-2026-11-21-F — T12 re-verification + T13 analytics-server fix
+
+**T12 — re-read on 2026-11-21 (official sources, links in `data/sources.json`):**
+- S01 Program Policies (still *Updated April 14, 2026*): 2(b) tag clause, price/availability clause, 3(t)/3(v)/3(w)/3(y) — all match stored quotes verbatim. S03 FTC (Nov 2019) — all quotes match. S24 ASIN definition + `dp/ASIN/ref=nosim?tag=` format — confirmed. S23 Table 1 (Kitchen 4.50%, Home/Tools 3.00%) — confirmed; per-product rate still withheld (F10).
+- S04/S05/S06 listing titles + breadcrumbs match `data/products.json` verbatim. Live prices visible on all three listings; withheld per 2(b) (F07). No price value recorded in this repo.
+- S10 `https://link.amazon/B0hmGG4m2` still resolves to `B08FKW9JRM` with no `tag=` in the observed URL. F01 remains open (unresolved, not disproven). Short links are never claimed invalid.
+- Corrections (data-only, then rebuilt): S23 quotes replaced with verbatim Table 1 rows; S24 supports now uses Amazon's "10-digit code" wording; SG-27 nav labels corrected to the actual labels (Home, Products, Comparisons, Guides, Search, RSS); SG-28 now credits `scripts/build.mjs`/`validate.mjs`; SG-29 corrected to project-path `robots.txt` (F14); `code_note` added to `data/verified-sources.json` (canonical register is `data/sources.json` S01–S25). Rebuild changed only `sources/index.html`.
+- `retrieved` bumped to 2026-11-21 for S01, S03, S04, S05, S06, S08, S10, S23, S24 (the ones re-read today).
+
+**T13 — analytics-server contract fix (new irregularity, fixed):**
+- `analytics-server/server.mjs` accepted the archived Field & Fixture event names (`product_impression`, `outbound_affiliate_click`, `reader_capture_submit`) with `{event, page, meta}`. Live `assets/js/site.js` sends `{e, path, sid, …}` with the canonical five events — every live event would have been rejected (400). Rewrote the server to the canonical contract (same per-event allowlist + 2048-byte cap as `worker/collect.js`), `POST /collect` + `/api/events` alias, `GET /api/health`, `GET /api/summary`. Added `tests/test_analytics_server.py` (6 tests). Full suite 16/16. Endpoint still not deployed (F05 open); ledger still empty.
+
+**Checks:** `node scripts/build.mjs` (23 pages) + `node scripts/validate.mjs` (16/16; 288 Amazon links: 38 sponsored, 257 citations; single tag `shopnow047c-20`) + `python3 -m unittest discover -s tests` (16/16).
+>>>>>>> origin/main

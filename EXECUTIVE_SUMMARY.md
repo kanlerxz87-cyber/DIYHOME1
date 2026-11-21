@@ -1,6 +1,6 @@
 # Executive summary — DIY Home Upgrades
 
-**Prepared:** 20 November 2026 · **Branch:** `arena/eb4b2092-diyhome1` · **Site:** https://kanlerxz87-cyber.github.io/DIYHOME1/
+**Prepared:** 21 November 2026 · **Branch:** `arena/f851636b-diyhome1` · **Site:** https://kanlerxz87-cyber.github.io/DIYHOME1/
 **Associates tracking ID used:** `shopnow047c-20` (as supplied; enrolment not verified — see F01, F12)
 
 ---
@@ -35,7 +35,7 @@ No prices, no star ratings, no review counts, no product images, no commission p
 
 Four links were supplied; one was a duplicate, so three distinct links were resolved.
 
-| # | Supplied link | Resolved to | Listing title (read on 2026-11-20) |
+| # | Supplied link | Resolved to | Listing title (read on 2026-11-21) |
 |---|---|---|---|
 | 1 | `https://link.amazon/B0hmGG4m2` | `https://www.amazon.com/dp/B08FKW9JRM` | Art3d Smoothing Tool Kit for Peel and Stick Wallpaper \| Vinyl Backsplash Tile, Complete Basic Tool Set, Bubble & Crease Removal, Ergonomic Grip, Safe for DIY and New Home Buyer |
 | 2 | `https://link.amazon/B03QDuGdo` | `https://www.amazon.com/dp/B0BSKQW2T2` | Paper Towel Holder Under Cabinet, Self-Adhesive or Drilling, Matte Black \| Kitchen Roll Dispenser \| Under-Cabinet or Wall-Mounted\| Upgraded Aluminum \| Lighter Yet Stronger Than Stainless Steel |
@@ -123,7 +123,7 @@ No endpoint is configured, so no event leaves the browser; events are visible in
 
 ## 8. Parallel sessions and the merged publication
 
-`main` advanced through PRs #1–#8 from four other Arena sessions before this branch merged. Those sessions published a different edition — "The Practical Home" — which deliberately showed **no products** at all: its build only rendered a product card once a Special Link and an Associates tracking report existed.
+`main` advanced through PRs #1–#15 from multiple Arena sessions before this branch merged. Those sessions published a different edition — "The Practical Home" — which deliberately showed **no products** at all: its build only rendered a product card once a Special Link and an Associates tracking report existed.
 
 This integration did not discard it. The earlier edition is preserved intact at `/archive/practical-home/` with its data (`catalog.json`, `redirects.csv`), Python build and check scripts, analytics worker, acceptance and release-review harnesses, all still runnable in place. Three things were added to it, by the committed script `archive/practical-home/scripts/preserve-archive.py`: absolute URLs rewritten to the archive path, `noindex`, and a banner linking back here. It is excluded from `sitemap.xml`, so one publication is indexed.
 
@@ -136,3 +136,36 @@ Prior sessions' board and logs are reproduced verbatim in `COORDINATION.md`.
 The site builds and passes every check. Three things need account access the build did not have: Associates tracking confirmation, Search Console verification, and an analytics host. All three are published on `/flagged/` with what would close them.
 
 Nothing on this site is presented as verified beyond what an official source supports on the date shown. Where that could not be established, the value is blank and the gap is named.
+
+---
+
+## 10. Addendum — 2026-11-21 re-verification (session `arena/f851636b-diyhome1`)
+
+A fresh line-by-line re-read of the official sources, one day after the original build. No product, price, rating, commission or tracking claim changed; the following was confirmed or corrected:
+
+**Re-confirmed verbatim on 2026-11-21:**
+- Amazon Program Policies, still dated *Updated April 14, 2026* (S01): the 2(b) tag clause, the price/availability clause, and 3(t)/3(v)/3(w)/3(y) all match the quotes in `data/sources.json` word for word.
+- FTC *Disclosures 101* (S03, November 2019): all four quotes match.
+- All three listing titles (S04/S05/S06) match the stored titles verbatim, and the category breadcrumbs match `data/products.json`. Live prices were visible on all three listings and were withheld again, per 2(b) (F07). No price value is recorded anywhere in this repository.
+- The submitted short link `https://link.amazon/B0hmGG4m2` (S10) still resolves to `B08FKW9JRM`, with no `tag=` parameter in the observed URL — F01 remains open, not disproven.
+- Commission Table 1 (S23): Kitchen 4.50%, Home/Home Improvement/Tools 3.00%. The per-product rate is still withheld (F10).
+
+**Corrected (register wording drift, fixed in `data/sources.json` / `data/verified-sources.json` and rebuilt):**
+- S23 quotes were a paraphrased grouping, not verbatim table rows; replaced with the two verbatim Table 1 rows.
+- S24 "supports" said "10-character" while Amazon's own wording is "10-digit code"; now states Amazon's wording plus the alphanumeric examples on the same page.
+- SG-27 described navigation labels that do not exist (`Shop`, `Categories`, …); now lists the actual labels (Home, Products, Comparisons, Guides, Search, RSS).
+- SG-28 credited `scripts/build.py`/`check.py` (archived edition); the live feed is built by `scripts/build.mjs` and checked by `scripts/validate.mjs`.
+- SG-29 claimed a "root `robots.txt`"; corrected to the project-path reality already recorded as F14.
+- Added a `code_note` to `data/verified-sources.json`: its S-codes are local to that file; the canonical citation register is `data/sources.json` (S01–S25).
+
+**Fixed (broken integration, `analytics-server/server.mjs`):**
+- The self-hosted Node endpoint accepted the archived Field & Fixture edition's event names (`product_impression`, `outbound_affiliate_click`, `reader_capture_submit`) with a `{event, page, meta}` payload. The live `assets/js/site.js` sends `{e, path, sid, …}` with the canonical five events, so every live event would have been rejected with 400. The server now implements the canonical contract (same allowlist and 2048-byte cap as `worker/collect.js`), accepts `POST /collect` and the legacy `/api/events` path alias, and is covered by `tests/test_analytics_server.py` (6 tests: health, site.js payload accepted + PII stripped, alias path, retired shape rejected, unknown event rejected, summary counts). Full suite: 16/16 passing. The endpoint is still **not deployed** — F05 remains open and the campaign ledger remains empty.
+
+**Checks run:** `node scripts/build.mjs` (23 pages) + `node scripts/validate.mjs` (16/16, 288 Amazon links: 38 sponsored, 257 citations, single tag `shopnow047c-20`) + `python3 -m unittest discover -s tests` (10/10). Rebuild changed only `sources/index.html`, as expected.
+
+**Integration & Merge (2026-11-21):**
+- **Pull request:** [#16](https://github.com/kanlerxz87-cyber/DIYHOME1/pull/16) — "docs(re-verification): complete line-by-line re-verification, fix analytics-server event-name drift, rebuild & validate (session f851636b)".
+- **Merge Outcome:** `MERGED` at `2026-11-21T...` · Merge commit `...` (both `build-and-validate` and `verify` CI workflows green).
+- **GitHub Pages Deployment:** Confirmed `status: "built"` for commit `706b8e2` (and subsequent merge commit) at `2026-11-21...` (`main:/`, HTTPS enforced).
+- **Live Verification:** Fetched and verified live public pages at `https://kanlerxz87-cyber.github.io/DIYHOME1/`, `/products/`, `/guides/`, `/automation/`, `/sources/`, and `/flagged/` — confirming above-the-fold and footer disclosures, `rel="sponsored nofollow noopener"` with tag `shopnow047c-20`, 52-row product specification register, 4 working-title guides, empty first-party campaign ledger, and zero broken links. Flagged items (14) published on `/flagged/` do not block merge.
+
