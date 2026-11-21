@@ -21,6 +21,14 @@ A second verification pass re-read every external claim. What it changed:
 Still open, unchanged, and still needing an account this build does not have: Associates enrolment of the tag (F01/F12), a Search Console token (F04), and an analytics host (F05).
 
 
+
+### Second pass — what the third session added
+
+- **The tables were reachable after all.** F16 recorded that Amazon did not render the Product Information tables on 21 November. That was true of the desktop page; `https://www.amazon.com/gp/product/<ASIN>` does render them. 11 fields of B08FKW9JRM and 10 of B0BSKQW2T2 were re-confirmed verbatim there.
+- **Six ORDORA fields stayed unconfirmed and were downgraded, not kept.** B08DY9HRWD kept serving the reduced layout, so its model number, manufacturer part number, UPC, per-tier limit and included components — and the "Ships from / Sold by" line for all three listings — now read *Needs Review* instead of *Verified*. Register: 29 Verified / 13 Needs Review / 10 Unverified of 52. Nothing was re-typed or inferred.
+- **Three build defects fixed:** the `/about/` contradiction, status-blind cells in the comparison matrix, and an audit engine that called all 52 rows "verified".
+
+
 ---
 
 ## 1. What exists now

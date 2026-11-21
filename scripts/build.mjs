@@ -619,15 +619,16 @@ ${gs.length ? `<section class="block"><div class="wrap">
     const mat = amap["Material & Handle Material"] || amap["Material & Finish"] || amap["Material & Divider Spec"];
     const upc = amap["UPC / GTIN"];
     const dfa = amap["Date First Available"];
+    const cell = (a) => `${a.value ? esc(a.value) : ""}${a.status === "Verified" ? "" : ` <span class="badge warn">${esc(a.value ? a.status : "Unverified (blank)")}</span>`}`;
     return `<tr>
       <td><a href="../${prod.slug}/"><strong>${esc(prod.short_title)}</strong></a><br><span class="mono">${esc(spec.observed_asin)}</span></td>
       <td><a href="../${prod.category}/">${esc(catOf(prod.category).name)}</a></td>
       <td>${esc(amap["Brand"].value)}<br>${extCiteLink(amap["Brand"].source_url, "Store")}</td>
-      <td>${esc(mat.value)}</td>
-      <td>${esc(dims.value)}</td>
-      <td>${esc(weight.value)}</td>
-      <td>${upc.value ? `<span class="mono">${esc(upc.value)}</span>` : `<span class="badge warn">Unverified (blank)</span>`}</td>
-      <td>${dfa.value ? esc(dfa.value) : `<span class="badge warn">Unverified (blank)</span>`}</td>
+      <td>${cell(mat)}</td>
+      <td>${cell(dims)}</td>
+      <td>${cell(weight)}</td>
+      <td><span class="mono">${cell(upc)}</span></td>
+      <td>${cell(dfa)}</td>
       <td>${extCiteLink(spec.observed_dp_url, "Official listing")} &middot; <a class="btn" href="${tagged(spec.observed_asin)}" data-sponsored="amazon" data-asin="${esc(spec.observed_asin)}" rel="sponsored nofollow noopener" target="_blank">Amazon&nbsp;&rarr;</a></td>
     </tr>`;
   }).join("");
@@ -962,7 +963,7 @@ ${prod ? `<section class="block"><div class="wrap">
     <h2>The five steps</h2>
     <ol>
       <li><strong>Resolve the link.</strong> Each supplied link is fetched once, and the final URL and page title are recorded. The redirect target is stored in its own field, never merged with the intended ASIN.</li>
-      <li><strong>Read the listing.</strong> The listing title and category breadcrumb are copied verbatim, with the retrieval date. Those are the only product attributes this site publishes.</li>
+      <li><strong>Read the listing.</strong> The listing title, category breadcrumb and the fields in the official Product Information table are copied verbatim into the specification register, each with the date it was read. Nothing is re-typed from memory: a field the official table does not print stays blank, and a field a later read cannot see is downgraded to Needs Review and recorded as F16.</li>
       <li><strong>Record the source.</strong> Every row carries an ID that maps to a URL in the <a href="../sources/">source register</a>.</li>
       <li><strong>Refuse the rest.</strong> Prices, star ratings, review counts, availability, commission rates and images are not published, because this site has no sanctioned route to them.</li>
       <li><strong>Flag the gap.</strong> Anything unverified is written up at <a href="../flagged/">Flagged for review</a> with what it needs.</li>
@@ -1097,6 +1098,7 @@ ${prod ? `<section class="block"><div class="wrap">
       <td>${esc(s.publisher)}</td>
       <td>${esc(s.page_date)}</td>
       <td>${esc(s.retrieved)}</td>
+      <td>${reverify && reverify.rechecked.includes(s.id) ? `<span class="badge ok">${esc(reverify.date)}</span>` : `<span class="blank">&mdash;</span>`}</td>
       <td>${badge}</td>
       <td><ul style="margin:0;padding-left:16px">${s.supports.map((x) => `<li style="margin-bottom:4px">${esc(x)}</li>`).join("")}</ul>
         ${s.quotes && s.quotes.length ? `<details style="margin-top:6px"><summary class="link-note">Quoted text (${s.quotes.length})</summary>${s.quotes.map((q) => `<blockquote style="margin:8px 0 0;padding-left:10px;border-left:2px solid var(--line-strong);font-size:13px">${esc(q)}</blockquote>`).join("")}</details>` : ""}
@@ -1139,11 +1141,12 @@ ${prod ? `<section class="block"><div class="wrap">
     <h3>Re-verified ${esc(reverify.date)}</h3>
     <p>${esc(reverify.summary)}</p>
     <p class="link-note">Corrected after re-reading: ${reverify.corrected.map((id) => `<a href="#${esc(id)}">${esc(id)}</a>`).join(", ")}. Added: ${reverify.added.map((id) => `<a href="#${esc(id)}">${esc(id)}</a>`).join(", ")}. Not re-checked this session: ${reverify.not_rechecked.join(", ")}.</p>
+    ${reverify.second_pass ? `<p>${esc(reverify.second_pass)}</p>` : ""}
   </div>` : ""}
   <div class="table-wrap">
     <table>
       <caption>${esc(readJson("data/sources.json").method)}</caption>
-      <thead><tr><th scope="col">ID</th><th scope="col">Source</th><th scope="col">Publisher</th><th scope="col">Page date</th><th scope="col">Retrieved</th><th scope="col">Status</th><th scope="col">What it supports</th></tr></thead>
+      <thead><tr><th scope="col">ID</th><th scope="col">Source</th><th scope="col">Publisher</th><th scope="col">Page date</th><th scope="col">Retrieved</th><th scope="col">Re-checked</th><th scope="col">Status</th><th scope="col">What it supports</th></tr></thead>
       <tbody>${rows}</tbody>
     </table>
   </div>
@@ -1471,6 +1474,15 @@ ${prod ? `<section class="block"><div class="wrap">
   </div>
 
   <div class="prose">
+    <h2>Second pass, 21 November 2026</h2>
+    <p>Several sessions re-read this site&rsquo;s sources on the same day without coordinating. Their findings agree, and the record is the union of them. This section covers only what the later pass added.</p>
+    <ul>
+      <li><strong>The Product Information tables were reachable after all.</strong> F16 recorded that Amazon did not render them on 21 November. That was true of the desktop page; <span class="mono">/gp/product/&lt;ASIN&gt;</span> does render them. 11 fields of B08FKW9JRM and 10 of B0BSKQW2T2 were re-confirmed verbatim against those tables.</li>
+      <li><strong>What still could not be confirmed was downgraded, not kept.</strong> B08DY9HRWD kept serving the reduced layout, so its model number, manufacturer part number, UPC, per-tier limit and included components, plus the &ldquo;Ships from / Sold by&rdquo; line for all three listings, are kept exactly as recorded on 20 November and badged <em>Needs Review</em>. The register reads 29 Verified / 13 Needs Review / 10 Unverified across 52 rows. No value was re-typed or inferred.</li>
+      <li><strong>Three build defects fixed.</strong> &ldquo;How we verify&rdquo; described the listing title and breadcrumb as the only published product attributes, contradicting the 52-row register; the comparison matrix printed Needs-Review values as plain facts; the audit engine labelled all 52 rows &ldquo;verified&rdquo; regardless of status. All three now report what is actually true.</li>
+      <li><strong>Not re-run:</strong> the <span class="mono">link.amazon</span> submission fetches. A second unattended automated request against an Amazon page is the conduct Agent Terms 4 makes disclosable (${srcBadge("S01", 1)}, F13); the 20 November observation stands as dated.</li>
+    </ul>
+
     <h2>What was verified</h2>
     <ul>
       <li>Three supplied short links each resolved to a live Amazon product page, and the final URL and listing title were recorded: <span class="mono">B08FKW9JRM</span> (Art3d smoothing tool kit), <span class="mono">B0BSKQW2T2</span> (paper towel holder), <span class="mono">B08DY9HRWD</span> (ORDORA 8-tier pan organiser).</li>

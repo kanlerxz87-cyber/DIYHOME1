@@ -145,7 +145,11 @@ class TestFinalIntegrationEngine(unittest.TestCase):
         report = self.pe.audit_verified_datasets(REPO_ROOT)
         self.assertEqual(report["errors"], [])
         self.assertEqual(report["products_checked"], 3)
-        self.assertEqual(report["attribute_rows_verified"], 52)
+        self.assertEqual(report["attribute_rows_checked"], 52)
+        # Every checked row carries exactly one status; the statuses must account for all 52 rows.
+        self.assertEqual(sum(report["attribute_rows_by_status"].values()), 52)
+        self.assertIn("Verified", report["attribute_rows_by_status"])
+        self.assertTrue(set(report["attribute_rows_by_status"]) <= {"Verified", "Needs Review", "Unverified"})
         self.assertEqual(report["snapshot_sources_count"], 24)
         self.assertEqual(report["parallel_passes_count"], 4)
         # The source register grows as sources are read; assert that the audit

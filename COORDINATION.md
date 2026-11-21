@@ -531,3 +531,22 @@ Rule observed: this session edits only `data/`, content and docs; all HTML is re
   - `/` (pre-merge check of the prior deploy) → disclosure strip above the fold, sponsored CTAs, single tag.
 - **Not verified, and not claimed:** Associates enrolment or click attribution for any link, Search Console indexing, analytics collection, commission rates, revenue. All remain on `/flagged/` with what would close them.
 - **Follow-up:** this log and the `data/release.json` record ship in a docs-only follow-up PR from the same branch, per the rule that this session pushes only to its own branch.
+
+---
+
+## Session `arena-818bfb73` — third pass, 21 November 2026 (additive to PRs #15, #19, #21, #23)
+
+Claimed before editing (see this branch's earlier commit history on `arena/818bfb73-diyhome1`); the board had four other sessions landing overlapping re-verifications while this one worked, so this entry records only what this pass added on top of what is already on `main`.
+
+**What this pass added**
+
+1. **A render path the earlier passes missed.** `https://www.amazon.com/gp/product/<ASIN>` renders the Product Information table that the desktop page did not: 11 fields of B08FKW9JRM and 10 of B0BSKQW2T2 were re-confirmed verbatim against those tables (manufacturer, model/part numbers, weight, dimensions, material, colour, mounting type, size, date first available where printed). Recorded on `/sources/` as `reverification.second_pass`.
+2. **Downgrade instead of assumption.** B08DY9HRWD kept serving the reduced layout on both paths. Its model number, manufacturer part number, UPC, per-tier load limit and included components — and the "Ships from / Sold by" line for all three listings — are kept exactly as recorded on 2026-11-20 but changed from **Verified** to **Needs Review**. Register: 29 Verified / 13 Needs Review / 10 Unverified of 52. F16 was extended with the finding rather than duplicating it as a new flag.
+3. **Three build defects fixed.** `/about/` called the title and breadcrumb "the only product attributes this site publishes" while the site publishes a 52-row register; the comparison matrix printed Needs-Review values as plain facts (cells now carry their badge); `platform_engine.py` reported `attribute_rows_verified: 52` regardless of status (now a status breakdown, asserted by `tests/test_platform.py`).
+4. `/sources/` gains a per-row **Re-checked** column and the second-pass note; `/summary/` gains a "Second pass" section.
+
+**Checks:** `node scripts/build.mjs` (23 pages, deterministic), `node scripts/validate.mjs` (16/16), `python3 platform/affiliate_platform.py validate-registry|validate-ledger|audit-site` ok, `python3 scripts/platform_engine.py audit` 0 errors, `python3 -m unittest discover -s tests` 16/16.
+
+**Not re-run:** the `link.amazon` submission fetches (Agent Terms 4, F13). **Not claimed:** Associates attribution, Search Console, analytics collection, signed-in commission rates.
+
+**Merge conflicts:** four rebases against `main`; every time, the other sessions' logs and data were retained and this branch re-applied only its additions. Nothing from another session was discarded.
