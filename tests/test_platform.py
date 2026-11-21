@@ -163,6 +163,17 @@ class TestFinalIntegrationEngine(unittest.TestCase):
         for s in sources["sources"]:
             self.assertTrue(s["url"].startswith("https://"), f"source {s['id']} is not https")
 
+    def test_guide_to_product_slug_alignment(self) -> None:
+        guides = json.loads((REPO_ROOT / "data/guides.json").read_text(encoding="utf-8"))["guides"]
+        by_slug = {g["slug"]: g for g in guides}
+        self.assertEqual(by_slug["wallpaper-smoothing-kit-what-to-compare"]["product_slugs"], ["art3d-smoothing-tool-kit"])
+        self.assertEqual(by_slug["paper-towel-holder-fit-checklist"]["product_slugs"], ["paper-towel-holder-under-cabinet"])
+        self.assertEqual(by_slug["pot-pan-organizer-capacity"]["product_slugs"], ["ordora-pots-and-pans-organizer"])
+        self.assertEqual(
+            by_slug["questions-before-under-cabinet-upgrade"]["product_slugs"],
+            ["paper-towel-holder-under-cabinet", "ordora-pots-and-pans-organizer"],
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

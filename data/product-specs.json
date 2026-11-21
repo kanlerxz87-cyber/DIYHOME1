@@ -136,11 +136,11 @@
           "audit_note": "Public rate table re-read without sign-in on 2026-11-21 (S32): Kitchen 4.50%; Home, Home Improvement, Tools 3.00%. Band shown for reference only; the band that actually pays on an order is unverified until an Associates report exists."
         },
         {
-          "field": "Live PA-API Price & Availability",
+          "field": "Live Creators API Price & Availability (PA-API 5.0 deprecated)",
           "value": "",
           "status": "Unverified",
-          "source_label": "Amazon PA-API 5.0 Requirements",
-          "source_url": "https://affiliate-program.amazon.com/help/node/topic/GVJ2BJP35457CLML"
+          "source_label": "Amazon Creators API — PA-API 5 Deprecation Notice",
+          "source_url": "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/paapiv5-deprecation"
         }
       ],
       "reverified_on": "2026-11-21",
@@ -305,11 +305,11 @@
           "audit_note": "Public rate table re-read without sign-in on 2026-11-21 (S32): Kitchen 4.50%; Home, Home Improvement, Tools 3.00%. Band shown for reference only; the band that actually pays on an order is unverified until an Associates report exists."
         },
         {
-          "field": "Live PA-API Price & Availability",
+          "field": "Live Creators API Price & Availability (PA-API 5.0 deprecated)",
           "value": "",
           "status": "Unverified",
-          "source_label": "Amazon PA-API 5.0 Requirements",
-          "source_url": "https://affiliate-program.amazon.com/help/node/topic/GVJ2BJP35457CLML"
+          "source_label": "Amazon Creators API — PA-API 5 Deprecation Notice",
+          "source_url": "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/paapiv5-deprecation"
         }
       ],
       "reverified_on": "2026-11-21",
@@ -479,11 +479,11 @@
           "audit_note": "Public rate table re-read without sign-in on 2026-11-21 (S32): Kitchen 4.50%; Home, Home Improvement, Tools 3.00%. Band shown for reference only; the band that actually pays on an order is unverified until an Associates report exists."
         },
         {
-          "field": "Live PA-API Price & Availability",
+          "field": "Live Creators API Price & Availability (PA-API 5.0 deprecated)",
           "value": "",
           "status": "Unverified",
-          "source_label": "Amazon PA-API 5.0 Requirements",
-          "source_url": "https://affiliate-program.amazon.com/help/node/topic/GVJ2BJP35457CLML"
+          "source_label": "Amazon Creators API — PA-API 5 Deprecation Notice",
+          "source_url": "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/paapiv5-deprecation"
         }
       ],
       "reverified_on": "2026-11-21",

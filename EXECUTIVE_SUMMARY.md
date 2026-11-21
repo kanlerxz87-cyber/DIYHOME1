@@ -1,6 +1,6 @@
 # Executive summary — DIY Home Upgrades
 
-**Prepared:** 20 November 2026 · **Re-verified and revised:** 21 November 2026 (sessions `S-2026-11-21-B` and `S-2026-11-21-C`) · **Site:** https://kanlerxz87-cyber.github.io/DIYHOME1/
+**Prepared:** 20 November 2026 · **Re-verified and revised:** 21 November 2026 (sessions `S-2026-11-21-B`, `S-2026-11-21-C`, `S-2026-11-21-F`, `session-e70af6c4`) · **Site:** https://kanlerxz87-cyber.github.io/DIYHOME1/
 **Associates tracking ID used:** `shopnow047c-20` (as supplied; enrolment not verified — see F01, F12)
 
 ---
@@ -42,13 +42,13 @@ A static, multi-page affiliate publication built from `data/*.json`, published b
 | `/products/wallpaper-tools/`, `/products/kitchen-storage/` | Category pages |
 | `/products/comparisons/` | Side-by-side physical specification comparison matrix across all three products |
 | `/products/<slug>/` ×3 | Product pages with a full verification record + a 52-row line-by-line specification register (17 / 17 / 18 rows) |
-| `/guides/` + 4 guide pages | Question-shaped DIY buying guides + the 4 working-title countertop-appliance editorial hypotheses |
+| `/guides/` + 4 guide pages | Question-shaped DIY buying guides (each explicitly mapped to its matching product(s)) + 4 working-title countertop-appliance editorial hypotheses |
 | `/about/` | Method, definition of "verified", automation boundaries |
 | `/automation/` | 7-stage automation & compliance gate CLI (`validate.mjs`, `platform_engine.py`, `creators_api_client.py`) |
 | `/disclosures/` | Affiliate disclosure, link policy, privacy, withheld data |
-| `/sources/` | Register of 32 official sources, a dated re-verification record + `SG-27..SG-30` parallel passes + 52-row product spec verification ledger |
+| `/sources/` | Register of 34 official sources, a dated re-verification record + `SG-27..SG-30` parallel passes + 52-row product spec verification ledger |
 | `/flagged/` | 21 flagged items with severity, what would close each one, and official sources on every row |
-| `/measurement/` | Five defined events, privacy rules, honest status, local event viewer |
+| `/measurement/` | Five defined events, privacy rules (DNT/GPC enforced across all 5 events), honest status, XSS-safe local event viewer |
 | `/ledger/` | 4-row Product-intent confirmation record (strictly separate from observed redirects) + empty campaign ledger |
 | `/summary/` | This summary, on the site (all dashboard surfaces grouped under `Site desk` in top nav & repeated in footer) |
 | `sitemap.xml`, `feed.xml`, `robots.txt`, `.nojekyll` | Findability plumbing |
@@ -83,14 +83,14 @@ Because tracking is unconfirmed, every call to action on the site is a freshly b
 | Decision | Rule relied on |
 |---|---|
 | Disclosure strip under the masthead on every page, repeated in the footer, plus a "Sponsored" label on every outbound link | FTC, *Disclosures 101*: "Place it so it's hard to miss"; disclosures are missed if they appear "only on an ABOUT ME or profile page, at the end of posts or videos, or anywhere that requires a person to click MORE" |
-| Every Amazon link carries `rel="sponsored nofollow noopener"` and the tag parameter | Amazon Program Policies, Participation Requirements 2(b): the Associates tag must appear "as a parameter in the URL of each link" |
-| No prices, availability, star ratings or customer reviews | Program Policies 2(b) (price/availability only via Amazon-served links or Creators/PA API) and 3(t) (reviews and star ratings only via those APIs) |
+| Every outbound product link to Amazon carries `rel="sponsored nofollow noopener"` and the tag parameter | Amazon Program Policies, Participation Requirements 2(b) (`S01`), Associates simple text link guide (`S24`), and Google Search Central outbound link qualification (`S34`) |
+| No prices, availability, star ratings or customer reviews | Program Policies 2(b) & 3(t) (`S01`, `S18`) and Creators API PA-API 5 Deprecation Notice (`S33`) — PA-API 5.0 is deprecated and replaced by Creators API |
 | No price tracking or price alerts anywhere | Program Policies 3(y) |
 | No redirector or cloaking; the click counter observes and lets the browser navigate | Program Policies 3(v) (no obscuring the URL containing Special Links) |
 | No link shortener in front of any call to action | Program Policies 3(w) |
 | No product imagery or Amazon marks | IP Licence terms over Program Content; no licensed feed or API access exists here |
 | No "we tested it" language anywhere | FTC, *Disclosures 101*: "You can't talk about your experience with a product you haven't tried" |
-| No commission percentages or earnings estimates | The Standard Commission Income schedule redirects to a sign-in wall (S17), so rates could not be verified |
+| No SKU commission guarantees or earnings estimates | Account custom rate card (`/help/operating/schedule`, `S17`) redirects to sign-in; public Standard Commission Income Statement (`S23`) lists `Kitchen` at 4.50% and `Home` / `Home Improvement` / `Tools` at 3.00%, but exact SKU sub-node payout and conversion remain unverified until first-party Associates reports exist |
 
 ---
 
@@ -118,9 +118,9 @@ Amazon's current terms add **Agent Terms**: automated software interacting with 
 ## 5. Flagged for review (19 items)
 
 High: **F01** — short links not confirmed as enrolled/tracked.
-Medium: **F03** air-fryer working titles have no matching products; **F04** no Search Console token; **F05** no analytics endpoint, so events stay local; **F10** commission rates unverifiable; **F13** verification fetches did not identify as an agent.
-Low: **F02** duplicate link supplied; **F14** robots.txt sits inside the project path, not at the host root (source added 21 Nov: S26); **F06** Amazon's ASIN definition is behind a sign-in; **F11** one listing has no brand in its title; **F12** tracking ID enrolment unconfirmed; **F15** five source quotes were not verbatim and have been corrected; **F16** the Product Information tables could not be re-read on 21 Nov.
-Info (withheld by design): **F07** prices/ratings/reviews observed but not published; **F08** nothing tested; **F09** no Amazon imagery.
+Medium: **F03** air-fryer working titles have no matching products (presented transparently as working-title checklists citing USDA FSIS `S25`); **F04** no Search Console token; **F05** no analytics endpoint deployed, so events stay local; **F10** account custom rate card requires sign-in (`S17`) and SKU payout tier unverified despite public `S23` schedule; **F13** verification fetches did not identify as an agent.
+Low: **F02** duplicate link supplied; **F14** `robots.txt` sits inside the project path, not at the host root (`S26`); **F06** Seller Central ASIN help (`S16`) requires sign-in and operator intended ASINs remain unconfirmed (public Associates Help `S24` confirms the 10-char ASIN definition); **F11** `B0BSKQW2T2` omits brand from H1 title (verified as `niffgaff` via `S05`/`S21`) and select listings omit UPC or Date First Available or have minor copy discrepancies; **F12** tracking ID enrolment unconfirmed; **F15** five source quotes were not verbatim and have been corrected; **F16** Product Information tables could not be re-read on 21 Nov.
+Info (withheld by design): **F07** prices/ratings/reviews observed but not published (gated behind Creators API per `S01`/`S27`); **F08** nothing tested; **F09** no Amazon imagery.
 
 Full detail, with the source links and what would close each item: `/flagged/` on the site, `data/flagged.json` in the repo.
 
@@ -143,7 +143,7 @@ Each is added to `sitemap.xml` and `feed.xml` on build. No search-volume, popula
 
 Five events, defined before anything was measured: `page_view`, `disclosure_view`, `outbound_click`, `site_search`, `guide_read`.
 No cookies. No third-party requests. Session ID in `sessionStorage` only. Referrer reduced to a class. Do Not Track and Global Privacy Control are honoured by recording nothing.
-No endpoint is configured, so no event leaves the browser; events are visible in the local viewer on `/measurement/` and can be exported. A Cloudflare Worker collector is included at `worker/collect.js`. Until it is deployed and a first-party report exists, the campaign ledger has zero rows — and the validator fails the build if a row appears without one.
+No endpoint is configured, so no event leaves the browser; events are visible in the local viewer on `/measurement/` and can be exported. Both a Cloudflare Worker collector (`worker/collect.js`) and a self-hosted Node.js collector (`analytics-server/server.mjs`) are included and accept `POST /collect`. Until one is deployed and a first-party report exists, the campaign ledger has zero rows — and the validator fails the build if a row appears without one.
 
 ---
 
@@ -166,19 +166,26 @@ A second, independent pass re-opened every source that carries a quote and compa
 | S23 Standard Commission Income Statement | Live public Table 1 | Both quotes were paraphrases; replaced with the exact rows. The earlier paraphrase wrongly put Pantry in the 3.00% row |
 | S24 Associates help, ASIN definition | Live page | Matches |
 | S25 USDA FSIS air-fryer guidance (updated 24 Jun 2024) | Live page | Both quotes were paraphrases; replaced with the exact sentences |
-| S26 Google robots.txt creation guide (new) | Live page | Added for the robots.txt location rule cited by F14 |
+| S26 Google robots.txt creation guide | Live page | Added for the robots.txt location rule cited by F14 |
+| S33 Amazon Creators API — PA-API 5 Deprecation Notice | Live page | Added (`session-e70af6c4`) confirming PA-API 5.0 deprecation and Creators API replacement |
+| S34 Google Search Central — Qualify Outbound Links (`rel="sponsored"`) | Live page | Added (`session-e70af6c4`) confirming `rel="sponsored"` guidance for affiliate links |
 
-Not re-checked in this pass, and labelled as such on the site: S11, S13, S15, S16, S17, S20, S22. The build, the validator and `platform_engine.py audit` all passed after those edits (16 check groups and 10 unit tests at the time of that pass; the later merge brings the tree to 19 check groups and 16 tests).
+Not re-checked in this pass, and labelled as such on the site: S11, S13, S15, S16, S17, S20, S22. The build, the validator and `platform_engine.py audit` all passed after these edits (21 check groups and 17 unit tests after final integration).
 
-## 8. Parallel sessions and the merged publication
+## 8. Parallel sessions, preserved editions, and 2026-11-21 audit remediation
 
-`main` advanced through PRs #1–#8 from four other Arena sessions before this branch merged. Those sessions published a different edition — "The Practical Home" — which deliberately showed **no products** at all: its build only rendered a product card once a Special Link and an Associates tracking report existed.
+Earlier parallel sessions built two alternate editions, both preserved intact under `archive/` with `noindex,follow` and a banner linking back to the live publication (excluded from `sitemap.xml` so search engines index one canonical site):
 
-This integration did not discard it. The earlier edition is preserved intact at `/archive/practical-home/` with its data (`catalog.json`, `redirects.csv`), Python build and check scripts, analytics worker, acceptance and release-review harnesses, all still runnable in place. Three things were added to it, by the committed script `archive/practical-home/scripts/preserve-archive.py`: absolute URLs rewritten to the archive path, `noindex`, and a banner linking back here. It is excluded from `sitemap.xml`, so one publication is indexed.
+- `archive/practical-home/` — "The Practical Home" (PRs #2–#8), with its data (`catalog.json`, `redirects.csv`), Python build/check scripts, analytics worker, and QA harnesses (`acceptance-31f7/`, `release-review/`).
+- `archive/field-and-fixture/` — "Field & Fixture" (PR #12), with its verification ledger, platform modules (`platform/affiliate_platform.py`, `platform/creators_api_client.py`), and unit tests (`tests/test_platform.py`).
 
-The live root is now the product-led edition, because the brief's first priority was to lead with products, and a shop with zero products cannot do that. Both editions' findings agree on the substance: the three distinct short links resolve to three distinct ASINs, the fourth submission is a duplicate, and no tracking attribution can be confirmed without Associates Central access.
+The live root is the product-led edition (`DIY Home Upgrades`). On 2026-11-21, `session-e70af6c4` merged all parallel session updates (PRs #15–#23) and additionally fixed:
+- DNT/GPC privacy bypass in `assets/js/site.js` (`record()` now returns immediately when DNT or GPC is set) and stored self-XSS in the `/measurement/` local event table (`textContent` DOM nodes instead of `tr.innerHTML`);
+- Wrong guide→product mapping on `/guides/pot-pan-organizer-capacity/` (previously linked the paper towel holder instead of the ORDORA 8-tier rack) and multi-product mapping on `/guides/questions-before-under-cabinet-upgrade/`;
+- Creators API PA-API 5 deprecation (`S33`) and Google `rel="sponsored"` (`S34`) source registration;
+- Cross-file wording alignment across `data/site.json`, `scripts/build.mjs`, and `scripts/content.mjs`, plus regression guards in `scripts/validate.mjs` and `tests/test_platform.py`.
 
-Prior sessions' board and logs are reproduced verbatim in `COORDINATION.md`.
+Prior sessions' boards and logs are reproduced verbatim in `COORDINATION.md`.
 
 ## 9. Where it stands
 
