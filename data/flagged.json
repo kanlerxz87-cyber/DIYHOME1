@@ -14,7 +14,7 @@
         "S10",
         "S11",
         "S12",
-        "S26"
+        "S27"
       ],
       "needs": "Sign in to Associates Central, open SiteStripe or Build Links, build one link per product, confirm the destination and confirm the click appears in the tracking report before scaling. Nothing on this site can substitute for that report.",
       "action": "Every outbound link on this site is a freshly built /dp/ASIN?tag=shopnow047c-20 URL in Amazon's documented simple-text-link format (S27), marked Sponsored, rather than the short token. The short links are recorded in the intent register as provenance only.",
@@ -82,7 +82,7 @@
       "what": "Amazon Associates help topic GP38PJ6EUR6PFBEC (S27) was read without signing in on 2026-11-21 and defines ASIN as the 10-digit code Amazon uses to denote specific products, with the link format /dp/ASIN/ref=nosim?tag=YOURASSOCIATEID. The identifier itself is therefore checkable against an official source. What remains open is which ASIN the account owner intended for each supplied short link: that is an operator statement, not something a redirect can prove.",
       "why_it_matters": "The site states that an ASIN is a checkable identifier, which should rest on Amazon's own documentation.",
       "sources": [
-        "S27",
+        "S28",
         "S24",
         "S10",
         "S11",
@@ -138,10 +138,10 @@
       "id": "F10",
       "severity": "low",
       "title": "Category commission bands are now verified from a public Amazon page; per-SKU payout still is not",
-      "what": "The public Standard Commission Income Statement (S23, re-read 2026-11-21 as S28) lists Kitchen at 4.50% and Home/Home Improvement/Tools at 3.00% without requiring sign-in. The supplied listings sit in Tools & Home Improvement (B08FKW9JRM) and Home & Kitchen > Kitchen & Dining (B0BSKQW2T2, B08DY9HRWD), so the applicable band is bracketed. Which band actually pays on a given order, and what any order converts to, can only come from a first-party Associates earnings report.",
+      "what": "The public Standard Commission Income Statement (S23, re-read 2026-11-21 as S29) lists Kitchen at 4.50% and Home/Home Improvement/Tools at 3.00% without requiring sign-in. The supplied listings sit in Tools & Home Improvement (B08FKW9JRM) and Home & Kitchen > Kitchen & Dining (B0BSKQW2T2, B08DY9HRWD), so the applicable band is bracketed. Which band actually pays on a given order, and what any order converts to, can only come from a first-party Associates earnings report.",
       "why_it_matters": "A 'commission potential' score built on remembered or guessed rates would be fabrication.",
       "sources": [
-        "S28",
+        "S29",
         "S23",
         "S17"
       ],
@@ -205,7 +205,7 @@
       "status": "needs review"
     },
     {
-      "id": "F15",
+      "id": "F17",
       "severity": "low",
       "title": "Landing-page flag counts were hardcoded and could drift from data/flagged.json",
       "what": "The front page and the summary page printed fixed numbers of flagged items and specification rows. Those numbers matched on 2026-11-21 but would silently go stale the next time an item was added or closed.",
@@ -219,7 +219,7 @@
       "updated": "2026-11-21"
     },
     {
-      "id": "F16",
+      "id": "F18",
       "severity": "info",
       "title": "Dynamic listing values observed on 2026-11-21 are recorded for audit but deliberately not published",
       "what": "The three listings displayed a price, star rating, review count and 'bought in past month' line when read on 2026-11-21. Those observations are stored in data/products.json for provenance and are not rendered on any page.",

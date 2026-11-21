@@ -11,7 +11,7 @@
       "short_token": "B0hmGG4m2",
       "observed_asin": "B08FKW9JRM",
       "observed_dp_url": "https://www.amazon.com/dp/B08FKW9JRM",
-      "observed_redirect_query_note": "sprefix=diy+home+upgrades, btn_type=ss (lv=shuf, btn_type=ss; NO tag= parameter present). Per Amazon help topic S26, the absence of the tracking ID in the URL after click-through is not evidence either way, so tracking status remains unverified and recordable only from an Associates report.",
+      "observed_redirect_query_note": "sprefix=diy+home+upgrades, btn_type=ss (lv=shuf, btn_type=ss; NO tag= parameter present). Per Amazon help topic S27, the absence of the tracking ID in the URL after click-through is not evidence either way, so tracking status remains unverified and recordable only from an Associates report.",
       "candidate_special_link_template": "https://www.amazon.com/dp/B08FKW9JRM?tag=shopnow047c-20",
       "category_slug": "wall-and-backsplash",
       "category_name": "Wall Treatments & Backsplash Prep",
@@ -133,7 +133,7 @@
           "source_label": "Amazon Standard Commission Income Statement (public table)",
           "source_url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ",
           "checked_on": "2026-11-21",
-          "audit_note": "Public rate table re-read without sign-in on 2026-11-21 (S28): Kitchen 4.50%; Home, Home Improvement, Tools 3.00%. Band shown for reference only; the band that actually pays on an order is unverified until an Associates report exists."
+          "audit_note": "Public rate table re-read without sign-in on 2026-11-21 (S29): Kitchen 4.50%; Home, Home Improvement, Tools 3.00%. Band shown for reference only; the band that actually pays on an order is unverified until an Associates report exists."
         },
         {
           "field": "Live PA-API Price & Availability",
@@ -154,7 +154,7 @@
       "short_token": "B03QDuGdo",
       "observed_asin": "B0BSKQW2T2",
       "observed_dp_url": "https://www.amazon.com/dp/B0BSKQW2T2",
-      "observed_redirect_query_note": "sprefix=diy+home+upgrades, btn_type=ss, th=1 (lv=shuf, btn_type=ss; NO tag= parameter present). Per Amazon help topic S26, the absence of the tracking ID in the URL after click-through is not evidence either way, so tracking status remains unverified and recordable only from an Associates report.",
+      "observed_redirect_query_note": "sprefix=diy+home+upgrades, btn_type=ss, th=1 (lv=shuf, btn_type=ss; NO tag= parameter present). Per Amazon help topic S27, the absence of the tracking ID in the URL after click-through is not evidence either way, so tracking status remains unverified and recordable only from an Associates report.",
       "candidate_special_link_template": "https://www.amazon.com/dp/B0BSKQW2T2?tag=shopnow047c-20",
       "category_slug": "under-cabinet-fixtures",
       "category_name": "Under-Cabinet Hardware & Space-Savers",
@@ -278,7 +278,7 @@
           "source_label": "Amazon Standard Commission Income Statement (public table)",
           "source_url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ",
           "checked_on": "2026-11-21",
-          "audit_note": "Public rate table re-read without sign-in on 2026-11-21 (S28): Kitchen 4.50%; Home, Home Improvement, Tools 3.00%. Band shown for reference only; the band that actually pays on an order is unverified until an Associates report exists."
+          "audit_note": "Public rate table re-read without sign-in on 2026-11-21 (S29): Kitchen 4.50%; Home, Home Improvement, Tools 3.00%. Band shown for reference only; the band that actually pays on an order is unverified until an Associates report exists."
         },
         {
           "field": "Live PA-API Price & Availability",
@@ -298,7 +298,7 @@
       "short_token": "B0hpD2JGQ",
       "observed_asin": "B08DY9HRWD",
       "observed_dp_url": "https://www.amazon.com/dp/B08DY9HRWD",
-      "observed_redirect_query_note": "sprefix=diy+home+upgrades, btn_type=ss, th=1 (lv=shuf, btn_type=ss; NO tag= parameter present). Per Amazon help topic S26, the absence of the tracking ID in the URL after click-through is not evidence either way, so tracking status remains unverified and recordable only from an Associates report.",
+      "observed_redirect_query_note": "sprefix=diy+home+upgrades, btn_type=ss, th=1 (lv=shuf, btn_type=ss; NO tag= parameter present). Per Amazon help topic S27, the absence of the tracking ID in the URL after click-through is not evidence either way, so tracking status remains unverified and recordable only from an Associates report.",
       "candidate_special_link_template": "https://www.amazon.com/dp/B08DY9HRWD?tag=shopnow047c-20",
       "category_slug": "cabinet-and-cookware-storage",
       "category_name": "Cabinet & Cookware Organization",
@@ -427,7 +427,7 @@
           "source_label": "Amazon Standard Commission Income Statement (public table)",
           "source_url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ",
           "checked_on": "2026-11-21",
-          "audit_note": "Public rate table re-read without sign-in on 2026-11-21 (S28): Kitchen 4.50%; Home, Home Improvement, Tools 3.00%. Band shown for reference only; the band that actually pays on an order is unverified until an Associates report exists."
+          "audit_note": "Public rate table re-read without sign-in on 2026-11-21 (S29): Kitchen 4.50%; Home, Home Improvement, Tools 3.00%. Band shown for reference only; the band that actually pays on an order is unverified until an Associates report exists."
         },
         {
           "field": "Live PA-API Price & Availability",

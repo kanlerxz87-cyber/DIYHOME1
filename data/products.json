@@ -25,7 +25,7 @@
       "observed_method": "Unauthenticated fetch of the supplied short link, following redirects, then the resolved /dp/ page read for title, Product information table and dynamic fields. Repeated 2026-11-20 and 2026-11-21 with the same ASIN result.",
       "listing_verified": true,
       "associates_link_verified": false,
-      "associates_status": "Unconfirmed \u2014 requires sign-in to Associates Central to confirm the link is enrolled and that clicks appear in the tracking report. Note S26 (Amazon): the tracking ID is not expected to appear in the URL after click-through, so a missing tag= parameter in the observed redirect is not evidence either way.",
+      "associates_status": "Unconfirmed \u2014 requires sign-in to Associates Central to confirm the link is enrolled and that clicks appear in the tracking report. Note S27 (Amazon): the tracking ID is not expected to appear in the URL after click-through, so a missing tag= parameter in the observed redirect is not evidence either way.",
       "seller_observed": "Art3d\u00ae \u2014 Ships from Amazon (observed 2026-11-20; dynamic merchant line)",
       "category_path": [
         {
@@ -105,7 +105,7 @@
       "observed_method": "Unauthenticated fetch of the supplied short link, following redirects, then the resolved /dp/ page read for title, Product information table and dynamic fields. Repeated 2026-11-20 and 2026-11-21 with the same ASIN result.",
       "listing_verified": true,
       "associates_link_verified": false,
-      "associates_status": "Unconfirmed \u2014 requires sign-in to Associates Central to confirm the link is enrolled and that clicks appear in the tracking report. Note S26 (Amazon): the tracking ID is not expected to appear in the URL after click-through, so a missing tag= parameter in the observed redirect is not evidence either way.",
+      "associates_status": "Unconfirmed \u2014 requires sign-in to Associates Central to confirm the link is enrolled and that clicks appear in the tracking report. Note S27 (Amazon): the tracking ID is not expected to appear in the URL after click-through, so a missing tag= parameter in the observed redirect is not evidence either way.",
       "seller_observed": "YH Urban \u2014 Ships from Amazon (observed 2026-11-20; dynamic merchant line)",
       "category_path": [
         {
@@ -189,7 +189,7 @@
       "observed_method": "Unauthenticated fetch of the supplied short link, following redirects, then the resolved /dp/ page read for title, Product information table and dynamic fields. Repeated 2026-11-20 and 2026-11-21 with the same ASIN result.",
       "listing_verified": true,
       "associates_link_verified": false,
-      "associates_status": "Unconfirmed \u2014 requires sign-in to Associates Central to confirm the link is enrolled and that clicks appear in the tracking report. Note S26 (Amazon): the tracking ID is not expected to appear in the URL after click-through, so a missing tag= parameter in the observed redirect is not evidence either way.",
+      "associates_status": "Unconfirmed \u2014 requires sign-in to Associates Central to confirm the link is enrolled and that clicks appear in the tracking report. Note S27 (Amazon): the tracking ID is not expected to appear in the URL after click-through, so a missing tag= parameter in the observed redirect is not evidence either way.",
       "seller_observed": "ORDORA Official (observed 2026-11-20; seller lines change and are not a lasting guarantee)",
       "category_path": [
         {

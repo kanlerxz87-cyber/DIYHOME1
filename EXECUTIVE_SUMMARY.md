@@ -1,7 +1,25 @@
 # Executive summary — DIY Home Upgrades
 
-**Prepared:** 20 November 2026 · **Branch:** `arena/eb4b2092-diyhome1` · **Site:** https://kanlerxz87-cyber.github.io/DIYHOME1/
+**Prepared:** 20 November 2026 · **Re-verified and revised:** 21 November 2026 (`arena/fe2b1ce4-diyhome1`) · **Site:** https://kanlerxz87-cyber.github.io/DIYHOME1/
 **Associates tracking ID used:** `shopnow047c-20` (as supplied; enrolment not verified — see F01, F12)
+
+---
+
+## 0. What changed on 21 November 2026
+
+A second verification pass re-read every external claim. What it changed:
+
+| Item | Before (20 Nov) | After re-verification (21 Nov) |
+|---|---|---|
+| The three supplied short links | Resolved, but no `tag=` parameter in the redirect, recorded as an open concern | Still resolve to the same three ASINs. Amazon's own help topic now quoted (S27): the tracking ID is **not expected** to appear in the URL after click-through, because the session is tagged for attribution. So a missing `tag=` is **not evidence** of lost tracking; only an Associates report settles it. **F01** downgraded high → medium. |
+| Amazon's ASIN definition | Behind a sign-in wall on Seller Central (F06) | Read without sign-in in the public Associates help topic (S28), which also gives Amazon's documented link format `/dp/ASIN/ref=nosim?tag=YOURASSOCIATEID`. **F06** downgraded to info. |
+| Commission rates (F10) | Rate card "could not be verified" | The public Standard Commission Income Statement was read again (S29): **Kitchen 4.50%**, **Home/Home Improvement/Tools 3.00%**. The supplied products sit in those two bands. Per-SKU payout and any conversion figure remain unverified. **F10** medium → low. |
+| Blank specification fields | Blank, with the reason given once | Each blank now carries a dated note saying exactly what was checked: two listings expose **no UPC**, two expose **no Date First Available**. Verified by re-reading the "Product information" and "Item details" tables on 21 Nov. |
+| Front page | Led with the verification method | Leads with the products. Each card shows material, size, weight and mounting pulled from the specification register, with the date read. The verification story is one compact band further down. |
+| Flag and row counts | Partly hardcoded in the templates | Computed from `data/*.json` at build time (F15), so a published count cannot drift from the register behind it. |
+
+Still open, unchanged, and still needing an account this build does not have: Associates enrolment of the tag (F01/F12), a Search Console token (F04), and an analytics host (F05).
+
 
 ---
 
@@ -20,8 +38,8 @@ A static, multi-page affiliate publication built from `data/*.json`, published b
 | `/about/` | Method, definition of "verified", automation boundaries |
 | `/automation/` | 7-stage automation & compliance gate CLI (`validate.mjs`, `platform_engine.py`, `creators_api_client.py`) |
 | `/disclosures/` | Affiliate disclosure, link policy, privacy, withheld data |
-| `/sources/` | Register of 25 official sources + `SG-27..SG-30` parallel passes + 52-row product spec verification ledger |
-| `/flagged/` | 14 flagged items with severity, what would close each one, and official sources on every row |
+| `/sources/` | Register of 28 official sources + `SG-27..SG-30` parallel passes + 52-row product spec verification ledger |
+| `/flagged/` | 16 flagged items with severity, what would close each one, and official sources on every row |
 | `/measurement/` | Five defined events, privacy rules, honest status, local event viewer |
 | `/ledger/` | 4-row Product-intent confirmation record (strictly separate from observed redirects) + empty campaign ledger |
 | `/summary/` | This summary, on the site (all dashboard surfaces grouped under `Site desk` in top nav & repeated in footer) |
@@ -35,7 +53,7 @@ No prices, no star ratings, no review counts, no product images, no commission p
 
 Four links were supplied; one was a duplicate, so three distinct links were resolved.
 
-| # | Supplied link | Resolved to | Listing title (read on 2026-11-20) |
+| # | Supplied link | Resolved to | Listing title (re-read on 2026-11-21; identical to 2026-11-20) |
 |---|---|---|---|
 | 1 | `https://link.amazon/B0hmGG4m2` | `https://www.amazon.com/dp/B08FKW9JRM` | Art3d Smoothing Tool Kit for Peel and Stick Wallpaper \| Vinyl Backsplash Tile, Complete Basic Tool Set, Bubble & Crease Removal, Ergonomic Grip, Safe for DIY and New Home Buyer |
 | 2 | `https://link.amazon/B03QDuGdo` | `https://www.amazon.com/dp/B0BSKQW2T2` | Paper Towel Holder Under Cabinet, Self-Adhesive or Drilling, Matte Black \| Kitchen Roll Dispenser \| Under-Cabinet or Wall-Mounted\| Upgraded Aluminum \| Lighter Yet Stronger Than Stainless Steel |
@@ -44,7 +62,7 @@ Four links were supplied; one was a duplicate, so three distinct links were reso
 
 **Two things this proves, and one it does not.**
 
-- **Proves:** each short link reaches a live product page; the three targets are distinct; the short-link tokens (`B0hmGG4m2`, `B03QDuGdo`, `B0hpD2JGQ`) are not ASINs — they contain lowercase characters and `/dp/B0HMGG4M2` returns no product page.
+- **Proves:** each short link reaches a live product page on both 20 and 21 November 2026; the three targets are distinct; the short-link tokens (`B0hmGG4m2`, `B03QDuGdo`, `B0hpD2JGQ`) are not ASINs — they are not the 10-digit item code Amazon defines (S28), and `/dp/B0HMGG4M2` returns no product page.
 - **Does not prove:** that the short links carry the tag `shopnow047c-20`, that they are enrolled Associates links, or that clicks on them appear in the Associates tracking report. Those require Associates Central sign-in. **This is unresolved, not disproven** — see F01.
 - **Never claimed:** that the short links are invalid. Their compliance status is unresolved.
 

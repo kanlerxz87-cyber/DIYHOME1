@@ -424,7 +424,7 @@ const add = (file, html) => pages.push({ file, html });
       <div class="card">
         <h3 class="card-title">What is deliberately missing</h3>
         <p>No prices, star ratings, review counts or availability. Amazon only permits price and availability display through its own served links or the Creators/PA API, and its terms restrict republishing review content. ${srcBadge("S01", 0)}</p>
-        <p>No commission percentages and no revenue forecast: the public rate table gives a category band, not this account's payout. ${srcBadge("S28", 0)}</p>
+        <p>No commission percentages and no revenue forecast: the public rate table gives a category band, not this account's payout. ${srcBadge("S29", 0)}</p>
         <p class="link-note"><a href="products/comparisons/">See every confirmed value, and every blank, side by side &rarr;</a></p>
       </div>
     </div>
@@ -435,7 +435,7 @@ const add = (file, html) => pages.push({ file, html });
   <div class="wrap">
     <div class="section-head"><div><h2>Open items, in plain language</h2><p>Three things are not settled. None of them are simulated on this site.</p></div><a class="more" href="flagged/">All ${flagged.length} flagged items &rarr;</a></div>
     <div class="callout warn">
-      <p><strong>Affiliate tracking on the supplied short links is unconfirmed.</strong> All three resolve to the right product pages, and none carries the tag in its redirect &mdash; which Amazon's own help says is expected, because tracking happens in the shopping session. Only the Associates report can close it. ${srcBadge("S26", 0)}</p>
+      <p><strong>Affiliate tracking on the supplied short links is unconfirmed.</strong> All three resolve to the right product pages, and none carries the tag in its redirect &mdash; which Amazon's own help says is expected, because tracking happens in the shopping session. Only the Associates report can close it. ${srcBadge("S27", 0)}</p>
       <p><strong>Search Console has no verification token</strong>, so the site cannot yet read the queries it ranks for. <strong>The analytics collector has no host</strong>, so the five defined events stay in the visitor's browser rather than being sent anywhere.</p>
       <p><a href="flagged/">Read each one with its source link &rarr;</a></p>
     </div>
@@ -1478,6 +1478,14 @@ ${prod ? `<section class="block"><div class="wrap">
       <li>No hands-on experience claims, because nothing was bought or used.</li>
       <li>No inferred catalog values: where <span class="mono">UPC</span> or <span class="mono">Date First Available</span> is absent from an official listing table, the cell stays blank and badged unverified.</li>
       <li>No search-volume or popularity claims for any guide title.</li>
+    </ul>
+
+    <h2>What the 21 November 2026 pass changed</h2>
+    <ul>
+      <li><strong>Short-link tracking, re-examined.</strong> All three supplied links were fetched again and resolved to the same ASINs. None carries the tag in its redirect, and Amazon's own help topic says the tracking ID is not expected to appear there because the session is tagged instead. ${srcBadge("S27", 1)} That is why the flag is about the Associates report, not about the missing parameter.</li>
+      <li><strong>The ASIN definition is now first-party and public.</strong> Amazon defines the ASIN as its 10-digit item code and documents the link format used here. ${srcBadge("S28", 1)}</li>
+      <li><strong>Commission bands are public.</strong> Kitchen 4.50%, Home/Home Improvement/Tools 3.00%. ${srcBadge("S29", 1)} The band is not the payout, so no percentage is published and the ledger stays empty.</li>
+      <li><strong>Blanks now explain themselves.</strong> Every unverified field says what was checked and when &mdash; two listings expose no UPC, two expose no date first available.</li>
     </ul>
 
     <h2>What is still blocked</h2>
