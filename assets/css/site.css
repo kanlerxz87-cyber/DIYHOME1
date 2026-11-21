@@ -381,6 +381,64 @@ dl.facts dt { color: var(--muted); font-weight: 600; }
 dl.facts dd { margin: 0; }
 dl.facts dd.blank { color: var(--muted); font-style: italic; }
 
+/* compact fact list used on shop cards: two columns of label/value pairs */
+dl.facts-compact {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  font-size: 13.5px;
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+}
+dl.facts-compact > div {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 10px;
+  padding: 5px 0;
+  border-bottom: 1px dotted var(--line);
+}
+dl.facts-compact > div:last-child { border-bottom: 0; }
+dl.facts-compact dt {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 1.9;
+}
+dl.facts-compact dd { color: var(--ink); line-height: 1.45; overflow-wrap: anywhere; }
+
+/* front page: shop-first hero */
+.hero-shop .hero-grid { align-items: start; }
+.hero-shop h1 { margin-bottom: 14px; }
+.hero-lead {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-lg);
+  padding: 20px 22px;
+  box-shadow: var(--shadow);
+}
+.hero-lead h3 { font-size: 20px; margin-top: 2px; }
+.hero-lead h3 a { text-decoration: none; color: var(--ink); }
+.hero-lead h3 a:hover { color: var(--accent); text-decoration: underline; }
+.hero-lead .btn-row { margin-top: 14px; }
+.lead-pick { margin: 0 0 2px; }
+
+.card-eyebrow {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  margin: 0 0 2px;
+}
+.shop-card .card-title { font-size: 19px; }
+
+ul.rule-list { margin: 0; padding-left: 20px; font-size: 14.5px; color: var(--ink-soft); }
+ul.rule-list li { margin-bottom: 10px; }
+ul.rule-list li:last-child { margin-bottom: 0; }
+
+@media (max-width: 720px) {
+  dl.facts-compact > div { grid-template-columns: minmax(0, 1fr); gap: 0; padding: 6px 0; }
+  dl.facts-compact dt { line-height: 1.4; }
+}
+
 /* ---------- footer ---------- */
 
 .site-footer {
@@ -436,3 +494,9 @@ dl.facts dd.blank { color: var(--muted); font-style: italic; }
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
 }
+
+/* front page: "which one is your job" picker */
+.hero-lead .pick { padding: 11px 0; border-top: 1px solid var(--line); }
+.hero-lead .pick:first-of-type { border-top: 0; padding-top: 0; }
+.hero-lead .pick-when { font-size: 13px; color: var(--muted); margin: 0 0 4px; }
+.hero-lead .pick h3 { margin-bottom: 2px; }

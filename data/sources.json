@@ -1,6 +1,6 @@
 {
-  "generated": "2026-11-20",
-  "method": "Each source below was retrieved and read in this session unless marked otherwise. 'verified' means the text quoted in the site was read on that page. 'secondary' means the page is not first-party documentation and is used only to explain a flagged gap. 'unavailable' means the source exists but could not be retrieved without credentials.",
+  "generated": "2026-11-21",
+  "method": "Each source below was retrieved and read in this session unless marked otherwise. 'verified' means the text quoted in the site was read on that page. 'secondary' means the page is not first-party documentation and is used only to explain a flagged gap. 'unavailable' means the source exists but could not be retrieved without credentials. Re-verified 2026-11-21: the three supplied short links, the three resolved listings, the public commission schedule (S23/S28) and the two Associates help topics on link format and tracking (S26/S27) were all read again on that date.",
   "sources": [
     {
       "id": "S01",
@@ -448,6 +448,63 @@
       "quotes": [
         "Avoid overcrowding the air fryer basket",
         "Always use a food thermometer to check the internal temperature"
+      ]
+    },
+    {
+      "id": "S26",
+      "title": "Why doesn't my tracking ID appear in your URL after a visitor clicks through to Amazon from my Web site?",
+      "publisher": "Amazon.com, Inc. (Amazon Associates Central)",
+      "url": "https://affiliate-program.amazon.com/help/node/topic/GFZ6X2S7P8EVNGN2",
+      "page_date": "Live public help topic; retrieved 2026-11-21",
+      "retrieved": "2026-11-21",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Amazon states it is not necessary for the tracking ID to appear in the URL after the click-through, because the shopping session is tagged for attribution",
+        "This means the absence of a tag= parameter in an observed redirect is NOT by itself evidence that a link is untracked",
+        "It does not confirm attribution for the specific supplied short links; that still requires an Associates report"
+      ],
+      "quotes": [
+        "We understand your concern, but rest assured that it is not necessary for your unique ID to appear in order for us to track sales made after the initial clickthrough. The individual shopping session will be tagged in a way that allows us to track the items purchased and credit you with the appropriate commission."
+      ]
+    },
+    {
+      "id": "S27",
+      "title": "How do I build a simple text link to a specific item on Amazon?",
+      "publisher": "Amazon.com, Inc. (Amazon Associates Central)",
+      "url": "https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC",
+      "page_date": "Live public help topic; retrieved 2026-11-21",
+      "retrieved": "2026-11-21",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Amazon's own documented simple text-link format is /dp/ASIN with the Associates tag supplied as a URL parameter",
+        "Amazon defines ASIN as the 10-digit code used to denote specific products",
+        "This is the format used for every outbound product link built by this site"
+      ],
+      "quotes": [
+        "http://www.amazon.com/dp/ASIN/ref=nosim?tag=YOURASSOCIATEID",
+        "ASIN: ASIN is the 10-digit code that Amazon uses to denote specific products. It is short for \"Amazon.com Standard Item Number.\" Every item in our catalog has a unique ASIN.",
+        "YOURASSOCIATEID: YOURASSOCIATEID is the unique ID that is used to identify your Associates account, automatically generated when you apply for the Associates Programme."
+      ]
+    },
+    {
+      "id": "S28",
+      "title": "Associates Program Standard Commission Income Statement (public rate table)",
+      "publisher": "Amazon.com, Inc. (Amazon Associates Central)",
+      "url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ",
+      "page_date": "Live public schedule; re-read 2026-11-21",
+      "retrieved": "2026-11-21",
+      "type": "primary",
+      "verified": true,
+      "supports": [
+        "Marketplace category rate bands readable without sign-in: Kitchen 4.50%; Home, Home Improvement, Tools 3.00%",
+        "The supplied products sit in Tools & Home Improvement (B08FKW9JRM) and Home & Kitchen > Kitchen & Dining (B0BSKQW2T2, B08DY9HRWD)",
+        "Which band a specific SKU earns is still unverified: it requires a first-party Associates earnings report"
+      ],
+      "quotes": [
+        "Physical Books, Kitchen, Automotive | 4.50%",
+        "Toys, Furniture, Home, Home Improvement, Lawn & Garden, Pets Products, Headphones, Beauty, Musical Instruments, Business & Industrial Supplies, Outdoors, Tools, Sports, Baby Products, Amazon Coins | 3.00%"
       ]
     }
   ]

@@ -1,23 +1,25 @@
 {
-  "generated": "2026-11-20",
+  "generated": "2026-11-21",
   "legend": "Severity high = could cost commission income or breach program terms. medium = a required step cannot be completed without account access or a user action. low = inconsistency worth fixing. info = deliberately withheld data, not an error.",
   "items": [
     {
       "id": "F01",
-      "severity": "high",
-      "title": "The three submitted short links are not confirmed as enrolled Associates Special Links",
-      "what": "Each short link was fetched once and resolved to a live product page. What could not be checked is whether those links carry the tracking ID shopnow047c-20, whether they are enrolled in the Associates account, or whether clicks appear in the Associates tracking report.",
+      "severity": "medium",
+      "title": "Tracking for the three supplied short links is still unconfirmed, but the missing tag= parameter is not the test",
+      "what": "All three short links were fetched again on 2026-11-21 and each resolved to the same live product page as on 2026-11-20 (B08FKW9JRM, B0BSKQW2T2, B08DY9HRWD). None of the observed redirect targets carries a tag= parameter. Amazon's own help topic S26 states that the tracking ID is not expected to appear in the URL after click-through because the shopping session is tagged for attribution, so that absence is not evidence either way. What remains unverified is whether these links are enrolled Special Links on the account and whether clicks appear in the Associates tracking report.",
       "why_it_matters": "Amazon's Program Policies require Special Links to carry the Associate tag as a URL parameter, and require the Associate to keep track of which link formats are permitted. Publishing links whose tracking is unconfirmed risks earning nothing while looking like it works.",
       "sources": [
         "S01",
         "S02",
         "S10",
         "S11",
-        "S12"
+        "S12",
+        "S26"
       ],
-      "needs": "Sign-in to Associates Central, open SiteStripe, build one link per product, confirm the destination and confirm the click in the tracking report before adding more products.",
-      "action": "Every outbound link on this site therefore uses a freshly built tagged URL (https://www.amazon.com/dp/ASIN?tag=shopnow047c-20) rather than the short token, and is marked Sponsored.",
-      "status": "needs review"
+      "needs": "Sign in to Associates Central, open SiteStripe or Build Links, build one link per product, confirm the destination and confirm the click appears in the tracking report before scaling. Nothing on this site can substitute for that report.",
+      "action": "Every outbound link on this site is a freshly built /dp/ASIN?tag=shopnow047c-20 URL in Amazon's documented simple-text-link format (S27), marked Sponsored, rather than the short token. The short links are recorded in the intent register as provenance only.",
+      "status": "needs review",
+      "updated": "2026-11-21"
     },
     {
       "id": "F02",
@@ -75,20 +77,21 @@
     },
     {
       "id": "F06",
-      "severity": "low",
-      "title": "Amazon's own ASIN definition could not be read without signing in",
-      "what": "Seller Central help page 200220550 redirected to sign-in, while public Amazon Associates Help topic GP38PJ6EUR6PFBEC (S24) confirms ASIN is Amazon's 10-character item code. Intended ASINs for the submitted short links remain unconfirmed by the account owner.",
+      "severity": "info",
+      "title": "Amazon's own ASIN definition is now read and quoted; the owner-supplied intended ASINs are still unconfirmed",
+      "what": "Amazon Associates help topic GP38PJ6EUR6PFBEC (S27) was read without signing in on 2026-11-21 and defines ASIN as the 10-digit code Amazon uses to denote specific products, with the link format /dp/ASIN/ref=nosim?tag=YOURASSOCIATEID. The identifier itself is therefore checkable against an official source. What remains open is which ASIN the account owner intended for each supplied short link: that is an operator statement, not something a redirect can prove.",
       "why_it_matters": "The site states that an ASIN is a checkable identifier, which should rest on Amazon's own documentation.",
       "sources": [
+        "S27",
         "S24",
-        "S15",
-        "S16",
-        "S13",
-        "S04"
+        "S10",
+        "S11",
+        "S12"
       ],
-      "needs": "Paste the ASIN wording from Seller Central help once signed in, or link an accessible Amazon page that defines it.",
-      "action": "The claim is marked as observed plus secondary, not as official documentation.",
-      "status": "needs review"
+      "needs": "One line from the owner per product: the intended ASIN. Until then the field stays blank.",
+      "action": "The ASIN definition is quoted from S27 with its URL. intended_asin stays blank in data/products.json and data/product-intents.csv; observed ASINs are kept in their own field and are never presented as the intended ones.",
+      "status": "needs review",
+      "updated": "2026-11-21"
     },
     {
       "id": "F07",
@@ -133,17 +136,19 @@
     },
     {
       "id": "F10",
-      "severity": "medium",
-      "title": "Commission rates could not be verified, so no commission percentages or revenue forecasts appear",
-      "what": "Account-specific custom rate card (/help/operating/schedule, S17) requires sign-in. Public Standard Commission Income table (S23) lists Kitchen at 4.50% and Home/Tools at 3.00%, but exact SKU sub-node payout and conversion remain unverified until first-party Associates reports exist.",
+      "severity": "low",
+      "title": "Category commission bands are now verified from a public Amazon page; per-SKU payout still is not",
+      "what": "The public Standard Commission Income Statement (S23, re-read 2026-11-21 as S28) lists Kitchen at 4.50% and Home/Home Improvement/Tools at 3.00% without requiring sign-in. The supplied listings sit in Tools & Home Improvement (B08FKW9JRM) and Home & Kitchen > Kitchen & Dining (B0BSKQW2T2, B08DY9HRWD), so the applicable band is bracketed. Which band actually pays on a given order, and what any order converts to, can only come from a first-party Associates earnings report.",
       "why_it_matters": "A 'commission potential' score built on remembered or guessed rates would be fabrication.",
       "sources": [
-        "S17",
-        "S23"
+        "S28",
+        "S23",
+        "S17"
       ],
-      "needs": "Read the rate card inside Associates Central and record it with a date, then it can be shown as a dated fact.",
-      "action": "The commission column is empty by design, and the ledger starts empty. No conversion score or revenue forecast is presented.",
-      "status": "needs review"
+      "needs": "An Associates earnings report for a period with clicks. Then a rate can be recorded with a date and a report ID in the campaign ledger instead of being estimated.",
+      "action": "The published pages still show no commission percentage, no conversion score and no revenue forecast. The rate band is recorded in the product specification table as a schedule reference only, badged Needs Review, and the ledger stays empty.",
+      "status": "needs review",
+      "updated": "2026-11-21"
     },
     {
       "id": "F11",
@@ -198,6 +203,35 @@
       "needs": "Submit the sitemap in Search Console (F04) and check the robots.txt report there. A custom domain, or the user/organisation Pages site at the host root, would make robots.txt authoritative.",
       "action": "The search page and the 404 page carry a noindex meta tag instead, which Google documents as the actual mechanism. robots.txt is still published, with a comment saying exactly this.",
       "status": "needs review"
+    },
+    {
+      "id": "F15",
+      "severity": "low",
+      "title": "Landing-page flag counts were hardcoded and could drift from data/flagged.json",
+      "what": "The front page and the summary page printed fixed numbers of flagged items and specification rows. Those numbers matched on 2026-11-21 but would silently go stale the next time an item was added or closed.",
+      "why_it_matters": "A published count that does not match the register behind it is a factual error on a page whose whole argument is that counts are checkable.",
+      "sources": [
+        "S07"
+      ],
+      "needs": "Nothing further; fixed in the same build by deriving the counts from data/*.json.",
+      "action": "Every count on the generated pages is now computed from the data files at build time.",
+      "status": "needs review",
+      "updated": "2026-11-21"
+    },
+    {
+      "id": "F16",
+      "severity": "info",
+      "title": "Dynamic listing values observed on 2026-11-21 are recorded for audit but deliberately not published",
+      "what": "The three listings displayed a price, star rating, review count and 'bought in past month' line when read on 2026-11-21. Those observations are stored in data/products.json for provenance and are not rendered on any page.",
+      "why_it_matters": "Amazon permits price and availability display only through Amazon-served links or the Creators/PA API, and its terms restrict republishing review content without API access.",
+      "sources": [
+        "S01",
+        "S03"
+      ],
+      "needs": "Creators API credentials, or an Amazon-served link, before any price or rating can appear on the site.",
+      "action": "No price, rating, review count or availability figure appears on the site. The observation is kept as a dated audit record with this explanation.",
+      "status": "needs review",
+      "updated": "2026-11-21"
     }
   ]
 }
