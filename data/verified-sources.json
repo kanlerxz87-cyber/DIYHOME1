@@ -339,5 +339,5 @@
       "source_url": "https://developers.google.com/search/docs/monitor-debug/search-console-start"
     }
   ],
-  "code_note": "Canonical citation register is data/sources.json (S01-S25); site badges use those codes. Codes in this file (S01-S13+) are local to this file's parallel-pass history and must not be used as site citation badges."
+  "code_note": "Canonical citation register is data/sources.json (S01-S26); site badges use those codes. Codes in this file (S01-S13+) are local to this file's parallel-pass history and must not be used as site citation badges."
 }
