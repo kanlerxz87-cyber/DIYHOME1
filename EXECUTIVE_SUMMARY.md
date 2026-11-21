@@ -139,7 +139,37 @@ Nothing on this site is presented as verified beyond what an official source sup
 
 ---
 
-## 10. Revision, 21 November 2026 — audit and correction pass
+<!-- Two sessions published a 2026-11-21 revision. Both records are kept: section 10 is the earlier
+     S-2026-11-21-F pass (analytics-server fix, register wording), section 11 is the later
+     S-2026-11-21-B pass (spec-register citations, VS namespaces, re-verification scope). -->
+
+## 10. Addendum — 2026-11-21 re-verification (S-2026-11-21-F, branch `arena/f4d33765-diyhome1`)
+
+A fresh line-by-line re-read of the official sources, one day after the original build. No product, price, rating, commission or tracking claim changed; the following was confirmed or corrected:
+
+**Re-confirmed verbatim on 2026-11-21:**
+- Amazon Program Policies, still dated *Updated April 14, 2026* (S01): the 2(b) tag clause, the price/availability clause, and 3(t)/3(v)/3(w)/3(y) all match the quotes in `data/sources.json` word for word.
+- FTC *Disclosures 101* (S03, November 2019): all four quotes match.
+- All three listing titles (S04/S05/S06) match the stored titles verbatim, and the category breadcrumbs match `data/products.json`. Live prices were visible on all three listings and were withheld again, per 2(b) (F07). No price value is recorded anywhere in this repository.
+- The submitted short link `https://link.amazon/B0hmGG4m2` (S10) still resolves to `B08FKW9JRM`, with no `tag=` parameter in the observed URL — F01 remains open, not disproven.
+- Commission Table 1 (S23): Kitchen 4.50%, Home/Home Improvement/Tools 3.00%. The per-product rate is still withheld (F10).
+
+**Corrected (register wording drift, fixed in `data/sources.json` / `data/verified-sources.json` and rebuilt):**
+- S23 quotes were a paraphrased grouping, not verbatim table rows; replaced with the two verbatim Table 1 rows.
+- S24 "supports" said "10-character" while Amazon's own wording is "10-digit code"; now states Amazon's wording plus the alphanumeric examples on the same page.
+- SG-27 described navigation labels that do not exist (`Shop`, `Categories`, …); now lists the actual labels (Home, Products, Comparisons, Guides, Search, RSS).
+- SG-28 credited `scripts/build.py`/`check.py` (archived edition); the live feed is built by `scripts/build.mjs` and checked by `scripts/validate.mjs`.
+- SG-29 claimed a "root `robots.txt`"; corrected to the project-path reality already recorded as F14.
+- Added a `code_note` to `data/verified-sources.json`: its S-codes are local to that file; the canonical citation register is `data/sources.json` (S01–S25).
+
+**Fixed (broken integration, `analytics-server/server.mjs`):**
+- The self-hosted Node endpoint accepted the archived Field & Fixture edition's event names (`product_impression`, `outbound_affiliate_click`, `reader_capture_submit`) with a `{event, page, meta}` payload. The live `assets/js/site.js` sends `{e, path, sid, …}` with the canonical five events, so every live event would have been rejected with 400. The server now implements the canonical contract (same allowlist and 2048-byte cap as `worker/collect.js`), accepts `POST /collect` and the legacy `/api/events` path alias, and is covered by `tests/test_analytics_server.py` (6 tests: health, site.js payload accepted + PII stripped, alias path, retired shape rejected, unknown event rejected, summary counts). Full suite: 16/16 passing. The endpoint is still **not deployed** — F05 remains open and the campaign ledger remains empty.
+
+**Checks run:** `node scripts/build.mjs` (23 pages) + `node scripts/validate.mjs` (16/16, 288 Amazon links: 38 sponsored, 257 citations, single tag `shopnow047c-20`) + `python3 -m unittest discover -s tests` (16/16). Rebuild changed only `sources/index.html`, as expected.
+
+---
+
+## 11. Revision, 21 November 2026 — audit and correction pass
 
 Session `S-2026-11-21-B` (branch `arena/0b735892-diyhome1`). This pass changed metadata, citations and build gates. No published attribute value changed, and no blank field was filled.
 
@@ -159,6 +189,6 @@ Every other row keeps its 2026-11-20 date rather than being re-dated. The per-pr
 
 **Sources added on 2026-11-21, each read before citing:** `S26` RSS 2.0 Specification (RSS Advisory Board), `S27` SEO Starter Guide (Google Search Central), `S28` Privacy and Security (U.S. FTC).
 
-**Verification:** `node scripts/build.mjs` → 23 pages; `node scripts/validate.mjs` → 19 check groups, 0 errors, 0 warnings; `python3 -m unittest discover -s tests` → 10 tests pass. The new gates were tested by deliberately breaking a submission ID, a guide slug and an SG citation: all three failed, then passed once the data was restored.
+**Verification:** `node scripts/build.mjs` → 23 pages; `node scripts/validate.mjs` → 19 check groups, 0 errors, 0 warnings; `python3 -m unittest discover -s tests` → 16 tests pass (10 pre-existing + 6 analytics-server tests added by S-2026-11-21-F). The new gates were tested by deliberately breaking a submission ID, a guide slug and an SG citation: all three failed, then passed once the data was restored.
 
 **Not claimed:** Associates enrolment for any link, click attribution, Search Console indexing, analytics collection, commission rates or revenue. F01–F14 stand unchanged; F15–F17 are the new findings.

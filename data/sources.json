@@ -8,7 +8,7 @@
       "publisher": "Amazon.com, Inc. (Amazon Associates Central)",
       "url": "https://affiliate-program.amazon.com/help/operating/policies",
       "page_date": "Updated April 14, 2026 (as stated on the page)",
-      "retrieved": "2026-11-20",
+      "retrieved": "2026-11-21",
       "type": "primary",
       "verified": true,
       "supports": [
@@ -59,7 +59,7 @@
       "publisher": "U.S. Federal Trade Commission",
       "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers",
       "page_date": "November 2019 (as stated on the page)",
-      "retrieved": "2026-11-20",
+      "retrieved": "2026-11-21",
       "type": "primary",
       "verified": true,
       "supports": [
@@ -81,8 +81,8 @@
       "title": "Amazon listing B08FKW9JRM — Art3d Smoothing Tool Kit for Peel and Stick Wallpaper",
       "publisher": "Amazon.com, Inc.",
       "url": "https://www.amazon.com/dp/B08FKW9JRM",
-      "page_date": "Live listing; retrieved 2026-11-20 (content is dynamic)",
-      "retrieved": "2026-11-20",
+      "page_date": "Live listing; re-read 2026-11-21 (content is dynamic)",
+      "retrieved": "2026-11-21",
       "type": "primary",
       "verified": true,
       "supports": [
@@ -98,8 +98,8 @@
       "title": "Amazon listing B0BSKQW2T2 — Paper Towel Holder Under Cabinet, Self-Adhesive or Drilling, Matte Black",
       "publisher": "Amazon.com, Inc.",
       "url": "https://www.amazon.com/dp/B0BSKQW2T2",
-      "page_date": "Live listing; retrieved 2026-11-20 (content is dynamic)",
-      "retrieved": "2026-11-20",
+      "page_date": "Live listing; re-read 2026-11-21 (content is dynamic)",
+      "retrieved": "2026-11-21",
       "type": "primary",
       "verified": true,
       "supports": [
@@ -115,8 +115,8 @@
       "title": "Amazon listing B08DY9HRWD — ORDORA Pots and Pans Organizer Under Cabinet 16.6\", 8-Tier Adjustable Rack",
       "publisher": "Amazon.com, Inc.",
       "url": "https://www.amazon.com/dp/B08DY9HRWD",
-      "page_date": "Live listing; retrieved 2026-11-20 (content is dynamic)",
-      "retrieved": "2026-11-20",
+      "page_date": "Live listing; re-read 2026-11-21 (content is dynamic)",
+      "retrieved": "2026-11-21",
       "type": "primary",
       "verified": true,
       "supports": [
@@ -152,7 +152,7 @@
       "publisher": "Google (Search Central documentation)",
       "url": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap",
       "page_date": "Live documentation; retrieved 2026-11-20",
-      "retrieved": "2026-11-20",
+      "retrieved": "2026-11-21",
       "type": "primary",
       "verified": true,
       "supports": [
@@ -188,7 +188,7 @@
       "publisher": "Amazon (link.amazon)",
       "url": "https://link.amazon/B0hmGG4m2",
       "page_date": "Dynamic",
-      "retrieved": "2026-11-20",
+      "retrieved": "2026-11-21",
       "type": "primary",
       "verified": true,
       "supports": [
@@ -405,16 +405,16 @@
       "publisher": "Amazon.com, Inc. (Amazon Associates Central)",
       "url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ",
       "page_date": "Live public schedule; retrieved 2026-11-20",
-      "retrieved": "2026-11-20",
+      "retrieved": "2026-11-21",
       "type": "primary",
       "verified": true,
       "supports": [
-        "Public Table 1 lists fixed Standard Commission Income rates: Kitchen 4.50%; Home, Home Improvement, Tools 3.00%",
+        "Public Table 1 lists fixed Standard Commission Income rates: Kitchen 4.50%; Home, Home Improvement, Tools 3.00% (full 3.00% row as quoted)",
         "Exact SKU-level payout assignment between Kitchen (4.50%) and Home (3.00%) remains unverified until first-party Associates earnings reports exist"
       ],
       "quotes": [
-        "Kitchen: 4.50%",
-        "Home, Furniture, Lawn & Garden, Pets Products, Pantry, Home Improvement, Tools: 3.00%"
+        "Physical Books, Kitchen, Automotive | 4.50%",
+        "Toys, Furniture, Home, Home Improvement, Lawn & Garden, Pets Products, Headphones, Beauty, Musical Instruments, Business & Industrial Supplies, Outdoors, Tools, Sports, Baby Products, Amazon Coins | 3.00%"
       ]
     },
     {
@@ -423,11 +423,11 @@
       "publisher": "Amazon.com, Inc. (Amazon Associates Central)",
       "url": "https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC",
       "page_date": "Live public help topic; retrieved 2026-11-20",
-      "retrieved": "2026-11-20",
+      "retrieved": "2026-11-21",
       "type": "primary",
       "verified": true,
       "supports": [
-        "Public first-party Amazon Associates definition of ASIN as a 10-character Amazon Standard Item Number"
+        "Defines ASIN as the 10-digit code Amazon uses to denote specific products, short for 'Amazon.com Standard Item Number'; the same page gives alphanumeric ASIN examples such as B000IB9QXI, and the simple-text-link format http://www.amazon.com/dp/ASIN/ref=nosim?tag=YOURASSOCIATEID"
       ],
       "quotes": [
         "ASIN is the 10-digit code that Amazon uses to denote specific products. It is short for 'Amazon.com Standard Item Number.'"
